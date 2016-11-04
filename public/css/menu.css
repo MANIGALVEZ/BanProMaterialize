@@ -1,0 +1,56 @@
+*
+{
+  margin: 0px;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+div.menuu
+{
+  position: relative;
+  height: 50px;
+  width: 127px;
+
+}
+
+#btn-menu
+{
+  display: none;
+}
+
+div.menuu label
+{
+  font-size: 30px;
+  cursor: pointer;
+  display: none;
+}
+
+.menu ul
+{
+  background: #F8F8F8;
+  display: flex;
+
+  list-style: none;
+}
+
+.menu ul ul
+{
+  display: none;
+}
+
+.menu a {
+  display: block;
+  padding: 15px 20px;
+  color: black;
+  text-decoration: none;
+}
+
+.menu a:hover {
+  background: rgba(236,240,241,0.3);
+}
+
+.menu ul li:hover ul {
+  display: block;
+  position: absolute;
+  width: 127px;
+}

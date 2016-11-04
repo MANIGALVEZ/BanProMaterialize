@@ -1,0 +1,73 @@
+*{
+    list-style: none;
+}
+body{
+    padding-top: 80px;
+    /*background: url("../img/fondo.jpg")no-repeat center center;*/
+}
+#texdescrip{
+    box-shadow: 2px 2px 2px grey;
+    color : black;
+    padding : 20px;
+    width : 800px;
+    height : 200px;
+    overflow : auto;
+    background-color: darkgrey;
+}
+.switchcss{
+  position: relative;
+    left: 400px;
+  }
+a.btnsinicio{
+  background: #000000;
+ -webkit-background-clip: text;
+ -moz-background-clip: text;
+ background-clip: text;
+ color: transparent;
+ text-shadow: 0px 3px 3px rgba(255,255,255,0.5),0px -1px 1px rgba(0,0,0,.3);
+ text-decoration: none;
+ font-size: 20px;
+ margin-left: 10px;
+}
+a.btnsinicio:hover{
+    background: gray;
+ -webkit-background-clip: text;
+ -moz-background-clip: text;
+ background-clip: text;
+ color: transparent;
+ text-shadow: 0px 3px 3px rgba(255,255,255,0.5),0px -1px 1px rgba(0,0,0,.3);
+}
+div.botones{
+    position: relative;
+    width: 300px;
+    top: 30px;
+    left: 150px;
+}
+
+#panel-oculto {
+ display: none;
+ position: fixed;
+ top: 0;
+ width: 100%;
+ height: 200px;
+ z-index: 1000;
+ background-color: #222;
+  }
+
+tr.letrablanca
+{
+    color: white;
+}
+
+table
+{
+    border-radius: 30%;
+}
+
+img.logotecno
+{
+    width: 180px;
+    height: 45px;
+    position: absolute;
+    right: 1600px;
+}

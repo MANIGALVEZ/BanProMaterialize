@@ -1,0 +1,10 @@
+		
+
+Select realizado por lucas para traer los valores del campo linea y tabla lineas
+
+		<select>
+                    <option value="">-- Seleccione --</option>
+                    <?php foreach ($lineas as $key => $linea): ?>
+                        <option value="{{ $linea->id }}">{{ $linea->linea }}</option>
+                    <?php endforeach ?>
+                </select>
