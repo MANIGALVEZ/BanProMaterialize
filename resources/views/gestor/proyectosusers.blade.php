@@ -25,15 +25,19 @@
                         @endforeach
                     </td>
                     <td>
+
                             <?php $estadosprouser = DB::table("estadosproyectosusers")->get(); ?>
-                                <select class="form-inline" data-proyecto="{{ $puti->id }}">
-                                    @foreach($estadosprouser as $estado)
-                                        @if($estado->id == $puti->id)
+                        <select class="form-inline" data-proyecto="{{ $puti->id }}">
+                            @foreach($estadosprouser as $estado)
+                                <?php $tabla = DB::table("proyectosusers")->get(); ?>
+
+                                 @if($estado->id == $puti->estadosproyectosusers_id)
                                             <option value="{{$estado->id}}" selected>{{$estado->estado}}</option>
                                         @else
                                             <option value="{{$estado->id}}">{{$estado->estado}}</option>
                                         @endif
                                     @endforeach
+
                                 </select>
 
                     </td>

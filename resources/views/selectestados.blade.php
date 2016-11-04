@@ -60,7 +60,7 @@
             <td>
                 @if(Auth::user()->tiporol == 'gestor')
                     <a href="show/{{$row->id}}" type="button" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Detalles"><i class="glyphicon glyphicon-list-alt"></i></a>
-                    <a href="eliminar/{{$row->id}}" id="1" name="1" data-proyecto="{{ $row->id }}" type="submit" class="btn btn-danger estadoProyecto" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="glyphicon glyphicon-trash"></i></a>
+                    <a href="javascript:;" data-eliminar="{{$row->id}}" class="btn btn-danger btn-delete" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="glyphicon glyphicon-trash"></i></a>
                 @endif
 
                 @if(Auth::user()->tiporol == 'usuario' && Auth::user()->id)
@@ -92,9 +92,7 @@
                     <h4 class="modal-title" id="myModalLabel">Añadir Resumen</h4>
                 </div>
                 <div class="modal-body">
-                <textarea
-                        class="form-control" rows="5" name="texto" id="texto">
-                </textarea>
+                <textarea class="form-control" rows="5" name="texto" id="texto"></textarea>
                     <input type="hidden" name="idEstado" id="idEstado">
                     <input type="hidden" name="idProyecto" id="idProyecto">
                 </div>
@@ -108,30 +106,94 @@
 </form>
 
 
+<!-- Modal para eliminar proyecto  -->
+<form action="{{url('eliminarP')}}" method="POST">
+    {{ csrf_field() }}
+    <div class="modal fade modalEliminar" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel">Agregue una breve descripcion para eliminar el proyecto</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="recipient-name" class="control-label">La notificacion será enviada a:</label>
+                        <?php $usuario = DB::table('users')->where('id', "=", $row->usuario_id)->get();?>
+                        @foreach($usuario as $usu)
+                            <p class="form-control-static">{{$usu->nameu}}: {{$usu->email}}</p>
+                        @endforeach
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="control-label">Descripcion</label>
+                        <textarea class="form-control" rows="5" name="textoEliminar" id="textoEliminar" ></textarea>
+                        <input type="hidden" name="idEliminar" id="idEliminar">
+                        <input type="hidden" name="idPro" id="idPro">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-secondary" data-dismiss="modalEliminar">Cancelar</button>
+                    <button type="submit"  class="btn btn-primary">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+{{--funcion ajax para cambiar de estado en tiempo real y auto actualizarse--}}
 <script>
-    //funcion ajax para cambiar de estado en tiempo real y auto actualizarse
-    $(".estadoProyecto").change(function () {
-        $idEstado = $(this).val();
-        $idProyecto = $(this).attr("data-proyecto");
-
-
-        if ($idEstado == 3 || $idEstado == 4)
+    $(document).ready(function() {
+        $(".estadoProyecto").change(function ()
         {
-            $(".modal").modal("show");
-            $('#idEstado').val($idEstado);
-            $('#idProyecto').val($idProyecto);
-            $.get('consultaP/'+$idProyecto, {idp: $idProyecto}, function(data)
+            $idEstado = $(this).val()
+            $idProyecto = $(this).attr("data-proyecto")
+
+            if ($idEstado == 3 || $idEstado == 4)
             {
-                //console.log(data);
-                $('#texto').val(data);
-            });
-        }
 
-        else
+                $(".modalresumen").modal("show")
+                $('#idEstado').val($idEstado)
+                $('#idProyecto').val($idProyecto)
+
+                $(".modalResume").modal("show")
+                $('#idEstado').val($idEstado)
+                $('#idProyecto').val($idProyecto)
+
+                $.get('consultaP/'+$idProyecto, {idp: $idProyecto}, function(data)
+                {
+                    $('#texto').val(data)
+                })
+            }
+            else
+            {
+                $.get("estadoProyecto", {ide: $idEstado, idp: $idProyecto})
+                window.location.replace("")
+            }
+
+        })
+    })
+</script>
+
+{{--funcion ajax para eliminar un proyecto, pasar a estado en banco(El gestor por medio del aplicativo podrá eliminar un proyecto y de manera automática envía una notificación al usuario informando el fin del proceso y su motivo)--}}
+<script>
+    $(document).ready(function() {
+        $('.btn-delete').click(function ()
         {
-            $.get("estadoProyecto", {ide: $idEstado, idp: $idProyecto});
-            window.location.replace("");
-        }
+            $idEliminar = "1"
+            $idPro = $(this).attr("data-eliminar")
 
+            $(".modalEliminar").modal("show")
+            $('#idEliminar').val($idEliminar)
+            $('#idPro').val($idPro)
+
+            $.get('consultaP/'+$idPro, {idp: $idPro}, function(data)
+            {
+
+                $('#textoEliminar').val(data)
+
+            })
+        })
     })
 </script>

@@ -194,16 +194,12 @@ class ProyectosController extends Controller
         public function eliminarProyecto(Request $request)
 
         {
-            $proyecto = Proyecto::find($request->get("idProyecto"));
+            $proyecto = Proyecto::find($request->get("idPro"));
             $proyecto->estadosdeproyectos_id = $request->get("idEliminar");
             $proyecto->resumen = $request->get('textoEliminar');
             $proyecto->save();
-            var_dump($proyecto);
+
             return redirect("home");
-
-
-
-
 
         }
 

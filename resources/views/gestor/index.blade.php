@@ -140,7 +140,7 @@
                             <a href="show/{{$row->id}}" type="button" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Detalles"><i class="glyphicon glyphicon-list-alt"></i></a>
                             @foreach($iprs as $ipr)
                                 @if($ipr->proyectos_id == $row->id)
-                                    <a href="javascript:;" type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" disabled="disabled" title="Pendiente Aprobacion"><i class="glyphicon glyphicon-time"></i></a>
+                                    <a href="javascript:;" type="button" class="btn btn-warning btn-inscribir" data-toggle="tooltip" data-placement="top" disabled="disabled" title="Pendiente Aprobacion"><i class="glyphicon glyphicon-time"></i></a>
                                     <?php $ipr_status=true ?>
                                 @endif
                             @endforeach
@@ -157,12 +157,17 @@
     {!!$query->render()!!}
 
 {{--<script>--}}
-    {{--swal({--}}
-        {{--title: "Inscrito",--}}
-        {{--text: "Se ha inscrito correctamente, pronto un administrador aprobará su solicitud",--}}
-        {{--type: "warning",--}}
-        {{--confirmButtonClass: "btn-warning",--}}
-        {{--confirmButtonText: "Aceptar"});--}}
+    {{--$(document).ready(function(){--}}
+        {{--$('.btn-inscribir').click(function ()--}}
+        {{--{--}}
+        {{--swal({--}}
+            {{--title: "Inscrito",--}}
+            {{--text: "Se ha inscrito correctamente, pronto un administrador aprobará su solicitud",--}}
+            {{--type: "warning",--}}
+            {{--confirmButtonClass: "btn-warning",--}}
+            {{--confirmButtonText: "Aceptar"});--}}
+        {{--})--}}
+    {{--})--}}
 {{--</script>--}}
 
 
@@ -177,9 +182,7 @@
                     <h4 class="modal-title" id="myModalLabel">Añadir Resumen</h4>
                 </div>
                 <div class="modal-body">
-                    <textarea
-                        class="form-control" rows="5" name="texto" id="texto">
-                    </textarea>
+                    <textarea class="form-control" rows="5" name="texto" id="texto"></textarea>
                     <input type="hidden" name="idEstado" id="idEstado">
                     <input type="hidden" name="idProyecto" id="idProyecto">
                 </div>
@@ -213,11 +216,9 @@
                         </div>
                         <div class="form-group">
                             <label for="message-text" class="control-label">Descripcion</label>
-                                <textarea
-                                    class="form-control" rows="5" name="textoEliminar" id="textoEliminar" >
-                                </textarea>
+                                <textarea class="form-control" rows="5" name="textoEliminar" id="textoEliminar" ></textarea>
                             <input type="hidden" name="idEliminar" id="idEliminar">
-                            <input type="hidden" name="idProyecto" id="idProyecto">
+                            <input type="hidden" name="idPro" id="idPro">
                         </div>
                 </div>
                 <div class="modal-footer">
@@ -229,33 +230,5 @@
     </div>
 </form>
 
-
-{{--<script>--}}
-
-{{--//        if(confirm('Realmente desea elinimar este lala ?')) {--}}
-{{--//            window.location.replace('eliminarP/'+$id);--}}
-
-{{--</script>--}}
-
-<script>
-    $('.btn-delete').click(function ()
-    {
-        $idEliminar = "1";
-        $idProyecto = $(this).attr("data-eliminar")
-
-        $(".modalEliminar").modal("show")
-        $('#idEliminar').val($idEliminar);
-        $('#idProyecto').val($idProyecto)
-        $.get('consultaP/'+$idProyecto, {idp: $idProyecto}, function(data)
-        {
-
-            $('#textoEliminar').val(data)
-            console.log(data)
-
-//                window.location.replace('eliminarP/')
-
-        })
-    })
-</script>
 
 @endsection

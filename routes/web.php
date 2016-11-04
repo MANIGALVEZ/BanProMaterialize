@@ -69,7 +69,7 @@ Route::get('/usuariosshow/{id}', 'ProyectosController@usuariosshow');
 
 
 //Ruta para eliminar (cambiar a estado: En Banco) proyectos
-Route::get('/eliminarP', 'ProyectosController@eliminarProyecto');
+Route::post('/eliminarP', 'ProyectosController@eliminarProyecto');
 
 
 //Ruta para dirigir a proyectos en estado: En Banco

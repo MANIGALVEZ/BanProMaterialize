@@ -52,8 +52,7 @@ Vista registro proyectos: El usuario por medio del aplicativo espera tener una i
     <div class="form-group">
         <label for="descripcion" class="col-md-2 control-label">Descripción</label>
             <div class="col-md-10">
-                <textarea id="descripcion" type="text" class="form-control" name="descripcion" value="{{ old('descripcion') }}" autofocus maxlength="255" >
-                </textarea>
+                <textarea id="descripcion" type="text" class="form-control" name="descripcion" value="{{ old('descripcion') }}" autofocus maxlength="255" ></textarea>
             </div>
     </div>
         <div class="form-group">

@@ -135,37 +135,39 @@
     <script>
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
-        });
+        })
     </script>
 
 {{--Script para switch de mis proyectos--}}
 <script>
     $(document).ready(function(){
         $('#opcion1').change(function(){
-            window.location.replace('/misproyectos');
-        });
+            window.location.replace('/misproyectos')
+        })
 
         $('#opcion2').change(function(){
-            window.location.replace('/home');
-        });
-    });
+            window.location.replace('/home')
+        })
+    })
 </script>
 
 {{--Script para el filtro por estados (El usuario desea poder ver el banco de proyectos en estado: "reclutando") --}}
-    <script>
+<script>
+    $(document).ready(function() {
         $(".filtroEstado").change(function(){
-            $lip = $(this).val();
+            $lip = $(this).val()
             $.get('listarP/'+$lip, function(data)
             {
-                $('tbody').empty();
-                $('tbody').html(data);
+                $('tbody').empty()
+                $('tbody').html(data)
             })
-        });
-    </script>
+        })
+    })
+</script>
 
 {{--funcion ajax para cambiar de estado en tiempo real y auto actualizarse--}}
-    <script>
-
+<script>
+    $(document).ready(function() {
         $(".estadoProyecto").change(function ()
         {
             $idEstado = $(this).val()
@@ -174,9 +176,9 @@
             if ($idEstado == 3 || $idEstado == 4)
             {
 
-                $(".modalresumen").modal("show");
-                $('#idEstado').val($idEstado);
-                $('#idProyecto').val($idProyecto);
+                $(".modalresumen").modal("show")
+                $('#idEstado').val($idEstado)
+                $('#idProyecto').val($idProyecto)
 
                 $(".modalResume").modal("show")
                 $('#idEstado').val($idEstado)
@@ -184,7 +186,6 @@
 
                 $.get('consultaP/'+$idProyecto, {idp: $idProyecto}, function(data)
                 {
-                    //console.log(data);
                     $('#texto').val(data)
                 })
             }
@@ -195,6 +196,31 @@
             }
 
         })
-    </script>
+    })
+</script>
+
+{{--funcion ajax para eliminar un proyecto, pasar a estado en banco(El gestor por medio del aplicativo podrá eliminar un proyecto y de manera automática envía una notificación al usuario informando el fin del proceso y su motivo)--}}
+<script>
+    $(document).ready(function() {
+        $('.btn-delete').click(function ()
+        {
+            $idEliminar = "1"
+            $idPro = $(this).attr("data-eliminar")
+
+            $(".modalEliminar").modal("show")
+            $('#idEliminar').val($idEliminar)
+            $('#idPro').val($idPro)
+
+            $.get('consultaP/'+$idPro, {idp: $idPro}, function(data)
+            {
+
+                $('#textoEliminar').val(data)
+
+            })
+        })
+    })
+</script>
+
+
 </body>
 </html>
