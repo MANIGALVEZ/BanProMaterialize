@@ -7,9 +7,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <!-- Materialize-->
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
 
     <title>Laravel</title>
 
@@ -21,6 +19,7 @@
     <link  href="{{ asset('css/menu.css') }}" rel="stylesheet">
     <link  href="{{ asset('css/bootstrap-switch.css') }}" rel="stylesheet">
     <link  href="{{ asset('css/fileinput.css') }}" rel="stylesheet">
+    <link  href="{{ asset('css/material-kit.css') }}" rel="stylesheet">
 
 
     <!-- Scripts -->
@@ -29,6 +28,10 @@
     <script src="{{ asset('js/bootstrap-switch.js') }}"></script>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/fileinput.js') }}"></script>
+    <script src="{{ asset('js/bootstrap-datepicker.js') }}"></script>
+    {{--<script src="{{ asset('js/material-kit.js') }}"></script>--}}
+    <script src="{{ asset('js/nouislider.min.js') }}"></script>
+
 
 
     <script>
@@ -38,7 +41,7 @@
     </script>
 </head>
 <body>
-<nav class="navbar navbar-default navbar-static-top navbar-fixed-top">
+<nav class="navbar navbar-success navbar-static-top navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
 

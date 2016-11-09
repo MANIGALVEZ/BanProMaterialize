@@ -7,9 +7,10 @@
 
 div.menuu
 {
-  position: relative;
+  position: absolute;
   height: 50px;
-  width: 127px;
+  width: 0px;
+
 
 }
 
@@ -41,7 +42,7 @@ div.menuu label
 .menu a {
   display: block;
   padding: 15px 20px;
-  color: black;
+  color: white;
   text-decoration: none;
 }
 
@@ -53,4 +54,5 @@ div.menuu label
   display: block;
   position: absolute;
   width: 127px;
+  background-color: #003399;
 }

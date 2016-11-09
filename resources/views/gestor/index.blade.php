@@ -28,14 +28,14 @@
         <form class="form-inline" action="{{url('searchN')}}" method="POST">
             {{ csrf_field() }}
             <input type="text" class="form-control" placeholder="Buscar Proyecto" name="nombrep">
-            <button type="submit" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Buscar por Nombre"><i class="glyphicon glyphicon-search"></i></button>
+            <button type="submit" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Buscar por Nombre"><i class="glyphicon glyphicon-search"></i></button>
         </form>
         <br>
         <form class="form-inline" action="{{url('searchD')}}" method="POST">
             {{ csrf_field() }}
             <input type="date" class="form-control" id="bd-desde" name="bd-desde" required="required">
             <input type="date" class="form-control" id="bd-hasta" name="bd-hasta" required="required">
-            <button type="submit" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Buscar por Fecha"><i class="glyphicon glyphicon-calendar"></i></button>
+            <button type="submit" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Buscar por Fecha"><i class="glyphicon glyphicon-calendar"></i></button>
         </form>
         <br>
         <?php $estados = DB::table("estadosdeproyectos")->where('id', '<>', '1')->get(); ?>
@@ -48,6 +48,21 @@
             </select>
         </form>
         <br>
+        <div class="col-md-3 dropdown">
+            <a href="#" class="btn btn-simple dropdown-toggle" data-toggle="dropdown">
+                Regular
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+                <li class="divider"></li>
+                <li><a href="#">One more separated link</a></li>
+            </ul>
+        </div>
         <form class="form-inline" >
         @if(Auth::user()->tiporol == 'usuario')
             <div class=" btn-group" data-toggle="buttons">
@@ -65,9 +80,9 @@
 
 <br><br>
 
-    <table class="table table-hover table-bordered">
+    <table class="table table-hover">
         <thead>
-        <tr class="label-primary letrablanca">
+        <tr class="label-default letrablanca">
             <th>Id</th>
             <th>Fecha</th>
             <th>Nombre Proyecto</th>
@@ -133,6 +148,9 @@
                         @if(Auth::user()->tiporol == 'gestor')
                         <a href="show/{{$row->id}}" type="button" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Detalles"><i class="glyphicon glyphicon-list-alt"></i></a>
                         <a href="javascript:;" data-eliminar="{{$row->id}}" class="btn btn-danger btn-delete" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="glyphicon glyphicon-trash"></i></a>
+                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                <i class="fa fa-times"></i>
+                            </button>
                         @endif
 
                         @if(Auth::user()->tiporol == 'usuario' && Auth::user()->id)
