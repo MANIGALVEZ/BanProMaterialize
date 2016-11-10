@@ -75,5 +75,10 @@ Route::post('/eliminarP', 'ProyectosController@eliminarProyecto');
 //Ruta para dirigir a proyectos en estado: En Banco
 Route::get('/proyectosB', 'ProyectosController@proyectosBanco');
 
+
 //Ruta para ver proyectos solicitando de cada usuario
 Route::get('/proyectousuario/{id}', 'ProyectosController@showup');
+
+
+//Ruta para eliminar (cambiar a estado: En Banco) proyectos
+Route::get('/estProUser', 'ProyectosController@estadoProyectoUsuario');

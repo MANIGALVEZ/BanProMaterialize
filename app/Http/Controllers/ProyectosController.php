@@ -96,11 +96,13 @@ class ProyectosController extends Controller
     // Funcion: El usuario desea poder ver el banco de proyectos en estado: "reclutando"
     public function listarProyecto($lip)
     {
+
             $query =Proyecto::where('estadosdeproyectos_id', '=', $lip)
                 ->orderBy('id', 'ASC')
                 ->paginate(3);
             $iprs = ProyectosUsers::all();
             return view('selectestados', compact('query', 'iprs'));
+
     }
 
 
@@ -256,4 +258,14 @@ class ProyectosController extends Controller
         return view('gestor.showup', compact('query', 'users'));
             */
        }
+
+
+    //Funcion para guardar y mostrar valores en el modal
+    public function estadoProyectoUsuario(Request $request)
+    {
+        $prous = ProyectosUsers::find($request->get("idpro"));
+        $prous->estadosproyectosusers_id = $request->get("idcam");
+        $prous->save();
+    }
+
 }

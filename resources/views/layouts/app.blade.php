@@ -20,6 +20,7 @@
     <link  href="{{ asset('css/bootstrap-switch.css') }}" rel="stylesheet">
     <link  href="{{ asset('css/fileinput.css') }}" rel="stylesheet">
     <link  href="{{ asset('css/material-kit.css') }}" rel="stylesheet">
+    {{--<link  href="{{ asset('css/material-bootstrap-wizard.css') }}" rel="stylesheet">--}}
 
 
     <!-- Scripts -->
@@ -31,6 +32,7 @@
     <script src="{{ asset('js/bootstrap-datepicker.js') }}"></script>
     {{--<script src="{{ asset('js/material-kit.js') }}"></script>--}}
     <script src="{{ asset('js/nouislider.min.js') }}"></script>
+    {{--<script src="{{ asset('js/material-bootstrap-wizard.js') }}"></script>--}}
 
 
 
@@ -179,10 +181,6 @@
             if ($idEstado == 3 || $idEstado == 4)
             {
 
-                $(".modalresumen").modal("show")
-                $('#idEstado').val($idEstado)
-                $('#idProyecto').val($idProyecto)
-
                 $(".modalResume").modal("show")
                 $('#idEstado').val($idEstado)
                 $('#idProyecto').val($idProyecto)
@@ -195,7 +193,6 @@
             else
             {
                 $.get("estadoProyecto", {ide: $idEstado, idp: $idProyecto})
-                window.location.replace("")
             }
 
         })
@@ -224,6 +221,22 @@
     })
 </script>
 
+{{--Funcion ajax para actualizar estados en la vista proyectosusers--}}
+<script>
+    $(document).ready(function() {
+        $(".estadoProyectoUsuario").change(function ()
+        {
+            $idCambio = $(this).val()
+            $idProUser= $(this).attr("data-idprouser")
+
+            $('#idCambio').val($idCambio)
+            $('#idProUser').val($idProUser)
+
+            $.get('/estProUser', {idcam: $idCambio, idpro: $idProUser})
+
+        })
+    })
+</script>
 
 </body>
 </html>
