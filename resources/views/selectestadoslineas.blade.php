@@ -82,7 +82,8 @@
     @endforeach
 
 
-    <!-- Modal para agregar un resumen cuando el proyecto pasa a estado Reclutando o En desarrollo  -->
+
+            <!-- Modal para agregar un resumen cuando el proyecto pasa a estado Reclutando o En desarrollo  -->
     <form action="{{url('resumenP')}}" method="POST">
         {{ csrf_field() }}
         <div class="modal fade modalResume" id="modalResume" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -145,8 +146,8 @@
         $(document).ready(function()
         {
             swal({
-            title: "",
-            text: "No se encuentran proyectos en este estado",
+            title: "Filtrar Por Estado",
+            text: "No se encuentran proyectos en el estado seleccionado",
             type: "error",
             confirmButtonClass: "btn-danger",
             confirmButtonText: "Aceptar"});

@@ -49,7 +49,9 @@ class HomeController extends Controller
             {
                 $lineas = Linea::all();
                 $iprs=ProyectosUsers::all();
-                $query = Proyecto::orderBy('id','ASC')->paginate(3);
+                $query = Proyecto::where('estadosdeproyectos_id', '<>', "1")
+                    ->orderBy('id', 'ASC')
+                    ->paginate(3);
                 return view('gestor.index', compact('query', "lineas", 'iprs'));
 
             }

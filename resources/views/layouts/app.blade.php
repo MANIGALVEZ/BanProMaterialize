@@ -57,20 +57,23 @@
 
                 <!-- Branding Image -->
 
-                 <img src="../img/tecnoparque.png" alt="" class="logotecno">
+                 {{--<img src="../img/tecnoparque.png" alt="" class="logotecno">--}}
                 @if (Auth::guest())
                 @else
                 <div class="menuu">
-                   <input type="checkbox" id="btn-menu">
-                    <label for="btn-menu" class="icon-menu"></label>
                     <nav class="menu">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="#">
+                                <img alt="Tecnoparque" src="../img/tecnoparque.png" class="logotecno">
+                            </a>
+                        </div>
                       <ul>
                         <li><a href="{{ url('/') }}">Inicio</a></li>
                         <li class="submenus">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Proyectos<b class="icon-down-open"></b></a>
                                 @if(Auth::user()->tiporol == 'usuario')
                                 <ul class="dropdown-menu">
-                                    <li><a href="{{ url('/proyectos/create')}}">Crear</a></li>
+                                    <li><a href="{{ url('/proyectos/create')}}">Registrar</a></li>
                                     <li><a href="{{ url('/home')}}">Todos</a></li>
                                     <li><a href="{{ url('/misproyectos')}}">Asociados</a></li>
                                 </ul>
@@ -236,6 +239,20 @@
 
             $.get('/estProUser', {idcam: $idCambio, idpro: $idProUser})
 
+        })
+    })
+</script>
+
+{{--Script para filtrar por lineas tecnologicas (El gestor podra filtrar los proyectos según las diferentes lineas tecnologicas)--}}
+<script>
+    $(document).ready(function() {
+        $(".filtroLinea").change(function(){
+            $lil = $(this).val()
+            $.get('listarL/'+$lil, function(data)
+            {
+                $('tbody').empty()
+                $('tbody').html(data)
+            })
         })
     })
 </script>
