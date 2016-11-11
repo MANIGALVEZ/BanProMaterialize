@@ -30,14 +30,14 @@
         <form class="form-inline col-md-4" action="{{url('searchN')}}" method="POST">
             {{ csrf_field() }}
             <input type="text" class="form-control" placeholder="Buscar Proyecto" name="nombrep">
-            <button type="submit" class="btn btn-success btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Buscar por Nombre"><i class="glyphicon glyphicon-search"></i></button>
+            <button type="submit" class="btn btn-success btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Filtrar por Nombre"><i class="glyphicon glyphicon-search"></i></button>
         </form>
 
         <form class="form-inline col-md-5" action="{{url('searchD')}}" method="POST">
             {{ csrf_field() }}
             <input type="date" class="form-control" id="bd-desde" name="bd-desde" required="required">
             <input type="date" class="form-control" id="bd-hasta" name="bd-hasta" required="required">
-            <button type="submit" class="btn btn-success btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Buscar por Fecha"><i class="glyphicon glyphicon-calendar"></i></button>
+            <button type="submit" class="btn btn-success btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Filtrar por Fecha"><i class="glyphicon glyphicon-calendar"></i></button>
         </form>
 
         <?php $estados = DB::table("estadosdeproyectos")->where('id', '<>', '1')->get(); ?>
@@ -49,7 +49,13 @@
                     @endforeach
             </select>
         </form>
-        <br>
+        <br><br>
+
+        <form class="form-inline col-md-6" >
+            @foreach($lineas as $key => $linea)
+                <input class="filtroLinea" type="checkbox" value="{{ $linea->id }}" autofocus >{{ $linea->linea }}<br>
+            @endforeach
+        </form>
         {{--<form class="form-inline" >--}}
         {{--@if(Auth::user()->tiporol == 'usuario')--}}
             {{--<div class=" btn-group" data-toggle="buttons">--}}
@@ -81,6 +87,7 @@
         </tr>
         </thead>
         <tbody>
+        @if($query->count()>0)
             @foreach($query as $row)
                 <tr class="letra">
                     <td>{{$row->id}}</td>
@@ -157,7 +164,7 @@
             @endforeach
         </tbody>
     </table>
-    {!!$query->render()!!}
+    {{--{!!$query->render()!!}--}}
 
 {{--<script>--}}
     {{--$(document).ready(function(){--}}
@@ -233,5 +240,19 @@
     </div>
 </form>
 
+
+@else
+    <script>
+        $(document).ready(function()
+        {
+            swal({
+            title: "Filtrar Por Fecha",
+            text: "No se encuentran proyectos en la fecha seleccionada",
+            type: "error",
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "Aceptar"});
+        })
+    </script>
+@endif
 
 @endsection

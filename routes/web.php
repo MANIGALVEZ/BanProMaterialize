@@ -82,3 +82,7 @@ Route::get('/proyectousuario/{id}', 'ProyectosController@showup');
 
 //Ruta para eliminar (cambiar a estado: En Banco) proyectos
 Route::get('/estProUser', 'ProyectosController@estadoProyectoUsuario');
+
+
+// Ruta para filtrar por lineas (El gestor podra filtrar los proyectos según las diferentes lineas tecnologicas)
+Route::get('/listarL/{lil}', 'ProyectosController@listarLinea');

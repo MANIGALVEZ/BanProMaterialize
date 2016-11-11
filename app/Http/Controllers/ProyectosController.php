@@ -22,7 +22,8 @@ class ProyectosController extends Controller
     //Funcion para dirigir a interfaz principal
 	public function index()
     {
-        $query = Proyecto::orderBy('id','ASC')->paginate(3);
+        $query = Proyecto::where('estadosdeproyectos_id', '<>', "1")
+            ->orderBy('id', 'ASC');
         $lineas = Linea::all();
         $iprs = ProyectosUsers::all();
         $estados = EstadosdeProyectos::all();
@@ -44,8 +45,8 @@ class ProyectosController extends Controller
     //Funcion store para guardar en BD/ El usuario por medio del aplicativo espera tener una interfaz que permita registrar su proyecto
     public function store(Request $request)
     {
-        $file = $request->file('file');
-        $direccion = $file->getClientOriginalName();
+//        $file = $request->file('file');
+//        $direccion = $file->getClientOriginalName();
 
         $proyecto = new Proyecto();
         $proyecto->nombrep = $request->get('nombrep');
@@ -53,9 +54,9 @@ class ProyectosController extends Controller
         $proyecto->empresa = $request->get('empresa');
         $proyecto->descripcion = $request->get('descripcion');
         $proyecto->usuario_id = Auth::user()->id;
-        $proyecto->imagen = 'imagenes/proyectos/'.$direccion;
+//        $proyecto->imagen = 'imagenes/proyectos/'.$direccion;
         $proyecto->estadosdeproyectos_id = "2";
-        $request->file('file')->move(base_path().'/public/imagenes/proyectos/', $direccion);
+//        $request->file('file')->move(base_path().'/public/imagenes/proyectos/', $direccion);
         $proyecto->save();
 
         $lineas = $request->get("lineatecnologica");
@@ -96,12 +97,11 @@ class ProyectosController extends Controller
     // Funcion: El usuario desea poder ver el banco de proyectos en estado: "reclutando"
     public function listarProyecto($lip)
     {
-
             $query =Proyecto::where('estadosdeproyectos_id', '=', $lip)
                 ->orderBy('id', 'ASC')
                 ->paginate(3);
             $iprs = ProyectosUsers::all();
-            return view('selectestados', compact('query', 'iprs'));
+            return view('selectestadoslineas', compact('query', 'iprs'));
 
     }
 
@@ -177,11 +177,12 @@ class ProyectosController extends Controller
 
 
     //Funcion que permite ver los  proyectos inscritos
-    public function misproyectos(){
+    public function misproyectos()
+    {
 
         $iprs = ProyectosUsers::all();
         $lineas = Linea::all();
-        $query = \DB::table('proyectos')
+        $query = Proyecto::where('estadosdeproyectos_id', '<>', "1")
             ->join('proyectosusers', 'proyectos.id', '=', 'proyectosusers.proyectos_id')
             ->select('proyectos.*', 'proyectosusers.estadosproyectosusers_id')
             ->where('proyectosusers.users_id', '=', Auth::user()->id)
@@ -261,12 +262,27 @@ class ProyectosController extends Controller
        }
 
 
-    //Funcion para guardar y mostrar valores en el modal
+    //Funcion para filtrar por estado
     public function estadoProyectoUsuario(Request $request)
     {
         $prous = ProyectosUsers::find($request->get("idpro"));
         $prous->estadosproyectosusers_id = $request->get("idcam");
         $prous->save();
     }
+
+
+    // Funcion: Filtrar por lineas (El gestor podra filtrar los proyectos según las diferentes lineas tecnologicas)
+    public function listarLinea($lil)
+    {
+        $query = \DB::table('proyectos')
+            ->join('lineasproyectos', 'proyectos.id', '=', 'lineasproyectos.proyectos_id')
+            ->select('proyectos.*', 'lineasproyectos.lineas_id')
+            ->where('lineasproyectos.lineas_id', '=', $lil)
+            ->orderBy('id','ASC')->paginate();
+        $iprs = ProyectosUsers::all();
+        return view('selectestadoslineas', compact('query','iprs'));
+
+    }
+
 
 }
