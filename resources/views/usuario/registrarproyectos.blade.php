@@ -10,9 +10,11 @@ Vista registro proyectos: El usuario por medio del aplicativo espera tener una i
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 
     <article>
-            <H3><center><label>Registro de Proyectos</label></center></H3>
-            <br><br>
+        <div class="page-header">
+            <h1 class="text-center text-muted">Registro de Proyectos</h1>
+        </div>
     </article>
+
     <form action="{{ url('/proyectos') }}" method="POST" class="form-horizontal" role="form">
     {{ csrf_field() }}
 
@@ -52,7 +54,7 @@ Vista registro proyectos: El usuario por medio del aplicativo espera tener una i
     <div class="form-group">
         <label for="descripcion" class="col-md-2 control-label">Descripción</label>
             <div class="col-md-10">
-                <textarea id="descripcion" type="text" class="form-control" name="descripcion" value="{{ old('descripcion') }}" autofocus maxlength="255" ></textarea>
+                <textarea id="descripcion" type="text" class="form-control" placeholder="Por favor escriba una breve descripción" rows="5" name="descripcion" value="{{ old('descripcion') }}" autofocus maxlength="255" ></textarea>
             </div>
     </div>
         <div class="form-group">
@@ -63,7 +65,7 @@ Vista registro proyectos: El usuario por medio del aplicativo espera tener una i
 
     <center>
         <div class="col-md-4 col-md-offset-4">
-         <button type="submit" class="btn btn-primary" name="enviar" value="enviar">
+         <button type="submit" class="btn btn-success" name="enviar" value="enviar">
             Registrar
          </button>
         </div>

@@ -12,34 +12,36 @@
 ?>
 
     <article>
-            <label><H2>
-                    @if(Auth::user()->tiporol == 'gestor')
-                        Banco de Proyectos Gestor
-                    @endif
 
-                    @if(Auth::user()->tiporol == 'usuario')
-                        Banco de Proyectos usuario
-                    @endif
-                </H2></label>
+        @if(Auth::user()->tiporol == 'gestor')
+            <div class="page-header">
+                <h2 class="text-center text-muted">Banco De Proyectos Gestor</h2>
+            </div>
+        @endif
+
+        @if(Auth::user()->tiporol == 'usuario')
+            <div class="page-header">
+                <h2 class="text-center text-muted">Banco De Proyectos Usuario</h2>
+            </div>
+        @endif
+
         <br><br>
 
-
-
-        <form class="form-inline" action="{{url('searchN')}}" method="POST">
+        <form class="form-inline col-md-4" action="{{url('searchN')}}" method="POST">
             {{ csrf_field() }}
             <input type="text" class="form-control" placeholder="Buscar Proyecto" name="nombrep">
-            <button type="submit" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Buscar por Nombre"><i class="glyphicon glyphicon-search"></i></button>
+            <button type="submit" class="btn btn-success btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Buscar por Nombre"><i class="glyphicon glyphicon-search"></i></button>
         </form>
-        <br>
-        <form class="form-inline" action="{{url('searchD')}}" method="POST">
+
+        <form class="form-inline col-md-5" action="{{url('searchD')}}" method="POST">
             {{ csrf_field() }}
             <input type="date" class="form-control" id="bd-desde" name="bd-desde" required="required">
             <input type="date" class="form-control" id="bd-hasta" name="bd-hasta" required="required">
-            <button type="submit" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Buscar por Fecha"><i class="glyphicon glyphicon-calendar"></i></button>
+            <button type="submit" class="btn btn-success btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Buscar por Fecha"><i class="glyphicon glyphicon-calendar"></i></button>
         </form>
-        <br>
+
         <?php $estados = DB::table("estadosdeproyectos")->where('id', '<>', '1')->get(); ?>
-        <form class="form-inline" >
+        <form class="form-inline col-md-3" >
             <select class="form-control filtroEstado" data-toggle="tooltip" data-placement="top" title="Filtrar por Estado">
                 <option value="">{{ "Seleccione Estado..." }}</option>
                     @foreach($estados as $estado)
@@ -48,41 +50,26 @@
             </select>
         </form>
         <br>
-        <div class="col-md-3 dropdown">
-            <a href="#" class="btn btn-simple dropdown-toggle" data-toggle="dropdown">
-                Regular
-                <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-                <li class="divider"></li>
-                <li><a href="#">One more separated link</a></li>
-            </ul>
-        </div>
-        <form class="form-inline" >
-        @if(Auth::user()->tiporol == 'usuario')
-            <div class=" btn-group" data-toggle="buttons">
+        {{--<form class="form-inline" >--}}
+        {{--@if(Auth::user()->tiporol == 'usuario')--}}
+            {{--<div class=" btn-group" data-toggle="buttons">--}}
                 {{--<h4>Mis proyectos</h4>--}}
-                <label class="btn btn-info">
-                    <input type="radio" name="options" id="opcion1">Proyectos Asociados
-                </label>
-                <label class="btn btn-primary">
-                    <input type="radio" name="options" id="opcion2">Todos los proyectos
-                </label>
-            </div>
-        @endif
-        </form>
+                {{--<label class="btn btn-info">--}}
+                    {{--<input type="radio" name="options" id="opcion1">Proyectos Asociados--}}
+                {{--</label>--}}
+                {{--<label class="btn btn-primary">--}}
+                    {{--<input type="radio" name="options" id="opcion2">Todos los proyectos--}}
+                {{--</label>--}}
+            {{--</div>--}}
+        {{--@endif--}}
+        {{--</form>--}}
     </article>
 
-<br><br>
+<br><br><br><br><br><br>
 
-    <table class="table table-hover">
+    <table class="table">
         <thead>
-        <tr class="label-default letrablanca">
+        <tr class="">
             <th>Id</th>
             <th>Fecha</th>
             <th>Nombre Proyecto</th>
@@ -95,7 +82,7 @@
         </thead>
         <tbody>
             @foreach($query as $row)
-                <tr>
+                <tr class="letra">
                     <td>{{$row->id}}</td>
                     <td>{{fechalatina($row->created_at)}}</td>
                     <td>{{$row->nombrep}}</td>
@@ -146,24 +133,21 @@
                     </td>
                     <td>
                         @if(Auth::user()->tiporol == 'gestor')
-                        <a href="show/{{$row->id}}" type="button" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Detalles"><i class="glyphicon glyphicon-list-alt"></i></a>
-                        <a href="javascript:;" data-eliminar="{{$row->id}}" class="btn btn-danger btn-delete" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="glyphicon glyphicon-trash"></i></a>
-                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                <i class="fa fa-times"></i>
-                            </button>
+                        <a href="show/{{$row->id}}" type="button" class="btn btn-info btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Detalles"><i class="glyphicon glyphicon-list-alt"></i></a>
+                        <a href="javascript:;" data-eliminar="{{$row->id}}" class="btn btn-danger btn-delete btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="glyphicon glyphicon-trash"></i></a>
                         @endif
 
                         @if(Auth::user()->tiporol == 'usuario' && Auth::user()->id)
                             <?php $ipr_status=false ?>
-                            <a href="show/{{$row->id}}" type="button" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Detalles"><i class="glyphicon glyphicon-list-alt"></i></a>
+                            <a href="show/{{$row->id}}" type="button" class="btn btn-info btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Detalles"><i class="glyphicon glyphicon-list-alt"></i></a>
                             @foreach($iprs as $ipr)
                                 @if($ipr->proyectos_id == $row->id)
-                                    <a href="javascript:;" type="button" class="btn btn-warning btn-inscribir" data-toggle="tooltip" data-placement="top" disabled="disabled" title="Pendiente Aprobacion"><i class="glyphicon glyphicon-time"></i></a>
+                                    <a href="javascript:;" type="button" class="btn btn-warning btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" disabled="disabled" title="Pendiente Aprobacion"><i class="glyphicon glyphicon-time"></i></a>
                                     <?php $ipr_status=true ?>
                                 @endif
                             @endforeach
                             @if($ipr_status==false)
-                                <a href="inscribir/{{$row->id}}" type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Inscribirse"><i class="glyphicon glyphicon-edit"></i></a>
+                                <a href="inscribir/{{$row->id}}" type="button" class="btn btn-primary btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Inscribirse"><i class="glyphicon glyphicon-edit"></i></a>
                                 <?php $ipr_status=false ?>
                             @endif
                         @endif
@@ -206,7 +190,7 @@
                 </div>
                 <div class="modal-footer" >
                     <button type="submit" class="btn btn-secondary" data-dismiss="modalResume">Cancelar</button>
-                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
                 </div>
             </div>
         </div>
@@ -241,7 +225,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-secondary" data-dismiss="modalEliminar">Cancelar</button>
-                    <button type="submit"  class="btn btn-primary">Eliminar</button>
+                    <button type="submit"  class="btn btn-success">Eliminar</button>
                 </div>
             </div>
         </div>

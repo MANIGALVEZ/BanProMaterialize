@@ -66,21 +66,22 @@
                     <nav class="menu">
                       <ul>
                         <li><a href="{{ url('/') }}">Inicio</a></li>
-                        <li class="submenus"><a href="#">Proyectos<span class="icon-down-open"></span></a>
-                            @if(Auth::user()->tiporol == 'usuario')
-                            <ul>
-                                <li><a href="{{ url('/proyectos/create')}}">Crear</a></li>
-                                <li><a href="{{ url('/home')}}">Todos</a></li>
-                                <li><a href="{{ url('/misproyectos')}}">Asociados</a></li>
-                            </ul>
-                            @endif
-                            @if(Auth::user()->tiporol == 'gestor')
-                              <ul>
-                                  <li><a href="{{ url('/home')}}">Todos</a></li>
-                                  <li><a href="{{ url('/proyectosB')}}">En Banco</a></li>
-                              </ul>
-                              <li><a href="{{ url('/usuarios')}}">Usuarios</a></li>
-                            @endif
+                        <li class="submenus">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Proyectos<b class="icon-down-open"></b></a>
+                                @if(Auth::user()->tiporol == 'usuario')
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ url('/proyectos/create')}}">Crear</a></li>
+                                    <li><a href="{{ url('/home')}}">Todos</a></li>
+                                    <li><a href="{{ url('/misproyectos')}}">Asociados</a></li>
+                                </ul>
+                                @endif
+                                @if(Auth::user()->tiporol == 'gestor')
+                                  <ul class="dropdown-menu">
+                                      <li><a href="{{ url('/home')}}">Todos</a></li>
+                                      <li><a href="{{ url('/proyectosB')}}">En Banco</a></li>
+                                  </ul>
+                                  <li><a href="{{ url('/usuarios')}}">Usuarios</a></li>
+                                @endif
                         </li>
                       </ul>
                     </nav>
@@ -105,7 +106,8 @@
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->nameu }} <span class="caret"></span>
+                                {{ Auth::user()->nameu }}
+                                <b class="icon-down-open"></b>
                             </a>
 
                             <ul class="dropdown-menu" role="menu">

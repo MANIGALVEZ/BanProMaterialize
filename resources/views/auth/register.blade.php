@@ -18,9 +18,9 @@
                 @endforeach
                 </div>
             @endif
-
-            <div class="panel panel-default">
-                <div class="panel-heading">Registro</div>
+            <div class="page-header">
+                <h1 class="text-center text-muted">Registrarse</h1>
+            </div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                         {{ csrf_field() }}
@@ -86,13 +86,13 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-success">
                                     Registrarse
                                 </button>
                             </div>
                         </div>
                     </form>
-                </div>
+            </div>div>
 
 </div>
 @endsection

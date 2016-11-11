@@ -1,6 +1,5 @@
 
 
-
 <!--Funcion modicar fecha para mostrarse por dia, mes y año-->
 <?php function fechalatina($fecha)
     {
@@ -10,7 +9,7 @@
 ?>
 
     @foreach($query as $row)
-        <tr>
+        <tr class="letra">
             <td>{{$row->id}}</td>
             <td>{{fechalatina($row->created_at)}}</td>
             <td>{{$row->nombrep}}</td>
@@ -59,21 +58,21 @@
             </td>
             <td>
                 @if(Auth::user()->tiporol == 'gestor')
-                    <a href="show/{{$row->id}}" type="button" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Detalles"><i class="glyphicon glyphicon-list-alt"></i></a>
-                    <a href="javascript:;" data-eliminar="{{$row->id}}" class="btn btn-danger btn-delete" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="glyphicon glyphicon-trash"></i></a>
+                    <a href="show/{{$row->id}}" type="button" class="btn btn-info btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Detalles"><i class="glyphicon glyphicon-list-alt"></i></a>
+                    <a href="javascript:;" data-eliminar="{{$row->id}}" class="btn btn-danger btn-delete btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="glyphicon glyphicon-trash"></i></a>
                 @endif
 
                 @if(Auth::user()->tiporol == 'usuario' && Auth::user()->id)
                     <?php $ipr_status=false ?>
-                    <a href="show/{{$row->id}}" type="button" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Detalles"><i class="glyphicon glyphicon-list-alt"></i></a>
+                    <a href="show/{{$row->id}}" type="button" class="btn btn-info btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Detalles"><i class="glyphicon glyphicon-list-alt"></i></a>
                     @foreach($iprs as $ipr)
                         @if($ipr->proyectos_id == $row->id)
-                            <a href="javascript:;" type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" disabled="disabled" title="Pendiente Aprobacion"><i class="glyphicon glyphicon-time"></i></a>
+                            <a href="javascript:;" type="button" class="btn btn-warning btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" disabled="disabled" title="Pendiente Aprobacion"><i class="glyphicon glyphicon-time"></i></a>
                             <?php $ipr_status=true ?>
                         @endif
                     @endforeach
                     @if($ipr_status==false)
-                        <a href="inscribir/{{$row->id}}" type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Inscribirse"><i class="glyphicon glyphicon-edit"></i></a>
+                        <a href="inscribir/{{$row->id}}" type="button" class="btn btn-primary btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Inscribirse"><i class="glyphicon glyphicon-edit"></i></a>
                         <?php $ipr_status=false ?>
                     @endif
                 @endif
@@ -98,7 +97,7 @@
                 </div>
                 <div class="modal-footer" >
                     <button type="submit" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
                 </div>
             </div>
         </div>
@@ -133,7 +132,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-secondary" data-dismiss="modalEliminar">Cancelar</button>
-                    <button type="submit"  class="btn btn-primary">Eliminar</button>
+                    <button type="submit"  class="btn btn-success">Eliminar</button>
                 </div>
             </div>
         </div>
@@ -169,7 +168,6 @@
             else
             {
                 $.get("estadoProyecto", {ide: $idEstado, idp: $idProyecto})
-                window.location.replace("")
             }
 
         })

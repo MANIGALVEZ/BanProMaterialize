@@ -57,7 +57,13 @@ div.botones{
 
 tr.letrablanca
 {
-    color: white;
+    color: whitesmoke;
+}
+
+tr.letra
+{
+    color: grey;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
 }
 
 table
