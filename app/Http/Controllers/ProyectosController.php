@@ -284,5 +284,12 @@ class ProyectosController extends Controller
 
     }
 
-
+    //Funcion que permite agregar conmentario a un proyecto X
+    public function comentario(Request $request){    
+        $proyecto = Proyecto::find($id);
+        $comentario = new Comentario();
+        $comentario->comentario = $request->get('comentario');  
+        $comentario->usuario_id = Auth::user()->id;
+        $comentario->save();
+    }
 }

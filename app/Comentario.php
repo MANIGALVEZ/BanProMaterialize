@@ -8,7 +8,7 @@ class Comentario extends Model
 {
 	protected $table = 'comentarios';
     protected $fillable = [
-        'comentario','nombre', 'email',
+        'comentario','proyecto_id', 'usuario_id',
     ];
 
     public function proyecto()
