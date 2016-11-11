@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-11-2016 a las 17:41:15
+-- Tiempo de generación: 11-11-2016 a las 16:28:31
 -- Versión del servidor: 10.1.16-MariaDB
 -- Versión de PHP: 7.0.9
 
@@ -206,19 +206,19 @@ CREATE TABLE `proyectos` (
 --
 
 INSERT INTO `proyectos` (`id`, `nombrep`, `sectorenfocado`, `empresa`, `descripcion`, `resumen`, `created_at`, `updated_at`, `usuario_id`, `estadosdeproyectos_id`) VALUES
-(4, 'lsajkfsdhkjhdsf', 'tecnologia', 'SENA', 'dfhskjfdhsdkjfhksd                ', 'proyecto de una creacion de papas', '2016-09-19', '2016-11-02', 1, 2),
-(5, 'mama', 'Industria', 'Sena Bonito', '                uGIUGVPIsgvpuiWVHÑuigvñIUGVlivgurugqrvug', 'q ubo! bien, todo bien', '2016-09-19', '2016-11-01', 1, 3),
-(6, 'Dos', 'Lavel', 'SenaDos', '                jhdbvdvb ñsiu bñsoi bob ', 'pepe', '2016-09-19', '2016-11-01', 1, 3),
-(7, 'La caja', 'Industria', 'Sena', '                sdbvjsbñvbñviab{vi nS{OVobv-SLDV-Lsd', 'todos bien dASVSDVASCV', '2016-09-20', '2016-11-01', 1, 4),
-(9, 'Alien', 'Mercantil', 'Dell', '                kasnv''kndkvnadscnsdc''kdlnv'';akdfn ''acn''cvn''asnc''lDSCSDCLSKJVC ', 'pues ve bien', '2016-10-20', '2016-11-01', 2, 4),
-(10, 'juju', 'avon', 'no tengo', '                aknbv;kafdnv;kandvlkadfnvldfemv/.dsl,mvA:>L<MSadf', 'DASVWERDVDVVA', '2016-10-30', '2016-11-01', 2, 2),
-(11, 'nuevo', 'cualquiera', 'ud', '                sdzf', NULL, '2016-11-01', '2016-11-01', 2, 2),
-(12, 'vacio', 'sin nada', '', '                ', NULL, '2016-11-01', '2016-11-01', 2, 2),
-(13, 'el tres', 'jum', '', '                ', NULL, '2016-11-01', '2016-11-01', 2, 2),
-(14, 'el tres', 'jum', '', '                ', NULL, '2016-11-01', '2016-11-01', 2, 2),
-(15, 'el tres', 'jum', '', '                ', '', '2016-11-01', '2016-11-02', 2, 3),
-(16, 's', 's', '', '                ', NULL, '2016-11-01', '2016-11-01', 2, 2),
-(17, 's', 's', '', '                ', NULL, '2016-11-01', '2016-11-01', 2, 2);
+(4, 'lsajkfsdhkjhdsf', 'tecnologia', 'SENA', 'dfhskjfdhsdkjfhksd                ', 'porque me cae mal, suerte', '2016-09-19', '2016-11-11', 1, 1),
+(5, 'mama', 'Industria', 'Sena Bonito', '                uGIUGVPIsgvpuiWVHÑuigvñIUGVlivgurugqrvug', '', '2016-09-19', '2016-11-11', 1, 3),
+(6, 'Dos', 'Lavel', 'SenaDos', '                jhdbvdvb ñsiu bñsoi bob ', '', '2016-09-19', '2016-11-09', 1, 1),
+(7, 'La caja', 'Industria', 'Sena', '                sdbvjsbñvbñviab{vi nS{OVobv-SLDV-Lsd', 'OE', '2016-09-20', '2016-11-11', 1, 1),
+(9, 'Alien', 'Mercantil', 'Dell', '                kasnv''kndkvnadscnsdc''kdlnv'';akdfn ''acn''cvn''asnc''lDSCSDCLSKJVC ', 'este proyecto no continua', '2016-10-20', '2016-11-11', 2, 2),
+(10, 'juju', 'avon', 'no tengo', '                aknbv;kafdnv;kandvlkadfnvldfemv/.dsl,mvA:>L<MSadf', 'fuera', '2016-10-30', '2016-11-11', 2, 3),
+(11, 'nuevo', 'cualquiera', 'ud', '                sdzf', 'nunca', '2016-11-01', '2016-11-10', 2, 2),
+(12, 'vacio', 'sin nada', '', '                ', 'suerte', '2016-11-01', '2016-11-10', 2, 2),
+(13, 'el tres', 'jum', '', '                ', '', '2016-11-01', '2016-11-10', 2, 2),
+(14, 'el tres', 'jum', '', '                ', '', '2016-11-01', '2016-11-10', 2, 2),
+(15, 'el tres', 'jum', '', '                ', 'no lo quiero ver', '2016-11-01', '2016-11-10', 2, 2),
+(16, 's', 's', '', '                ', '', '2016-11-01', '2016-11-10', 2, 2),
+(17, 's', 's', '', '                ', 'pues probar', '2016-11-01', '2016-11-10', 2, 3);
 
 -- --------------------------------------------------------
 
@@ -238,8 +238,11 @@ CREATE TABLE `proyectosusers` (
 --
 
 INSERT INTO `proyectosusers` (`id`, `proyectos_id`, `users_id`, `estadosproyectosusers_id`) VALUES
-(1, 6, 2, 2),
-(2, 10, 2, 2);
+(1, 6, 2, 3),
+(2, 10, 2, 3),
+(3, 4, 2, 1),
+(4, 5, 2, 2),
+(5, 7, 2, 3);
 
 -- --------------------------------------------------------
 
@@ -267,9 +270,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nameu`, `apellidos`, `email`, `celular`, `titulos`, `estado`, `password`, `remember_token`, `tiporol`, `created_at`, `updated_at`) VALUES
-(1, 'Morris', 'anacleto', 'morris@gmail.com', 3215697363, 'Tecnologo', 'sinestado', '$2y$10$TAaC3BVpe4v4lXtkwZ0Mb.PzBlgt7Eo7XkQdEvIphDEMc3zdEUtAe', 'UgnrDVi0npQYxNkYMKpKeI3MWUeY25t6XZwWAvX0CH1PZObsraO2ZyRFLkT1', 'gestor', NULL, '2016-11-02 20:27:16'),
-(2, 'Yonathan Andres', 'Galvez Giraldo', 'ogiraldo272@gmail.com', 3122730311, 'Tecnologo', 'sinestado', '$2y$10$G8U9VHdgeAPcyTkOeFiyFe9GQPadn0JxQmj4nNZme0BtwfD.r3Xtu', '9fz1BSvWceZMFfwUoiHRiuzSGYfbTjLEv85xSLdPIIwGS9LLztY5OmoJxFSI', 'usuario', NULL, '2016-11-02 20:17:14'),
-(3, 'henry', 'valencia', 'henry@hotmail.com', 213344, 'teeee', 'sinestado', '$2y$10$/jba58HVxbq8BpJV3UeBTO3jDeSMdBluSySqOZphPXg7.N64pMud2', 'ZzDrQqKTrMFn9YVE0I9Pb09RRo5SMUTXIoxmphsoO4jGz5lqhWyyaOtB9EQq', 'usuario', '2016-10-21 00:36:47', '2016-10-21 00:39:12');
+(1, 'Morris', 'anacleto', 'morris@gmail.com', 3215697363, 'Tecnologo', 'sinestado', '$2y$10$TAaC3BVpe4v4lXtkwZ0Mb.PzBlgt7Eo7XkQdEvIphDEMc3zdEUtAe', '3F7zTK8Sk2omsqS5yD0MpJF2MKgx10X7ON4INQ5K7frTlUtbToK7Q6cDXzeK', 'gestor', NULL, '2016-11-11 07:27:14'),
+(2, 'Yonathan Andres', 'Galvez Giraldo', 'ogiraldo272@gmail.com', 3122730311, 'Tecnologo', 'sinestado', '$2y$10$G8U9VHdgeAPcyTkOeFiyFe9GQPadn0JxQmj4nNZme0BtwfD.r3Xtu', 'Ky97zSvOWsw23vsxBy4tTCaAHhAxNqy80DpBp5ObFgrWH8SEspm3zhSta57q', 'usuario', NULL, '2016-11-11 05:59:48'),
+(3, 'henry', 'valencia', 'henry@hotmail.com', 213344, 'teeee', 'sinestado', '$2y$10$/jba58HVxbq8BpJV3UeBTO3jDeSMdBluSySqOZphPXg7.N64pMud2', 'ZzDrQqKTrMFn9YVE0I9Pb09RRo5SMUTXIoxmphsoO4jGz5lqhWyyaOtB9EQq', 'usuario', '2016-10-21 00:36:47', '2016-10-21 00:39:12'),
+(4, 'Yon', 'Gal', 'ogiraldo@yahoo.com', 312, 'mani', 'sinestado', '$2y$10$/8wvnTjNMyv2CYFROAg52.Rpl5dTTCdeYJBdNwnDUbXL.NkQc39ku', '4e89SKcWpkH2gt9s9gI140Co157iLgv75iPFUfcnXyt1ZAW9zOy2TXyB6JqE', 'usuario', '2016-11-11 07:46:03', '2016-11-11 08:14:05');
 
 --
 -- Índices para tablas volcadas
@@ -374,12 +378,12 @@ ALTER TABLE `proyectos`
 -- AUTO_INCREMENT de la tabla `proyectosusers`
 --
 ALTER TABLE `proyectosusers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- Restricciones para tablas volcadas
 --
