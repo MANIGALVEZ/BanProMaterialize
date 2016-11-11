@@ -142,7 +142,8 @@
                             <a href="show/{{$row->id}}" type="button" class="btn btn-info btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Detalles"><i class="glyphicon glyphicon-list-alt"></i></a>
                             @foreach($iprs as $ipr)
                                 @if($ipr->proyectos_id == $row->id)
-                                    <a href="javascript:;" type="button" class="btn btn-warning btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" disabled="disabled" title="Pendiente Aprobacion"><i class="glyphicon glyphicon-time"></i></a>
+                                      <?php $ipr_status=false ?>
+                                    <a href="javascript:;" type="button" class="btn btn-warning btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" disabled="disabled" title="Pendiente Aprobacion"  ><i class="glyphicon glyphicon-time"></i></a>   
                                     <?php $ipr_status=true ?>
                                 @endif
                             @endforeach
