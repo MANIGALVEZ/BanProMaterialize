@@ -29,7 +29,7 @@
 
         <form class="form-inline col-md-4" action="{{url('searchN')}}" method="POST">
             {{ csrf_field() }}
-            <input type="text" class="form-control" placeholder="Buscar Proyecto" name="nombrep">
+            <input type="text" class="form-control" placeholder="Nombre del proyecto" name="nombrep">
             <button type="submit" class="btn btn-success btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Filtrar por Nombre"><i class="glyphicon glyphicon-search"></i></button>
         </form>
 
@@ -51,6 +51,7 @@
         </form>
         <br><br>
 
+        <?php $lineas = DB::table("lineas")->get(); ?>
         <form class="form-inline col-md-6" >
             @foreach($lineas as $key => $linea)
                 <input class="filtroLinea" type="checkbox" value="{{ $linea->id }}" autofocus >{{ $linea->linea }}<br>
@@ -145,26 +146,33 @@
                         @endif
 
                         @if(Auth::user()->tiporol == 'usuario' && Auth::user()->id)
-                            <?php $ipr_status=false ?>
-                            <a href="show/{{$row->id}}" type="button" class="btn btn-info btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Detalles"><i class="glyphicon glyphicon-list-alt"></i></a>
-                            @foreach($iprs as $ipr)
-                                @if($ipr->proyectos_id == $row->id)
-                                      <?php $ipr_status=false ?>
-                                    <a href="javascript:;" type="button" class="btn btn-warning btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" disabled="disabled" title="Pendiente Aprobacion"  ><i class="glyphicon glyphicon-time"></i></a>   
-                                    <?php $ipr_status=true ?>
-                                @endif
-                            @endforeach
-                            @if($ipr_status==false)
-                                <a href="inscribir/{{$row->id}}" type="button" class="btn btn-primary btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Inscribirse"><i class="glyphicon glyphicon-edit"></i></a>
+
+                            {{--<?php $prous= DB::table('proyectosusers')->get();?>--}}
+                                {{--@foreach($prous as $prou)--}}
+                                    {{--{{$prou->estadosproyectosusers_id}}--}}
+                                {{--@endforeach--}}
+
                                 <?php $ipr_status=false ?>
-                            @endif
+                                <a href="show/{{$row->id}}" type="button" class="btn btn-info btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Detalles"><i class="glyphicon glyphicon-list-alt"></i></a>
+                                @foreach($iprs as $ipr)
+                                    @if($ipr->proyectos_id == $row->id)
+                                        <?php $ipr_status=false ?>
+                                        <a href="javascript:;" type="button" class="btn btn-warning btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" disabled="disabled" title="Pendiente Aprobacion"  ><i class="glyphicon glyphicon-time"></i></a>
+                                        <?php $ipr_status=true ?>
+                                    @endif
+                                @endforeach
+                                @if($ipr_status==false)
+                                    <a href="inscribir/{{$row->id}}" type="button" class="btn btn-primary btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Inscribirse"><i class="glyphicon glyphicon-edit"></i></a>
+                                    <?php $ipr_status=false ?>
+                                @endif
+
                         @endif
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
-    {{--{!!$query->render()!!}--}}
+    {!!$query->render()!!}
 
 {{--<script>--}}
     {{--$(document).ready(function(){--}}
@@ -242,12 +250,13 @@
 
 
 @else
+    {{--Sweet alert para mostrar que: No se encuentran proyectos relacionados a la búsqueda--}}
     <script>
         $(document).ready(function()
         {
             swal({
-            title: "Filtrar Por Fecha",
-            text: "No se encuentran proyectos en la fecha seleccionada",
+            title: "",
+            text: "No se encuentran proyectos relacionados a su búsqueda",
             type: "error",
             confirmButtonClass: "btn-danger",
             confirmButtonText: "Aceptar"});
