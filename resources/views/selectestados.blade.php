@@ -8,6 +8,7 @@
     }
 ?>
 
+@if($query->count()>0)
     @foreach($query as $row)
         <tr class="letra">
             <td>{{$row->id}}</td>
@@ -81,65 +82,77 @@
     @endforeach
 
 
-<!-- Modal para agregar un resumen cuando el proyecto pasa a estado Reclutando o En desarrollo  -->
-<form action="{{url('resumenP')}}" method="POST">
-    {{ csrf_field() }}
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Añadir Resumen</h4>
-                </div>
-                <div class="modal-body">
-                <textarea class="form-control" rows="5" name="texto" id="texto"></textarea>
-                    <input type="hidden" name="idEstado" id="idEstado">
-                    <input type="hidden" name="idProyecto" id="idProyecto">
-                </div>
-                <div class="modal-footer" >
-                    <button type="submit" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-success">Guardar</button>
+    <!-- Modal para agregar un resumen cuando el proyecto pasa a estado Reclutando o En desarrollo  -->
+    <form action="{{url('resumenP')}}" method="POST">
+        {{ csrf_field() }}
+        <div class="modal fade modalResume" id="modalResume" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">Añadir Resumen</h4>
+                    </div>
+                    <div class="modal-body">
+                    <textarea class="form-control" rows="5" name="texto" id="texto"></textarea>
+                        <input type="hidden" name="idEstado" id="idEstado">
+                        <input type="hidden" name="idProyecto" id="idProyecto">
+                    </div>
+                    <div class="modal-footer" >
+                        <button type="submit" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</form>
+    </form>
 
 
-<!-- Modal para eliminar proyecto  -->
-<form action="{{url('eliminarP')}}" method="POST">
-    {{ csrf_field() }}
-    <div class="modal fade modalEliminar" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="exampleModalLabel">Agregue una breve descripcion para eliminar el proyecto</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="recipient-name" class="control-label">La notificacion será enviada a:</label>
-                        <?php $usuario = DB::table('users')->where('id', "=", $row->usuario_id)->get();?>
-                        @foreach($usuario as $usu)
-                            <p class="form-control-static">{{$usu->nameu}}: {{$usu->email}}</p>
-                        @endforeach
+    <!-- Modal para eliminar proyecto  -->
+    <form action="{{url('eliminarP')}}" method="POST">
+        {{ csrf_field() }}
+        <div class="modal fade modalEliminar" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">Agregue una breve descripcion para eliminar el proyecto</h4>
                     </div>
-                    <div class="form-group">
-                        <label for="message-text" class="control-label">Descripcion</label>
-                        <textarea class="form-control" rows="5" name="textoEliminar" id="textoEliminar" ></textarea>
-                        <input type="hidden" name="idEliminar" id="idEliminar">
-                        <input type="hidden" name="idPro" id="idPro">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="recipient-name" class="control-label">La notificacion será enviada a:</label>
+                            <?php $usuario = DB::table('users')->where('id', "=", $row->usuario_id)->get();?>
+                            @foreach($usuario as $usu)
+                                <p class="form-control-static">{{$usu->nameu}}: {{$usu->email}}</p>
+                            @endforeach
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="control-label">Descripcion</label>
+                            <textarea class="form-control" rows="5" name="textoEliminar" id="textoEliminar" ></textarea>
+                            <input type="hidden" name="idEliminar" id="idEliminar">
+                            <input type="hidden" name="idPro" id="idPro">
+                        </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-secondary" data-dismiss="modalEliminar">Cancelar</button>
-                    <button type="submit"  class="btn btn-success">Eliminar</button>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-secondary" data-dismiss="modalEliminar">Cancelar</button>
+                        <button type="submit"  class="btn btn-success">Eliminar</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</form>
+    </form>
 
-
+@else
+    <script>
+        $(document).ready(function()
+        {
+            swal({
+            title: "",
+            text: "No se encuentran proyectos en este estado",
+            type: "error",
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "Aceptar"});
+        })
+    </script>
+@endif
 
 {{--funcion ajax para cambiar de estado en tiempo real y auto actualizarse--}}
 <script>
@@ -151,10 +164,6 @@
 
             if ($idEstado == 3 || $idEstado == 4)
             {
-
-                $(".modalresumen").modal("show")
-                $('#idEstado').val($idEstado)
-                $('#idProyecto').val($idProyecto)
 
                 $(".modalResume").modal("show")
                 $('#idEstado').val($idEstado)

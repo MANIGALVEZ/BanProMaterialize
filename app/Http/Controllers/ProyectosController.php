@@ -237,6 +237,7 @@ class ProyectosController extends Controller
         return view('gestor.proyectosbanco', compact('query', "lineas", 'iprs'));
     }
 
+
     //Funcion para  mostrar proyectos de un usuario
     public function showup($id)
     {
