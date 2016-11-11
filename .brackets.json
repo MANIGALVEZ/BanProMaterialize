@@ -1,0 +1,5 @@
+{
+    "jscodehints.detectedExclusions": [
+        "C:/xampp/htdocs/BanProMaterialize/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Template/js/respond.min.js"
+    ]
+}
