@@ -4,10 +4,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
-
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
 
 
     <!-- CSRF Token -->
@@ -18,6 +17,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    {{--<link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">--}}
+    {{--<link rel="icon" type="image/png" href="../assets/img/favicon.png">--}}
 
 
     <title>Laravel</title>
@@ -31,12 +32,11 @@
     <link  href="{{ asset('css/bootstrap-switch.css') }}" rel="stylesheet">
     <link  href="{{ asset('css/fileinput.css') }}" rel="stylesheet">
     <link  href="{{ asset('css/material-kit.css') }}" rel="stylesheet">
-
-    {{--<link  href="{{ asset('css/material-bootstrap-wizard.css') }}" rel="stylesheet">--}}
+    <link  href="{{ asset('css/material-bootstrap-wizard.css') }}" rel="stylesheet">
 
 
     <!-- Scripts -->
-    <script src="/js/jquery-3.1.0.min.js"></script>
+    <script src="{{ asset('js/jquery-3.1.0.min.js') }}"></script>
     <script src="{{ asset('js/sweetalert.js') }}"></script>
     <script src="{{ asset('js/bootstrap-switch.js') }}"></script>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
@@ -45,6 +45,12 @@
     <script src="{{ asset('js/material-kit.js') }}"></script>
     <script src="{{ asset('js/nouislider.min.js') }}"></script>
     <script src="{{ asset('js/material-bootstrap-wizard.js') }}"></script>
+    <script src="{{ asset('js/formsmaterialize.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/holder.js') }}"></script>
+    <script src="{{ asset('js/jquery.bootstrap.js') }}"></script>
+    <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
+    {{--<script src="{{ asset('js/bootstrap.min.js') }}"></script>--}}
 
 
     <script>
@@ -117,6 +123,16 @@
                 @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Ingresar</a></li>
                         <li><a href="{{ url('/register') }}">Registrarse</a></li>
+                        <li>
+                            <a href="https://www.facebook.com/TecnoParque-Colombia-6102873246/" target="_blank" class="btn btn-simple btn-white btn-just-icon">
+                                <i class="fa fa-facebook-square"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://tecnoparque.sena.edu.co/" target="_blank" class="btn btn-simple btn-white btn-just-icon">
+                                <i class="material-icons">web</i>
+                            </a>
+                        </li>
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -150,9 +166,7 @@
         </div>
     </div>
     <!-- Scripts -->
-    <script src="{{ asset('js/formsmaterialize.js') }}"></script>
-    <script src="/js/app.js"></script>
-    <script src="{{ asset('js/holder.js') }}"></script>
+
     <script>
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()

@@ -2,7 +2,7 @@
 
 @section('content')
 
-
+</div>
     @if(count($errors) > 0)
         <script>
             swal({
@@ -30,20 +30,19 @@
         {{ csrf_field() }}
 
         <body class="signup-page">
-            <nav class="navbar navbar-transparent navbar-absolute">
-                <div class="container">
-                    <div class="collapse navbar-collapse" id="navigation-example">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <a href="https://www.facebook.com/TecnoParque-Colombia-6102873246/" target="_blank" class="btn btn-simple btn-white btn-just-icon">
-                                    <i class="fa fa-facebook-square"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-
+            {{--<nav class="navbar navbar-transparent navbar-absolute">--}}
+                {{--<div class="container">--}}
+                    {{--<div class="collapse navbar-collapse" id="navigation-example">--}}
+                        {{--<ul class="nav navbar-nav navbar-right">--}}
+                            {{--<li>--}}
+                                {{--<a href="https://www.facebook.com/TecnoParque-Colombia-6102873246/" target="_blank" class="btn btn-simple btn-white btn-just-icon">--}}
+                                    {{--<i class="fa fa-facebook-square"></i>--}}
+                                {{--</a>--}}
+                            {{--</li>--}}
+                        {{--</ul>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</nav>--}}
             <div class="wrapper">
                 <div class="header header-filter" style="background-image: url('../img/bg3.jpeg'); background-size: cover; background-position: top center;">
                     <div class="container">
@@ -52,7 +51,7 @@
                                 <div class="card card-signup">
                                     <form class="form" method="" action="">
                                         <div class="header header-success text-center">
-                                            <h4>Ingresar</h4>
+                                            <h4>Ingreso</h4>
                                             <div class="social-line">
                                                 <a href="#" class="btn btn-simple btn-just-icon">
                                                     <i class="fa fa-facebook-square"></i>
@@ -67,24 +66,31 @@
                                         </div>
                                         <div class="content">
                                             <br><br>
-                                            <div class="input-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                                    <span class="input-group-addon">
-                                                        <i class="material-icons">email</i>
-                                                    </span>
-                                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email...">
+                                            <div class="input-group">
+													<span class="input-group-addon{{ $errors->has('email') ? ' has-error' : '' }}">
+														<i class="material-icons">email</i>
+													</span>
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Correo<small></small></label>
+                                                    <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
+                                                </div>
                                             </div>
-                                            <br>
-                                            <div class="input-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                                    <span class="input-group-addon">
-                                                        <i class="material-icons">lock_outline</i>
-                                                    </span>
-                                                <input id="password" type="password" class="form-control" name="password" placeholder="Password...">
+                                            <div class="input-group">
+													<span class="input-group-addon{{ $errors->has('password') ? ' has-error' : '' }}">
+														<i class="material-icons">lock</i>
+													</span>
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Contraseña<small></small></label>
+                                                    <input id="password" name="password" type="password" class="form-control">
+                                                </div>
                                             </div>
                                         </div>
                                         <br><br>
                                         <div class="footer text-center">
-                                            <button type="submit" class="btn btn-simple btn-success btn-lg">Iniciar Sesion</button>
-                                            <a class="btn btn-simple btn-default btn-lg" href="{{ url('/password/reset') }}">¿Olvido su contraseña?</a>
+                                            <center>
+                                                <button type="submit" class="btn btn-simple btn-success btn-lg">Iniciar Sesion</button>
+                                                <a class="btn btn-simple btn-default btn-lg" href="{{ url('/password/reset') }}">¿Olvido su contraseña?</a>
+                                            </center>
                                         </div>
                                     </form>
                                 </div>
