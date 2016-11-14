@@ -6,9 +6,9 @@
     @if(count($errors) > 0)
         <script>
             swal({
-                title: "Alerta!",
-                text: "Faltan campos obligatorios",
-                type: "warning",
+                title: "¡Ingreso Invalido!",
+                text: "Por favor verifique la información de los campos ",
+                type: "error",
                 confirmButtonClass: "btn-danger",
                 confirmButtonText: "Aceptar"});
         </script>

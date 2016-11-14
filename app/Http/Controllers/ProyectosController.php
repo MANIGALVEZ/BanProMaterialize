@@ -110,7 +110,8 @@ class ProyectosController extends Controller
     public function searchName(Request $request)
     {
         $lineas = Linea::all();
-        $query =Proyecto::where('nombrep', 'LIKE', '%'.$request->get('nombrep').'%')
+        $query =Proyecto::where('estadosdeproyectos_id', '<>', "1")
+            ->where('nombrep', 'LIKE', '%'.$request->get('nombrep').'%')
             ->orderBy('id', 'ASC')
             ->paginate(3)
             ->setPath('home');
@@ -182,7 +183,8 @@ class ProyectosController extends Controller
 
         $iprs = ProyectosUsers::all();
         $lineas = Linea::all();
-        $query = Proyecto::where('estadosdeproyectos_id', '<>', "1")
+        $query = \DB::table('proyectos')
+            ->where('estadosdeproyectos_id', '<>', "1")
             ->join('proyectosusers', 'proyectos.id', '=', 'proyectosusers.proyectos_id')
             ->select('proyectos.*', 'proyectosusers.estadosproyectosusers_id')
             ->where('proyectosusers.users_id', '=', Auth::user()->id)

@@ -145,12 +145,12 @@
                         <a href="javascript:;" data-eliminar="{{$row->id}}" class="btn btn-danger btn-delete btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="glyphicon glyphicon-trash"></i></a>
                         @endif
 
-                        @if(Auth::user()->tiporol == 'usuario' && Auth::user()->id)
+                        @if(Auth::user()->tiporol == 'usuario')
 
-                            {{--<?php $prous= DB::table('proyectosusers')->get();?>--}}
-                                {{--@foreach($prous as $prou)--}}
-                                    {{--{{$prou->estadosproyectosusers_id}}--}}
-                                {{--@endforeach--}}
+                            <?php $prous= DB::table('proyectosusers')->get();?>
+                                @foreach($prous as $prou)
+                                    {{$prou->estadosproyectosusers_id}}
+                                @endforeach
 
                                 <?php $ipr_status=false ?>
                                 <a href="show/{{$row->id}}" type="button" class="btn btn-info btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Detalles"><i class="glyphicon glyphicon-list-alt"></i></a>
@@ -256,7 +256,7 @@
         {
             swal({
             title: "",
-            text: "No se encuentran proyectos relacionados a su búsqueda",
+            text: "No se encuentran proyectos relacionados con su búsqueda",
             type: "error",
             confirmButtonClass: "btn-danger",
             confirmButtonText: "Aceptar"});

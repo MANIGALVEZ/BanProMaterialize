@@ -131,7 +131,7 @@
 													</span>
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Titulos<small></small></label>
-                                                        <input id="titulos" name="titulos" type="text" class="form-control" value="{{ old('titulos') }}">
+                                                        <input id="titulos" name="titulos" type="text" class="form-control" value="{{ old('titulos') }}" required>
                                                     </div>
                                                 </div>
                                                 <div class="input-group">
