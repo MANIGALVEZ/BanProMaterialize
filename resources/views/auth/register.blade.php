@@ -72,7 +72,7 @@
                                                 <div class="picture-container">
                                                     <div class="picture">
                                                         <img src="img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title=""/>
-                                                        <input type="file" id="wizard-picture">
+                                                        <input type="file" accept="image/jpg" name="avatar" id="wizard-picture" value="{{old('avatar')}}">
                                                     </div>
                                                     <h6>Elegir una Foto</h6>
                                                 </div>
