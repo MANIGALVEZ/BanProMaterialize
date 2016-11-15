@@ -54,7 +54,8 @@
         <?php $lineas = DB::table("lineas")->get(); ?>
         <form class="form-inline col-md-6" >
             @foreach($lineas as $key => $linea)
-                <input class="filtroLinea" type="checkbox" value="{{ $linea->id }}" autofocus >{{ $linea->linea }}<br>
+                <input id="filtroLinea{{ $linea->id }}" class="filtroLinea" type="checkbox" value="{{ $linea->id }}" autofocus >
+                <label for="filtroLinea{{ $linea->id }}">{{ $linea->linea }}</label><br>
             @endforeach
         </form>
         {{--<form class="form-inline" >--}}

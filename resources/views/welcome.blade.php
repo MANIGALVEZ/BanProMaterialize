@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+
+
     <div class="page-header">
     <h1 class="text-center text-muted">Red Tecnoparque Colombia
         <br>
@@ -52,5 +54,6 @@
             </div>
         </div>
     </div>
+
 
 @endsection

@@ -22,12 +22,13 @@ class ProyectosController extends Controller
     //Funcion para dirigir a interfaz principal
 	public function index()
     {
-        $query = Proyecto::where('estadosdeproyectos_id', '<>', "1")
-            ->orderBy('id', 'ASC');
         $lineas = Linea::all();
-        $iprs = ProyectosUsers::all();
-        $estados = EstadosdeProyectos::all();
-        return view('gestor.index', compact('query', 'lineas', 'iprs', 'estados'));
+        $iprs=ProyectosUsers::all();
+        $query = Proyecto::where('estadosdeproyectos_id', '<>', "1")
+            ->orderBy('id', 'ASC')
+            ->paginate();
+        return view('gestor.index', compact('query', "lineas", 'iprs'));
+
     }
 
 

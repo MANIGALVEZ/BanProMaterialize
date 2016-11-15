@@ -20,8 +20,13 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 
 
+
 //Ruta controlador: El usuario por medio del aplicativo espera tener una interfaz que permita registrar su proyecto
 Route::resource('proyectos', 'ProyectosController');
+
+
+//Ruta para dirigir a la interfaz principal de proyectos (todos los proyectos)
+Route::get('/proyectosIndex', 'ProyectosController@index');
 
 
 // Ruta para buscar proyectos por nombre
@@ -86,6 +91,7 @@ Route::get('/estProUser', 'ProyectosController@estadoProyectoUsuario');
 
 // Ruta para filtrar por lineas (El gestor podra filtrar los proyectos según las diferentes lineas tecnologicas)
 Route::get('/listarL/{lil}', 'ProyectosController@listarLinea');
+
 
 // Ruta para agregar un Comentario a un proyecto
 Route::post('/comentario/{id}', 'ProyectosController@comentario');
