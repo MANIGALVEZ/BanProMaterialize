@@ -88,4 +88,4 @@ Route::get('/estProUser', 'ProyectosController@estadoProyectoUsuario');
 Route::get('/listarL/{lil}', 'ProyectosController@listarLinea');
 
 // Ruta para agregar un Comentario a un proyecto
-Route::post('/comentario/{id}', 'ProyectosController@comentario');
+Route::post('/comentario', 'ProyectosController@comentario');

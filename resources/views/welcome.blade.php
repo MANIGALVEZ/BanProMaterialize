@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="col-sm-6 col-md-4">
                     <div class="thumbnail">
-                        <img src="holder.js/300x200?theme=gray">
+                        <img src="imagenes/proyectos/holi.jpg">
                         <div class="caption">
                             <h3>Proyecto 1</h3>
                             <p>Lorem ipsum dolor sit amet.</p>

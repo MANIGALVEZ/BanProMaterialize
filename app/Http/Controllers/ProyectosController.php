@@ -45,8 +45,8 @@ class ProyectosController extends Controller
     //Funcion store para guardar en BD/ El usuario por medio del aplicativo espera tener una interfaz que permita registrar su proyecto
     public function store(Request $request)
     {
-//        $file = $request->file('file');
-//        $direccion = $file->getClientOriginalName();
+        $image = $request->file('image');
+        $ruta = $image->getClientOriginalName();
 
         $proyecto = new Proyecto();
         $proyecto->nombrep = $request->get('nombrep');
@@ -54,9 +54,9 @@ class ProyectosController extends Controller
         $proyecto->empresa = $request->get('empresa');
         $proyecto->descripcion = $request->get('descripcion');
         $proyecto->usuario_id = Auth::user()->id;
-//        $proyecto->imagen = 'imagenes/proyectos/'.$direccion;
+        $proyecto->imagen = 'imagenes/proyectos/'.$ruta;
         $proyecto->estadosdeproyectos_id = "2";
-//        $request->file('file')->move(base_path().'/public/imagenes/proyectos/', $direccion);
+        $request->file('image')->move(base_path().'/public/imagenes/proyectos/', $ruta);
         $proyecto->save();
 
         $lineas = $request->get("lineatecnologica");
@@ -287,11 +287,10 @@ class ProyectosController extends Controller
     }
 
     //Funcion que permite agregar conmentario a un proyecto X
-    public function comentario(Request $request){    
+    public function comentario($id)
+    {   
         $proyecto = Proyecto::find($id);
-        $comentario = new Comentario();
-        $comentario->comentario = $request->get('comentario');  
-        $comentario->usuario_id = Auth::user()->id;
-        $comentario->save();
+        dd($proyecto);
+        return redirect('proyectos/show{$id}');
     }
 }

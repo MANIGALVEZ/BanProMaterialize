@@ -15,7 +15,7 @@ Vista registro proyectos: El usuario por medio del aplicativo espera tener una i
         </div>
     </article>
 
-    <form action="{{ url('/proyectos') }}" method="POST" class="form-horizontal" role="form">
+    <form action="{{ url('/proyectos') }}" method="POST" class="form-horizontal" role="form" enctype="multipart/form-data">
     {{ csrf_field() }}
 
 
@@ -59,7 +59,7 @@ Vista registro proyectos: El usuario por medio del aplicativo espera tener una i
     </div>
         <div class="form-group">
             <label class="control-label"></label>
-            <input id="input-1" type="file" class="file" name="file">
+            <input  type="file" class="file" name="image" accept="image/jpg">
         </div>
         <br><br><br>
 

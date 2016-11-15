@@ -6,6 +6,8 @@ use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Http\Requests;
+
 
 class RegisterController extends Controller
 {
@@ -45,6 +47,7 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
+
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -58,6 +61,7 @@ class RegisterController extends Controller
         ]);
     }
 
+
 /**
      * Create a new user instance after a valid registration.
      *
@@ -66,9 +70,9 @@ class RegisterController extends Controller
      */
 
 
-    
     protected function create(array $data)
     {
+         
         return User::create([
             'nameu'     => $data['nameu'],
             'apellidos' => $data['apellidos'],
@@ -77,14 +81,10 @@ class RegisterController extends Controller
             'titulos'   => $data['titulos'],
             'password'  => bcrypt($data['password']),
             'tiporol'   => 'usuario',
+           
         ]);
+     
     }
 
-
-
-
-
-
-    
 
 }

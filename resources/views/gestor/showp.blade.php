@@ -10,6 +10,7 @@
         <th>Linea Tecnológica</th>
         <th>Estado</th>
         <th>Usuario</th>
+        <th>Imagen</th>
         </thead>
         
          <tbody>
@@ -36,6 +37,7 @@
                    @endforeach
            </td>
            <td>{{$query->user->nameu}}</td>  
+           <td><img src="/{{$query->imagen}}" width="100" class="img-thumbnail"></td>
          </tbody>
 
     </table>
@@ -63,7 +65,7 @@
                   <?php endforeach ?>
                <?php endforeach ?>
 </div>
-    <form action="{{ url('/comentario')}}" method="POST">
+    <form action="{{ url('/comentario{$id}')}}" method="POST">
         {{ csrf_field() }}
         <textarea id="comentario" type="text" class="form-control" placeholder="Escriba el comentario deseado" rows="2" name="descripcion" value="{{ old('comentario') }}"  maxlength="255" required="required"></textarea>
         <button type="submit" class="btn" name="enviar">
