@@ -66,9 +66,21 @@ tr.letra
     font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
 }
 
-table
-{
-    border-radius: 30%;
+
+
+/*---- custom de showp -- */
+
+.cajascontent{
+    border:none;
+    width:900px;
+    height:100px;
+    background-color: white;
 }
+.cajascontent li.nombre{
+    style:none;
+    text-transform: capitalize;
 
-
+}
+table.tablitashow{
+    background-color: white;
+}

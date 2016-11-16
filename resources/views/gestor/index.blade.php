@@ -153,7 +153,9 @@
                                     @if($estadoproyecto == 2)
                                     <a href="javascript:;" type="button" class="btn btn-warning btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" disabled="disabled" title="Pendiente Aprobacion"  ><i class="glyphicon glyphicon-time"></i></a>
                                     @elseif($estadoproyecto == 1)
-                                    <a href="javascript:;" type="button" class="btn btn-success btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Reclutado"  ><i class="glyphicon glyphicon-time"></i></a>
+                                   <!-- <a href="javascript:;" type="button" class="btn btn-success btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Reclutado"  ><i class="glyphicon glyphicon-time"></i></a> -->
+                                       <button type="button" class="btn btn-success  btn-just-icon btn-xs glyphicon glyphicon-time" data-toggle="popover" data-placement="top" title="Reclutado!" data-content="Felicidades! a sido aceptado, contactenos por medio del siguiente numero: 'Numero!'"></button>
+
                                     @endif
                                @else
                                     <a href="inscribir/{{$row->id}}" type="button" class="btn btn-primary btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Inscribirse"><i class="glyphicon glyphicon-edit"></i></a>
@@ -253,6 +255,9 @@
             type: "error",
             confirmButtonClass: "btn-danger",
             confirmButtonText: "Aceptar"});
+
+            $('[data-toggle="popover"]').popover();
+
         })
     </script>
 @endif

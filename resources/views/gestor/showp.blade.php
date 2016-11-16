@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <table class="table table-bordered"  >
+    <table class="table table-bordered tablitashow"  >
         <thead>
         <th>Id</th>
         <th>Nombre Proyecto</th>
@@ -41,24 +41,24 @@
          </tbody>
 
     </table>
-     <label>Descripcion</label>
-        <div style="box-shadow: 2px 2px 2px grey; width:900px; height:100px;">
+     <h4>Descripcion</h4>
+        <div  class="cajascontent">
           <p >{{$query->descripcion}}</p>
         </div>
 
-     <label>Resumen</label>
-        <div style="box-shadow: 2px 2px 2px grey; width:900px; height:100px;">
+     <h4>Resumen</h4>
+        <div  class="cajascontent">
         <p>
             {{$query->resumen}}
         </p>
         </div>
-           <label>Comentarios</label>
-        <div id="texdescrip">
+           <h4>Comentarios</h4>
+        <div  class="cajascontent">
 
              <?php foreach ($comentariop as $key => $comentario): ?>
                   <?php $comentarios = DB::table("comentarios")->where("id", $comentario->id)->get(); ?>
                   <?php foreach ($comentarios as $key => $comentario): ?>
-                  <li style="style:none;">
+                  <li class="nombre">
                   <?php echo DB::table("users")->where("id", $comentario->usuario_id)->value("nameu"); echo ":" ?>
                   {{ $comentario->comentario }}
                       </li>
@@ -66,8 +66,15 @@
                <?php endforeach ?>
 </div>
    
-   <label>Ussuarios Inscritos</label>
-        <div id="texdescrip">
+   <h4>Ussuarios Inscritos</h4>
+        <div  class="cajascontent" >
+
+            <h4>Henry</h4>
+            <select name="" id="">
+                <option value="">Reclutado</option>
+                <option value="">Solicitando</option>
+                <option value="">Inactivo</option>
+            </select>
             <?php $usuario = DB::table('proyectosusers')->where('id', '=', $query->id)->get();?>
             @foreach($usuario as $usu)
                 <li>{{$usu->users_id}}</li>
@@ -76,7 +83,7 @@
     <form action="{{ url('/comentario/'.$query->id)}}" method="POST">
         {{ csrf_field() }}
         <textarea id="comentario" type="text" class="form-control" placeholder="Escriba el comentario deseado" rows="2" name="comentario" value="{{ old('comentario') }}"  maxlength="255" required="required"></textarea>
-        <button type="submit" class="btn" name="enviar">
+        <button type="submit" class="btn btn-success" name="enviar" style="border: none;">
             Enviar
          </button>
     </form>
