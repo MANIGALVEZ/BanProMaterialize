@@ -68,7 +68,10 @@
    
    <label>Ussuarios Inscritos</label>
         <div id="texdescrip">
-
+            <?php $usuario = DB::table('proyectosusers')->where('id', '=', $query->id)->get();?>
+            @foreach($usuario as $usu)
+                <li>{{$usu->users_id}}</li>
+            @endforeach
         </div>
     <form action="{{ url('/comentario/'.$query->id)}}" method="POST">
         {{ csrf_field() }}
