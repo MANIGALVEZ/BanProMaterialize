@@ -46,7 +46,7 @@ class ProyectosController extends Controller
     public function store(Request $request)
     {
         $image = $request->file('image');
-        $ruta = $image->getClientOriginalName();
+        $ruta  = $image->getClientOriginalName();
 
         $proyecto = new Proyecto();
         $proyecto->nombrep = $request->get('nombrep');
@@ -287,10 +287,14 @@ class ProyectosController extends Controller
     }
 
     //Funcion que permite agregar conmentario a un proyecto X
-    public function comentario($id)
+    public function comentario(Request $request, $id)
     {   
-        $proyecto = Proyecto::find($id);
-        dd($proyecto);
-        return redirect('proyectos/show{$id}');
-    }
+        $comentario = New Comentario;
+        $comentario->comentario  = $request->get("comentario");
+        $comentario->proyecto_id = $id;
+        $comentario->usuario_id  = Auth::user()->id;
+        $comentario->save();
+        
+        return redirect("show/".$id);
+    } 
 }

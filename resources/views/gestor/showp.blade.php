@@ -65,9 +65,9 @@
                   <?php endforeach ?>
                <?php endforeach ?>
 </div>
-    <form action="{{ url('/comentario{$id}')}}" method="POST">
+    <form action="{{ url('/comentario/'.$query->id)}}" method="POST">
         {{ csrf_field() }}
-        <textarea id="comentario" type="text" class="form-control" placeholder="Escriba el comentario deseado" rows="2" name="descripcion" value="{{ old('comentario') }}"  maxlength="255" required="required"></textarea>
+        <textarea id="comentario" type="text" class="form-control" placeholder="Escriba el comentario deseado" rows="2" name="comentario" value="{{ old('comentario') }}"  maxlength="255" required="required"></textarea>
         <button type="submit" class="btn" name="enviar">
             Enviar
          </button>

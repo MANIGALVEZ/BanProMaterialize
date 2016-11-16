@@ -90,7 +90,8 @@
         <tbody>
         @if($query->count()>0)
             @foreach($query as $row)
-                <tr class="letra">
+                <?php $estadoproyecto = DB::table("proyectosusers")->where("proyectos_id", $row->id)->where("users_id", Auth::user()->id)->value("estadosproyectosusers_id"); ?>
+                <tr class="letra @if($estadoproyecto == 1) success @endif">
                     <td>{{$row->id}}</td>
                     <td>{{fechalatina($row->created_at)}}</td>
                     <td>{{$row->nombrep}}</td>
@@ -146,26 +147,17 @@
                         @endif
 
                         @if(Auth::user()->tiporol == 'usuario')
-
-                            <?php $prous= DB::table('proyectosusers')->get();?>
-                                @foreach($prous as $prou)
-                                    {{$prou->estadosproyectosusers_id}}
-                                @endforeach
-
-                                <?php $ipr_status=false ?>
                                 <a href="show/{{$row->id}}" type="button" class="btn btn-info btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Detalles"><i class="glyphicon glyphicon-list-alt"></i></a>
-                                @foreach($iprs as $ipr)
-                                    @if($ipr->proyectos_id == $row->id)
-                                        <?php $ipr_status=false ?>
-                                        <a href="javascript:;" type="button" class="btn btn-warning btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" disabled="disabled" title="Pendiente Aprobacion"  ><i class="glyphicon glyphicon-time"></i></a>
-                                        <?php $ipr_status=true ?>
+                               @if(count($estadoproyecto) > 0)
+                                    @if($estadoproyecto == 2)
+                                    <a href="javascript:;" type="button" class="btn btn-warning btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" disabled="disabled" title="Pendiente Aprobacion"  ><i class="glyphicon glyphicon-time"></i></a>
+                                    @elseif($estadoproyecto == 1)
+                                    <a href="javascript:;" type="button" class="btn btn-success btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Reclutado"  ><i class="glyphicon glyphicon-time"></i></a>
                                     @endif
-                                @endforeach
-                                @if($ipr_status==false)
+                               @else
                                     <a href="inscribir/{{$row->id}}" type="button" class="btn btn-primary btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Inscribirse"><i class="glyphicon glyphicon-edit"></i></a>
-                                    <?php $ipr_status=false ?>
+                               
                                 @endif
-
                         @endif
                     </td>
                 </tr>
