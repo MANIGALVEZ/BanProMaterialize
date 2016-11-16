@@ -163,7 +163,7 @@ class ProyectosController extends Controller
         $ipr->users_id = $user;
         $ipr->estadosproyectosusers_id = 2;
         $ipr->save();
-        return redirect('/home');
+        return redirect('/proyectos');
 
     }
 
@@ -275,15 +275,28 @@ class ProyectosController extends Controller
 
 
     // Funcion: Filtrar por lineas (El gestor podra filtrar los proyectos según las diferentes lineas tecnologicas)
-    public function listarLinea($lil)
+    public function listarLinea(Request $request)
     {
+        $count = 0;
+        if($request->get("var1") != 0){ $count++; }
+        if($request->get("var2") != 0){ $count++; }
+        if($request->get("var3") != 0){ $count++; }
+        if($request->get("var4") != 0){ $count++; }
+//        echo $count;
+
+//        switch($count){
+//            case 1:
+//
+//                break;
+//        }
         $query = \DB::table('proyectos')
             ->join('lineasproyectos', 'proyectos.id', '=', 'lineasproyectos.proyectos_id')
             ->select('proyectos.*', 'lineasproyectos.lineas_id')
-            ->where('lineasproyectos.lineas_id', '=', $lil)
+            ->whereIn('lineasproyectos.lineas_id', [$request->get("var1"), $request->get("var2"), $request->get("var3"), $request->get("var4")])
             ->orderBy('id','ASC')->paginate();
-        $iprs = ProyectosUsers::all();
-        return view('selectestadoslineas', compact('query','iprs'));
+        echo $query;
+//        $iprs = ProyectosUsers::all();
+//        return view('selectestadoslineas', compact('query','iprs'));
 
     }
 
