@@ -17,6 +17,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    {{--<link href="http://netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" />--}}
+    {{--<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">--}}
+    {{--<link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>--}}
     {{--<link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">--}}
     {{--<link rel="icon" type="image/png" href="../assets/img/favicon.png">--}}
 
@@ -33,6 +36,8 @@
     <link  href="{{ asset('css/fileinput.css') }}" rel="stylesheet">
     <link  href="{{ asset('css/material-kit.css') }}" rel="stylesheet">
     <link  href="{{ asset('css/material-bootstrap-wizard.css') }}" rel="stylesheet">
+{{--    <link  href="{{ asset('css/rotating-card.css') }}" rel="stylesheet">--}}
+{{--    <link  href="{{ asset('css/fresh-bootstrap-table.css') }}" rel="stylesheet">--}}
 
 
     <!-- Scripts -->
@@ -51,6 +56,7 @@
     <script src="{{ asset('js/jquery.bootstrap.js') }}"></script>
     <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
     {{--<script src="{{ asset('js/bootstrap.min.js') }}"></script>--}}
+    <script src="{{ asset('js/bootstrap-table.js') }}"></script>
 
 
     <script>
@@ -79,11 +85,6 @@
                 @else
                 <div class="menuu">
                     <nav class="menu">
-                        <div class="navbar-header">
-                            <a class="navbar-brand" href="#">
-                                <img alt="Tecnoparque" src="../img/tecnoparque.png" class="logotecno">
-                            </a>
-                        </div>
                       <ul>
                         <li><a href="{{ url('/') }}">Inicio</a></li>
                         <li class="submenus">
@@ -91,14 +92,14 @@
                                 @if(Auth::user()->tiporol == 'usuario')
                                 <ul class="dropdown-menu">
                                     <li><a href="{{ url('/proyectos/create')}}">Registrar</a></li>
-                                    <li><a href="{{ url('/home')}}">Todos</a></li>
+                                    <li><a href="{{ url('/proyectosIndex')}}">Todos</a></li>
                                     <li><a href="{{ url('/misproyectos')}}">Asociados</a></li>
                                 </ul>
                                 @endif
                                 @if(Auth::user()->tiporol == 'gestor')
                                   <ul class="dropdown-menu">
-                                      <li><a href="{{ url('/home')}}">Todos</a></li>
-                                      <li><a href="{{ url('/proyectosB')}}">En Banco</a></li>
+                                      <li><a href="{{ url('/proyectosIndex')}}">Todos</a></li>
+                                      <li><a href="{{ url('/proyectosB')}}">Eliminados</a></li>
                                   </ul>
                                   <li><a href="{{ url('/usuarios')}}">Usuarios</a></li>
                                 @endif
@@ -174,21 +175,23 @@
     </script>
 
 {{--Script para switch de mis proyectos--}}
-<script>
-    $(document).ready(function(){
-        $('#opcion1').change(function(){
-            window.location.replace('/misproyectos')
-        })
+{{--<script>--}}
+    {{--$(document).ready(function()--}}
+    {{--{--}}
+        {{--$('#opcion1').change(function(){--}}
+            {{--window.location.replace('/misproyectos')--}}
+        {{--})--}}
 
-        $('#opcion2').change(function(){
-            window.location.replace('/home')
-        })
-    })
-</script>
+        {{--$('#opcion2').change(function(){--}}
+            {{--window.location.replace('/home')--}}
+        {{--})--}}
+    {{--})--}}
+{{--</script>--}}
 
 {{--Script para el filtro por estados (El usuario desea poder ver el banco de proyectos en estado: "reclutando") --}}
 <script>
-    $(document).ready(function() {
+    $(document).ready(function()
+    {
         $(".filtroEstado").change(function(){
             $lip = $(this).val()
             $.get('listarP/'+$lip, function(data)
@@ -202,7 +205,8 @@
 
 {{--funcion ajax para cambiar de estado en tiempo real y auto actualizarse--}}
 <script>
-    $(document).ready(function() {
+    $(document).ready(function()
+    {
         $(".estadoProyecto").change(function ()
         {
             $idEstado = $(this).val()
@@ -231,7 +235,8 @@
 
 {{--funcion ajax para eliminar un proyecto, pasar a estado en banco(El gestor por medio del aplicativo podrá eliminar un proyecto y de manera automática envía una notificación al usuario informando el fin del proceso y su motivo)--}}
 <script>
-    $(document).ready(function() {
+    $(document).ready(function()
+    {
         $('.btn-delete').click(function ()
         {
             $idEliminar = "1"
@@ -253,7 +258,8 @@
 
 {{--Funcion ajax para actualizar estados en la vista proyectosusers--}}
 <script>
-    $(document).ready(function() {
+    $(document).ready(function()
+    {
         $(".estadoProyectoUsuario").change(function ()
         {
             $idCambio = $(this).val()
@@ -269,16 +275,67 @@
 </script>
 
 {{--Script para filtrar por lineas tecnologicas (El gestor podra filtrar los proyectos según las diferentes lineas tecnologicas)--}}
+{{--<script>--}}
+    {{--$(document).ready(function() --}}
+    {{--{--}}
+{{--//        $arrLineas = [];--}}
+        {{--$(".filtroLinea").change(function()--}}
+        {{--{--}}
+            {{--if($(this).is(":checked")){--}}
+{{--//                $lineas = $(".filtroLinea");--}}
+{{--//                for($i = 0; $i <= ($lineas.length - 1); $i++){--}}
+{{--//                    if($($lineas[$i]).is(":checked")){--}}
+{{--//                        $arrLineas.push($lineas[$i]);--}}
+{{--//                    }else{--}}
+{{--//                        $arrLineas.pop($lineas[$i]);--}}
+{{--//                    }--}}
+                {{--}--}}
+{{--//                console.log($arrLineas);--}}
+{{--//                $lil = $(this).val()--}}
+                {{--$.get('listarL/'+$lil, function(data)--}}
+                {{--{--}}
+                    {{--$('tbody').empty()--}}
+                    {{--$('tbody').html(data)--}}
+                {{--})--}}
+{{--//            }--}}
+{{--//        })--}}
+    {{--})--}}
+{{--</script>--}}
+
+
+{{--Script para filtrar por lineas tecnologicas (El gestor podra filtrar los proyectos según las diferentes lineas tecnologicas)--}}
 <script>
-    $(document).ready(function() {
-        $(".filtroLinea").change(function(){
-            $lil = $(this).val()
-            $.get('listarL/'+$lil, function(data)
+    $(document).ready(function()
+    {
+        $arrLineas = []
+        $lineas = $(".filtroLinea")
+
+            $(".filtroLinea").change(function()
             {
                 $('tbody').empty()
-                $('tbody').html(data)
+
+                for($i = 0; $i <= ($lineas.length -1); $i++)
+                {
+                    if($($lineas[$i]).is(":checked"))
+                    {
+                        $arrLineas.push($lineas[$i])
+                        console.log($arrLineas)
+//                        alert('1')
+                    }
+                    else
+                    {
+                        $arrLineas.splice($lineas[$i])
+//                        console.log($arrLineas)
+//                        alert('2')
+                    }
+//                $lil = $(this).val()
+//                $.get('listarL/'+$lil, function(data)
+//                {
+//                    $('tbody').append(data)
+                }
+
             })
-        })
+
     })
 </script>
 

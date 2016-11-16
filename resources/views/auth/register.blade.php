@@ -28,13 +28,13 @@
 
 <body>
     <div class="image-container set-full-height" style="background-image: url('img/wizard-profile.jpg')">
-        <a href="http://tecnoparque.sena.edu.co/">
-            <div class="logo-container">
-                <div class="logotecnoregister">
+        {{--<a href="http://tecnoparque.sena.edu.co/">--}}
+            {{--<div class="logo-container">--}}
+                {{--<div class="logotecnoregister">--}}
                     {{--<img src="img/tecnoparque.png">--}}
-                </div>
-            </div>
-        </a>
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</a>--}}
 
         <!--  Slider  -->
         <a href="http://tecnoparque.sena.edu.co/" class="made-with-mk">

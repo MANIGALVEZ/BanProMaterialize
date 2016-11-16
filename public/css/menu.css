@@ -19,18 +19,17 @@ div.menuu
   display: none;
 }
 
-div.menuu label
-{
-  font-size: 30px;
-  cursor: pointer;
-  display: none;
-}
+/*div.menuu label*/
+/*{*/
+  /*font-size: 30px;*/
+  /*cursor: pointer;*/
+  /*display: none;*/
+/*}*/
 
 .menu ul
 {
   background: #F8F8F8;
   display: flex;
-
   list-style: none;
 }
 
@@ -48,11 +47,23 @@ div.menuu label
 
 .menu a:hover {
   background: rgba(236,240,241,0.3);
+  color: white;
 }
 
-.menu ul li:hover ul {
-  display: block;
-  position: absolute;
-  width: 127px;
-  left: 230px;
+/*.menu ul li:hover ul {*/
+  /*display: block;*/
+  /*position: absolute;*/
+  /*width: 127px;*/
+  /*left: 630px;*/
+/*}*/
+
+.menu ul li ul
+{
+  left: 34px;
+}
+
+.menu ul li a
+{
+
+  border-radius: 3px;
 }
