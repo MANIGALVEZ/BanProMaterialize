@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
+<meta charset="UTF-8">
+<meta name="viewport">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -233,7 +235,7 @@
     })
 </script>
 
-{{--funcion ajax para eliminar un proyecto, pasar a estado en banco(El gestor por medio del aplicativo podrá eliminar un proyecto y de manera automática envía una notificación al usuario informando el fin del proceso y su motivo)--}}
+{{--funcion ajax para eliminar un proyecto, pasar a estado en banco(El gestor por medio del aplicativo podrï¿½ eliminar un proyecto y de manera automï¿½tica envï¿½a una notificaciï¿½n al usuario informando el fin del proceso y su motivo)--}}
 <script>
     $(document).ready(function()
     {
@@ -274,7 +276,7 @@
     })
 </script>
 
-{{--Script para filtrar por lineas tecnologicas (El gestor podra filtrar los proyectos según las diferentes lineas tecnologicas)--}}
+{{--Script para filtrar por lineas tecnologicas (El gestor podra filtrar los proyectos segï¿½n las diferentes lineas tecnologicas)--}}
 {{--<script>--}}
     {{--$(document).ready(function() --}}
     {{--{--}}
@@ -303,7 +305,7 @@
 {{--</script>--}}
 
 
-{{--Script para filtrar por lineas tecnologicas (El gestor podra filtrar los proyectos según las diferentes lineas tecnologicas)--}}
+{{--Script para filtrar por lineas tecnologicas (El gestor podra filtrar los proyectos segï¿½n las diferentes lineas tecnologicas)--}}
 <script>
     $(document).ready(function()
     {
