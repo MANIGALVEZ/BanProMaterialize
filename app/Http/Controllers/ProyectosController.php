@@ -163,7 +163,7 @@ class ProyectosController extends Controller
         $ipr->users_id = $user;
         $ipr->estadosproyectosusers_id = 2;
         $ipr->save();
-        return redirect('/home');
+        return redirect('/proyectos');
 
     }
 
