@@ -322,7 +322,17 @@
               $.get('listarL', {var1: $var1, var2: $var2,var3: $var3,var4: $var4,}, function(data)
               {
                   console.log(data);
-//                  $('tbody').append(data)
+//                  if(data != ""){
+//                      $('tbody').html(data)
+//                  }{
+//
+//                          swal({
+//                              title: "Filtrar Por Estado",
+//                              text: "No se encuentran proyectos en el estado seleccionado",
+//                              type: "error",
+//                              confirmButtonClass: "btn-danger",
+//                              confirmButtonText: "Aceptar"});
+//                }
               })
 
 

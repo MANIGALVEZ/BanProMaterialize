@@ -7,10 +7,12 @@
     return $nfecha;
     }
 ?>
-
-@if($query->count()>0)
+{{--@if($query->count()>0)--}}
+@if(count($query)>0)
     @foreach($query as $row)
-        <tr class="letra">
+        <?php $estadoproyecto = DB::table("proyectosusers")->where("proyectos_id", $row->id)->where("users_id", Auth::user()->id)->value("estadosproyectosusers_id"); ?>
+        @if($row->estadosdeproyectos_id != 1)
+        <tr class="letra @if($estadoproyecto == 1) success @elseif($estadoproyecto == 3) danger @endif">
             <td>{{$row->id}}</td>
             <td>{{fechalatina($row->created_at)}}</td>
             <td>{{$row->nombrep}}</td>
@@ -63,22 +65,26 @@
                     <a href="javascript:;" data-eliminar="{{$row->id}}" class="btn btn-danger btn-delete btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="glyphicon glyphicon-trash"></i></a>
                 @endif
 
-                @if(Auth::user()->tiporol == 'usuario' && Auth::user()->id)
-                    <?php $ipr_status=false ?>
+                @if(Auth::user()->tiporol == 'usuario')
                     <a href="show/{{$row->id}}" type="button" class="btn btn-info btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Detalles"><i class="glyphicon glyphicon-list-alt"></i></a>
-                    @foreach($iprs as $ipr)
-                        @if($ipr->proyectos_id == $row->id)
-                            <a href="javascript:;" type="button" class="btn btn-warning btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" disabled="disabled" title="Pendiente Aprobacion"><i class="glyphicon glyphicon-time"></i></a>
-                            <?php $ipr_status=true ?>
+                    @if(count($estadoproyecto) > 0)
+                        @if($estadoproyecto == 2)
+                            <a href="javascript:;" type="button" class="btn btn-warning btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" disabled="disabled" title="Pendiente Aprobacion"><i class="material-icons">access_time</i></a>
+
+                        @elseif($estadoproyecto == 3)
+                            <a href="javascript:;" type="button" class="btn btn-danger btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Rechazado"><i class="material-icons">not_interested</i></a>
+
+                        @elseif($estadoproyecto == 1)
+                            <a href="javascript:;" type="button" class="btn btn-success btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Reclutado"><i class="material-icons">done</i></a>
                         @endif
-                    @endforeach
-                    @if($ipr_status==false)
+
+                    @else
                         <a href="inscribir/{{$row->id}}" type="button" class="btn btn-primary btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Inscribirse"><i class="glyphicon glyphicon-edit"></i></a>
-                        <?php $ipr_status=false ?>
                     @endif
                 @endif
             </td>
         </tr>
+        @endif
     @endforeach
 
 

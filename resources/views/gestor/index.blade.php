@@ -54,7 +54,7 @@
         <?php $lineas = DB::table("lineas")->get(); ?>
         <form class="form-inline col-md-6" >
             @foreach($lineas as $key => $linea)
-                <input id="filtroLinea{{ $linea->id }}" class="filtroLinea" type="checkbox" name="lineas[]" value="{{ $linea->id }}" autofocus >
+                <input id="filtroLinea{{ $linea->id }}" class="filtroLinea" type="checkbox" name="lineas[]" value="{{ $linea->id }}">
                 <label for="filtroLinea{{ $linea->id }}">{{ $linea->linea }}</label><br>
             @endforeach
         </form>
@@ -148,21 +148,21 @@
                         @endif
 
                         @if(Auth::user()->tiporol == 'usuario')
-                                <a href="show/{{$row->id}}" type="button" class="btn btn-info btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Detalles"><i class="glyphicon glyphicon-list-alt"></i></a>
-                               @if(count($estadoproyecto) > 0)
-                                    @if($estadoproyecto == 2)
-                                        <a href="javascript:;" type="button" class="btn btn-warning btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" disabled="disabled" title="Pendiente Aprobacion"><i class="material-icons">access_time</i></a>
+                            <a href="show/{{$row->id}}" type="button" class="btn btn-info btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Detalles"><i class="glyphicon glyphicon-list-alt"></i></a>
+                           @if(count($estadoproyecto) > 0)
+                                @if($estadoproyecto == 2)
+                                    <a href="javascript:;" type="button" class="btn btn-warning btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" disabled="disabled" title="Pendiente Aprobacion"><i class="material-icons">access_time</i></a>
 
-                                        @elseif($estadoproyecto == 3)
-                                            <a href="javascript:;" type="button" class="btn btn-danger btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Rechazado"><i class="material-icons">not_interested</i></a>
+                                    @elseif($estadoproyecto == 3)
+                                        <a href="javascript:;" type="button" class="btn btn-danger btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Rechazado"><i class="material-icons">not_interested</i></a>
 
-                                        @elseif($estadoproyecto == 1)
-                                        <a href="javascript:;" type="button" class="btn btn-success btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Reclutado"><i class="material-icons">done</i></a>
-                                    @endif
-
-                                    @else
-                                        <a href="inscribir/{{$row->id}}" type="button" class="btn btn-primary btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Inscribirse"><i class="glyphicon glyphicon-edit"></i></a>
+                                    @elseif($estadoproyecto == 1)
+                                    <a href="javascript:;" type="button" class="btn btn-success btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Reclutado"><i class="material-icons">done</i></a>
                                 @endif
+
+                                @else
+                                    <a href="inscribir/{{$row->id}}" type="button" class="btn btn-primary btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Inscribirse"><i class="glyphicon glyphicon-edit"></i></a>
+                            @endif
                         @endif
                     </td>
                 </tr>
