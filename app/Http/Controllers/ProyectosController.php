@@ -53,27 +53,36 @@ class ProyectosController extends Controller
     //Funcion store para guardar en BD/ El usuario por medio del aplicativo espera tener una interfaz que permita registrar su proyecto
     public function store(Request $request)
     {
-            $image = $request->file('image');
-            $ruta = $image->getClientOriginalName();
 
-            $proyecto = new Proyecto();
-            $proyecto->nombrep = $request->get('nombrep');
-            $proyecto->sectorenfocado = $request->get('sectorenfocado');
-            $proyecto->empresa = $request->get('empresa');
-            $proyecto->descripcion = $request->get('descripcion');
-            $proyecto->usuario_id = Auth::user()->id;
+        $image = $request->file('image');
+        $proyecto = new Proyecto();
+        $proyecto->nombrep = $request->get('nombrep');
+        $proyecto->sectorenfocado = $request->get('sectorenfocado');
+        $proyecto->empresa = $request->get('empresa');
+        $proyecto->descripcion = $request->get('descripcion');
+        $proyecto->usuario_id = Auth::user()->id;
+        $proyecto->estadosdeproyectos_id = "2";
+
+        if($image != "")
+            {
+            $ruta = $image->getClientOriginalName();
             $proyecto->imagen = 'imagenes/proyectos/' . $ruta;
-            $proyecto->estadosdeproyectos_id = "2";
-            $request->file('image')->move(base_path() . '/public/imagenes/proyectos/', $ruta);
-            $proyecto->save();
+            $image->move(base_path() . '/public/imagenes/proyectos/', $ruta);
+            }
+
+        $proyecto->save();
 
             $lineas = $request->get("lineatecnologica");
-            foreach ($lineas as $key => $linea) {
+//Decision $lineas: En caso del usuario
+            if($lineas != "")
+            {
+                foreach ($lineas as $key => $linea)
+                {
                 $linea_proyecto = new LineaProyecto;
                 $linea_proyecto->proyectos_id = $proyecto->id;
                 $linea_proyecto->lineas_id = $linea;
                 $linea_proyecto->save();
-
+                }
             }
             return redirect("proyectos/create");
 	}

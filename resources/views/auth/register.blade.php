@@ -28,13 +28,6 @@
 
 <body>
     <div class="image-container set-full-height" style="background-image: url('img/wizard-profile.jpg')">
-        {{--<a href="http://tecnoparque.sena.edu.co/">--}}
-            {{--<div class="logo-container">--}}
-                {{--<div class="logotecnoregister">--}}
-                    {{--<img src="img/tecnoparque.png">--}}
-                {{--</div>--}}
-            {{--</div>--}}
-        {{--</a>--}}
 
         <!--  Slider  -->
         <a href="http://tecnoparque.sena.edu.co/" class="made-with-mk">
@@ -173,11 +166,11 @@
             </div><!-- fin row -->
         </div> <!--  fin big container -->
 
-        <div class="footer">
-            <div class="container text-center">
-                Hecho con <i class="fa fa-heart heart"></i> por <a href="">Henry Parra & Yonathan Gálvez</a> para Tecnoparque <a href="http://tecnoparque.sena.edu.co/"></a>
-            </div>
-        </div>
+        {{--<div class="footer">--}}
+            {{--<div class="container text-center">--}}
+                {{--Hecho con <i class="fa fa-heart heart"></i> por <a href="">Henry Parra & Yonathan Gálvez</a> para Tecnoparque <a href="http://tecnoparque.sena.edu.co/"></a>--}}
+            {{--</div>--}}
+        {{--</div>--}}
     </div>
 </body>
 

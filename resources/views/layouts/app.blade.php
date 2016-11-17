@@ -102,6 +102,7 @@
                                   <ul class="dropdown-menu">
                                       <li><a href="{{ url('/proyectosIndex')}}">Todos</a></li>
                                       <li><a href="{{ url('/proyectosB')}}">Eliminados</a></li>
+                                      <li><a href="{{ url('/proyectos/create')}}">Registrar</a></li>
                                   </ul>
                                   <li><a href="{{ url('/usuarios')}}">Usuarios</a></li>
                                 @endif
@@ -297,6 +298,7 @@
             })
     })
 </script>
+
 
 </body>
 </html>
