@@ -39,34 +39,25 @@
            <td>{{$query->user->nameu}}</td>  
            <td><img src="/{{$query->imagen}}" width="100" class="img-thumbnail"></td>
          </tbody>
-
     </table>
-     <h4>Descripcion</h4>
-        <div  class="cajascontent">
+
+    <div class="bloquisito">
+    <strong>Descripcion</strong>
+        <div  class="cajascontent descripcion">
           <p >{{$query->descripcion}}</p>
         </div>
-
-     <h4>Resumen</h4>
-        <div  class="cajascontent">
+    </div>
+    <div class="bloquisito">
+    <strong>Resumen</strong>
+        <div  class="cajascontent resumen">
         <p>
             {{$query->resumen}}
         </p>
         </div>
-           <h4>Comentarios</h4>
-        <div  class="cajascontent">
-
-             <?php foreach ($comentariop as $key => $comentario): ?>
-                  <?php $comentarios = DB::table("comentarios")->where("id", $comentario->id)->get(); ?>
-                  <?php foreach ($comentarios as $key => $comentario): ?>
-                  <li class="nombre">
-                  <?php echo DB::table("users")->where("id", $comentario->usuario_id)->value("nameu"); echo ":" ?>
-                  {{ $comentario->comentario }}
-                      </li>
-                  <?php endforeach ?>
-               <?php endforeach ?>
-</div>
+    </div>
+    <div class="bloquisito">
     @if(Auth::user()->tiporol == 'gestor')
-        <h4>Usuarios Inscritos</h4>
+        <strong>Usuarios Inscritos</strong>
         <table class=" table table-bordered tablitashow">
             <thead>
             <tr>
@@ -95,23 +86,41 @@
                 @endforeach
                 </tbody>
         </table>
+        </div>
     @endif
-    @if(Auth::user()->tiporol == 'usuario')
-        <h4>Usuarios Inscritos</h4>
-        <table class=" table table-bordered tablitashow">
-            <thead>
-            <tr>
-                <th>Usuario</th>
-            </tr>
-            </thead>
+    <div class="bloquisito usucliente">
 
-                </tbody>
-        </table>
+    @if(Auth::user()->tiporol == 'usuario')
+        <strong>Usuarios Inscritos</strong>
+        <div class="cajascontent usuariosInscritos">
+
+            @foreach($usuarios2 as $usu)
+                <li>{{$usu->nameu}}</li>
+                <?php $estadosprouser = DB::table("estadosproyectosusers")->get(); ?>
+            @endforeach
+        </div>
+    </div>
     @endif
+    <div class="bloquisito">
+           <strong>Comentarios</strong>
+        <div  class="cajascontent comentarios">
+
+             <?php foreach ($comentariop as $key => $comentario): ?>
+                  <?php $comentarios = DB::table("comentarios")->where("id", $comentario->id)->get(); ?>
+                  <?php foreach ($comentarios as $key => $comentario): ?>
+                  <li class="nombre">
+                  <?php echo DB::table("users")->where("id", $comentario->usuario_id)->value("nameu"); echo ":" ?>
+                  {{ $comentario->comentario }}
+                      </li>
+                  <?php endforeach ?>
+               <?php endforeach ?>
+        </div>
+    </div>
+
     <form action="{{ url('/comentario/'.$query->id)}}" method="POST">
         {{ csrf_field() }}
-        <textarea id="comentario" type="text" class="form-control" placeholder="Escriba el comentario deseado" rows="2" name="comentario" value="{{ old('comentario') }}"  maxlength="255" required="required"></textarea>
-        <button type="submit" class="btn btn-success" name="enviar" style="border: none;">
+        <textarea id="comentario"  type="text" class="form-control" placeholder="Escriba el comentario deseado" rows="2" name="comentario" value="{{ old('comentario') }}"  maxlength="255" required="required"></textarea>
+        <button type="submit" class="btn btn-success" name="enviar" >
             Enviar
          </button>
     </form>
