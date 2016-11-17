@@ -100,7 +100,7 @@ class ProyectosController extends Controller
     {
             $query =Proyecto::where('estadosdeproyectos_id', '=', $lip)
                 ->orderBy('id', 'ASC')
-                ->paginate(3);
+                ->paginate();
             $iprs = ProyectosUsers::all();
             return view('selectestadoslineas', compact('query', 'iprs'));
 
@@ -114,8 +114,7 @@ class ProyectosController extends Controller
         $query =Proyecto::where('estadosdeproyectos_id', '<>', "1")
             ->where('nombrep', 'LIKE', '%'.$request->get('nombrep').'%')
             ->orderBy('id', 'ASC')
-            ->paginate(3)
-            ->setPath('home');
+            ->paginate();
         $iprs=ProyectosUsers::all();
         return view('gestor.index', compact('query','iprs', 'lineas'));
     }
@@ -189,7 +188,8 @@ class ProyectosController extends Controller
             ->join('proyectosusers', 'proyectos.id', '=', 'proyectosusers.proyectos_id')
             ->select('proyectos.*', 'proyectosusers.estadosproyectosusers_id')
             ->where('proyectosusers.users_id', '=', Auth::user()->id)
-            ->orderBy('id','ASC')->paginate(3);
+            ->orderBy('id','ASC')
+            ->paginate();
         return view('gestor.index', compact('query', 'iprs', 'lineas'));
 
     }
@@ -237,7 +237,7 @@ class ProyectosController extends Controller
         $iprs=ProyectosUsers::all();
         $query = Proyecto::where('estadosdeproyectos_id', '=', '1')
             ->orderBy('id','ASC')
-            ->paginate(3);
+            ->paginate();
         return view('gestor.proyectosbanco', compact('query', "lineas", 'iprs'));
     }
 

@@ -73,23 +73,21 @@
         {{--</form>--}}
     </article>
 
-<br><br><br><br><br><br>
-
     <table class="table">
         <thead>
-        <tr class="">
-            <th>Id</th>
-            <th>Fecha</th>
-            <th>Nombre Proyecto</th>
-            <th>Sector enfocado</th>
-            <th>Linea(s) Tecnológica(s)</th>
-            <th>Estado</th>
-            <th>Usuario</th>
-            <th>Opciones</th>
-        </tr>
+            <tr class="">
+                <th>Id</th>
+                <th>Fecha</th>
+                <th>Nombre Proyecto</th>
+                <th>Sector enfocado</th>
+                <th>Linea(s) Tecnológica(s)</th>
+                <th>Estado</th>
+                <th>Usuario</th>
+                <th>Opciones</th>
+            </tr>
         </thead>
         <tbody>
-        @if($query->count()>0)
+        @if(count($query)>0)
             @foreach($query as $row)
                 <?php $estadoproyecto = DB::table("proyectosusers")->where("proyectos_id", $row->id)->where("users_id", Auth::user()->id)->value("estadosproyectosusers_id"); ?>
                 <tr class="letra @if($estadoproyecto == 1) success @elseif($estadoproyecto == 3) danger @endif">

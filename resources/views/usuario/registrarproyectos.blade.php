@@ -7,8 +7,6 @@ Vista registro proyectos: El usuario por medio del aplicativo espera tener una i
 @section('content')
 
 
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-
     <article>
         <div class="page-header">
             <h1 class="text-center text-muted">Registro de Proyectos</h1>
@@ -106,17 +104,8 @@ Vista registro proyectos: El usuario por medio del aplicativo espera tener una i
     @endif
 
 
-    <body>
+<body>
     <div class="image-container set-full-height" style="background-image: url('img/wizard-profile.jpg')">
-        {{--<a href="http://tecnoparque.sena.edu.co/">--}}
-        {{--<div class="logo-container">--}}
-        {{--<div class="logotecnoregister">--}}
-        {{--<img src="img/tecnoparque.png">--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--</a>--}}
-
-        <!--  Slider  -->
         <a href="http://tecnoparque.sena.edu.co/" class="made-with-mk">
             <div class="material-icons">copyright</div>
             <div class="made-with">Hecho Para <strong>Tecnoparque</strong></div>
@@ -129,7 +118,7 @@ Vista registro proyectos: El usuario por medio del aplicativo espera tener una i
                     <!--      Wizard container        -->
                     <div class="wizard-container">
                         <div class="card wizard-card" data-color="green" id="wizardProfile">
-                            <form class="" role="form" method="POST" action="{{ url('/register') }}">
+                            <form action="{{ url('/proyectos') }}" method="POST" role="form" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <div class="wizard-header">
                                     <h3 class="wizard-title">
@@ -139,43 +128,44 @@ Vista registro proyectos: El usuario por medio del aplicativo espera tener una i
                                 </div>
                                 <div class="wizard-navigation">
                                     <ul>
-                                        <li><a href="#basica" data-toggle="tab">Información Básica</a></li>
-                                        <li><a href="#adicional" data-toggle="tab">Información Adicional</a></li>
+                                        <li><a href="#informacion" data-toggle="tab">Información</a></li>
+                                        <li><a href="#lineatecnologica" data-toggle="tab">Linea Tecnológica</a></li>
+                                        <li><a href="#imagen" data-toggle="tab">Imagen</a></li>
                                     </ul>
                                 </div>
                                 <div class="tab-content">
-                                    <div class="tab-pane" id="basica">
+                                    <div class="tab-pane" id="informacion">
                                         <div class="row">
                                             <h4 class="info-text">Comencemos con la información básica <br>(Todos los campos son requeridos)</h4>
                                             <br>
                                             <div class="col-sm-8 col-sm-offset-2">
                                                 <div class="input-group">
 													<span class="input-group-addon">
-														<i class="material-icons">face</i>
+														<i class="material-icons">developer_board</i>
 													</span>
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Nombre del Proyecto<small></small></label>
-                                                        <input id="nameu" name="nameu" type="text" class="form-control" value="{{ old('nameu') }}" required>
+                                                        <input id="nombrep" type="text" class="form-control" name="nombrep" value="{{ old('nombrep') }}" required>
                                                     </div>
                                                 </div>
 
                                                 <div class="input-group">
 													<span class="input-group-addon">
-														<i class="material-icons">record_voice_over</i>
+														<i class="material-icons">business_center</i>
 													</span>
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Sector<small></small></label>
-                                                        <input id="apellidos" name="apellidos" type="text" class="form-control" value="{{ old('apellidos') }}" required>
+                                                        <input id="sectorenfocado" type="text" class="form-control" name="sectorenfocado" value="{{ old('sectorenfocado') }}" required>
                                                     </div>
                                                 </div>
 
                                                 <div class="input-group">
 													<span class="input-group-addon">
-														<i class="material-icons">mail</i>
+														<i class="material-icons">business</i>
 													</span>
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Empresa<small></small></label>
-                                                        <input id="email" name="email" type="email" class="form-control" value="{{ old('email') }}" required>
+                                                        <input id="empresa" type="text" class="form-control" name="empresa" value="{{ old('empresa') }}" required>
                                                     </div>
                                                 </div>
 
@@ -185,57 +175,67 @@ Vista registro proyectos: El usuario por medio del aplicativo espera tener una i
                                                     </span>
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Descripción<small></small></label>
-                                                        <input id="email" name="email" type="email" class="form-control" value="{{ old('email') }}" required>
+                                                        <textarea id="descripcion" type="text" class="form-control" placeholder="" rows="5" name="descripcion" value="{{ old('descripcion') }}" autofocus maxlength="255" required></textarea>
                                                     </div>
                                                 </div>
-
-
-
-                                            </div>
                                             </div>
                                         </div>
-                                    <div class="tab-pane" id="adicional">
-                                        <h4 class="info-text">Continuemos con la información Adicional<br>(Todos los campos son requeridos)</h4>
+                                    </div>
+                                    <div class="tab-pane" id="lineatecnologica">
+                                        <h4 class="info-text">Por favor seleccione uno o varios item<br>(Al menos un campo es requerido)</h4>
                                         <div class="row">
-                                            <div class="col-sm-8 col-sm-offset-2">
-                                                {{--<div class="col-sm-10 col-sm-offset-1">--}}
-                                                <div class="input-group">
-													<span class="input-group-addon">
-														<i class="material-icons">smartphone</i>
-													</span>
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Celular<small></small></label>
-                                                        <input id="celular" name="celular" type="text" class="form-control" value="{{ old('celular') }}" required>
+                                            <div class="col-sm-10 col-sm-offset-1">
+
+                                                <label for="lineatecnologica" class="col-md-2 control-label">Linea Tecnológica</label>
+                                                <div class="col-md-4">
+                                                    @foreach($lineas as $key => $linea)
+                                                        <input id="linea{{ $linea->id }}" type="checkbox" name="lineatecnologica[]" value="{{ $linea->id }}">
+                                                        <label for="linea{{ $linea->id }}">{{ $linea->linea }}</label><br>
+                                                    @endforeach
+                                                </div>
+
+                                                <div class="col-sm-4">
+                                                    <div class="choice" data-toggle="wizard-checkbox">
+                                                        <input type="checkbox" name="jobb" value="Design">
+                                                        <div class="icon">
+                                                            <i class="fa fa-pencil"></i>
+                                                        </div>
+                                                        <h6>Design</h6>
                                                     </div>
                                                 </div>
-                                                <div class="input-group">
-													<span class="input-group-addon">
-														<i class="material-icons">layers</i>
-													</span>
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Titulos<small></small></label>
-                                                        <input id="titulos" name="titulos" type="text" class="form-control" value="{{ old('titulos') }}" required>
+                                                <div class="col-sm-4">
+                                                    <div class="choice" data-toggle="wizard-checkbox">
+                                                        <input type="checkbox" name="jobb" value="Code">
+                                                        <div class="icon">
+                                                            <i class="fa fa-terminal"></i>
+                                                        </div>
+                                                        <h6>Code</h6>
                                                     </div>
                                                 </div>
-                                                <div class="input-group">
-													<span class="input-group-addon">
-														<i class="material-icons">lock</i>
-													</span>
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Contraseña<small></small></label>
-                                                        <input id="password" name="password" type="password" class="form-control" required>
-                                                    </div>
-                                                </div>
-                                                <div class="input-group">
-													<span class="input-group-addon">
-														<i class="material-icons">lock</i>
-													</span>
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Confirmar Contraseña<small></small></label>
-                                                        <input id="password-confirm" name="password_confirmation" type="password" class="form-control" required>
+                                                <div class="col-sm-4">
+                                                    <div class="choice" data-toggle="wizard-checkbox">
+                                                        <input type="checkbox" name="jobb" value="Develop">
+                                                        <div class="icon">
+                                                            <i class="fa fa-laptop"></i>
+                                                        </div>
+                                                        <h6>Develop</h6>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="imagen">
+                                        <div class="row">
+                                            <h4 class="info-text">Por favor seleccione una imagen<br>(Una vez este aprobado el proyecto, aparecerá en la interfaz principal)</h4>
+                                                <div class="col-sm-8 col-sm-offset-2">
+                                                    <div class="picture-container">
+                                                        <div class="picture">
+                                                            <img src="img/picture.png" class="picture-src" id="wizardPicturePreview" title=""/>
+                                                            <input type="file" id="wizard-picture">
+                                                        </div>
+                                                        <h6>Seleccione una imagen</h6>
+                                                    </div>
+                                                </div>
                                         </div>
                                     </div>
                                 </div>
@@ -262,13 +262,7 @@ Vista registro proyectos: El usuario por medio del aplicativo espera tener una i
             </div>
         </div>
     </div>
-    </body>
-
-
-
-
-
-
+</body>
 
 
 @endsection
