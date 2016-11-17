@@ -277,67 +277,24 @@
 </script>
 
 {{--Script para filtrar por lineas tecnologicas (El gestor podra filtrar los proyectos seg�n las diferentes lineas tecnologicas)--}}
-{{--<script>--}}
-    {{--$(document).ready(function() --}}
-    {{--{--}}
-{{--//        $arrLineas = [];--}}
-        {{--$(".filtroLinea").change(function()--}}
-        {{--{--}}
-            {{--if($(this).is(":checked")){--}}
-{{--//                $lineas = $(".filtroLinea");--}}
-{{--//                for($i = 0; $i <= ($lineas.length - 1); $i++){--}}
-{{--//                    if($($lineas[$i]).is(":checked")){--}}
-{{--//                        $arrLineas.push($lineas[$i]);--}}
-{{--//                    }else{--}}
-{{--//                        $arrLineas.pop($lineas[$i]);--}}
-{{--//                    }--}}
-                {{--}--}}
-{{--//                console.log($arrLineas);--}}
-{{--//                $lil = $(this).val()--}}
-                {{--$.get('listarL/'+$lil, function(data)--}}
-                {{--{--}}
-                    {{--$('tbody').empty()--}}
-                    {{--$('tbody').html(data)--}}
-                {{--})--}}
-{{--//            }--}}
-{{--//        })--}}
-    {{--})--}}
-{{--</script>--}}
-
-
-{{--Script para filtrar por lineas tecnologicas (El gestor podra filtrar los proyectos seg�n las diferentes lineas tecnologicas)--}}
 <script>
     $(document).ready(function()
     {
         $arrLineas = []
         $lineas = $(".filtroLinea")
 
-            $(".filtroLinea").change(function()
-            {
+            $(".filtroLinea").change(function() {
                 $('tbody').empty()
+                if($("#filtroLinea1").is(":checked")){$var1 = $("#filtroLinea1").val()}else{$var1 = 0}
+                if($("#filtroLinea2").is(":checked")){$var2 = $("#filtroLinea2").val()}else{$var2 = 0}
+                if($("#filtroLinea3").is(":checked")){$var3 = $("#filtroLinea3").val()}else{$var3 = 0}
+                if($("#filtroLinea4").is(":checked")){$var4 = $("#filtroLinea4").val()}else{$var4 = 0}
 
-                for($i = 0; $i <= ($lineas.length -1); $i++)
-                {
-                    if($($lineas[$i]).is(":checked"))
-                    {
-                        $arrLineas.push($lineas[$i])
-                        console.log($arrLineas)
-//                        alert('1')
-                    }
-                    else
-                    {
-                        $arrLineas.splice($lineas[$i])
-//                        console.log($arrLineas)
-//                        alert('2')
-                    }
-//                $lil = $(this).val()
-//                $.get('listarL/'+$lil, function(data)
-//                {
-//                    $('tbody').append(data)
-                }
-
+                  $.get('listarL', {var1: $var1, var2: $var2, var3: $var3, var4: $var4}, function(data)
+                  {
+                      $('tbody').html(data)
+                  })
             })
-
     })
 </script>
 

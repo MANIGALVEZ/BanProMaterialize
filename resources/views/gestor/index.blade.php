@@ -54,7 +54,7 @@
         <?php $lineas = DB::table("lineas")->get(); ?>
         <form class="form-inline col-md-6" >
             @foreach($lineas as $key => $linea)
-                <input id="filtroLinea{{ $linea->id }}" class="filtroLinea" type="checkbox" value="{{ $linea->id }}" autofocus >
+                <input id="filtroLinea{{ $linea->id }}" class="filtroLinea" type="checkbox" name="lineas[]" value="{{ $linea->id }}">
                 <label for="filtroLinea{{ $linea->id }}">{{ $linea->linea }}</label><br>
             @endforeach
         </form>
@@ -73,26 +73,24 @@
         {{--</form>--}}
     </article>
 
-<br><br><br><br><br><br>
-
     <table class="table">
         <thead>
-        <tr class="">
-            <th>Id</th>
-            <th>Fecha</th>
-            <th>Nombre Proyecto</th>
-            <th>Sector enfocado</th>
-            <th>Linea(s) Tecnológica(s)</th>
-            <th>Estado</th>
-            <th>Usuario</th>
-            <th>Opciones</th>
-        </tr>
+            <tr class="">
+                <th>Id</th>
+                <th>Fecha</th>
+                <th>Nombre Proyecto</th>
+                <th>Sector enfocado</th>
+                <th>Linea(s) Tecnológica(s)</th>
+                <th>Estado</th>
+                <th>Usuario</th>
+                <th>Opciones</th>
+            </tr>
         </thead>
         <tbody>
-        @if($query->count()>0)
+        @if(count($query)>0)
             @foreach($query as $row)
                 <?php $estadoproyecto = DB::table("proyectosusers")->where("proyectos_id", $row->id)->where("users_id", Auth::user()->id)->value("estadosproyectosusers_id"); ?>
-                <tr class="letra @if($estadoproyecto == 1) success @endif">
+                <tr class="letra @if($estadoproyecto == 1) success @elseif($estadoproyecto == 3) danger @endif">
                     <td>{{$row->id}}</td>
                     <td>{{fechalatina($row->created_at)}}</td>
                     <td>{{$row->nombrep}}</td>
@@ -148,11 +146,16 @@
                         @endif
 
                         @if(Auth::user()->tiporol == 'usuario')
-                                <a href="show/{{$row->id}}" type="button" class="btn btn-info btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Detalles"><i class="glyphicon glyphicon-list-alt"></i></a>
-                               @if(count($estadoproyecto) > 0)
-                                    @if($estadoproyecto == 2)
-                                    <a href="javascript:;" type="button" class="btn btn-warning btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" disabled="disabled" title="Pendiente Aprobacion"  ><i class="glyphicon glyphicon-time"></i></a>
+                            <a href="show/{{$row->id}}" type="button" class="btn btn-info btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Detalles"><i class="glyphicon glyphicon-list-alt"></i></a>
+                           @if(count($estadoproyecto) > 0)
+                                @if($estadoproyecto == 2)
+                                    <a href="javascript:;" type="button" class="btn btn-warning btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" disabled="disabled" title="Pendiente Aprobacion"><i class="material-icons">access_time</i></a>
+
+                                    @elseif($estadoproyecto == 3)
+                                        <a href="javascript:;" type="button" class="btn btn-danger btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Rechazado"><i class="material-icons">not_interested</i></a>
+
                                     @elseif($estadoproyecto == 1)
+<<<<<<< HEAD
                                    <!-- <a href="javascript:;" type="button" class="btn btn-success btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Reclutado"  ><i class="glyphicon glyphicon-time"></i></a> -->
                                        <button type="button" class="btn btn-success  btn-just-icon btn-xs glyphicon glyphicon-time" data-toggle="popover" data-placement="top" title="Reclutado!" data-content="Felicidades! a sido aceptado, contactenos por medio del siguiente numero: 'Numero!'"></button>
 
@@ -160,7 +163,14 @@
                                @else
                                     <a href="inscribir/{{$row->id}}" type="button" class="btn btn-primary btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Inscribirse"><i class="glyphicon glyphicon-edit"></i></a>
                                
+=======
+                                    <a href="javascript:;" type="button" class="btn btn-success btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Reclutado"><i class="material-icons">done</i></a>
+>>>>>>> 4c99137118a996c307f71d8514646cf5f54cb938
                                 @endif
+
+                                @else
+                                    <a href="inscribir/{{$row->id}}" type="button" class="btn btn-primary btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Inscribirse"><i class="glyphicon glyphicon-edit"></i></a>
+                            @endif
                         @endif
                     </td>
                 </tr>

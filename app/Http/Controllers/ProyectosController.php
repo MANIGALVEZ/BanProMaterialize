@@ -109,7 +109,7 @@ class ProyectosController extends Controller
     {
             $query =Proyecto::where('estadosdeproyectos_id', '=', $lip)
                 ->orderBy('id', 'ASC')
-                ->paginate(3);
+                ->paginate();
             $iprs = ProyectosUsers::all();
             return view('selectestadoslineas', compact('query', 'iprs'));
 
@@ -123,8 +123,7 @@ class ProyectosController extends Controller
         $query =Proyecto::where('estadosdeproyectos_id', '<>', "1")
             ->where('nombrep', 'LIKE', '%'.$request->get('nombrep').'%')
             ->orderBy('id', 'ASC')
-            ->paginate(3)
-            ->setPath('home');
+            ->paginate();
         $iprs=ProyectosUsers::all();
         return view('gestor.index', compact('query','iprs', 'lineas'));
     }
@@ -209,6 +208,18 @@ class ProyectosController extends Controller
             return redirect('/home');
         }
 
+
+        $iprs = ProyectosUsers::all();
+        $lineas = Linea::all();
+        $query = \DB::table('proyectos')
+            ->where('estadosdeproyectos_id', '<>', "1")
+            ->join('proyectosusers', 'proyectos.id', '=', 'proyectosusers.proyectos_id')
+            ->select('proyectos.*', 'proyectosusers.estadosproyectosusers_id')
+            ->where('proyectosusers.users_id', '=', Auth::user()->id)
+            ->orderBy('id','ASC')
+            ->paginate();
+        return view('gestor.index', compact('query', 'iprs', 'lineas'));
+
     }
 
 
@@ -263,7 +274,7 @@ class ProyectosController extends Controller
         $iprs=ProyectosUsers::all();
         $query = Proyecto::where('estadosdeproyectos_id', '=', '1')
             ->orderBy('id','ASC')
-            ->paginate(3);
+            ->paginate();
         return view('gestor.proyectosbanco', compact('query', "lineas", 'iprs'));
     }
 
@@ -301,17 +312,86 @@ class ProyectosController extends Controller
 
 
     // Funcion: Filtrar por lineas (El gestor podra filtrar los proyectos según las diferentes lineas tecnologicas)
-    public function listarLinea($lil)
+    public function listarLinea(Request $request)
     {
-        $query = \DB::table('proyectos')
-            ->join('lineasproyectos', 'proyectos.id', '=', 'lineasproyectos.proyectos_id')
-            ->select('proyectos.*', 'lineasproyectos.lineas_id')
-            ->where('lineasproyectos.lineas_id', '=', $lil)
-            ->orderBy('id','ASC')->paginate();
-        $iprs = ProyectosUsers::all();
-        return view('selectestadoslineas', compact('query','iprs'));
+        $count = 0;
+        $arrLineas = [];
+        if($request->get("var1") != 0){ $count++; array_push($arrLineas, $request->get("var1"));}
+        if($request->get("var2") != 0){ $count++; array_push($arrLineas, $request->get("var2"));}
+        if($request->get("var3") != 0){ $count++; array_push($arrLineas, $request->get("var3"));}
+        if($request->get("var4") != 0){ $count++; array_push($arrLineas, $request->get("var4"));}
+
+        switch($count){
+            case 1:
+                $que = \DB::table('lineasproyectos')
+                    ->where("lineas_id", $arrLineas[0])->get();
+                $query = [];
+                foreach($que as $key => $value){
+                    array_push($query, Proyecto::find($value->proyectos_id));
+                }
+                break;
+
+            case 2:
+                $query = [];
+                $que = \DB::table('lineasproyectos')
+                    ->where("lineas_id", $arrLineas[0])->get();
+                $que2 = \DB::table('lineasproyectos')
+                    ->where("lineas_id", $arrLineas[1])->get();
+                foreach($que as $key => $value){
+                    foreach($que2 as $key2 => $value2){
+                        if($value->proyectos_id == $value2->proyectos_id){
+                            array_push($query, Proyecto::find($value->proyectos_id));
+                        }
+                    }
+                }
+                break;
+
+            case 3:
+                $query = [];
+                $que = \DB::table('lineasproyectos')
+                    ->where("lineas_id", $arrLineas[0])->get();
+                $que2 = \DB::table('lineasproyectos')
+                    ->where("lineas_id", $arrLineas[1])->get();
+                $que3 = \DB::table('lineasproyectos')
+                    ->where("lineas_id", $arrLineas[2])->get();
+                foreach($que as $key => $value){
+                    foreach($que2 as $key2 => $value2){
+                        foreach($que3 as $key3 => $value3){
+                            if($value->proyectos_id == $value2->proyectos_id && $value2->proyectos_id == $value3->proyectos_id){
+                                array_push($query, Proyecto::find($value->proyectos_id));
+                            }
+                        }
+                    }
+                }
+                break;
+
+            case 4:
+                $query = [];
+                $que = \DB::table('lineasproyectos')
+                    ->where("lineas_id", $arrLineas[0])->get();
+                $que2 = \DB::table('lineasproyectos')
+                    ->where("lineas_id", $arrLineas[1])->get();
+                $que3 = \DB::table('lineasproyectos')
+                    ->where("lineas_id", $arrLineas[2])->get();
+                $que4 = \DB::table('lineasproyectos')
+                    ->where("lineas_id", $arrLineas[3])->get();
+                foreach($que as $key => $value){
+                    foreach($que2 as $key2 => $value2){
+                        foreach($que3 as $key3 => $value3){
+                            foreach($que4 as $key4 => $value4){
+                                if($value->proyectos_id == $value2->proyectos_id && $value2->proyectos_id == $value3->proyectos_id && $value3->proyectos_id == $value4->proyectos_id){
+                                    array_push($query, Proyecto::find($value->proyectos_id));
+                                }
+                            }
+                        }
+                    }
+                }
+                break;
+        }
+        return view('selectestadoslineas', compact('query'));
 
     }
+
 
     //Funcion que permite agregar conmentario a un proyecto X
     public function comentario(Request $request, $id)

@@ -112,7 +112,7 @@
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="adicional">
-                                        <h4 class="info-text">Continuemos con la información Adicional<br>(Todos los campos son requeridos)</h4>
+                                        <h4 class="info-text">Continuemos con la información Adicional<br>(Algunos campos son requeridos)</h4>
                                         <div class="row">
                                             <div class="col-sm-8 col-sm-offset-2">
                                                 {{--<div class="col-sm-10 col-sm-offset-1">--}}
@@ -131,7 +131,7 @@
 													</span>
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Titulos<small></small></label>
-                                                        <input id="titulos" name="titulos" type="text" class="form-control" value="{{ old('titulos') }}" required>
+                                                        <input id="titulos" name="titulos" type="text" class="form-control" value="{{ old('titulos') }}">
                                                     </div>
                                                 </div>
                                                 <div class="input-group">
