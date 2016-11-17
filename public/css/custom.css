@@ -1,5 +1,6 @@
 *{
     list-style: none;
+    font-family: "roboto";
 }
 body{
     padding-top: 80px;
@@ -72,15 +73,34 @@ tr.letra
 
 .cajascontent{
     border:none;
-    width:900px;
+    width:400px;
     height:100px;
     background-color: white;
+    overflow-y: auto;
 }
 .cajascontent li.nombre{
     style:none;
     text-transform: capitalize;
-
 }
 table.tablitashow{
     background-color: white;
+}
+#comentario{
+    width: 900px;
+    background-color: #fff;
+}
+.bloquisito {
+    display: inline-block;
+    width: 370px;
+    align-items: center;
+    border: 1px solid red;
+}
+.usuariosInscritos{
+    width:200px;
+}
+.usucliente{
+    width: 200px;
+    top:-126px;
+    position: relative;
+    left: 800px;
 }

@@ -167,11 +167,16 @@ class ProyectosController extends Controller
         $lineas_proyecto = LineaProyecto::where("proyectos_id", $id)->get();
         $comentariop = Comentario::where("proyecto_id", $id)->get();
         $proyectos = ProyectosUsers::where("proyectos_id", $id)->get();
+        $proyectos2 = ProyectosUsers::where("proyectos_id", $id)->where("estadosproyectosusers_id", 1)->get();
         $usuarios = [];
+        $usuarios2 = [];
         foreach($proyectos as $key => $proyecto){
             array_push($usuarios, User::find($proyecto->users_id));
         }
-        return view('gestor.showp', compact('query', "lineas_proyecto", "comentariop", "usuarios"));
+        foreach($proyectos2 as $key2 => $proyecto2){
+            array_push($usuarios2, User::find($proyecto2->users_id));
+        }
+        return view('gestor.showp', compact('query', "lineas_proyecto", "comentariop", "usuarios", "usuarios2"));
     }
 
 
