@@ -256,7 +256,6 @@ class ProyectosController extends Controller
         public function usuariosshow($id)
         {
             if(Auth::user()->tiporol == 'gestor'){
-
                 $query = User::find($id);
                 $proyectosusers= ProyectosUsers::where("users_id", $id)->get();
                 //dd($proyectosusers);

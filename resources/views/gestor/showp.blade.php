@@ -66,38 +66,48 @@
                <?php endforeach ?>
 </div>
     @if(Auth::user()->tiporol == 'gestor')
-
-   <h4>Usuarios Inscritos</h4>
+        <h4>Usuarios Inscritos</h4>
         <table class=" table table-bordered tablitashow">
             <thead>
-                <tr>
-                    <th>Usuario</th>
-                    <th>Estado</th>
-                </tr>
+            <tr>
+                <th>Usuario</th>
+                <th>Estado</th>
+            </tr>
             </thead>
-             @foreach($usuarios as $usu)
-            <tbody>
-               <tr>
-                   <td>{{$usu->nameu}}</td>
-                   <td>
-                       <?php $estadosprouser = DB::table("estadosproyectosusers")->get(); ?>
-                       <select class="form-control estadoProyectoUsuario" data-idprouser='<?php echo DB::table("proyectosusers")->where("proyectos_id", $query->id)->where("users_id", $usu->id)->value("id"); ?>'>
-                           @foreach($estadosprouser as $estado)
-                               <?php $tabla = DB::table("proyectosusers")->where("proyectos_id", $query->id)->where("users_id", $usu->id)->value("estadosproyectosusers_id"); ?>
-                                   @if($estado->id == $tabla)
-                                   <option value="{{$estado->id}}" selected>{{$estado->estado}}</option>
-                               @else
-                                   <option value="{{$estado->id}}">{{$estado->estado}}</option>
-                               @endif
-                           @endforeach
-                       </select>
-                   </td>
-               </tr>
-               @endforeach
-            </tbody>
+            @foreach($usuarios as $usu)
+                <tbody>
+                <tr>
+                    <td>{{$usu->nameu}}</td>
+                    <td>
+                        <?php $estadosprouser = DB::table("estadosproyectosusers")->get(); ?>
+                        <select class="form-control estadoProyectoUsuario" data-idprouser='<?php echo DB::table("proyectosusers")->where("proyectos_id", $query->id)->where("users_id", $usu->id)->value("id"); ?>'>
+                            @foreach($estadosprouser as $estado)
+                                <?php $tabla = DB::table("proyectosusers")->where("proyectos_id", $query->id)->where("users_id", $usu->id)->value("estadosproyectosusers_id"); ?>
+                                @if($estado->id == $tabla)
+                                    <option value="{{$estado->id}}" selected>{{$estado->estado}}</option>
+                                @else
+                                    <option value="{{$estado->id}}">{{$estado->estado}}</option>
+                                @endif
+                            @endforeach
+                        </select>
+                    </td>
+                </tr>
+                @endforeach
+                </tbody>
         </table>
     @endif
+    @if(Auth::user()->tiporol == 'usuario')
+        <h4>Usuarios Inscritos</h4>
+        <table class=" table table-bordered tablitashow">
+            <thead>
+            <tr>
+                <th>Usuario</th>
+            </tr>
+            </thead>
 
+                </tbody>
+        </table>
+    @endif
     <form action="{{ url('/comentario/'.$query->id)}}" method="POST">
         {{ csrf_field() }}
         <textarea id="comentario" type="text" class="form-control" placeholder="Escriba el comentario deseado" rows="2" name="comentario" value="{{ old('comentario') }}"  maxlength="255" required="required"></textarea>
