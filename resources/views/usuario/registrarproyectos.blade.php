@@ -1,87 +1,84 @@
-<!--
-Vista registro proyectos: El usuario por medio del aplicativo espera tener una interfaz que permita registrar su proyecto
--->
 
 @extends('layouts.app')
-
 @section('content')
 
+{{--</div>--}}
 
-    <article>
-        <div class="page-header">
-            <h1 class="text-center text-muted">Registro de Proyectos</h1>
-        </div>
-    </article>
+    {{--<article>--}}
+        {{--<div class="page-header">--}}
+            {{--<h1 class="text-center text-muted">Registro de Proyectos</h1>--}}
+        {{--</div>--}}
+    {{--</article>--}}
 
-    <form action="{{ url('/proyectos') }}" method="POST" class="form-horizontal" role="form" enctype="multipart/form-data">
-    {{ csrf_field() }}
-
-
-    <div class="form-group">
-        <label for="nombrep" class="col-md-2 control-label">Nombre del proyecto</label>
-
-            <div class="col-md-4">
-                <input id="nombrep" type="text" class="form-control" name="nombrep" value="{{ old('nombrep') }}" autofocus required="required">
-            </div>
+    {{--<form action="{{ url('/proyectos') }}" method="POST" class="form-horizontal" role="form" enctype="multipart/form-data">--}}
+    {{--{{ csrf_field() }}--}}
 
 
-        <label for="lineatecnologica" class="col-md-2 control-label">Linea Tecnológica</label>
-            <div class="col-md-4">
-                @foreach($lineas as $key => $linea)
-                    <input id="linea{{ $linea->id }}" type="checkbox" name="lineatecnologica[]" value="{{ $linea->id }}">
-                    <label for="linea{{ $linea->id }}">{{ $linea->linea }}</label><br>
-                @endforeach
-            </div>
+    {{--<div class="form-group">--}}
+        {{--<label for="nombrep" class="col-md-2 control-label">Nombre del proyecto</label>--}}
+
+            {{--<div class="col-md-4">--}}
+                {{--<input id="nombrep" type="text" class="form-control" name="nombrep" value="{{ old('nombrep') }}" autofocus required="required">--}}
+            {{--</div>--}}
 
 
-        <div class="checkbox">
-
-                    @foreach($lineas as $key => $linea)
-                        <input id="linea{{ $linea->id }}" type="checkbox" name="lineatecnologica[]" value="{{ $linea->id }}">
-                        <label for="linea{{ $linea->id }}">{{ $linea->linea }}</label><br>
-                    @endforeach
-
-        </div>
-    </div>
+        {{--<label for="lineatecnologica" class="col-md-2 control-label">Linea Tecnológica</label>--}}
+            {{--<div class="col-md-4">--}}
+                {{--@foreach($lineas as $key => $linea)--}}
+                    {{--<input id="linea{{ $linea->id }}" type="checkbox" name="lineatecnologica[]" value="{{ $linea->id }}">--}}
+                    {{--<label for="linea{{ $linea->id }}">{{ $linea->linea }}</label><br>--}}
+                {{--@endforeach--}}
+            {{--</div>--}}
 
 
-    <div class="form-group">
-        <label for="sectorenfocado" class="col-md-2 control-label">Sector enfocado</label>
+        {{--<div class="checkbox">--}}
 
-            <div class="col-md-4">
-                <input id="sectorenfocado" type="text" class="form-control" name="sectorenfocado" value="{{ old('sectorenfocado') }}" autofocus required="required">
-            </div>
+                    {{--@foreach($lineas as $key => $linea)--}}
+                        {{--<input id="linea{{ $linea->id }}" type="checkbox" name="lineatecnologica[]" value="{{ $linea->id }}">--}}
+                        {{--<label for="linea{{ $linea->id }}">{{ $linea->linea }}</label><br>--}}
+                    {{--@endforeach--}}
 
-            <label for="empresa" class="col-md-2 control-label">Empresa</label>
-
-            <div class="col-md-4">
-                <input id="empresa" type="text" class="form-control" name="empresa" value="{{ old('empresa') }}" autofocus>
-            </div>
-    </div>
-
-    <br><br>
-    <div class="form-group">
-        <label for="descripcion" class="col-md-2 control-label">Descripción</label>
-            <div class="col-md-10">
-                <textarea id="descripcion" type="text" class="form-control" placeholder="Por favor escriba una breve descripción" rows="5" name="descripcion" value="{{ old('descripcion') }}" autofocus maxlength="255" ></textarea>
-            </div>
-    </div>
-        <div class="form-group">
-            <label class="control-label"></label>
-            <input  type="file" class="file" name="image" accept="image/jpg">
-        </div>
-        <br><br><br>
-
-    <center>
-        <div class="col-md-4 col-md-offset-4">
-         <button type="submit" class="btn btn-success" name="enviar" value="enviar">
-            Registrar
-         </button>
-        </div>
-    </center>
+        {{--</div>--}}
+    {{--</div>--}}
 
 
-    </form>
+    {{--<div class="form-group">--}}
+        {{--<label for="sectorenfocado" class="col-md-2 control-label">Sector enfocado</label>--}}
+
+            {{--<div class="col-md-4">--}}
+                {{--<input id="sectorenfocado" type="text" class="form-control" name="sectorenfocado" value="{{ old('sectorenfocado') }}" autofocus required="required">--}}
+            {{--</div>--}}
+
+            {{--<label for="empresa" class="col-md-2 control-label">Empresa</label>--}}
+
+            {{--<div class="col-md-4">--}}
+                {{--<input id="empresa" type="text" class="form-control" name="empresa" value="{{ old('empresa') }}" autofocus>--}}
+            {{--</div>--}}
+    {{--</div>--}}
+
+    {{--<br><br>--}}
+    {{--<div class="form-group">--}}
+        {{--<label for="descripcion" class="col-md-2 control-label">Descripción</label>--}}
+            {{--<div class="col-md-10">--}}
+                {{--<textarea id="descripcion" type="text" class="form-control" placeholder="Por favor escriba una breve descripción" rows="5" name="descripcion" value="{{ old('descripcion') }}" autofocus maxlength="255" ></textarea>--}}
+            {{--</div>--}}
+    {{--</div>--}}
+        {{--<div class="form-group">--}}
+            {{--<label class="control-label"></label>--}}
+            {{--<input  type="file" class="file" name="image" accept="image/jpg">--}}
+        {{--</div>--}}
+        {{--<br><br><br>--}}
+
+    {{--<center>--}}
+        {{--<div class="col-md-4 col-md-offset-4">--}}
+         {{--<button type="submit" class="btn btn-success" name="enviar" value="enviar">--}}
+            {{--Registrar--}}
+         {{--</button>--}}
+        {{--</div>--}}
+    {{--</center>--}}
+
+
+    {{--</form>--}}
 
 
 

@@ -150,22 +150,17 @@
                            @if(count($estadoproyecto) > 0)
                                 @if($estadoproyecto == 2)
                                     <a href="javascript:;" type="button" class="btn btn-warning btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" disabled="disabled" title="Pendiente Aprobacion"><i class="material-icons">access_time</i></a>
-
                                     @elseif($estadoproyecto == 3)
                                         <a href="javascript:;" type="button" class="btn btn-danger btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Rechazado"><i class="material-icons">not_interested</i></a>
-
                                     @elseif($estadoproyecto == 1)
-                                       <button type="button" class="btn btn-success  btn-just-icon btn-xs glyphicon glyphicon-time" data-toggle="popover" data-placement="top" title="Reclutado!" data-content="Felicidades! a sido aceptado, contactenos por medio del siguiente numero: 'Numero!'"></button>
-
+                                       <button type="button" class="btn btn-success  btn-just-icon btn-xs" data-toggle="popover" data-placement="top" title="Reclutado!" data-content="Felicidades! ha sido aceptado, pronto, un gestor le contactará"><i class="material-icons">check</i></button>
                                     @endif
                                @else
                                     <a href="inscribir/{{$row->id}}" type="button" class="btn btn-primary btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Inscribirse"><i class="glyphicon glyphicon-edit"></i></a>
                                 @endif
-
                                 @else
                                     <a href="inscribir/{{$row->id}}" type="button" class="btn btn-primary btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Inscribirse"><i class="glyphicon glyphicon-edit"></i></a>
                             @endif
-
                     </td>
                 </tr>
             @endforeach
