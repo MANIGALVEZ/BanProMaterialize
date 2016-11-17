@@ -18,6 +18,13 @@ use App\Linea;
 
 class ProyectosController extends Controller
 {
+    /**
+     * @return mixed
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     //Funcion para dirigir a interfaz principal
 	public function index()
@@ -46,43 +53,45 @@ class ProyectosController extends Controller
     //Funcion store para guardar en BD/ El usuario por medio del aplicativo espera tener una interfaz que permita registrar su proyecto
     public function store(Request $request)
     {
-        $image = $request->file('image');
-        $ruta  = $image->getClientOriginalName();
+            $image = $request->file('image');
+            $ruta = $image->getClientOriginalName();
 
-        $proyecto = new Proyecto();
-        $proyecto->nombrep = $request->get('nombrep');
-        $proyecto->sectorenfocado = $request->get('sectorenfocado');
-        $proyecto->empresa = $request->get('empresa');
-        $proyecto->descripcion = $request->get('descripcion');
-        $proyecto->usuario_id = Auth::user()->id;
-        $proyecto->imagen = 'imagenes/proyectos/'.$ruta;
-        $proyecto->estadosdeproyectos_id = "2";
-        $request->file('image')->move(base_path().'/public/imagenes/proyectos/', $ruta);
-        $proyecto->save();
+            $proyecto = new Proyecto();
+            $proyecto->nombrep = $request->get('nombrep');
+            $proyecto->sectorenfocado = $request->get('sectorenfocado');
+            $proyecto->empresa = $request->get('empresa');
+            $proyecto->descripcion = $request->get('descripcion');
+            $proyecto->usuario_id = Auth::user()->id;
+            $proyecto->imagen = 'imagenes/proyectos/' . $ruta;
+            $proyecto->estadosdeproyectos_id = "2";
+            $request->file('image')->move(base_path() . '/public/imagenes/proyectos/', $ruta);
+            $proyecto->save();
 
-        $lineas = $request->get("lineatecnologica");
-        foreach ($lineas as $key => $linea) {
-            $linea_proyecto = new LineaProyecto;
-            $linea_proyecto->proyectos_id = $proyecto->id;
-            $linea_proyecto->lineas_id    = $linea;
-           $linea_proyecto->save();
+            $lineas = $request->get("lineatecnologica");
+            foreach ($lineas as $key => $linea) {
+                $linea_proyecto = new LineaProyecto;
+                $linea_proyecto->proyectos_id = $proyecto->id;
+                $linea_proyecto->lineas_id = $linea;
+                $linea_proyecto->save();
 
-        }
-        return redirect("proyectos/create");
-
+            }
+            return redirect("proyectos/create");
 	}
 
 
     //Funcion para guardar y mostrar valores en el modal
     public function resumenProyecto(Request $request)
     {
+        if(Auth::user()->tiporol == 'usuario'){
         $proyecto = Proyecto::find($request->get("idProyecto"));
         $proyecto->estadosdeproyectos_id = $request->get("idEstado");
         $proyecto->resumen = $request->get('texto');
         $proyecto->save();
 
         return redirect("home");
-
+        }else{
+            return redirect("/home");
+        }
     }
 
 
@@ -149,7 +158,12 @@ class ProyectosController extends Controller
         $query = Proyecto::find($id);
         $lineas_proyecto = LineaProyecto::where("proyectos_id", $id)->get();
         $comentariop = Comentario::where("proyecto_id", $id)->get();
-        return view('gestor.showp', compact('query', "lineas_proyecto", "comentariop"));
+        $proyectos = ProyectosUsers::where("proyectos_id", $id)->get();
+        $usuarios = [];
+        foreach($proyectos as $key => $proyecto){
+            array_push($usuarios, User::find($proyecto->users_id));
+        }
+        return view('gestor.showp', compact('query', "lineas_proyecto", "comentariop", "usuarios"));
     }
 
 
@@ -181,16 +195,19 @@ class ProyectosController extends Controller
     //Funcion que permite ver los  proyectos inscritos
     public function misproyectos()
     {
-
-        $iprs = ProyectosUsers::all();
-        $lineas = Linea::all();
-        $query = \DB::table('proyectos')
-            ->where('estadosdeproyectos_id', '<>', "1")
-            ->join('proyectosusers', 'proyectos.id', '=', 'proyectosusers.proyectos_id')
-            ->select('proyectos.*', 'proyectosusers.estadosproyectosusers_id')
-            ->where('proyectosusers.users_id', '=', Auth::user()->id)
-            ->orderBy('id','ASC')->paginate(3);
-        return view('gestor.index', compact('query', 'iprs', 'lineas'));
+        if(Auth::user()->tiporol == "usuario"){
+            $iprs = ProyectosUsers::all();
+            $lineas = Linea::all();
+            $query = \DB::table('proyectos')
+                ->where('estadosdeproyectos_id', '<>', "1")
+                ->join('proyectosusers', 'proyectos.id', '=', 'proyectosusers.proyectos_id')
+                ->select('proyectos.*', 'proyectosusers.estadosproyectosusers_id')
+                ->where('proyectosusers.users_id', '=', Auth::user()->id)
+                ->orderBy('id','ASC')->paginate(3);
+            return view('gestor.index', compact('query', 'iprs', 'lineas'));
+        }else {
+            return redirect('/home');
+        }
 
     }
 
@@ -213,20 +230,29 @@ class ProyectosController extends Controller
 
 		// Mostrar usuarios
 		public function usuarios(){
-			$query = User::orderBy('id','ASC')->paginate(2);
+            if(Auth::user()->tiporol == 'gestor'){
+
+                $query = User::orderBy('id','ASC')->paginate(2);
             // dd($query);
             return view('gestor.usuarios', compact('query'));
+            }else{
+                return redirect('/home');
+            }
 		}
 
 
         //usuarios asociados a proyectos
         public function usuariosshow($id)
         {
-            $query = User::find($id);
-            $proyectosusers= ProyectosUsers::where("users_id", $id)->get();
-            //dd($proyectosusers);
-            return view('gestor.proyectosusers', compact('query', 'proyectosusers'));
+            if(Auth::user()->tiporol == 'gestor'){
 
+                $query = User::find($id);
+                $proyectosusers= ProyectosUsers::where("users_id", $id)->get();
+                //dd($proyectosusers);
+                return view('gestor.proyectosusers', compact('query', 'proyectosusers'));
+        }else{
+            return redirect('/home');
+            }
         }
 
 

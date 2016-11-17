@@ -65,21 +65,39 @@
                   <?php endforeach ?>
                <?php endforeach ?>
 </div>
-   
-   <h4>Ussuarios Inscritos</h4>
-        <div  class="cajascontent" >
+    @if(Auth::user()->tiporol == 'gestor')
 
-            <h4>Henry</h4>
-            <select name="" id="">
-                <option value="">Reclutado</option>
-                <option value="">Solicitando</option>
-                <option value="">Inactivo</option>
-            </select>
-            <?php $usuario = DB::table('proyectosusers')->where('id', '=', $query->id)->get();?>
-            @foreach($usuario as $usu)
-                <li>{{$usu->users_id}}</li>
-            @endforeach
-        </div>
+   <h4>Usuarios Inscritos</h4>
+        <table class=" table table-bordered tablitashow">
+            <thead>
+                <tr>
+                    <th>Usuario</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+             @foreach($usuarios as $usu)
+            <tbody>
+               <tr>
+                   <td>{{$usu->nameu}}</td>
+                   <td>
+                       <?php $estadosprouser = DB::table("estadosproyectosusers")->get(); ?>
+                       <select class="form-control estadoProyectoUsuario" data-idprouser='<?php echo DB::table("proyectosusers")->where("proyectos_id", $query->id)->where("users_id", $usu->id)->value("id"); ?>'>
+                           @foreach($estadosprouser as $estado)
+                               <?php $tabla = DB::table("proyectosusers")->where("proyectos_id", $query->id)->where("users_id", $usu->id)->value("estadosproyectosusers_id"); ?>
+                                   @if($estado->id == $tabla)
+                                   <option value="{{$estado->id}}" selected>{{$estado->estado}}</option>
+                               @else
+                                   <option value="{{$estado->id}}">{{$estado->estado}}</option>
+                               @endif
+                           @endforeach
+                       </select>
+                   </td>
+               </tr>
+               @endforeach
+            </tbody>
+        </table>
+    @endif
+
     <form action="{{ url('/comentario/'.$query->id)}}" method="POST">
         {{ csrf_field() }}
         <textarea id="comentario" type="text" class="form-control" placeholder="Escriba el comentario deseado" rows="2" name="comentario" value="{{ old('comentario') }}"  maxlength="255" required="required"></textarea>
