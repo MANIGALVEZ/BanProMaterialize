@@ -9,16 +9,13 @@
             <th>Nombre Proyecto</th>
             <th>Sector enfocado</th>
             <th>Linea Tecnológica</th>
-
         </tr>
         </thead>
-
-
         <tbody>
         <tr>
-            <td>{{$query->id}}</td>
-            <td>{{$query->nombrep}}</td>
-            <td>{{$query->sectorenfocado}}</td>
+            <td><input type="text" name="id" value="{{$query->id}}" readonly></td>
+            <td><input type="text" name="nombrep" value="{{$query->nombrep}}" readonly></td>
+            <td><input type="text" name="sectorenfocado" value="{{$query->sectorenfocado}}" readonly></td>
             <td>
                 <ul>
                     <?php foreach ($lineas_proyecto as $key => $linea): ?>
@@ -64,58 +61,6 @@
             <td colspan="2"><img src="/{{$query->imagen}}" width="100" class="img-thumbnail"></td>
         </tr>
         </tbody>
-
-        
-         <tbody>
-           <td>{{$query->id}}</td>
-           <td>{{$query->nombrep}}</td>
-           <td>{{$query->sectorenfocado}}</td>
-           <td>
-             <ul>
-                 @if(Auth::user()->tiporol == 'gestor')
-                   @foreach ($lineas_proyecto as $key => $linea)
-                      <?php $lineas = DB::table("lineas")->where("id", $linea->lineas_id)->get(); ?>
-                          @foreach ($lineas as $key => $linea)
-                          <li>{{ $linea->linea }}</li>
-                          @endforeach
-                   @endforeach
-                 @endif
-
-                 @if(Auth::user()->tiporol == 'usuario')
-
-                 @endif
-             </ul>
-           </td>
-           <td>
-               @if(Auth::user()->tiporol == 'usuario')
-                   <?php $estados = DB::table("estadosdeproyectos")->get(); ?>
-                   <?php $actualizarestados = DB::table("proyectos")->where("estadosdeproyectos_id", $query->estadosdeproyectos_id)->get(); ?>
-                       @foreach($estados as $estado)
-                           @if($estado->id == $query->estadosdeproyectos_id)
-                               <option value="{{$estado->id}}" selected>{{$estado->estado}}</option>
-                           @endif
-                       @endforeach
-               @endif
-
-               @if(Auth::user()->tiporol == 'gestor')
-               <?php $estados = DB::table("estadosdeproyectos")->where('id', '<>', '1')->get(); ?>
-               <form class="form-inline">
-                   <select class="form-control estadoProyectoDetalle" name="" data-proyecto="{{ $query->id }}">
-                       @foreach($estados as $estado)
-                           @if($estado->id == $query->estadosdeproyectos_id)
-                               <option value="{{$estado->id}}" selected>{{$estado->estado}}</option>
-                           @else
-                               <option value="{{$estado->id}}">{{$estado->estado}}</option>
-                           @endif
-                       @endforeach
-                   </select>
-               </form>
-               @endif
-           </td>
-           <td>{{$query->user->nameu}}</td>  
-           <td><img src="/{{$query->imagen}}" width="100" class="img-thumbnail"></td>
-         </tbody>
-
     </table>
 </div>
 <div class="col col-md-3 col-md-offset-1">
