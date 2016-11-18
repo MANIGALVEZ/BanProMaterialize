@@ -327,14 +327,14 @@
                 $('#idEstado').val($idEstado)
                 $('#idProyecto').val($idProyecto)
 
-                $.get('consultaP/'+$idProyecto, {idp: $idProyecto}, function(data)
+                $.get('/consultaP/'+$idProyecto, {idp: $idProyecto}, function(data)
                 {
                     $('#texto').val(data)
                 })
             }
             else
             {
-                $.get("estadoProyectoDetalle", {ide: $idEstado, idp: $idProyecto})
+                $.get("/estadoProyecto", {ide: $idEstado, idp: $idProyecto})
             }
 
         })

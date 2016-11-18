@@ -97,5 +97,5 @@ Route::get('/listarL', 'ProyectosController@listarLinea');
 Route::post('/comentario/{id}', 'ProyectosController@comentario');
 
 
-// Ruta para buscar y cambiar estado de proyecto en Detalles
+// Ruta para buscar y cambiar estado de proyecto en vista Detalles
 Route::post('/resumenPD', 'ProyectosController@resumenProyectoDetalle');
