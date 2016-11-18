@@ -223,17 +223,6 @@ class ProyectosController extends Controller
         }
 
 
-        $iprs = ProyectosUsers::all();
-        $lineas = Linea::all();
-        $query = \DB::table('proyectos')
-            ->where('estadosdeproyectos_id', '<>', "1")
-            ->join('proyectosusers', 'proyectos.id', '=', 'proyectosusers.proyectos_id')
-            ->select('proyectos.*', 'proyectosusers.estadosproyectosusers_id')
-            ->where('proyectosusers.users_id', '=', Auth::user()->id)
-            ->orderBy('id','ASC')
-            ->paginate();
-        return view('gestor.index', compact('query', 'iprs', 'lineas'));
-
     }
 
 
