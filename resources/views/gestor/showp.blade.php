@@ -28,13 +28,27 @@
              </ul>
            </td>
            <td>
-               <?php $estados = DB::table("estadosdeproyectos")->get(); ?>
-               <?php $actualizarestados = DB::table("proyectos")->where("estadosdeproyectos_id", $query->estadosdeproyectos_id)->get(); ?>
-                   @foreach($estados as $estado)
-                       @if($estado->id == $query->estadosdeproyectos_id)
-                           <option value="{{$estado->id}}" selected>{{$estado->estado}}</option>
-                       @endif
-                   @endforeach
+               @if(Auth::user()->tiporol == 'usuario')
+                   <?php $estados = DB::table("estadosdeproyectos")->get(); ?>
+                   <?php $actualizarestados = DB::table("proyectos")->where("estadosdeproyectos_id", $query->estadosdeproyectos_id)->get(); ?>
+                       @foreach($estados as $estado)
+                           @if($estado->id == $query->estadosdeproyectos_id)
+                               <option value="{{$estado->id}}" selected>{{$estado->estado}}</option>
+                           @endif
+                       @endforeach
+               @endif
+               <?php $estados = DB::table("estadosdeproyectos")->where('id', '<>', '1')->get(); ?>
+               <form class="form-inline">
+                   <select class="form-control estadoProyecto" name="" data-proyecto="{{ $query->id }}">
+                       @foreach($estados as $estado)
+                           @if($estado->id == $query->estadosdeproyectos_id)
+                               <option value="{{$estado->id}}" selected>{{$estado->estado}}</option>
+                           @else
+                               <option value="{{$estado->id}}">{{$estado->estado}}</option>
+                           @endif
+                       @endforeach
+                   </select>
+               </form>
            </td>
            <td>{{$query->user->nameu}}</td>  
            <td><img src="/{{$query->imagen}}" width="100" class="img-thumbnail"></td>

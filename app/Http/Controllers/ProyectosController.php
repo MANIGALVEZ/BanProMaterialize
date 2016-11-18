@@ -18,13 +18,12 @@ use App\Linea;
 
 class ProyectosController extends Controller
 {
-    /**
-     * @return mixed
-     */
+
     public function __construct()
     {
         $this->middleware('auth');
     }
+
 
     //Funcion para dirigir a interfaz principal
 	public function index()
@@ -63,7 +62,8 @@ class ProyectosController extends Controller
         $proyecto->usuario_id = Auth::user()->id;
         $proyecto->estadosdeproyectos_id = "2";
 
-        if($image != "")
+            //Decision $image: Ya que el usuario no puede subir imagen, se usa esta funcion para que no muestre error el registro
+            if($image != "")
             {
             $ruta = $image->getClientOriginalName();
             $proyecto->imagen = 'imagenes/proyectos/' . $ruta;
@@ -72,8 +72,9 @@ class ProyectosController extends Controller
 
         $proyecto->save();
 
-            $lineas = $request->get("lineatecnologica");
-//Decision $lineas: En caso del usuario
+        $lineas = $request->get("lineatecnologica");
+
+            //Decision $lineas: En caso del usuario no seleccionar alguna de las lineas
             if($lineas != "")
             {
                 foreach ($lineas as $key => $linea)
@@ -91,16 +92,16 @@ class ProyectosController extends Controller
     //Funcion para guardar y mostrar valores en el modal
     public function resumenProyecto(Request $request)
     {
-        if(Auth::user()->tiporol == 'usuario'){
+//        if(Auth::user()->tiporol == 'usuario'){
         $proyecto = Proyecto::find($request->get("idProyecto"));
         $proyecto->estadosdeproyectos_id = $request->get("idEstado");
         $proyecto->resumen = $request->get('texto');
         $proyecto->save();
 
-        return redirect("home");
-        }else{
-            return redirect("/home");
-        }
+        return redirect("proyectosIndex");
+//        }else{
+//            return redirect("/home");
+//        }
     }
 
 
@@ -148,11 +149,13 @@ class ProyectosController extends Controller
 
         if ($from == $to)
         {
-            $query = Proyecto::where("created_at", "LIKE", "%$from%")->paginate(3);
+            $query = Proyecto::where("created_at", "LIKE", "%$from%")
+                ->paginate();
         }
         else
         {
-            $query = Proyecto::whereBetween("created_at", [$from, $to])->paginate(3);
+            $query = Proyecto::whereBetween("created_at", [$from, $to])
+                ->paginate();
         }
 
         $iprs=ProyectosUsers::all();
@@ -190,7 +193,7 @@ class ProyectosController extends Controller
         $ipr->users_id = $user;
         $ipr->estadosproyectosusers_id = 2;
         $ipr->save();
-        return redirect('/proyectos');
+        return redirect('proyectosIndex');
 
     }
 
@@ -208,7 +211,9 @@ class ProyectosController extends Controller
     //Funcion que permite ver los  proyectos inscritos
     public function misproyectos()
     {
-        if(Auth::user()->tiporol == "usuario"){
+//        Seguridad aprobada
+        if(Auth::user()->tiporol == "usuario")
+        {
             $iprs = ProyectosUsers::all();
             $lineas = Linea::all();
             $query = \DB::table('proyectos')
@@ -216,23 +221,14 @@ class ProyectosController extends Controller
                 ->join('proyectosusers', 'proyectos.id', '=', 'proyectosusers.proyectos_id')
                 ->select('proyectos.*', 'proyectosusers.estadosproyectosusers_id')
                 ->where('proyectosusers.users_id', '=', Auth::user()->id)
-                ->orderBy('id','ASC')->paginate(3);
+                ->orderBy('id','ASC')
+                ->paginate();
             return view('gestor.index', compact('query', 'iprs', 'lineas'));
-        }else {
+        }
+        else
+        {
             return redirect('/home');
         }
-
-
-        $iprs = ProyectosUsers::all();
-        $lineas = Linea::all();
-        $query = \DB::table('proyectos')
-            ->where('estadosdeproyectos_id', '<>', "1")
-            ->join('proyectosusers', 'proyectos.id', '=', 'proyectosusers.proyectos_id')
-            ->select('proyectos.*', 'proyectosusers.estadosproyectosusers_id')
-            ->where('proyectosusers.users_id', '=', Auth::user()->id)
-            ->orderBy('id','ASC')
-            ->paginate();
-        return view('gestor.index', compact('query', 'iprs', 'lineas'));
 
     }
 
@@ -247,7 +243,7 @@ class ProyectosController extends Controller
             $proyecto->resumen = $request->get('textoEliminar');
             $proyecto->save();
 
-            return redirect("home");
+            return redirect("proyectosIndex");
 
         }
 
@@ -261,7 +257,7 @@ class ProyectosController extends Controller
             // dd($query);
             return view('gestor.usuarios', compact('query'));
             }else{
-                return redirect('/home');
+                return redirect('proyectosIndex');
             }
 		}
 
