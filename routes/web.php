@@ -37,7 +37,7 @@ Route::post('/searchN', 'ProyectosController@searchName');
 Route::post('/searchD', 'ProyectosController@searchDate');
 
 
-// Ruta para buscar cambiar estado de proyecto
+// Ruta para buscar y cambiar estado de proyecto en Detalles
 Route::post('/resumenP', 'ProyectosController@resumenProyecto');
 
 
@@ -95,3 +95,7 @@ Route::get('/listarL', 'ProyectosController@listarLinea');
 
 // Ruta para agregar un Comentario a un proyecto
 Route::post('/comentario/{id}', 'ProyectosController@comentario');
+
+
+// Ruta para buscar y cambiar estado de proyecto en Detalles
+Route::post('/resumenPD', 'ProyectosController@resumenProyectoDetalle');

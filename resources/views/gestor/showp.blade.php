@@ -37,9 +37,11 @@
                            @endif
                        @endforeach
                @endif
+
+               @if(Auth::user()->tiporol == 'gestor')
                <?php $estados = DB::table("estadosdeproyectos")->where('id', '<>', '1')->get(); ?>
                <form class="form-inline">
-                   <select class="form-control estadoProyecto" name="" data-proyecto="{{ $query->id }}">
+                   <select class="form-control estadoProyectoDetalle" name="" data-proyecto="{{ $query->id }}">
                        @foreach($estados as $estado)
                            @if($estado->id == $query->estadosdeproyectos_id)
                                <option value="{{$estado->id}}" selected>{{$estado->estado}}</option>
@@ -49,6 +51,7 @@
                        @endforeach
                    </select>
                </form>
+               @endif
            </td>
            <td>{{$query->user->nameu}}</td>  
            <td><img src="/{{$query->imagen}}" width="100" class="img-thumbnail"></td>
@@ -138,5 +141,31 @@
             Enviar
          </button>
     </form>
+
+
+    <!-- Modal para agregar un resumen cuando el proyecto pasa a estado Reclutando o En desarrollo  -->
+    <form action="{{url('resumenPD')}}" method="POST">
+        {{ csrf_field() }}
+        <div class="modal fade modalResumenDetalle" id="modalResumenDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">Añadir Resumen</h4>
+                    </div>
+                    <div class="modal-body">
+                        <textarea class="form-control" rows="5" name="texto" id="texto"></textarea>
+                        <input type="hidden" name="idEstado" id="idEstado">
+                        <input type="hidden" name="idProyecto" id="idProyecto">
+                    </div>
+                    <div class="modal-footer" >
+                        <button type="submit" class="btn btn-secondary" data-dismiss="modalResume">Cancelar</button>
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
 
 @endsection

@@ -412,5 +412,20 @@ class ProyectosController extends Controller
         $comentario->save();
         
         return redirect("show/".$id);
-    } 
+    }
+
+
+
+    //Funcion para guardar y mostrar valores en el modal en la vista detalles
+    public function resumenProyectoDetalle(Request $request)
+    {
+        $proyecto = Proyecto::find($request->get("idProyecto"));
+        $proyecto->estadosdeproyectos_id = $request->get("idEstado");
+        $proyecto->resumen = $request->get('texto');
+        $proyecto->save();
+
+        return redirect("show/idProyecto");
+//        }
+    }
+
 }
