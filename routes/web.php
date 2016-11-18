@@ -85,7 +85,7 @@ Route::get('/proyectosB', 'ProyectosController@proyectosBanco');
 Route::get('/proyectousuario/{id}', 'ProyectosController@showup');
 
 
-//Ruta para eliminar (cambiar a estado: En Banco) proyectos
+//Ruta para cambiar de estado el usuario (Reclutado, solicitando, Inactivo)
 Route::get('/estProUser', 'ProyectosController@estadoProyectoUsuario');
 
 

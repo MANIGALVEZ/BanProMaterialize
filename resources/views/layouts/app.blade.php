@@ -291,10 +291,21 @@
                 if($("#filtroLinea3").is(":checked")){$var3 = $("#filtroLinea3").val()}else{$var3 = 0}
                 if($("#filtroLinea4").is(":checked")){$var4 = $("#filtroLinea4").val()}else{$var4 = 0}
 
-                  $.get('listarL', {var1: $var1, var2: $var2, var3: $var3, var4: $var4}, function(data)
-                  {
-                      $('tbody').html(data)
-                  })
+
+                      if($var1 == 0 && $var2 == 0 && $var3 == 0 && $var4 == 0)
+                      {
+//                          Recarga la pagina, en caso de no seleccionar una linea especifica(para mostrar todas las lineas)
+                          window.location.replace('proyectosIndex')
+                      }
+                      else
+                      {
+//                          Ejecuta el filtro segun la linea seleccionada
+                          $.get('listarL', {var1: $var1, var2: $var2, var3: $var3, var4: $var4}, function(data)
+                            {
+                                $('tbody').html(data)
+                            })
+                      }
+
             })
     })
 </script>

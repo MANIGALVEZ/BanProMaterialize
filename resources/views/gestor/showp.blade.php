@@ -28,13 +28,27 @@
              </ul>
            </td>
            <td>
-               <?php $estados = DB::table("estadosdeproyectos")->get(); ?>
-               <?php $actualizarestados = DB::table("proyectos")->where("estadosdeproyectos_id", $query->estadosdeproyectos_id)->get(); ?>
-                   @foreach($estados as $estado)
-                       @if($estado->id == $query->estadosdeproyectos_id)
-                           <option value="{{$estado->id}}" selected>{{$estado->estado}}</option>
-                       @endif
-                   @endforeach
+               @if(Auth::user()->tiporol == 'usuario')
+                   <?php $estados = DB::table("estadosdeproyectos")->get(); ?>
+                   <?php $actualizarestados = DB::table("proyectos")->where("estadosdeproyectos_id", $query->estadosdeproyectos_id)->get(); ?>
+                       @foreach($estados as $estado)
+                           @if($estado->id == $query->estadosdeproyectos_id)
+                               <option value="{{$estado->id}}" selected>{{$estado->estado}}</option>
+                           @endif
+                       @endforeach
+               @endif
+               <?php $estados = DB::table("estadosdeproyectos")->where('id', '<>', '1')->get(); ?>
+               <form class="form-inline">
+                   <select class="form-control estadoProyecto" name="" data-proyecto="{{ $query->id }}">
+                       @foreach($estados as $estado)
+                           @if($estado->id == $query->estadosdeproyectos_id)
+                               <option value="{{$estado->id}}" selected>{{$estado->estado}}</option>
+                           @else
+                               <option value="{{$estado->id}}">{{$estado->estado}}</option>
+                           @endif
+                       @endforeach
+                   </select>
+               </form>
            </td>
            <td>{{$query->user->nameu}}</td>  
            <td><img src="/{{$query->imagen}}" width="100" class="img-thumbnail"></td>
@@ -42,19 +56,22 @@
     </table>
 
     <div class="bloquisito">
-    <strong>Descripcion</strong>
-        <div  class="cajascontent descripcion">
-          <p >{{$query->descripcion}}</p>
-        </div>
+        <table  class="table table-bordered tablitashow">
+            <thead>
+                <tr>
+                    <th>Descripcion</th>
+                    <th>Resumen</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{$query->descripcion}}</td>
+                    <td> {{$query->resumen}}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-    <div class="bloquisito">
-    <strong>Resumen</strong>
-        <div  class="cajascontent resumen">
-        <p>
-            {{$query->resumen}}
-        </p>
-        </div>
-    </div>
+
     <div class="bloquisito">
     @if(Auth::user()->tiporol == 'gestor')
         <strong>Usuarios Inscritos</strong>
@@ -120,7 +137,7 @@
     <form action="{{ url('/comentario/'.$query->id)}}" method="POST">
         {{ csrf_field() }}
         <textarea id="comentario"  type="text" class="form-control" placeholder="Escriba el comentario deseado" rows="2" name="comentario" value="{{ old('comentario') }}"  maxlength="255" required="required"></textarea>
-        <button type="submit" class="btn btn-success" name="enviar" >
+        <button type="submit" class="btn btn-success btnEnviar" name="enviar" >
             Enviar
          </button>
     </form>
