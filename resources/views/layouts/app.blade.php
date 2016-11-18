@@ -164,11 +164,11 @@
         </div>
 
     </nav>
-    <div class="row">
+    <section class="content-fluid">
         <div class="col-md-8 col-md-offset-2">
             @yield('content')
         </div>
-    </div>
+    </section>
     <!-- Scripts -->
 
     <script>
