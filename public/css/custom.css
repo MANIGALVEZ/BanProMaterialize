@@ -85,10 +85,11 @@ tr.letra
 table.tablitashow{
     background-color: white;
 }
-#comentario{
-    width: 900px;
+.comentarios{
+    width: 989px;
     background-color: #fff;
 }
+/*
 .bloquisito {
     display: inline-block;
     width: 370px;
@@ -103,4 +104,14 @@ table.tablitashow{
     top:-126px;
     position: relative;
     left: 800px;
+}*/
+#comentario {
+    background-color: #fff;
+    position: relative;
+    top:-24px;
+    width: 989px;
+}
+.btnEnviar {
+    position: relative;
+    top: -44px;
 }
