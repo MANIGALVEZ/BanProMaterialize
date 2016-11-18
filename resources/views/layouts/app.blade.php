@@ -311,5 +311,35 @@
 </script>
 
 
+{{--funcion ajax para cambiar de estado en tiempo real y auto actualizarse en la vista detalles--}}
+<script>
+    $(document).ready(function()
+    {
+        $(".estadoProyectoDetalle").change(function ()
+        {
+            $idEstado = $(this).val()
+            $idProyecto = $(this).attr("data-proyecto")
+
+            if ($idEstado == 3 || $idEstado == 4)
+            {
+
+                $(".modalResumenDetalle").modal("show")
+                $('#idEstado').val($idEstado)
+                $('#idProyecto').val($idProyecto)
+
+                $.get('/consultaP/'+$idProyecto, {idp: $idProyecto}, function(data)
+                {
+                    $('#texto').val(data)
+                })
+            }
+            else
+            {
+                $.get("/estadoProyecto", {ide: $idEstado, idp: $idProyecto})
+            }
+
+        })
+    })
+</script>
+
 </body>
 </html>

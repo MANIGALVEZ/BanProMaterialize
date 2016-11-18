@@ -13,6 +13,7 @@
         </tr>
         </thead>
 
+
         <tbody>
         <tr>
             <td>{{$query->id}}</td>
@@ -63,6 +64,58 @@
             <td colspan="2"><img src="/{{$query->imagen}}" width="100" class="img-thumbnail"></td>
         </tr>
         </tbody>
+
+        
+         <tbody>
+           <td>{{$query->id}}</td>
+           <td>{{$query->nombrep}}</td>
+           <td>{{$query->sectorenfocado}}</td>
+           <td>
+             <ul>
+                 @if(Auth::user()->tiporol == 'gestor')
+                   @foreach ($lineas_proyecto as $key => $linea)
+                      <?php $lineas = DB::table("lineas")->where("id", $linea->lineas_id)->get(); ?>
+                          @foreach ($lineas as $key => $linea)
+                          <li>{{ $linea->linea }}</li>
+                          @endforeach
+                   @endforeach
+                 @endif
+
+                 @if(Auth::user()->tiporol == 'usuario')
+
+                 @endif
+             </ul>
+           </td>
+           <td>
+               @if(Auth::user()->tiporol == 'usuario')
+                   <?php $estados = DB::table("estadosdeproyectos")->get(); ?>
+                   <?php $actualizarestados = DB::table("proyectos")->where("estadosdeproyectos_id", $query->estadosdeproyectos_id)->get(); ?>
+                       @foreach($estados as $estado)
+                           @if($estado->id == $query->estadosdeproyectos_id)
+                               <option value="{{$estado->id}}" selected>{{$estado->estado}}</option>
+                           @endif
+                       @endforeach
+               @endif
+
+               @if(Auth::user()->tiporol == 'gestor')
+               <?php $estados = DB::table("estadosdeproyectos")->where('id', '<>', '1')->get(); ?>
+               <form class="form-inline">
+                   <select class="form-control estadoProyectoDetalle" name="" data-proyecto="{{ $query->id }}">
+                       @foreach($estados as $estado)
+                           @if($estado->id == $query->estadosdeproyectos_id)
+                               <option value="{{$estado->id}}" selected>{{$estado->estado}}</option>
+                           @else
+                               <option value="{{$estado->id}}">{{$estado->estado}}</option>
+                           @endif
+                       @endforeach
+                   </select>
+               </form>
+               @endif
+           </td>
+           <td>{{$query->user->nameu}}</td>  
+           <td><img src="/{{$query->imagen}}" width="100" class="img-thumbnail"></td>
+         </tbody>
+
     </table>
 </div>
 <div class="col col-md-3 col-md-offset-1">
@@ -174,4 +227,27 @@ sdfsdf
          </button>
     </form>
 
+
+    <!-- Modal para agregar un resumen cuando el proyecto pasa a estado Reclutando o En desarrollo  en vista Detalles-->
+    <form action="{{url('resumenPD')}}" method="POST">
+        {{ csrf_field() }}
+        <div class="modal fade modalResumenDetalle" id="modalResumenDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">Editar Resumen</h4>
+                    </div>
+                    <div class="modal-body">
+                        <textarea class="form-control" rows="5" name="texto" id="texto"></textarea>
+                        <input type="hidden" name="idEstado" id="idEstado">
+                        <input type="hidden" name="idProyecto" id="idProyecto">
+                    </div>
+                    <div class="modal-footer" >
+                        <button type="submit" class="btn btn-secondary" data-dismiss="modalResumenDetalle">Cancelar</button>
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 @endsection

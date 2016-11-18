@@ -32,7 +32,7 @@ class ProyectosController extends Controller
         $iprs=ProyectosUsers::all();
         $query = Proyecto::where('estadosdeproyectos_id', '<>', "1")
             ->orderBy('id', 'ASC')
-            ->paginate();
+            ->paginate(5);
         return view('gestor.index', compact('query', "lineas", 'iprs'));
 
     }
@@ -200,7 +200,9 @@ class ProyectosController extends Controller
 
 
     //Funcion Actualizar estado de proyecto en BD
-    public function estado(Request $request){
+    public function estado(Request $request)
+    {
+//        dd($request);
         $proyecto = Proyecto::find($request->get("idp"));
         $proyecto->estadosdeproyectos_id = $request->get("ide");
         $proyecto->save();
@@ -412,5 +414,19 @@ class ProyectosController extends Controller
         $comentario->save();
         
         return redirect("show/".$id);
-    } 
+    }
+
+
+
+    //Funcion para guardar y mostrar valores en el modal en la vista detalles
+    public function resumenProyectoDetalle(Request $request)
+    {
+        $proyecto = Proyecto::find($request->get("idProyecto"));
+        $proyecto->estadosdeproyectos_id = $request->get("idEstado");
+        $proyecto->resumen = $request->get('texto');
+        $proyecto->save();
+
+        return redirect("show/".$request->get("idProyecto"));
+    }
+
 }

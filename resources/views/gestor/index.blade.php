@@ -189,7 +189,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Añadir Resumen</h4>
+                    <h4 class="modal-title" id="myModalLabel">Editar Resumen</h4>
                 </div>
                 <div class="modal-body">
                     <textarea class="form-control" rows="5" name="texto" id="texto"></textarea>
