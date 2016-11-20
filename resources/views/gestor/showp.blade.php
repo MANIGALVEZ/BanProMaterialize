@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="row col-md-8">
     <table class="table table-bordered tablitashow"  >
         <thead>
