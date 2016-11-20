@@ -19,7 +19,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
-    {{--<link href="http://netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" />--}}
+    <link href='https://fonts.googleapis.com/css?family=Cambo|Poppins:400,600' rel='stylesheet' type='text/css'>
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" />
     {{--<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">--}}
     {{--<link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>--}}
     {{--<link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">--}}
@@ -38,7 +40,8 @@
     <link  href="{{ asset('css/fileinput.css') }}" rel="stylesheet">
     <link  href="{{ asset('css/material-kit.css') }}" rel="stylesheet">
     <link  href="{{ asset('css/material-bootstrap-wizard.css') }}" rel="stylesheet">
-{{--    <link  href="{{ asset('css/rotating-card.css') }}" rel="stylesheet">--}}
+    <link  href="{{ asset('css/yon.css') }}" rel="stylesheet">
+    <link  href="{{ asset('css/rotating-card.css') }}" rel="stylesheet">
 {{--    <link  href="{{ asset('css/fresh-bootstrap-table.css') }}" rel="stylesheet">--}}
 
 
@@ -58,7 +61,8 @@
     <script src="{{ asset('js/jquery.bootstrap.js') }}"></script>
     <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
     {{--<script src="{{ asset('js/bootstrap.min.js') }}"></script>--}}
-    <script src="{{ asset('js/bootstrap-table.js') }}"></script>
+    <script src="{{ asset('js/gaia.js') }}"></script>
+    <script src="{{ asset('js/modernizr.js') }}"></script>
 
 
     <script>

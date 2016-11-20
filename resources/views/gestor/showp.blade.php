@@ -9,15 +9,17 @@
             <th>Nombre Proyecto</th>
             <th>Sector enfocado</th>
             <th>Linea Tecnológica</th>
-
         </tr>
         </thead>
+<<<<<<< HEAD
 
+=======
+>>>>>>> dbf9a0d526a9396eb0ec97d13dd56706f983f26b
         <tbody>
         <tr>
-            <td>{{$query->id}}</td>
-            <td>{{$query->nombrep}}</td>
-            <td>{{$query->sectorenfocado}}</td>
+            <td><input type="text" name="id" value="{{$query->id}}" readonly></td>
+            <td><input type="text" name="nombrep" value="{{$query->nombrep}}" readonly></td>
+            <td><input type="text" name="sectorenfocado" value="{{$query->sectorenfocado}}" readonly></td>
             <td>
                 <ul>
                     <?php foreach ($lineas_proyecto as $key => $linea): ?>

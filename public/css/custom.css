@@ -139,3 +139,21 @@ div.usuarioscontent{
 
 }
 
+
+
+.tamanoimagen
+{
+    height: 300px;
+    width: 300px;
+}
+
+/*.tamanoimagen img*/
+/*{*/
+    /*height: 300px;*/
+    /*width: 300px;*/
+/*}*/
+
+div.letrablancadiv
+{
+    color: white !important;
+}
