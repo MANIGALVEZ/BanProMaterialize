@@ -23,7 +23,6 @@
                     <ul>
                         <?php if (count($lineasproyectos) > 0): ?>
                         @foreach($lineasproyectos as $lineaproyecto)
-
                             <?php $lineas = DB::table("lineas")->where("id", $lineaproyecto->lineas_id)->get(); ?>
                             @foreach($lineas as $linea)
                                 <li><?php echo $linea->linea; ?></li>

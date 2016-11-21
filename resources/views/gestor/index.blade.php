@@ -73,10 +73,10 @@
         {{--</form>--}}
     </article>
 
-    <table class="table">
+    <table class="table" style="text-align: center">
         <thead>
             <tr class="">
-                <th>Id</th>
+                {{--<th>Id</th>--}}
                 <th>Fecha</th>
                 <th>Nombre Proyecto</th>
                 <th>Sector enfocado</th>
@@ -91,22 +91,21 @@
             @foreach($query as $row)
                 <?php $estadoproyecto = DB::table("proyectosusers")->where("proyectos_id", $row->id)->where("users_id", Auth::user()->id)->value("estadosproyectosusers_id"); ?>
                 <tr class="letra @if($estadoproyecto == 1) success @elseif($estadoproyecto == 3) danger @endif">
-                    <td>{{$row->id}}</td>
+                    {{--<td>{{$row->id}}</td>--}}
                     <td>{{fechalatina($row->created_at)}}</td>
                     <td>{{$row->nombrep}}</td>
                     <td>{{$row->sectorenfocado}}</td>
                     <?php $lineasproyectos = DB::table("lineasproyectos")->where("proyectos_id", $row->id)->get(); ?>
-                    <td>
+                    <td style="text-align: justify">
                         <ul>
-                       <?php if (count($lineasproyectos) > 0): ?>
+                       @if(count($lineasproyectos) > 0)
                            @foreach($lineasproyectos as $lineaproyecto)
-
                                 <?php $lineas = DB::table("lineas")->where("id", $lineaproyecto->lineas_id)->get(); ?>
-                                @foreach($lineas as $linea)
-                                    <li><?php echo $linea->linea; ?></li>
-                                @endforeach
+                                    @foreach($lineas as $linea)
+                                        <li class="lineasproyectosindex"><?php echo $linea->linea; ?></li>
+                                    @endforeach
                            @endforeach
-                       <?php endif ?>
+                       @endif
                         </ul>
                     </td>
                     <td>

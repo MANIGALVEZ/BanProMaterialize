@@ -6,7 +6,7 @@
     <table class="table table-bordered tablitashow"  >
         <thead>
         <tr>
-            <th>Id</th>
+            {{--<th>Id</th>--}}
             <th>Nombre Proyecto</th>
             <th>Sector enfocado</th>
             <th>Linea Tecnológica</th>
@@ -15,7 +15,7 @@
 
         <tbody>
         <tr>
-            <td><input type="text" name="id" value="{{$query->id}}" readonly></td>
+            {{--<td>{{$query->id}}</td>--}}
             <td><input type="text" name="nombrep" value="{{$query->nombrep}}" readonly></td>
             <td><input type="text" name="sectorenfocado" value="{{$query->sectorenfocado}}" readonly></td>
             <td>
@@ -150,15 +150,15 @@
     <tbody>
         <tr>
             <td> <div class="comentarios">
-                    <?php foreach ($comentariop as $key => $comentario): ?>
-                    <?php $comentarios = DB::table("comentarios")->where("id", $comentario->id)->get(); ?>
-                    <?php foreach ($comentarios as $key => $comentario): ?>
-                    <li class="nombre">
-                        <?php echo DB::table("users")->where("id", $comentario->usuario_id)->value("nameu"); echo ":" ?>
-                        {{ $comentario->comentario }}
-                    </li>
-                    <?php endforeach ?>
-                    <?php endforeach ?>
+                    @foreach ($comentariop as $key => $comentario)
+                        <?php $comentarios = DB::table("comentarios")->where("id", $comentario->id)->get(); ?>
+                            @foreach ($comentarios as $key => $comentario)
+                            <li class="nombre">
+                                <?php echo DB::table("users")->where("id", $comentario->usuario_id)->value("nameu"); echo ":" ?>
+                                {{ $comentario->comentario }}
+                            </li>
+                            @endforeach
+                    @endforeach
                 </div>
             </td>
         </tr>

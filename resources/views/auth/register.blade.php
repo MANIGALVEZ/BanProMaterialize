@@ -61,22 +61,22 @@
                                         <div class="row">
                                             <h4 class="info-text">Comencemos con la información básica <br>(Todos los campos son requeridos)</h4>
                                             <br>
-                                            <div class="col-sm-4 col-sm-offset-1">
-                                                <div class="picture-container">
-                                                    <div class="picture">
-                                                        <img src="img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title=""/>
-                                                        <input type="file" accept="image/jpg" name="avatar" id="wizard-picture" value="{{old('avatar')}}">
-                                                    </div>
-                                                    <h6>Elegir una Foto</h6>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
+                                            {{--<div class="col-sm-4 col-sm-offset-1">--}}
+                                                {{--<div class="picture-container">--}}
+                                                    {{--<div class="picture">--}}
+                                                        {{--<img src="img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title=""/>--}}
+                                                        {{--<input type="file" accept="image/jpg" name="avatar" id="wizard-picture" value="{{old('avatar')}}">--}}
+                                                    {{--</div>--}}
+                                                    {{--<h6>Elegir una Foto</h6>--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                            <div class="col-sm-8 col-sm-offset-2">
                                                 <div class="input-group">
 													<span class="input-group-addon">
 														<i class="material-icons">face</i>
 													</span>
                                                     <div class="form-group label-floating">
-                                                        <label class="control-label">Nombres<small></small></label>
+                                                        <label class="control-label">Nombres (Requerido)<small></small></label>
                                                         <input id="nameu" name="nameu" type="text" class="form-control" value="{{ old('nameu') }}" required>
                                                     </div>
                                                 </div>
@@ -86,18 +86,18 @@
 														<i class="material-icons">record_voice_over</i>
 													</span>
                                                     <div class="form-group label-floating">
-                                                        <label class="control-label">Apellidos<small></small></label>
+                                                        <label class="control-label">Apellidos (Requerido)<small></small></label>
                                                         <input id="apellidos" name="apellidos" type="text" class="form-control" value="{{ old('apellidos') }}" required>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-sm-10 col-sm-offset-1">
+                                            {{--</div>--}}
+
                                                 <div class="input-group">
 													<span class="input-group-addon">
 														<i class="material-icons">mail</i>
 													</span>
                                                     <div class="form-group label-floating">
-                                                        <label class="control-label">Correo Electrónico<small></small></label>
+                                                        <label class="control-label">Correo Electrónico (Requerido)<small></small></label>
                                                         <input id="email" name="email" type="email" class="form-control" value="{{ old('email') }}" required>
                                                     </div>
                                                 </div>
@@ -114,7 +114,7 @@
 														<i class="material-icons">smartphone</i>
 													</span>
                                                     <div class="form-group label-floating">
-                                                        <label class="control-label">Celular<small></small></label>
+                                                        <label class="control-label">Celular (Requerido)<small></small></label>
                                                         <input id="celular" name="celular" type="text" class="form-control" value="{{ old('celular') }}" required>
                                                     </div>
                                                 </div>
@@ -123,7 +123,7 @@
 														<i class="material-icons">layers</i>
 													</span>
                                                     <div class="form-group label-floating">
-                                                        <label class="control-label">Titulos<small></small></label>
+                                                        <label class="control-label">Cargo o Profesión<small></small></label>
                                                         <input id="titulos" name="titulos" type="text" class="form-control" value="{{ old('titulos') }}">
                                                     </div>
                                                 </div>
@@ -132,7 +132,7 @@
 														<i class="material-icons">lock</i>
 													</span>
                                                     <div class="form-group label-floating">
-                                                        <label class="control-label">Contraseña<small></small></label>
+                                                        <label class="control-label">Contraseña (Requerido)<small></small></label>
                                                         <input id="password" name="password" type="password" class="form-control" required>
                                                     </div>
                                                 </div>
@@ -141,7 +141,7 @@
 														<i class="material-icons">lock</i>
 													</span>
                                                     <div class="form-group label-floating">
-                                                        <label class="control-label">Confirmar Contraseña<small></small></label>
+                                                        <label class="control-label">Confirmar Contraseña (Requerido)<small></small></label>
                                                         <input id="password-confirm" name="password_confirmation" type="password" class="form-control" required>
                                                     </div>
                                                 </div>

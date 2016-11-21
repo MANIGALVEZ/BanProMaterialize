@@ -7,9 +7,9 @@
     </div>
 </article>
 <br>
-<table class="table">
+<table class="table" style="text-align: center">
       <thead>
-        <th>Id</th>
+        {{--<th>Id</th>--}}
         <th>Nombre</th>
         <th>Apellidos</th>
         <th>Email</th>
@@ -21,7 +21,7 @@
         <tbody>
               @foreach($query as $row)
                   <tr class="letra">
-                      <td>{{$row->id}}</td>
+                      {{--<td>{{$row->id}}</td>--}}
                       <td>{{$row->nameu}}</td>
                       <td>{{$row->apellidos}}</td>
                       <td>{{$row->email}}</td>
