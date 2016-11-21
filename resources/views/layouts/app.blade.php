@@ -1,18 +1,11 @@
 <!DOCTYPE html>
-<html lang="es">
-<meta charset="UTF-8">
-<meta name="viewport">
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-    <meta name="viewport" content="width=device-width" />
-
-
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+	<title>Banco de Proyectos</title>
 
 
     <!--     Fonts and icons     -->
@@ -27,8 +20,6 @@
     {{--<link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">--}}
     {{--<link rel="icon" type="image/png" href="../assets/img/favicon.png">--}}
 
-
-    <title>Laravel</title>
 
     <!-- Styles -->
     <link  href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
@@ -65,14 +56,9 @@
 {{--    <script src="{{ asset('js/modernizr.js') }}"></script>--}}
 
 
-    <script>
-    window.Laravel = <?php echo json_encode([
-        'csrfToken' => csrf_token(),
-        ]); ?>
-    </script>
 </head>
 <body>
-<nav class="navbar navbar-success navbar-static-top navbar-fixed-top">
+	<nav class="navbar navbar-success navbar-static-top navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
 
@@ -169,20 +155,26 @@
 
     </nav>
     <section class="content-fluid">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-10 col-md-offset-1">
             @yield('content')
         </div>
     </section>
+
+
+
     <!-- Scripts -->
 
     <script>
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         })
-    </script>
+
+
+        window.Laravel = <?php echo json_encode([
+                'csrfToken' => csrf_token(),
+        ]); ?>
 
 {{--Script para switch de mis proyectos--}}
-{{--<script>--}}
     {{--$(document).ready(function()--}}
     {{--{--}}
         {{--$('#opcion1').change(function(){--}}
@@ -193,10 +185,9 @@
             {{--window.location.replace('/home')--}}
         {{--})--}}
     {{--})--}}
-{{--</script>--}}
+
 
 {{--Script para el filtro por estados (El usuario desea poder ver el banco de proyectos en estado: "reclutando") --}}
-<script>
     $(document).ready(function()
     {
         $(".filtroEstado").change(function(){
@@ -208,10 +199,9 @@
             })
         })
     })
-</script>
+
 
 {{--funcion ajax para cambiar de estado en tiempo real y auto actualizarse--}}
-<script>
     $(document).ready(function()
     {
         $(".estadoProyecto").change(function ()
@@ -238,10 +228,9 @@
 
         })
     })
-</script>
+
 
 {{--funcion ajax para eliminar un proyecto, pasar a estado en banco(El gestor por medio del aplicativo podr� eliminar un proyecto y de manera autom�tica env�a una notificaci�n al usuario informando el fin del proceso y su motivo)--}}
-<script>
     $(document).ready(function()
     {
         $('.btn-delete').click(function ()
@@ -261,10 +250,9 @@
             })
         })
     })
-</script>
+
 
 {{--Funcion ajax para actualizar estados en la vista proyectosusers--}}
-<script>
     $(document).ready(function()
     {
         $(".estadoProyectoUsuario").change(function ()
@@ -279,10 +267,9 @@
 
         })
     })
-</script>
+
 
 {{--Script para filtrar por lineas tecnologicas (El gestor podra filtrar los proyectos seg�n las diferentes lineas tecnologicas)--}}
-<script>
     $(document).ready(function()
     {
         $arrLineas = []
@@ -312,11 +299,10 @@
 
             })
     })
-</script>
+
 
 
 {{--funcion ajax para cambiar de estado en tiempo real y auto actualizarse en la vista detalles--}}
-<script>
     $(document).ready(function()
     {
         $(".estadoProyectoDetalle").change(function ()
@@ -342,6 +328,26 @@
             }
 
         })
+    })
+
+
+{{--Script para ocultar proyecto cuando un usuario ha sido rechazado--}}
+    $(document).ready(function()
+    {
+        $('.btn-ocultar').click(function ()
+        {
+            $idPU = $(this).attr("data-rechazado")
+            $.get('registroR/'+$idPU)
+//                    console.log($idPU)
+//            document.getElementById('ocultar').style.display = 'none'
+        })
+    })
+
+
+
+    $(document).ready(function()
+    {
+
     })
 </script>
 

@@ -32,7 +32,7 @@ class ProyectosController extends Controller
         $iprs=ProyectosUsers::all();
         $query = Proyecto::where('estadosdeproyectos_id', '<>', "1")
             ->orderBy('id', 'ASC')
-            ->paginate(5);
+            ->paginate();
         return view('gestor.index', compact('query', "lineas", 'iprs'));
 
     }
@@ -299,7 +299,8 @@ class ProyectosController extends Controller
             ->join('proyectosusers', 'proyectos.id', '=', 'proyectosusers.proyectos_id')
             ->select('proyectos', 'proyectosusers.users_id')
             ->where('proyectosusers.users_id', '=', $user)
-            ->orderBy('id','ASC')->paginate(3);
+            ->orderBy('id','ASC')
+            ->paginate();
         dd($user);
         return view('gestor.showup', compact('query',  'lineas'));
        /* $query = ProyectosUsers::find($id);
@@ -427,6 +428,16 @@ class ProyectosController extends Controller
         $proyecto->save();
 
         return redirect("show/".$request->get("idProyecto"));
+    }
+
+
+
+    public function registroRechazado($idPU)
+    {
+//        dd($idPU);
+        $prouser = ProyectosUsers::find($idPU);
+        $prouser->delete();
+//        return view('gestor.index', compact('prouser'));
     }
 
 }

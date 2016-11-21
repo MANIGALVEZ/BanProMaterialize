@@ -3,7 +3,7 @@
 @section('content')
 
 
-<!--Funcion modicar fecha para mostrarse por dia, mes y año-->
+<!--Funcion modicar fecha para mostrarse por dia, mes y aï¿½o-->
 <?php function fechalatina($fecha)
 {
     $nfecha=date('d/m/y',strtotime($fecha));
@@ -26,7 +26,7 @@
         <th>Fecha</th>
         <th>Nombre Proyecto</th>
         <th>Sector enfocado</th>
-        <th>Linea(s) Tecnológica(s)</th>
+        <th>Linea(s) TecnolÃ³gica(s)</th>
         <th>Estado</th>
         <th>Usuario</th>
         <th>Opciones</th>
@@ -93,7 +93,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Añadir Resumen</h4>
+                    <h4 class="modal-title" id="myModalLabel">Aï¿½adir Resumen</h4>
                 </div>
                 <div class="modal-body">
                         <textarea class="form-control" rows="5" name="texto" id="texto">

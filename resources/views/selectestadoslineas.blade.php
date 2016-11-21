@@ -14,21 +14,21 @@
         <?php $estadoproyecto = DB::table("proyectosusers")->where("proyectos_id", $row->id)->where("users_id", Auth::user()->id)->value("estadosproyectosusers_id"); ?>
         @if($row->estadosdeproyectos_id != 1)
             <tr class="letra @if($estadoproyecto == 1) success @elseif($estadoproyecto == 3) danger @endif">
-                <td>{{$row->id}}</td>
+                {{--<td>{{$row->id}}</td>--}}
                 <td>{{fechalatina($row->created_at)}}</td>
                 <td>{{$row->nombrep}}</td>
                 <td>{{$row->sectorenfocado}}</td>
                 <?php $lineasproyectos = DB::table("lineasproyectos")->where("proyectos_id", $row->id)->get(); ?>
-                <td>
+                <td style="text-align: justify">
                     <ul>
-                        <?php if (count($lineasproyectos) > 0): ?>
-                        @foreach($lineasproyectos as $lineaproyecto)
-                            <?php $lineas = DB::table("lineas")->where("id", $lineaproyecto->lineas_id)->get(); ?>
-                            @foreach($lineas as $linea)
-                                <li><?php echo $linea->linea; ?></li>
+                        @if(count($lineasproyectos) > 0)
+                            @foreach($lineasproyectos as $lineaproyecto)
+                                <?php $lineas = DB::table("lineas")->where("id", $lineaproyecto->lineas_id)->get(); ?>
+                                @foreach($lineas as $linea)
+                                    <li class="lineasproyectosindex"><?php echo $linea->linea; ?></li>
+                                @endforeach
                             @endforeach
-                        @endforeach
-                        <?php endif ?>
+                        @endif
                     </ul>
                 </td>
                 <td>
@@ -46,18 +46,18 @@
                     @endif
                     @if(Auth::user()->tiporol == 'usuario')
                         <?php $estados = DB::table("estadosdeproyectos")->get(); ?>
-                        @foreach($estados as $estado)
-                            @if($estado->id == $row->estadosdeproyectos_id)
-                                <option value="{{$estado->id}}" selected>{{$estado->estado}}</option>
-                            @endif
-                        @endforeach
+                            @foreach($estados as $estado)
+                                @if($estado->id == $row->estadosdeproyectos_id)
+                                    <option value="{{$estado->id}}" selected>{{$estado->estado}}</option>
+                                @endif
+                            @endforeach
                     @endif
                 </td>
                 <td>
                     <?php $usuario = DB::table('users')->where('id', "=", $row->usuario_id)->get();?>
-                    @foreach($usuario as $usu)
-                        {{$usu->nameu}}
-                    @endforeach
+                        @foreach($usuario as $usu)
+                            {{$usu->nameu}}
+                        @endforeach
                 </td>
                 <td>
                     @if(Auth::user()->tiporol == 'gestor')

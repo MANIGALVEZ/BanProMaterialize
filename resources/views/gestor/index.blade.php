@@ -76,7 +76,7 @@
     <table class="table" style="text-align: center">
         <thead>
             <tr class="">
-                {{--<th>Id</th>--}}
+                <th>Id</th>
                 <th>Fecha</th>
                 <th>Nombre Proyecto</th>
                 <th>Sector enfocado</th>
@@ -91,7 +91,7 @@
             @foreach($query as $row)
                 <?php $estadoproyecto = DB::table("proyectosusers")->where("proyectos_id", $row->id)->where("users_id", Auth::user()->id)->value("estadosproyectosusers_id"); ?>
                 <tr class="letra @if($estadoproyecto == 1) success @elseif($estadoproyecto == 3) danger @endif">
-                    {{--<td>{{$row->id}}</td>--}}
+                    <td>{{$row->id}}</td>
                     <td>{{fechalatina($row->created_at)}}</td>
                     <td>{{$row->nombrep}}</td>
                     <td>{{$row->sectorenfocado}}</td>
@@ -144,18 +144,23 @@
                         <a href="javascript:;" data-eliminar="{{$row->id}}" class="btn btn-danger btn-delete btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="glyphicon glyphicon-trash"></i></a>
                         @endif
 
-                        @if(Auth::user()->tiporol == 'usuario')
-                            <a href="show/{{$row->id}}" type="button" class="btn btn-info btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Detalles"><i class="glyphicon glyphicon-list-alt"></i></a>
-                           @if(count($estadoproyecto) > 0)
-                                @if($estadoproyecto == 2)
-                                    <a href="javascript:;" type="button" class="btn btn-warning btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" disabled="disabled" title="Pendiente Aprobacion"><i class="material-icons">access_time</i></a>
-                                    @elseif($estadoproyecto == 3)
-                                        <a href="javascript:;" type="button" class="btn btn-danger btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Rechazado"><i class="material-icons">not_interested</i></a>
-                                    @elseif($estadoproyecto == 1)
-                                       <button type="button" class="btn btn-success  btn-just-icon btn-xs" data-toggle="popover" data-placement="top" title="Reclutado!" data-content="Felicidades! ha sido aceptado, pronto, un gestor le contactará"><i class="material-icons">check</i></button>
+                        <?php $rechazadoR = DB::table('proyectosusers')->where('proyectos_id', "=", $row->id)->where('users_id', "=", $row->usuario_id)->get();?>
+                            @if(Auth::user()->tiporol == 'usuario')
+                                <a href="show/{{$row->id}}" type="button" class="btn btn-info btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Detalles"><i class="glyphicon glyphicon-list-alt"></i></a>
+                                @if(count($estadoproyecto) > 0)
+                                    @if($estadoproyecto == 2)
+                                            <a href="javascript:;" type="button" class="btn btn-warning btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" disabled="disabled" title="Pendiente Aprobacion"><i class="material-icons">access_time</i></a>
+                                        @elseif($estadoproyecto == 3)
+                                    {{--@foreach($rechazadoR as $rechazado)--}}
+                                            <a data-rechazado="{{$rechazado->id}}" href="javascript:;" type="button" class="btn btn-danger btn-just-icon btn-xs btn-ocultar" data-toggle="tooltip" data-placement="top" title="No ha sido aceptado, clic para ocultar el proyecto"><i class="material-icons">not_interested</i></a>
+                                        {{--@endforeach--}}
+                                        @elseif($estadoproyecto == 1)
+                                           <button type="button" class="btn btn-success  btn-just-icon btn-xs" data-toggle="popover" data-placement="top" title="Reclutado!" data-content="Felicidades! ha sido aceptado, pronto, un gestor le contactará"><i class="material-icons">check</i></button>
                                     @endif
                                @else
+                                    @if($row->estadosdeproyectos_id != 2)
                                     <a href="inscribir/{{$row->id}}" type="button" class="btn btn-primary btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Inscribirse"><i class="glyphicon glyphicon-edit"></i></a>
+                                    @endif
                                 @endif
                             @endif
                     </td>

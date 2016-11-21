@@ -6,8 +6,8 @@
     @if(count($errors) > 0)
         <script>
             swal({
-                title: "¡Ingreso Invalido!",
-                text: "Por favor verifique la información de los campos ",
+                title: "ï¿½Ingreso Invalido!",
+                text: "Por favor verifique la informaciï¿½n de los campos ",
                 type: "error",
                 confirmButtonClass: "btn-danger",
                 confirmButtonText: "Aceptar"});
@@ -80,7 +80,7 @@
 														<i class="material-icons">lock</i>
 													</span>
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label">Contraseña<small></small></label>
+                                                    <label class="control-label">ContraseÃ±a<small></small></label>
                                                     <input id="password" name="password" type="password" class="form-control">
                                                 </div>
                                             </div>
@@ -89,7 +89,7 @@
                                         <div class="footer text-center">
                                             <center>
                                                 <button type="submit" class="btn btn-simple btn-success btn-lg">Iniciar Sesion</button>
-                                                <a class="btn btn-simple btn-default btn-lg" href="{{ url('/password/reset') }}">¿Olvido su contraseña?</a>
+                                                <a class="btn btn-simple btn-default btn-lg" href="{{ url('/password/reset') }}">Â¿Olvido su contraseÃ±a?</a>
                                             </center>
                                         </div>
                                     </form>
