@@ -12,10 +12,7 @@
             <th>Linea Tecnológica</th>
         </tr>
         </thead>
-<<<<<<< HEAD
 
-=======
->>>>>>> dbf9a0d526a9396eb0ec97d13dd56706f983f26b
         <tbody>
         <tr>
             <td><input type="text" name="id" value="{{$query->id}}" readonly></td>
@@ -23,12 +20,12 @@
             <td><input type="text" name="sectorenfocado" value="{{$query->sectorenfocado}}" readonly></td>
             <td>
                 <ul>
-                    <?php foreach ($lineas_proyecto as $key => $linea): ?>
-                    <?php $lineas = DB::table("lineas")->where("id", $linea->lineas_id)->get(); ?>
-                    <?php foreach ($lineas as $key => $linea): ?>
-                    <li>{{ $linea->linea }}</li>
-                    <?php endforeach ?>
-                    <?php endforeach ?>
+                    @foreach($lineas_proyecto as $key => $linea)
+                        <?php $lineas = DB::table("lineas")->where("id", $linea->lineas_id)->get(); ?>
+                            @foreach($lineas as $key => $linea)
+                            <li>{{ $linea->linea }}</li>
+                            @endforeach
+                    @endforeach
                 </ul>
             </td>
         </tr>
@@ -76,21 +73,19 @@
                 <div class="contenusuarios">
                     <li class="nusu">{{$usu->nameu}}</li>
                     <li class="EstadoU">
-
-                            <?php $estadosprouser = DB::table("estadosproyectosusers")->get(); ?>
-                            <select class=" estadoProyectoUsuario usuis" data-idprouser='<?php echo DB::table("proyectosusers")->where("proyectos_id", $query->id)->where("users_id", $usu->id)->value("id"); ?>'>
-                                @foreach($estadosprouser as $estado)
-                                    <?php $tabla = DB::table("proyectosusers")->where("proyectos_id", $query->id)->where("users_id", $usu->id)->value("estadosproyectosusers_id"); ?>
-                                    @if($estado->id == $tabla)
-                                        <option value="{{$estado->id}}" selected>{{$estado->estado}}</option>
-                                    @else
-                                        <option value="{{$estado->id}}">{{$estado->estado}}</option>
-                                    @endif
-                                @endforeach
-                            </select>
+                        <?php $estadosprouser = DB::table("estadosproyectosusers")->get(); ?>
+                        <select class=" estadoProyectoUsuario usuis" data-idprouser='<?php echo DB::table("proyectosusers")->where("proyectos_id", $query->id)->where("users_id", $usu->id)->value("id"); ?>'>
+                            @foreach($estadosprouser as $estado)
+                                <?php $tabla = DB::table("proyectosusers")->where("proyectos_id", $query->id)->where("users_id", $usu->id)->value("estadosproyectosusers_id"); ?>
+                                @if($estado->id == $tabla)
+                                    <option value="{{$estado->id}}" selected>{{$estado->estado}}</option>
+                                @else
+                                    <option value="{{$estado->id}}">{{$estado->estado}}</option>
+                                @endif
+                            @endforeach
+                        </select>
                     </li>
                 </div>
-
             @endforeach
         </div>
     @endif
@@ -100,7 +95,6 @@
 
                 </div>
         @endif
-
 </div>
 
     <div>
