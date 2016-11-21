@@ -331,15 +331,14 @@
     })
 
 
-{{--Script para ocultar proyecto cuando un usuario ha sido rechazado--}}
+{{--Script para eliminar inscripcion a un proyecto cuando el usuario ha sido rechazado--}}
     $(document).ready(function()
     {
         $('.btn-ocultar').click(function ()
         {
             $idPU = $(this).attr("data-rechazado")
             $.get('registroR/'+$idPU)
-//                    console.log($idPU)
-//            document.getElementById('ocultar').style.display = 'none'
+            window.location.replace("")
         })
     })
 
@@ -347,6 +346,17 @@
 
     $(document).ready(function()
     {
+        $(".editinput").click(function()
+        {
+          $("input").removeAttr("readonly").removeClass("quitarborde");
+// $.get('editS/')
+        })
+
+        $(".updateinput").click(function()
+        {
+            $("#formPro").submit();
+        })
+
 
     })
 </script>

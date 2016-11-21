@@ -14,10 +14,12 @@
         </thead>
 
         <tbody>
+        <form id="formPro" action="{{url('editS/'.$query->id)}}" method="POST">
+            {{ csrf_field() }}
         <tr>
             {{--<td>{{$query->id}}</td>--}}
-            <td><input type="text" name="nombrep" value="{{$query->nombrep}}" readonly></td>
-            <td><input type="text" name="sectorenfocado" value="{{$query->sectorenfocado}}" readonly></td>
+            <td><input class="quitarborde" type="text" name="nombrep" value="{{$query->nombrep}}" readonly></td>
+            <td><input class="quitarborde" type="text" name="sectorenfocado" value="{{$query->sectorenfocado}}" readonly></td>
             <td>
                 <ul>
                     @foreach($lineas_proyecto as $key => $linea)
@@ -62,6 +64,11 @@
             <td>{{$query->user->nameu}}</td>
             <td colspan="2"><img src="/{{$query->imagen}}" width="100" class="img-thumbnail"></td>
         </tr>
+
+
+            <button type="button" class="btn btn-primary btn-just-icon btn-xs editinput" data-toggle="tooltip" data-placement="top" title="Editar"><i class="material-icons">edit</i></button>
+            <button type="submit" class="btn btn-success btn-just-icon btn-xs updateinput" data-toggle="tooltip" data-placement="top" title="Guardar"><i class="material-icons">save</i></button>
+        </form>
         </tbody>
     </table>
 </div>

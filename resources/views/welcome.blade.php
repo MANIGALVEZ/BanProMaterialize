@@ -32,8 +32,7 @@
                             </ul>
                         </div>
                         <div class="tab-content col-sm-6 col-sm-offset-3">
-                            <?php $query = DB::table("proyectos")->where('estadosdeproyectos_id', '<>', '1')->where('estadosdeproyectos_id', '<>', '2')->get(); ?>
-                            @foreach($query as $row)
+                            @foreach($proyectos as $row)
                             <div class="card-container">
                                 <div class="card">
                                     <div class="front">
