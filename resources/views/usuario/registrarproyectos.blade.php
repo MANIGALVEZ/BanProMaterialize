@@ -155,7 +155,7 @@
                                             <h4 class="info-text">Por favor seleccione una imagen<br>(Una vez este aprobado el proyecto, aparecerá en la interfaz principal)</h4>
                                                 <div class="col-sm-8 col-sm-offset-2">
                                                     <label class="control-label"></label>
-                                                    <input type="file" class="file" name="image" multiple data-show-upload="false" data-show-caption="true" data-allowed-file-extensions='["jpg", "png"]'>
+                                                    <input type="file" class="file"git add. name="image" multiple data-show-upload="false" data-show-caption="true" data-allowed-file-extensions='["jpg", "png"]'>
                                                     <br>
                                                     <center><h6>Seleccione una imagen</h6></center>
                                                 </div>

@@ -99,14 +99,26 @@
                 </div>
         @endif
 </div>
-
+@if(Auth::user()->tiporol == 'gestor')
+    <div class="tab-pane" id="imagen">
+        <div >
+            <div class="col-sm-8 col-sm-offset-2">
+                <center><h6>Seleccione una imagen</h6></center>
+                <input type="file" class="file" name="image" multiple data-show-upload="false" data-show-caption="true" data-allowed-file-extensions='["jpg", "png"]'>
+                <br>
+            </div>
+        </div>
+    </div>
+@endif
     <div>
         <table  class="table table-bordered tablitashow">
             <thead>
                 <tr>
                     <th>Descripcion</th>
                     <th>Resumen</th>
+                    @if(Auth::user()->tiporol == 'usuario')
                     <th>Opciones</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -120,9 +132,8 @@
                         <div class="cajascontent">
                             {{$query->resumen}}
                         </div>
-                    </td>
+                    @if(Auth::user()->tiporol == 'usuario')
                     <td>
-                        @if(Auth::user()->tiporol == 'usuario')
                             <?php $estadoproyecto = DB::table("proyectosusers")->where("proyectos_id", $query->id)->where("users_id", Auth::user()->id)->value("estadosproyectosusers_id"); ?>
                          @if(count($estadoproyecto) > 0)
                                 @if($estadoproyecto == 2)
@@ -133,10 +144,10 @@
                                     <button type="button" class="btn btn-success  btn-just-icon btn-xs" data-toggle="popover" data-placement="top" title="Reclutado!" data-content="Felicidades! ha sido aceptado, pronto, un gestor le contactará"><i class="material-icons">check</i></button>
                                 @endif
                             @else
-                                <a href="inscribir/{{$query->id}}" type="button" class="btn btn-primary btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Inscribirse"><i class="glyphicon glyphicon-edit"></i></a>
+                                <a href="../vincularce/{{$query->id}}" type="button" class="btn btn-primary btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Inscribirse"><i class="glyphicon glyphicon-edit"></i></a>
                             @endif
-                        @endif
                     </td>
+                    @endif
                 </tr>
             </tbody>
         </table>
@@ -164,6 +175,8 @@
         </tr>
     </tbody>
 </table>
+<div class="row col-md-12">
+
     <form action="{{ url('/comentario/'.$query->id)}}" method="POST">
         {{ csrf_field() }}
         <textarea id="comentario"  type="text" class="form-control" placeholder="Escriba el comentario deseado" rows="2" name="comentario" value="{{ old('comentario') }}"  maxlength="255" required="required"></textarea>
@@ -171,7 +184,7 @@
             Enviar
          </button>
     </form>
-
+</div>
     <!-- Modal para agregar un resumen cuando el proyecto pasa a estado Reclutando o En desarrollo  en vista Detalles-->
     <form action="{{url('resumenPD')}}" method="POST">
         {{ csrf_field() }}

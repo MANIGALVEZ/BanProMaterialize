@@ -187,6 +187,7 @@ class ProyectosController extends Controller
     // Funcion vincularse a un proyecto
     public function inscribir($id)
     {
+
         $user= Auth::user()->id;
         $ipr = new ProyectosUsers();
         $ipr->proyectos_id = $id;
@@ -195,6 +196,18 @@ class ProyectosController extends Controller
         $ipr->save();
         return redirect('proyectosIndex');
 
+
+    }
+    // Funcion Vincularce a un proyecto desde detalles
+    public function vincularce(Request $request, $id)
+    {
+        $user= Auth::user()->id;
+        $ipr = new ProyectosUsers();
+        $ipr->proyectos_id = $id;
+        $ipr->users_id = $user;
+        $ipr->estadosproyectosusers_id = 2;
+        $ipr->save();
+        return redirect("show/".$id);
     }
 
 
