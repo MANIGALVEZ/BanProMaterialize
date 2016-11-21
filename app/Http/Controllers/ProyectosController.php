@@ -32,7 +32,7 @@ class ProyectosController extends Controller
         $iprs=ProyectosUsers::all();
         $query = Proyecto::where('estadosdeproyectos_id', '<>', "1")
             ->orderBy('id', 'ASC')
-            ->paginate(5);
+            ->paginate();
         return view('gestor.index', compact('query', "lineas", 'iprs'));
 
     }
@@ -312,7 +312,8 @@ class ProyectosController extends Controller
             ->join('proyectosusers', 'proyectos.id', '=', 'proyectosusers.proyectos_id')
             ->select('proyectos', 'proyectosusers.users_id')
             ->where('proyectosusers.users_id', '=', $user)
-            ->orderBy('id','ASC')->paginate(3);
+            ->orderBy('id','ASC')
+            ->paginate();
         dd($user);
         return view('gestor.showup', compact('query',  'lineas'));
        /* $query = ProyectosUsers::find($id);
@@ -442,4 +443,24 @@ class ProyectosController extends Controller
         return redirect("show/".$request->get("idProyecto"));
     }
 
+
+    //Funcion para eliminar el registro a un proyecto cuando el usuario esta rechazado
+    public function registroRechazado($idPU)
+    {
+        $prouser = ProyectosUsers::where("proyectos_id", $idPU)->where("users_id", Auth::user()->id)->value("id");
+        if(count($prouser) > 0)
+        {
+            ProyectosUsers::destroy($prouser);
+        }
+    }
+
+    //Funcion para modificar los campos en la vista showp
+    public function editShow(Request $request, $id)
+    {
+        $editar= Proyecto::find($id);
+        $editar->nombrep = $request->get('nombrep');
+        $editar->save();
+
+        return redirect("show/".$id);
+    }
 }

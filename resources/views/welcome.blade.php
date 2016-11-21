@@ -31,9 +31,13 @@
                                 <li class="active"><a href="#proyectos" data-toggle="tab">Proyectos</a></li>
                             </ul>
                         </div>
+
                         <div class="tab-content col-sm-6 col-sm-offset-1 iniciodiv">
                             <?php $query = DB::table("proyectos")->where('estadosdeproyectos_id', '<>', '1')->where('estadosdeproyectos_id', '<>', '2')->get(); ?>
                             @foreach($query as $row)
+
+                        <div class="tab-content col-sm-6 col-sm-offset-3">
+                            @foreach($proyectos as $row)
                             <div class="card-container">
                                 <div class="card">
                                     <div class="front">

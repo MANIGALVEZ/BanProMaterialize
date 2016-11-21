@@ -19,11 +19,11 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-
+//    Direcciona a interfaz Welcome
     public function index()
     {
-//        Direcciona a interfaz Welcome
-        return redirect('/');
+        $proyectos = Proyecto::where('estadosdeproyectos_id', '>', 2)->get();
+        return view('welcome', compact('proyectos'));
     }
 
 

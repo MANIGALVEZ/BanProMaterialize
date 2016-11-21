@@ -7,7 +7,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="page-header">
-                    <h2 class="text-center text-muted">Recordar Contraseña</h2>
+                    <h2 class="text-center text-muted">Recordar ContraseÃ±a</h2>
                 </div>
                 <div class="panel-body">
                     @if (session('status'))
@@ -36,7 +36,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-success">
-                                    Restablecer Contraseña
+                                    Restablecer ContraseÃ±a
                                 </button>
                             </div>
                         </div>

@@ -165,7 +165,14 @@ div.letrablancadiv
 {
     list-style: disc;
 }
+
 /* Welcome*/
 .iniciodiv{
     display: inline-block !important;
+
+
+.quitarborde
+{
+    border: none;
+
 }

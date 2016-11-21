@@ -11,12 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes();
 
+Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index');
 
 
@@ -101,3 +99,11 @@ Route::post('/comentario/{id}', 'ProyectosController@comentario');
 
 // Ruta para buscar y cambiar estado de proyecto en vista Detalles
 Route::post('/resumenPD', 'ProyectosController@resumenProyectoDetalle');
+
+
+// Ruta para buscar y cambiar estado de proyecto en vista Detalles
+Route::get('/registroR/{idPU}', 'ProyectosController@registroRechazado');
+
+
+// Ruta para editar desde detalles de proyecto (showp)
+Route::post('/editS/{id}', 'ProyectosController@editShow');
