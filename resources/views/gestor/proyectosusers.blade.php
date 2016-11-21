@@ -1,17 +1,16 @@
 @extends('layouts.app')
 @section('content')
 
-<table class="table table-hover">
+<table class="table table-hover" style="text-align: center">
       <thead>
-        <th>Id</th>
+        {{--<th>Id</th>--}}
         <th>Proyecto</th>
         <th>Usuario</th>
         <th>Estado</th>
-        <th>Detalles</th>
       </thead>
           @foreach($proyectosusers as $puti)
               <tbody>
-                    <td>{{$puti->id}}</td>
+{{--                    <td>{{$puti->id}}</td>--}}
                     <td>
                         <?php $proyec = DB::table('proyectos')->where('id', "=", $puti->proyectos_id)->get();?>
                         @foreach($proyec as $usu)
@@ -36,9 +35,6 @@
                                 @endif
                             @endforeach
                         </select>
-                    </td>
-                    <td>
-                        <a href="/proyectousuario/{{$puti->id}}">Ver</a>
                     </td>
                 @endforeach
               </tbody>

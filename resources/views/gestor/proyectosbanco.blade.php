@@ -22,7 +22,7 @@
 <table class="table">
     <thead>
     <tr class="">
-        <th>Id</th>
+        {{--<th>Id</th>--}}
         <th>Fecha</th>
         <th>Nombre Proyecto</th>
         <th>Sector enfocado</th>
@@ -35,7 +35,7 @@
     <tbody>
         @foreach($query as $row)
             <tr class="letra">
-                <td>{{$row->id}}</td>
+                {{--<td>{{$row->id}}</td>--}}
                 <td>{{fechalatina($row->created_at)}}</td>
                 <td>{{$row->nombrep}}</td>
                 <td>{{$row->sectorenfocado}}</td>

@@ -157,3 +157,13 @@ div.letrablancadiv
 {
     color: white !important;
 }
+
+.registrarproyectoslineas
+{
+    text-justify: auto;
+}
+
+.lineasproyectosindex
+{
+    list-style: disc;
+}

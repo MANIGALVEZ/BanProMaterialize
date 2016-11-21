@@ -52,17 +52,17 @@
                                     <form class="form" method="" action="">
                                         <div class="header header-success text-center">
                                             <h4>Ingreso</h4>
-                                            <div class="social-line">
-                                                <a href="#" class="btn btn-simple btn-just-icon">
-                                                    <i class="fa fa-facebook-square"></i>
-                                                </a>
-                                                <a href="#" class="btn btn-simple btn-just-icon">
-                                                    <i class="fa fa-twitter"></i>
-                                                </a>
-                                                <a href="#" class="btn btn-simple btn-just-icon">
-                                                    <i class="fa fa-google-plus"></i>
-                                                </a>
-                                            </div>
+                                            {{--<div class="social-line">--}}
+                                                {{--<a href="#" class="btn btn-simple btn-just-icon">--}}
+                                                    {{--<i class="fa fa-facebook-square"></i>--}}
+                                                {{--</a>--}}
+                                                {{--<a href="#" class="btn btn-simple btn-just-icon">--}}
+                                                    {{--<i class="fa fa-twitter"></i>--}}
+                                                {{--</a>--}}
+                                                {{--<a href="#" class="btn btn-simple btn-just-icon">--}}
+                                                    {{--<i class="fa fa-google-plus"></i>--}}
+                                                {{--</a>--}}
+                                            {{--</div>--}}
                                         </div>
                                         <div class="content">
                                             <br><br>

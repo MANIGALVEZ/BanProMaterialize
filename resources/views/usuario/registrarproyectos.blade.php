@@ -67,8 +67,8 @@
 														<i class="material-icons">developer_board</i>
 													</span>
                                                     <div class="form-group label-floating">
-                                                        <label class="control-label">Nombre del Proyecto<small></small></label>
-                                                        <input id="nombrep" type="text" class="form-control" name="nombrep" value="{{ old('nombrep') }}">
+                                                        <label class="control-label">Nombre del Proyecto (Requerido)<small></small></label>
+                                                        <input id="nombrep" type="text" class="form-control" name="nombrep" value="{{ old('nombrep') }}" required>
                                                     </div>
                                                 </div>
 
@@ -97,8 +97,8 @@
                                                         <i class="material-icons">description</i>
                                                     </span>
                                                     <div class="form-group label-floating">
-                                                        <label class="control-label">Descripción<small></small></label>
-                                                        <textarea id="descripcion" type="text" class="form-control" placeholder="" rows="5" name="descripcion" value="{{ old('descripcion') }}" autofocus maxlength="255"></textarea>
+                                                        <label class="control-label">Descripción (Requerido)<small></small></label>
+                                                        <textarea id="descripcion" type="text" class="form-control" placeholder="" rows="5" name="descripcion" value="{{ old('descripcion') }}" autofocus maxlength="255" required></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -112,23 +112,40 @@
                                                         <input id="linea{{ $linea->id }}" type="checkbox" name="lineatecnologica[]" value="{{ $linea->id }}">
                                                         <label for="linea{{ $linea->id }}">{{ $linea->linea }}</label><br>
                                                     @endforeach
+                                                        <br>
                                             </div>
-                                            <div class="col-sm-8 col-sm-offset-2">
+                                            <div class="registrarproyectoslineas col-sm-8 col-sm-offset-2">
                                                 <p style="line-height: 1;">La Línea de Electrónica y Telecomunicaciones presta sus servicios en las siguientes áreas:
                                                     Control de procesos,
                                                     Automatización,
                                                     Robótica aplicada,
                                                     Micro Controladores ARM,
-                                                    TV Digital en el desarrollo de hardware.- análisis de señales y protocolos,
+                                                    TV Digital en el desarrollo de hardware,
+                                                    análisis de señales y protocolos,
                                                     IPV6,
                                                     Redes y antenas.</p>
                                                 <br>
                                                 <p style="line-height: 1;">La Línea de Biotecnología tiene por objetivo acelerar proyectos de base tecnológica en las siguientes áreas:
-                                                    Industrial.
-                                                    Animal y vegetal.
-                                                    Agroindustria (alimentaria y no alimentaria).
-                                                    Nanotecnología (tecnologías limpias y nuevos  materiales).
+                                                    Industrial,
+                                                    Animal y vegetal,
+                                                    Agroindustria (alimentaria y no alimentaria),
+                                                    Nanotecnología (tecnologías limpias y nuevos  materiales) y
                                                     Energías alternativas.</p>
+                                                <br>
+                                                <p style="line-height: 1;">La Línea de Desarrollo de Diseño e Ingeniería presta sus servicios en las siguientes áreas:
+                                                    Diseño y simulación,
+                                                    Ingeniería inversa y
+                                                    Prototipado.</p>
+                                                <br>
+                                                <p style="line-height: 1;"> La Línea de Desarrollo de Tecnologías Virtuales incorpora las Tecnologías de la Información y la Comunicación  TIC's en las siguientes áreas:
+                                                    Aplicaciones Móviles,
+                                                    Desarrollo de aplicaciones para Televisión Digital Terrestre,
+                                                    Inteligencia Artificial y computacional,
+                                                    Realidad Virtual y Simulación,
+                                                    Animación Digital,
+                                                    Videojuegos,
+                                                    Producción de Contenidos 2D y 3D y
+                                                    Desarrollo de Software.</p>
                                             </div>
                                         </div>
                                     </div>
