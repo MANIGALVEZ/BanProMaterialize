@@ -92,7 +92,10 @@
         @if(Auth::user()->tiporol == 'usuario')
             <strong class="titulousu">Usuarios Inscritos</strong>
                 <div class="usuarioscontent">
-
+                    @foreach($usuarios2 as $usu)
+                        <li>{{$usu->nameu}}</li>
+                        <?php $estadosprouser = DB::table("estadosproyectosusers")->get(); ?>
+                    @endforeach
                 </div>
         @endif
 </div>
@@ -103,6 +106,7 @@
                 <tr>
                     <th>Descripcion</th>
                     <th>Resumen</th>
+                    <th>Opciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -117,22 +121,26 @@
                             {{$query->resumen}}
                         </div>
                     </td>
+                    <td>
+                        @if(Auth::user()->tiporol == 'usuario')
+                            <?php $estadoproyecto = DB::table("proyectosusers")->where("proyectos_id", $query->id)->where("users_id", Auth::user()->id)->value("estadosproyectosusers_id"); ?>
+                         @if(count($estadoproyecto) > 0)
+                                @if($estadoproyecto == 2)
+                                    <a href="javascript:;" type="button" class="btn btn-warning btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" disabled="disabled" title="Pendiente Aprobacion"><i class="material-icons">access_time</i></a>
+                                @elseif($estadoproyecto == 3)
+                                    <a href="javascript:;" type="button" class="btn btn-danger btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Rechazado"><i class="material-icons">not_interested</i></a>
+                                @elseif($estadoproyecto == 1)
+                                    <button type="button" class="btn btn-success  btn-just-icon btn-xs" data-toggle="popover" data-placement="top" title="Reclutado!" data-content="Felicidades! ha sido aceptado, pronto, un gestor le contactará"><i class="material-icons">check</i></button>
+                                @endif
+                            @else
+                                <a href="inscribir/{{$query->id}}" type="button" class="btn btn-primary btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Inscribirse"><i class="glyphicon glyphicon-edit"></i></a>
+                            @endif
+                        @endif
+                    </td>
                 </tr>
             </tbody>
         </table>
     </div>
-
-    <div class="bloquisito usucliente">
-
-    @if(Auth::user()->tiporol == 'usuario')
-        <div class="cajascontent usuariosInscritos">
-            @foreach($usuarios2 as $usu)
-                <li>{{$usu->nameu}}</li>
-                <?php $estadosprouser = DB::table("estadosproyectosusers")->get(); ?>
-            @endforeach
-        </div>
-    </div>
-    @endif
 <table class="table table-bordered tablitashow">
     <thead>
     <tr>
@@ -163,7 +171,6 @@
             Enviar
          </button>
     </form>
-
 
     <!-- Modal para agregar un resumen cuando el proyecto pasa a estado Reclutando o En desarrollo  en vista Detalles-->
     <form action="{{url('resumenPD')}}" method="POST">
