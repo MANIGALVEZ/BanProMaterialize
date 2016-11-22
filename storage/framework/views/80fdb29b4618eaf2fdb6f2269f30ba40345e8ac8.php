@@ -29,63 +29,56 @@
                                 <li class="active"><a href="#proyectos" data-toggle="tab">Proyectos</a></li>
                             </ul>
                         </div>
-
                         <div class="tab-content col-sm-6 col-sm-offset-1 iniciodiv">
-                            <?php $query = DB::table("proyectos")->where('estadosdeproyectos_id', '<>', '1')->where('estadosdeproyectos_id', '<>', '2')->get(); ?>
-                            <?php $__currentLoopData = $query; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
-
-                        <div class="tab-content col-sm-6 col-sm-offset-3">
-                            <?php $__currentLoopData = $proyectos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
-                            <div class="card-container">
-                                <div class="card">
-                                    <div class="front">
-                                        <div class="cover">
-                                            
-                                            <img src="<?php echo e($row->imagen); ?>"/>
-                                        </div>
-                                        <br><br><br><br><br>
-                                        <div class="content">
-                                            <div class="main">
-                                                <h3 class="name"><?php echo e($row->nombrep); ?></h3>
-                                                <p class="text-justify"><?php echo e($row->descripcion); ?></p>
+                            <?php $__currentLoopData = $proyectos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $proyecto): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+                                <div class="card-container">
+                                    <div class="card">
+                                        <div class="front">
+                                            <div class="cover">
+                                                
+                                                <img src="<?php echo e($proyecto->imagen); ?>"/>
                                             </div>
-                                        </div>
-                                    </div> <!-- end front panel -->
-                                    <div class="back">
-                                        <div class="header">
-                                            <h5 class="text-center">Sector Enfocado</h5>
-                                            <p class="text-center"><?php echo e($row->sectorenfocado); ?></p>
-                                        </div>
-                                        <div class="content">
-                                            <div class="main">
-                                                <h4 class="text-center">Empresa</h4>
-                                                <p class="text-center"><?php echo e($row->empresa); ?></p>
-
-                                                <div class="stats-container">
-                                                    <h4 class="text-center">Estado</h4>
-                                                    <p class="text-center">
-                                                        <?php $estados = DB::table("estadosdeproyectos")->get(); ?>
-                                                        <?php $actualizarestados = DB::table("proyectos")->where("estadosdeproyectos_id", $row->estadosdeproyectos_id)->get(); ?>
-                                                        <?php $__currentLoopData = $estados; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $estado): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
-                                                            <?php if($estado->id == $row->estadosdeproyectos_id): ?>
-                                                                <?php echo e($estado->estado); ?>
-
-                                                            <?php endif; ?>
-                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
-                                                    </p>
+                                            <br><br><br><br><br>
+                                            <div class="content">
+                                                <div class="main">
+                                                    <h3 class="name"><?php echo e($proyecto->nombrep); ?></h3>
+                                                    <p class="text-justify"><?php echo e($proyecto->descripcion); ?></p>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="footer">
-                                            <div class="social-links text-center">
-                                                <a href="" class="facebook"><i class="fa fa-facebook fa-fw"></i></a>
-                                                <a href="" class="google"><i class="fa fa-google-plus fa-fw"></i></a>
-                                                <a href="" class="twitter"><i class="fa fa-twitter fa-fw"></i></a>
+                                        </div> <!-- end front panel -->
+                                        <div class="back">
+                                            <div class="header">
+                                                <h5 class="text-center">Sector Enfocado</h5>
+                                                <p class="text-center"><?php echo e($proyecto->sectorenfocado); ?></p>
                                             </div>
-                                        </div>
-                                    </div> <!-- end back panel -->
-                                </div> <!-- end card -->
-                            </div> <!-- end card-container -->
+                                            <div class="content">
+                                                <div class="main">
+                                                    <h4 class="text-center">Empresa</h4>
+                                                    <p class="text-center"><?php echo e($proyecto->empresa); ?></p>
+
+                                                    <div class="stats-container">
+                                                        <h4 class="text-center">Estado</h4>
+                                                        <p class="text-center">
+                                                            <?php $__currentLoopData = $estadosproyectos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $estadoproyecto): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+                                                                <?php if($estadoproyecto->id == $proyecto->estadosdeproyectos_id): ?>
+                                                                    <?php echo e($estadoproyecto->estado); ?>
+
+                                                                <?php endif; ?>
+                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="footer">
+                                                <div class="social-links text-center">
+                                                    <a href="" class="facebook"><i class="fa fa-facebook fa-fw"></i></a>
+                                                    <a href="" class="google"><i class="fa fa-google-plus fa-fw"></i></a>
+                                                    <a href="" class="twitter"><i class="fa fa-twitter fa-fw"></i></a>
+                                                </div>
+                                            </div>
+                                        </div> <!-- end back panel -->
+                                    </div> <!-- end card -->
+                                </div> <!-- end card-container -->
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
                         </div>
                     </div>
