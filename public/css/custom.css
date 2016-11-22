@@ -168,9 +168,10 @@ div.letrablancadiv
 }
 
 /* Welcome*/
-.iniciodiv{
+.iniciodiv
+{
     display: inline-block !important;
-
+}
 
 .quitarborde
 {

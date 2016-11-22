@@ -133,12 +133,13 @@
                     <td>
                         <div class="cajascontent">
                             <input class="quitarborde" type="text" name="descripcion" value="{{$query->descripcion}}" readonly>
-
+                            {{--</textarea>--}}
                         </div>
                     </td>
                     <td>
                         <div class="cajascontent">
-                            {{$query->resumen}}
+                            <input class="quitarborde" type="text" name="resumen" value="{{$query->resumen}}" readonly>
+                            {{--</textarea>--}}
                         </div>
                     <td>
                         @if(Auth::user()->tiporol == 'usuario')

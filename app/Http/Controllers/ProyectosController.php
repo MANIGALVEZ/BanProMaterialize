@@ -461,6 +461,7 @@ class ProyectosController extends Controller
         $editar->nombrep = $request->get('nombrep');
         $editar->sectorenfocado = $request->get('sectorenfocado');
         $editar->descripcion = $request->get('descripcion');
+        $editar->resumen = $request->get('resumen');
         $editar->save();
 
         return redirect("show/".$id);
