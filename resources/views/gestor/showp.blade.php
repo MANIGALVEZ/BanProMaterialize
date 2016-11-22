@@ -2,6 +2,9 @@
 
 @section('content')
 
+<form id="formPro" action="{{url('editS/'.$query->id)}}" method="POST">
+{{ csrf_field() }}
+
 <div class="row col-md-8">
     <table class="table table-bordered tablitashow"  >
         <thead>
@@ -14,8 +17,7 @@
         </thead>
 
         <tbody>
-        <form id="formPro" action="{{url('editS/'.$query->id)}}" method="POST">
-            {{ csrf_field() }}
+
         <tr>
             {{--<td>{{$query->id}}</td>--}}
             <td><input class="quitarborde" type="text" name="nombrep" value="{{$query->nombrep}}" readonly></td>
@@ -48,9 +50,10 @@
                         @endif
                     @endforeach
                 @endif
+
                 <?php $estados = DB::table("estadosdeproyectos")->where('id', '<>', '1')->get(); ?>
                 <form class="form-inline">
-                    <select class="estadoProyecto" name="" data-proyecto="{{ $query->id }}">
+                    <select class="estadoProyectoDetalle" name="" data-proyecto="{{ $query->id }}">
                         @foreach($estados as $estado)
                             @if($estado->id == $query->estadosdeproyectos_id)
                                 <option value="{{$estado->id}}" selected>{{$estado->estado}}</option>
@@ -64,14 +67,11 @@
             <td>{{$query->user->nameu}}</td>
             <td colspan="2"><img src="/{{$query->imagen}}" width="100" class="img-thumbnail"></td>
         </tr>
-
-
-            <button type="button" class="btn btn-primary btn-just-icon btn-xs editinput" data-toggle="tooltip" data-placement="top" title="Editar"><i class="material-icons">edit</i></button>
-            <button type="submit" class="btn btn-success btn-just-icon btn-xs updateinput" data-toggle="tooltip" data-placement="top" title="Guardar"><i class="material-icons">save</i></button>
-        </form>
         </tbody>
     </table>
 </div>
+</form>
+
 <div class="col col-md-3 col-md-offset-1 usuis">
     @if(Auth::user()->tiporol == 'gestor')
     <strong class="titulousu">Usuarios Inscritos</strong>
@@ -132,16 +132,17 @@
                 <tr>
                     <td>
                         <div class="cajascontent">
-                            {{$query->descripcion}}
+                            <input class="quitarborde" type="text" name="descripcion" value="{{$query->descripcion}}" readonly>
+
                         </div>
                     </td>
                     <td>
                         <div class="cajascontent">
                             {{$query->resumen}}
                         </div>
-                    @if(Auth::user()->tiporol == 'usuario')
                     <td>
-                            <?php $estadoproyecto = DB::table("proyectosusers")->where("proyectos_id", $query->id)->where("users_id", Auth::user()->id)->value("estadosproyectosusers_id"); ?>
+                        @if(Auth::user()->tiporol == 'usuario')
+                        <?php $estadoproyecto = DB::table("proyectosusers")->where("proyectos_id", $query->id)->where("users_id", Auth::user()->id)->value("estadosproyectosusers_id"); ?>
                          @if(count($estadoproyecto) > 0)
                                 @if($estadoproyecto == 2)
                                     <a href="javascript:;" type="button" class="btn btn-warning btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" disabled="disabled" title="Pendiente Aprobacion"><i class="material-icons">access_time</i></a>
@@ -153,8 +154,12 @@
                             @else
                                 <a href="../vincularce/{{$query->id}}" type="button" class="btn btn-primary btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Inscribirse"><i class="glyphicon glyphicon-edit"></i></a>
                             @endif
+                        @endif
+
+                            <button type="button" class="btn btn-primary btn-just-icon btn-xs editinput" data-toggle="tooltip" data-placement="top" title="Editar"><i class="material-icons">edit</i></button>
+                            <button type="submit" class="btn btn-success btn-just-icon btn-xs updateinput" data-toggle="tooltip" data-placement="top" title="Guardar"><i class="material-icons">save</i></button>
+
                     </td>
-                    @endif
                 </tr>
             </tbody>
         </table>
@@ -182,6 +187,7 @@
         </tr>
     </tbody>
 </table>
+
 <div class="row col-md-12">
 
     <form action="{{ url('/comentario/'.$query->id)}}" method="POST">
@@ -192,6 +198,7 @@
          </button>
     </form>
 </div>
+
     <!-- Modal para agregar un resumen cuando el proyecto pasa a estado Reclutando o En desarrollo  en vista Detalles-->
     <form action="{{url('resumenPD')}}" method="POST">
         {{ csrf_field() }}
