@@ -102,7 +102,7 @@ Route::post('/resumenPD', 'ProyectosController@resumenProyectoDetalle');
 
 
 // Ruta para buscar y cambiar estado de proyecto en vista Detalles
-Route::get('/registroR/{idPU}', 'ProyectosController@registroRechazado');
+Route::get('/registroR/{id}', 'ProyectosController@registroRechazado');
 
 
 // Ruta para editar desde detalles de proyecto (showp)

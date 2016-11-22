@@ -337,8 +337,9 @@
     {
         $('.btn-ocultar').click(function ()
         {
-            $idPU = $(this).attr("data-rechazado")
-            $.get('registroR/'+$idPU)
+            $id = $(this).attr("data-rechazado-ocultar")
+//            $idP = $(this).attr("data-rechazado")
+            $.get('registroR/'+$id)
             window.location.replace("")
         })
     })

@@ -21,10 +21,13 @@
                 <div class="wizard-container">
                     <div class="card wizard-card" data-color="green" id="wizardProfile">
                         <div class="wizard-header">
-                            <h3 class="wizard-title">
-                                Red Tecnoparque Colombia
-                            </h3>
-                            <h5>Regional Caldas</h5>
+                            {{--<div class="cover">--}}
+                            {{--<img src="/img/tecnoparque.png"/>--}}
+                            {{--<h3 class="wizard-title">--}}
+                                {{--Red Tecnoparque Colombia--}}
+                            {{--</h3>--}}
+                            {{--<h5>Regional Caldas</h5>--}}
+                            {{--</div>--}}
                         </div>
                         <div class="wizard-navigation">
                             <ul>
@@ -71,11 +74,11 @@
                                                 </div>
                                             </div>
                                             <div class="footer">
-                                                <div class="social-links text-center">
-                                                    <a href="" class="facebook"><i class="fa fa-facebook fa-fw"></i></a>
-                                                    <a href="" class="google"><i class="fa fa-google-plus fa-fw"></i></a>
-                                                    <a href="" class="twitter"><i class="fa fa-twitter fa-fw"></i></a>
-                                                </div>
+                                                {{--<div class="social-links text-center">--}}
+                                                    {{--<a href="" class="facebook"><i class="fa fa-facebook fa-fw"></i></a>--}}
+                                                    {{--<a href="" class="google"><i class="fa fa-google-plus fa-fw"></i></a>--}}
+                                                    {{--<a href="" class="twitter"><i class="fa fa-twitter fa-fw"></i></a>--}}
+                                                {{--</div>--}}
                                             </div>
                                         </div> <!-- end back panel -->
                                     </div> <!-- end card -->

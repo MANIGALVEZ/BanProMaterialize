@@ -33,7 +33,16 @@ class ProyectosController extends Controller
         $query = Proyecto::where('estadosdeproyectos_id', '<>', "1")
             ->orderBy('id', 'ASC')
             ->paginate();
-        return view('gestor.index', compact('query', "lineas", 'iprs'));
+//        $query = \DB::table('proyectos')
+//            ->where('estadosdeproyectos_id', '<>', "1")
+//            ->join('proyectosusers', 'proyectos.id', '=', 'proyectosusers.proyectos_id')
+////            ->select('proyectos.*', 'proyectosusers.estadosproyectosusers_id')
+////            ->where('proyectosusers.users_id', '=', Auth::user()->id)
+//            ->where('proyectosusers.estadosproyectosusers_id', '<>', 4)
+//            ->orderBy('id','ASC')
+//            ->paginate();
+//        $proyectosusuariosvista = ProyectosUsers::where('estadosproyectosusers_id', '<>', "4");
+        return view('gestor.index', compact('query', "lineas", 'iprs', 'proyectosusuariosvista'));
 
     }
 
@@ -445,13 +454,22 @@ class ProyectosController extends Controller
 
 
     //Funcion para eliminar el registro a un proyecto cuando el usuario esta rechazado
-    public function registroRechazado($idPU)
+    public function registroRechazado($id)
     {
-        $prouser = ProyectosUsers::where("proyectos_id", $idPU)->where("users_id", Auth::user()->id)->value("id");
-        if(count($prouser) > 0)
-        {
-            ProyectosUsers::destroy($prouser);
-        }
+
+        $proyectosusuarios = ProyectosUsers::find($id);
+//        $proyectosusuarios = ProyectosUsers::find($id)
+//            ->where("proyectos_id", $idPU)
+//            ->where("users_id", Auth::user()->id)->value("id");
+        $proyectosusuarios->estadosproyectosusers_id = 4;
+////        $prouser->estadosproyectosusers_id = $request->get('resumen');
+        $proyectosusuarios->save();
+
+//        return redirect("proyectosIndex");
+//        if(count($prouser) > 0)
+//        {
+//            ProyectosUsers::destroy($prouser);
+//        }
     }
 
     //Funcion para modificar los campos en la vista showp
