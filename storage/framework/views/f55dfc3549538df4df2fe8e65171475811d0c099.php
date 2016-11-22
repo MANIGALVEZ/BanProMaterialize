@@ -1,25 +1,24 @@
-@extends('layouts.app')
+<?php $__env->startSection('content'); ?>
 
-@section('content')
+<form id="formPro" action="<?php echo e(url('editS/'.$query->id)); ?>" method="POST">
+<?php echo e(csrf_field()); ?>
 
-<form id="formPro" action="{{url('editS/'.$query->id)}}" method="POST">
-{{ csrf_field() }}
 
 <div class="row col-md-12">
     <div class="infoinicial">
         <article>
             <label>Nombre Proyecto:</label>
-                <input class="quitarborde" type="text" name="nombrep" value="{{$query->nombrep}}" readonly>
+                <input class="quitarborde" type="text" name="nombrep" value="<?php echo e($query->nombrep); ?>" readonly>
         </article>
 
         <article>
             <label>Sector Enfocado: </label>
-                <input class="quitarborde" type="text" name="sectorenfocado" value="{{$query->sectorenfocado}}" readonly>
+                <input class="quitarborde" type="text" name="sectorenfocado" value="<?php echo e($query->sectorenfocado); ?>" readonly>
         </article>
 
         <article>
             <label>Creado por: </label>
-                <p>{{$query->user->nameu}}</p>
+                <p><?php echo e($query->user->nameu); ?></p>
         </article>
 
         <article>
@@ -33,9 +32,9 @@
             <tr>
                 <th>Descripcion</th>
                 <th>Resumen</th>
-                @if(Auth::user()->tiporol == 'usuario')
+                <?php if(Auth::user()->tiporol == 'usuario'): ?>
                     <th>Opciones</th>
-                @endif
+                <?php endif; ?>
             </tr>
             </thead>
             <tbody>
@@ -43,33 +42,33 @@
                 <td>
                     <div class="cajascontent">
 
-                        {{--</textarea>--}}
-                        <textarea  class="infotablainicial" id="" cols="77" rows="10" readonly>{{$query->descripcion}}</textarea>
+                        
+                        <textarea  class="infotablainicial" id="" cols="77" rows="10" readonly><?php echo e($query->descripcion); ?></textarea>
                     </div>
                 </td>
                 <td>
                     <div class="cajascontent">
                        <!-- <input class="quitarborde" type="text" name="resumen" value="" readonly>-->
-                        {{--</textarea>--}}
-                        <textarea class="infotablainicial" id="" cols="77" rows="10" readonly>{{$query->resumen}}</textarea>
+                        
+                        <textarea class="infotablainicial" id="" cols="77" rows="10" readonly><?php echo e($query->resumen); ?></textarea>
 
                     </div>
-                @if(Auth::user()->tiporol == 'usuario')
+                <?php if(Auth::user()->tiporol == 'usuario'): ?>
                 <td>
                         <?php $estadoproyecto = DB::table("proyectosusers")->where("proyectos_id", $query->id)->where("users_id", Auth::user()->id)->value("estadosproyectosusers_id"); ?>
-                        @if(count($estadoproyecto) > 0)
-                            @if($estadoproyecto == 2)
+                        <?php if(count($estadoproyecto) > 0): ?>
+                            <?php if($estadoproyecto == 2): ?>
                                 <a href="javascript:;" type="button" class="btn btn-warning btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" disabled="disabled" title="Pendiente Aprobacion"><i class="material-icons">access_time</i></a>
-                            @elseif($estadoproyecto == 3)
+                            <?php elseif($estadoproyecto == 3): ?>
                                 <a href="javascript:;" type="button" class="btn btn-danger btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Rechazado"><i class="material-icons">not_interested</i></a>
-                            @elseif($estadoproyecto == 1)
+                            <?php elseif($estadoproyecto == 1): ?>
                                 <button type="button" class="btn btn-success  btn-just-icon btn-xs" data-toggle="popover" data-placement="top" title="Reclutado!" data-content="Felicidades! ha sido aceptado, pronto, un gestor le contactará"><i class="material-icons">check</i></button>
-                            @endif
-                        @else
-                            <a href="../vincularce/{{$query->id}}" type="button" class="btn btn-primary btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Inscribirse"><i class="glyphicon glyphicon-edit"></i></a>
-                        @endif
+                            <?php endif; ?>
+                        <?php else: ?>
+                            <a href="../vincularce/<?php echo e($query->id); ?>" type="button" class="btn btn-primary btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Inscribirse"><i class="glyphicon glyphicon-edit"></i></a>
+                        <?php endif; ?>
                 </td>
-                @endif
+                <?php endif; ?>
 
             </tr>
             </tbody>
@@ -78,7 +77,7 @@
     <table class="table table-bordered tablitashow"  >
         <thead>
         <tr>
-            {{--<th>Id</th>--}}
+            
             <th>Linea Tecnológica</th>
             <th>Usuarios Inscritos</th>
             <th>Estado de Proyecto</th>
@@ -89,77 +88,77 @@
 
             <td>
                 <ul>
-                    @foreach($lineas_proyecto as $key => $linea)
+                    <?php $__currentLoopData = $lineas_proyecto; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $linea): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
                         <?php $lineas = DB::table("lineas")->where("id", $linea->lineas_id)->get(); ?>
-                            @foreach($lineas as $key => $linea)
-                            <li>{{ $linea->linea }}</li>
-                            @endforeach
-                    @endforeach
+                            <?php $__currentLoopData = $lineas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $linea): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+                            <li><?php echo e($linea->linea); ?></li>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
                 </ul>
             </td>
             <td>
                 <div>
-                    @if(Auth::user()->tiporol == 'gestor')
+                    <?php if(Auth::user()->tiporol == 'gestor'): ?>
                         <strong class="titulousu">Usuarios Inscritos</strong>
                         <div class="usuarioscontent">
-                            @foreach($usuarios as $usu)
+                            <?php $__currentLoopData = $usuarios; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $usu): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
                                 <div class="contenusuarios">
-                                    <li class="nusu">{{$usu->nameu}}</li>
+                                    <li class="nusu"><?php echo e($usu->nameu); ?></li>
                                     <li class="EstadoU">
                                         <?php $estadosprouser = DB::table("estadosproyectosusers")->get(); ?>
                                         <select class=" estadoProyectoUsuario usuis" data-idprouser='<?php echo DB::table("proyectosusers")->where("proyectos_id", $query->id)->where("users_id", $usu->id)->value("id"); ?>'>
-                                            @foreach($estadosprouser as $estado)
+                                            <?php $__currentLoopData = $estadosprouser; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $estado): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
                                                 <?php $tabla = DB::table("proyectosusers")->where("proyectos_id", $query->id)->where("users_id", $usu->id)->value("estadosproyectosusers_id"); ?>
-                                                @if($estado->id == $tabla)
-                                                    <option value="{{$estado->id}}" selected>{{$estado->estado}}</option>
-                                                @else
-                                                    <option value="{{$estado->id}}">{{$estado->estado}}</option>
-                                                @endif
-                                            @endforeach
+                                                <?php if($estado->id == $tabla): ?>
+                                                    <option value="<?php echo e($estado->id); ?>" selected><?php echo e($estado->estado); ?></option>
+                                                <?php else: ?>
+                                                    <option value="<?php echo e($estado->id); ?>"><?php echo e($estado->estado); ?></option>
+                                                <?php endif; ?>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
                                         </select>
                                     </li>
                                 </div>
-                            @endforeach
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
                         </div>
-                    @endif
-                    @if(Auth::user()->tiporol == 'usuario')
+                    <?php endif; ?>
+                    <?php if(Auth::user()->tiporol == 'usuario'): ?>
                         <strong class="titulousu">Usuarios Inscritos</strong>
                         <div class="usuarioscontent">
-                            @foreach($usuarios2 as $usu)
-                                <li>{{$usu->nameu}}</li>
+                            <?php $__currentLoopData = $usuarios2; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $usu): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+                                <li><?php echo e($usu->nameu); ?></li>
                                 <?php $estadosprouser = DB::table("estadosproyectosusers")->get(); ?>
-                            @endforeach
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
                         </div>
-                    @endif
+                    <?php endif; ?>
                 </div>
             </td>
             <td>
-                @if(Auth::user()->tiporol == 'usuario')
+                <?php if(Auth::user()->tiporol == 'usuario'): ?>
                     <?php $estados = DB::table("estadosdeproyectos")->get(); ?>
                     <?php $actualizarestados = DB::table("proyectos")->where("estadosdeproyectos_id", $query->estadosdeproyectos_id)->get(); ?>
-                    @foreach($estados as $estado)
-                        @if($estado->id == $query->estadosdeproyectos_id)
-                            <option value="{{$estado->id}}" selected>{{$estado->estado}}</option>
-                        @endif
-                    @endforeach
-                @endif
+                    <?php $__currentLoopData = $estados; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $estado): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+                        <?php if($estado->id == $query->estadosdeproyectos_id): ?>
+                            <option value="<?php echo e($estado->id); ?>" selected><?php echo e($estado->estado); ?></option>
+                        <?php endif; ?>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
+                <?php endif; ?>
                 <?php $estados = DB::table("estadosdeproyectos")->where('id', '<>', '1')->get(); ?>
                 <form class="form-inline">
-                    <select class="estadoProyectoDetalle" name="" data-proyecto="{{ $query->id }}">
-                        @foreach($estados as $estado)
-                            @if($estado->id == $query->estadosdeproyectos_id)
-                                <option value="{{$estado->id}}" selected>{{$estado->estado}}</option>
-                            @else
-                                <option value="{{$estado->id}}">{{$estado->estado}}</option>
-                            @endif
-                        @endforeach
+                    <select class="estadoProyectoDetalle" name="" data-proyecto="<?php echo e($query->id); ?>">
+                        <?php $__currentLoopData = $estados; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $estado): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+                            <?php if($estado->id == $query->estadosdeproyectos_id): ?>
+                                <option value="<?php echo e($estado->id); ?>" selected><?php echo e($estado->estado); ?></option>
+                            <?php else: ?>
+                                <option value="<?php echo e($estado->id); ?>"><?php echo e($estado->estado); ?></option>
+                            <?php endif; ?>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
                     </select>
                 </form>
             </td>
         </tbody>
     </table>
         <div style="padding:0; height: 268px;" class=" row col-md-4 col-sm-offset-1">
-            <img src="/{{$query->imagen}}" class="img-thumbnail imgS" style=" height: 250px;">
+            <img src="/<?php echo e($query->imagen); ?>" class="img-thumbnail imgS" style=" height: 250px;">
         </div>
 
         <div class="row col-md-4 col-md-offset-1">
@@ -176,15 +175,16 @@
     <tbody>
         <tr>
             <td> <div class="comentarios">
-                    @foreach ($comentariop as $key => $comentario)
+                    <?php $__currentLoopData = $comentariop; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $comentario): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
                         <?php $comentarios = DB::table("comentarios")->where("id", $comentario->id)->get(); ?>
-                            @foreach ($comentarios as $key => $comentario)
+                            <?php $__currentLoopData = $comentarios; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $comentario): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
                             <li class="nombre">
                                 <?php echo DB::table("users")->where("id", $comentario->usuario_id)->value("nameu"); echo ":" ?>
-                                {{ $comentario->comentario }}
+                                <?php echo e($comentario->comentario); ?>
+
                             </li>
-                            @endforeach
-                    @endforeach
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
                 </div>
             </td>
         </tr>
@@ -193,9 +193,10 @@
     </div>
 <div class="row col-md-12">
 
-    <form action="{{ url('/comentario/'.$query->id)}}" method="POST">
-        {{ csrf_field() }}
-        <textarea id="comentario"  type="text" class="form-control" placeholder="Escriba el comentario deseado" rows="2" name="comentario" value="{{ old('comentario') }}"  maxlength="255" required="required"></textarea>
+    <form action="<?php echo e(url('/comentario/'.$query->id)); ?>" method="POST">
+        <?php echo e(csrf_field()); ?>
+
+        <textarea id="comentario"  type="text" class="form-control" placeholder="Escriba el comentario deseado" rows="2" name="comentario" value="<?php echo e(old('comentario')); ?>"  maxlength="255" required="required"></textarea>
         <button type="submit" class="btn btn-success btnEnviar" name="enviar" >
             Enviar
          </button>
@@ -203,8 +204,9 @@
 </div>
 
     <!-- Modal para agregar un resumen cuando el proyecto pasa a estado Reclutando o En desarrollo  en vista Detalles-->
-    <form action="{{url('resumenPD')}}" method="POST">
-        {{ csrf_field() }}
+    <form action="<?php echo e(url('resumenPD')); ?>" method="POST">
+        <?php echo e(csrf_field()); ?>
+
         <div class="modal fade modalResumenDetalle" id="modalResumenDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -228,4 +230,5 @@
 </div>
 </form>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

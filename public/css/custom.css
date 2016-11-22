@@ -73,13 +73,7 @@ tr.letra
 
 /*---- custom de showp -- */
 
-.cajascontent{
-    border:none;
-    width:400px;
-    height:100px;
-    background-color: white;
-    overflow-y: auto;
-}
+
 .cajascontent li.nombre{
     style:none;
     text-transform: capitalize;
@@ -168,6 +162,11 @@ div.letrablancadiv
 }
 
 /* Welcome*/
+
+.iniciodiv {
+    display: inline-block;
+}
+
 .iniciodiv
 {
     display: inline-block !important;
@@ -176,5 +175,14 @@ div.letrablancadiv
 .quitarborde
 {
     border: none;
-
+}
+.imgS{
+    width: 500px;
+}
+.infoinicial article{
+    display: inline-block;
+}
+.infotablainicial{
+    resize:none;
+    border:none;
 }
