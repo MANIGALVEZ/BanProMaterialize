@@ -23,7 +23,8 @@ class HomeController extends Controller
     public function index()
     {
         $proyectos = Proyecto::where('estadosdeproyectos_id', '>', 2)->get();
-        return view('welcome', compact('proyectos'));
+        $estadosproyectos = \DB::table('estadosdeproyectos')->get();
+        return view('welcome', compact('proyectos', 'estadosproyectos'));
     }
 
 

@@ -165,7 +165,8 @@ class ProyectosController extends Controller
 
 
     // Funcion detalles proyectos
-    public function show($id){
+    public function show($id)
+    {
         $query = Proyecto::find($id);
         $lineas_proyecto = LineaProyecto::where("proyectos_id", $id)->get();
         $comentariop = Comentario::where("proyecto_id", $id)->get();
@@ -215,7 +216,6 @@ class ProyectosController extends Controller
     //Funcion Actualizar estado de proyecto en BD
     public function estado(Request $request)
     {
-//        dd($request);
         $proyecto = Proyecto::find($request->get("idp"));
         $proyecto->estadosdeproyectos_id = $request->get("ide");
         $proyecto->save();
@@ -459,6 +459,8 @@ class ProyectosController extends Controller
     {
         $editar= Proyecto::find($id);
         $editar->nombrep = $request->get('nombrep');
+        $editar->sectorenfocado = $request->get('sectorenfocado');
+        $editar->descripcion = $request->get('descripcion');
         $editar->save();
 
         return redirect("show/".$id);

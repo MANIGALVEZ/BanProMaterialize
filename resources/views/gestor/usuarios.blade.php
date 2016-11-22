@@ -3,7 +3,7 @@
 
 <article>
     <div class="page-header">
-        <h2 class="text-center text-muted">Administración De Usuarios</h2>
+        <h2 class="text-center text-muted">AdministraciÃ³n De Usuarios</h2>
     </div>
 </article>
 <br>
