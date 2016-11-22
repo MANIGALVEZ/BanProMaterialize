@@ -20,6 +20,7 @@ body{
   position: relative;
     left: 400px;
   }
+
 a.btnsinicio{
   background: #000000;
  -webkit-background-clip: text;
@@ -167,10 +168,9 @@ div.letrablancadiv
 }
 
 /* Welcome*/
-.iniciodiv{
-    display: inline-block !important;
-
-
+.iniciodiv {
+    display: inline-block;
+}
 .quitarborde
 {
     border: none;
