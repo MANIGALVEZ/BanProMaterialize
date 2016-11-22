@@ -78,8 +78,8 @@
             <tr class="">
                 <th>Id</th>
                 <th>Fecha</th>
-                <th>Nombre Proyecto</th>
-                <th>Sector enfocado</th>
+                <th>Proyecto</th>
+                <th>Sector</th>
                 <th>Linea(s) Tecnológica(s)</th>
                 <th>Estado</th>
                 <th>Usuario</th>

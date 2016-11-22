@@ -338,29 +338,45 @@
         $('.btn-ocultar').click(function ()
         {
             $id = $(this).attr("data-rechazado-ocultar")
-//            $idP = $(this).attr("data-rechazado")
             $.get('registroR/'+$id)
             window.location.replace("")
         })
     })
 
 
-
+{{--Script para editar campos nombre, sector, descripcion, resumen en vista showp--}}
     $(document).ready(function()
     {
-        $(".editinput").click(function()
+        $(".editInput").click(function()
         {
-          $("input").removeAttr("readonly").removeClass("quitarborde");
-// $.get('editS/')
+            $(".editInput").hide()
+            $("button").removeClass("hidden")
+            $("input").removeAttr("readonly").removeClass("quitarborde").addClass("form-control");
+            $("textarea").removeAttr("readonly").removeClass("quitarborde").addClass("form-control");
         })
 
-        $(".updateinput").click(function()
+        $(".updateInput").click(function()
         {
             $("#formPro").submit();
         })
 
 
+        $(".imagen").click(function()
+        {
+            $id = $(this).attr("data-imagen")
+            console.log($id)
+            $.get('editS/'+$id)
+        })
+
     })
+
+
+    $(document).ready(function()
+    {
+
+    })
+
+
 </script>
 
 </body>

@@ -78,8 +78,8 @@
             <tr class="">
                 <th>Id</th>
                 <th>Fecha</th>
-                <th>Nombre Proyecto</th>
-                <th>Sector enfocado</th>
+                <th>Proyecto</th>
+                <th>Sector</th>
                 <th>Linea(s) Tecnológica(s)</th>
                 <th>Estado</th>
                 <th>Usuario</th>
@@ -88,8 +88,10 @@
         </thead>
         <tbody>
         <?php if(count($query)>0): ?>
-            <?php $__currentLoopData = $query; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
-                <?php $estadoproyecto = DB::table("proyectosusers")->where("proyectos_id", $row->id)->where("users_id", Auth::user()->id)->value("estadosproyectosusers_id"); ?>
+            
+                <?php $__currentLoopData = $query; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+                        <?php $estadoproyecto = DB::table("proyectosusers")->where("proyectos_id", $row->id)->where("users_id", Auth::user()->id)->value("estadosproyectosusers_id"); ?>
+                <?php $proyeusu = DB::table("proyectosusers")->where("proyectos_id", $row->id)->where("users_id", Auth::user()->id)->value("id"); ?>
                 <tr class="letra <?php if($estadoproyecto == 1): ?> success <?php elseif($estadoproyecto == 3): ?> danger <?php endif; ?>">
                     <td><?php echo e($row->id); ?></td>
                     <td><?php echo e(fechalatina($row->created_at)); ?></td>
@@ -151,7 +153,9 @@
                                 <?php if($estadoproyecto == 2): ?>
                                         <a href="javascript:;" type="button" class="btn btn-warning btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" disabled="disabled" title="Pendiente Aprobacion"><i class="material-icons">access_time</i></a>
                                     <?php elseif($estadoproyecto == 3): ?>
-                                        <a data-rechazado="<?php echo e($row->id); ?>" href="javascript:;" type="button" class="btn btn-danger btn-just-icon btn-xs btn-ocultar" data-toggle="tooltip" data-placement="top" title="No ha sido aceptado, Clic para eliminar la inscripción al proyecto"><i class="material-icons">not_interested</i></a>
+                                        
+                                        <a data-rechazado="<?php echo e($row->id); ?>" data-rechazado-ocultar="<?php echo e($proyeusu); ?>" href="javascript:;" type="button" class="btn btn-danger btn-just-icon btn-xs btn-ocultar" data-toggle="tooltip" data-placement="top" title="No ha sido aceptado, Clic para eliminar la inscripción al proyecto"><i class="material-icons">not_interested</i></a>
+                                        
                                     <?php elseif($estadoproyecto == 1): ?>
                                        <button type="button" class="btn btn-success  btn-just-icon btn-xs" data-toggle="popover" data-placement="top" title="Reclutado!" data-content="Felicidades! ha sido aceptado, pronto, un gestor le contactará"><i class="material-icons">check</i></button>
                                 <?php endif; ?>

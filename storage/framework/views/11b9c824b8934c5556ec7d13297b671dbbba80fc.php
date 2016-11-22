@@ -339,8 +339,8 @@
     {
         $('.btn-ocultar').click(function ()
         {
-            $idPU = $(this).attr("data-rechazado")
-            $.get('registroR/'+$idPU)
+            $id = $(this).attr("data-rechazado-ocultar")
+            $.get('registroR/'+$id)
             window.location.replace("")
         })
     })
@@ -349,19 +349,52 @@
 
     $(document).ready(function()
     {
-        $(".editinput").click(function()
+        $(".editInput").click(function()
         {
-          $("input").removeAttr("readonly").removeClass("quitarborde");
-// $.get('editS/')
+            $(".editInput").hide()
+            $("button").removeClass("hidden")
+            $("input").removeAttr("readonly").removeClass("quitarborde").addClass("form-control");
+            $("textarea").removeAttr("readonly").removeClass("quitarborde").addClass("form-control");
         })
 
-        $(".updateinput").click(function()
+        $(".updateInput").click(function()
         {
             $("#formPro").submit();
         })
 
 
+//        $(".imagen").click(function()
+//        {
+//            $id = $(this).attr("data-imagen")
+//            console.log($id)
+//            $.get('editS/'+$id)
+//        })
+
+
+
+        })
+
+
+
+
+    $(document).ready(function()
+    {
+        $(".imagen").fileinput
+        ({
+            previewFileType: "image",
+            browseClass: "btn btn-success",
+            browseLabel: "Pick Image",
+            browseIcon: "<i class=\"glyphicon glyphicon-picture\"></i> ",
+            removeClass: "btn btn-danger",
+            removeLabel: "Delete",
+            removeIcon: "<i class=\"glyphicon glyphicon-trash\"></i> ",
+            uploadClass: "btn btn-info",
+            uploadLabel: "Upload",
+            uploadIcon: "<i class=\"glyphicon glyphicon-upload\"></i> "
+        })
     })
+
+
 </script>
 
 </body>

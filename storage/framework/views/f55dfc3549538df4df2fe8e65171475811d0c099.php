@@ -1,29 +1,25 @@
 <?php $__env->startSection('content'); ?>
 
-<form id="formPro" action="<?php echo e(url('editS/'.$query->id)); ?>" method="POST">
+<form class="" id="formPro" action="<?php echo e(url('editS/'.$query->id)); ?>" method="POST">
 <?php echo e(csrf_field()); ?>
 
 
-<div class="row col-md-12">
+<div class=" row col-md-12">
     <div class="infoinicial">
-        <article>
-            <label>Nombre Proyecto:</label>
+        <article class="form-inline">
+            <label>Proyecto: </label>
                 <input class="quitarborde" type="text" name="nombrep" value="<?php echo e($query->nombrep); ?>" readonly>
-        </article>
 
-        <article>
-            <label>Sector Enfocado: </label>
+            <label>Sector: </label>
                 <input class="quitarborde" type="text" name="sectorenfocado" value="<?php echo e($query->sectorenfocado); ?>" readonly>
-        </article>
 
-        <article>
-            <label>Creado por: </label>
-                <p><?php echo e($query->user->nameu); ?></p>
-        </article>
+            <label>Creado por:</label> <?php echo e($query->user->nameu); ?>
 
-        <article>
-            <button type="button" class="btn btn-primary btn-just-icon btn-xs editinput" data-toggle="tooltip" data-placement="top" title="Editar"><i class="material-icons">edit</i></button>
-            <button type="submit" class="btn btn-success btn-just-icon btn-xs updateinput" data-toggle="tooltip" data-placement="top" title="Guardar"><i class="material-icons">save</i></button>
+
+            <?php if(Auth::user()->tiporol == 'gestor'): ?>
+            <button type="button" class="btn btn-primary btn-just-icon btn-xs editInput" data-toggle="tooltip" data-placement="top" title="Editar"><i class="material-icons">edit</i></button>
+            <button type="submit" class="btn btn-success btn-just-icon btn-xs updateInput hidden" data-toggle="tooltip" data-placement="top" title="Guardar"><i class="material-icons">save</i></button>
+            <?php endif; ?>
         </article>
     </div>
     <div>
@@ -41,18 +37,14 @@
             <tr>
                 <td>
                     <div class="cajascontent">
-
-                        
-                        <textarea  class="infotablainicial" id="" cols="77" rows="10" readonly><?php echo e($query->descripcion); ?></textarea>
+                        <textarea  class="quitarborde noresize" id="" name="descripcion" cols="77" rows="10" readonly><?php echo e($query->descripcion); ?></textarea>
                     </div>
                 </td>
                 <td>
                     <div class="cajascontent">
-                       <!-- <input class="quitarborde" type="text" name="resumen" value="" readonly>-->
-                        
-                        <textarea class="infotablainicial" id="" cols="77" rows="10" readonly><?php echo e($query->resumen); ?></textarea>
-
+                        <textarea  class="quitarborde noresize" id="" name="resumen" cols="77" rows="10" readonly><?php echo e($query->resumen); ?></textarea>
                     </div>
+                </td>
                 <?php if(Auth::user()->tiporol == 'usuario'): ?>
                 <td>
                         <?php $estadoproyecto = DB::table("proyectosusers")->where("proyectos_id", $query->id)->where("users_id", Auth::user()->id)->value("estadosproyectosusers_id"); ?>
@@ -74,6 +66,7 @@
             </tbody>
         </table>
     </div>
+</form>
     <table class="table table-bordered tablitashow"  >
         <thead>
         <tr>
@@ -99,13 +92,12 @@
             <td>
                 <div>
                     <?php if(Auth::user()->tiporol == 'gestor'): ?>
-                        <strong class="titulousu">Usuarios Inscritos</strong>
                         <div class="usuarioscontent">
                             <?php $__currentLoopData = $usuarios; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $usu): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
                                 <div class="contenusuarios">
                                     <li class="nusu"><?php echo e($usu->nameu); ?></li>
                                     <li class="EstadoU">
-                                        <?php $estadosprouser = DB::table("estadosproyectosusers")->get(); ?>
+                                        <?php $estadosprouser = DB::table("estadosproyectosusers")->where("id", "<>", 4)->get(); ?>
                                         <select class=" estadoProyectoUsuario usuis" data-idprouser='<?php echo DB::table("proyectosusers")->where("proyectos_id", $query->id)->where("users_id", $usu->id)->value("id"); ?>'>
                                             <?php $__currentLoopData = $estadosprouser; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $estado): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
                                                 <?php $tabla = DB::table("proyectosusers")->where("proyectos_id", $query->id)->where("users_id", $usu->id)->value("estadosproyectosusers_id"); ?>
@@ -122,7 +114,6 @@
                         </div>
                     <?php endif; ?>
                     <?php if(Auth::user()->tiporol == 'usuario'): ?>
-                        <strong class="titulousu">Usuarios Inscritos</strong>
                         <div class="usuarioscontent">
                             <?php $__currentLoopData = $usuarios2; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $usu): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
                                 <li><?php echo e($usu->nameu); ?></li>
@@ -142,6 +133,7 @@
                         <?php endif; ?>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
                 <?php endif; ?>
+                <?php if(Auth::user()->tiporol == 'gestor'): ?>
                 <?php $estados = DB::table("estadosdeproyectos")->where('id', '<>', '1')->get(); ?>
                 <form class="form-inline">
                     <select class="estadoProyectoDetalle" name="" data-proyecto="<?php echo e($query->id); ?>">
@@ -154,6 +146,7 @@
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
                     </select>
                 </form>
+                <?php endif; ?>
             </td>
         </tbody>
     </table>
@@ -163,7 +156,31 @@
 
         <div class="row col-md-4 col-md-offset-1">
             <center><h6>Seleccione una imagen</h6></center>
-            <input  type="file" class="file" name="image" multiple data-show-upload="false" data-show-caption="true" data-allowed-file-extensions='["jpg", "png"]'>
+            
+            
+            
+
+
+            <label class="control-label">Select File</label>
+            <input id="input-21" type="file" accept="image/*" class="file-loading">
+            <script>
+                $(document).on('ready', function() {
+                    $("#input-21").fileinput({
+                        previewFileType: "image",
+                        browseClass: "btn btn-success",
+                        browseLabel: "Pick Image",
+                        browseIcon: "<i class=\"glyphicon glyphicon-picture\"></i> ",
+                        removeClass: "btn btn-danger",
+                        removeLabel: "Delete",
+                        removeIcon: "<i class=\"glyphicon glyphicon-trash\"></i> ",
+                        uploadClass: "btn btn-info",
+                        uploadLabel: "Upload",
+                        uploadIcon: "<i class=\"glyphicon glyphicon-upload\"></i> "
+                    });
+                });
+            </script>
+
+
         </div>
     <div class="row col-md-12">
 <table class="table table-bordered tablitashow">
@@ -228,7 +245,7 @@
     </form>
 
 </div>
-</form>
+
 
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

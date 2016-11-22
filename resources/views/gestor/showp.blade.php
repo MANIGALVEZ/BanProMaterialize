@@ -2,29 +2,24 @@
 
 @section('content')
 
-<form id="formPro" action="{{url('editS/'.$query->id)}}" method="POST">
+<form class="" id="formPro" action="{{url('editS/'.$query->id)}}" method="POST">
 {{ csrf_field() }}
 
-<div class="row col-md-12">
+<div class=" row col-md-12">
     <div class="infoinicial">
-        <article>
-            <label>Nombre Proyecto:</label>
+        <article class="form-inline">
+            <label>Proyecto: </label>
                 <input class="quitarborde" type="text" name="nombrep" value="{{$query->nombrep}}" readonly>
-        </article>
 
-        <article>
-            <label>Sector Enfocado: </label>
+            <label>Sector: </label>
                 <input class="quitarborde" type="text" name="sectorenfocado" value="{{$query->sectorenfocado}}" readonly>
-        </article>
 
-        <article>
-            <label>Creado por: </label>
-                <p>{{$query->user->nameu}}</p>
-        </article>
+            <label>Creado por:</label> {{$query->user->nameu}}
 
-        <article>
-            <button type="button" class="btn btn-primary btn-just-icon btn-xs editinput" data-toggle="tooltip" data-placement="top" title="Editar"><i class="material-icons">edit</i></button>
-            <button type="submit" class="btn btn-success btn-just-icon btn-xs updateinput" data-toggle="tooltip" data-placement="top" title="Guardar"><i class="material-icons">save</i></button>
+            @if(Auth::user()->tiporol == 'gestor')
+            <button type="button" class="btn btn-primary btn-just-icon btn-xs editInput" data-toggle="tooltip" data-placement="top" title="Editar"><i class="material-icons">edit</i></button>
+            <button type="submit" class="btn btn-success btn-just-icon btn-xs updateInput hidden" data-toggle="tooltip" data-placement="top" title="Guardar"><i class="material-icons">save</i></button>
+            @endif
         </article>
     </div>
     <div>
@@ -42,18 +37,14 @@
             <tr>
                 <td>
                     <div class="cajascontent">
-
-                        {{--</textarea>--}}
-                        <textarea  class="infotablainicial" id="" cols="77" rows="10" readonly>{{$query->descripcion}}</textarea>
+                        <textarea  class="quitarborde noresize" id="" name="descripcion" cols="77" rows="10" readonly>{{$query->descripcion}}</textarea>
                     </div>
                 </td>
                 <td>
                     <div class="cajascontent">
-                       <!-- <input class="quitarborde" type="text" name="resumen" value="" readonly>-->
-                        {{--</textarea>--}}
-                        <textarea class="infotablainicial" id="" cols="77" rows="10" readonly>{{$query->resumen}}</textarea>
-
+                        <textarea  class="quitarborde noresize" id="" name="resumen" cols="77" rows="10" readonly>{{$query->resumen}}</textarea>
                     </div>
+                </td>
                 @if(Auth::user()->tiporol == 'usuario')
                 <td>
                         <?php $estadoproyecto = DB::table("proyectosusers")->where("proyectos_id", $query->id)->where("users_id", Auth::user()->id)->value("estadosproyectosusers_id"); ?>
@@ -75,6 +66,7 @@
             </tbody>
         </table>
     </div>
+</form>
     <table class="table table-bordered tablitashow"  >
         <thead>
         <tr>
@@ -100,13 +92,12 @@
             <td>
                 <div>
                     @if(Auth::user()->tiporol == 'gestor')
-                        <strong class="titulousu">Usuarios Inscritos</strong>
                         <div class="usuarioscontent">
                             @foreach($usuarios as $usu)
                                 <div class="contenusuarios">
                                     <li class="nusu">{{$usu->nameu}}</li>
                                     <li class="EstadoU">
-                                        <?php $estadosprouser = DB::table("estadosproyectosusers")->get(); ?>
+                                        <?php $estadosprouser = DB::table("estadosproyectosusers")->where("id", "<>", 4)->get(); ?>
                                         <select class=" estadoProyectoUsuario usuis" data-idprouser='<?php echo DB::table("proyectosusers")->where("proyectos_id", $query->id)->where("users_id", $usu->id)->value("id"); ?>'>
                                             @foreach($estadosprouser as $estado)
                                                 <?php $tabla = DB::table("proyectosusers")->where("proyectos_id", $query->id)->where("users_id", $usu->id)->value("estadosproyectosusers_id"); ?>
@@ -123,7 +114,6 @@
                         </div>
                     @endif
                     @if(Auth::user()->tiporol == 'usuario')
-                        <strong class="titulousu">Usuarios Inscritos</strong>
                         <div class="usuarioscontent">
                             @foreach($usuarios2 as $usu)
                                 <li>{{$usu->nameu}}</li>
@@ -143,6 +133,7 @@
                         @endif
                     @endforeach
                 @endif
+                @if(Auth::user()->tiporol == 'gestor')
                 <?php $estados = DB::table("estadosdeproyectos")->where('id', '<>', '1')->get(); ?>
                 <form class="form-inline">
                     <select class="estadoProyectoDetalle" name="" data-proyecto="{{ $query->id }}">
@@ -155,6 +146,7 @@
                         @endforeach
                     </select>
                 </form>
+                @endif
             </td>
         </tbody>
     </table>
@@ -164,7 +156,7 @@
 
         <div class="row col-md-4 col-md-offset-1">
             <center><h6>Seleccione una imagen</h6></center>
-            <input  type="file" class="file" name="image" multiple data-show-upload="false" data-show-caption="true" data-allowed-file-extensions='["jpg", "png"]'>
+            <input type="file" class="file imagen" name="image" data-imagen="{{ $query->id }}" data-allowed-file-extensions='["jpg", "png"]'>
         </div>
     <div class="row col-md-12">
 <table class="table table-bordered tablitashow">
@@ -226,6 +218,6 @@
     </form>
 
 </div>
-</form>
+
 
 @endsection

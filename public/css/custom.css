@@ -176,13 +176,17 @@ div.letrablancadiv
 {
     border: none;
 }
-.imgS{
+.imgS
+{
     width: 500px;
 }
-.infoinicial article{
+
+.infoinicial article
+{
     display: inline-block;
 }
-.infotablainicial{
+
+.noresize{
     resize:none;
-    border:none;
 }
+
