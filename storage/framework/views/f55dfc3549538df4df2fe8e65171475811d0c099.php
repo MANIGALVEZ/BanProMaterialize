@@ -30,6 +30,21 @@
             <button type="button" class="btn btn-primary btn-just-icon btn-xs editInput" data-toggle="tooltip" data-placement="top" title="Editar"><i class="material-icons">edit</i></button>
             <button type="submit" class="btn btn-success btn-just-icon btn-xs updateInput hidden" data-toggle="tooltip" data-placement="top" title="Guardar"><i class="material-icons">save</i></button>
             <?php endif; ?>
+
+            <?php if(Auth::user()->tiporol == 'usuario'): ?>
+                <?php $estadoproyecto = DB::table("proyectosusers")->where("proyectos_id", $query->id)->where("users_id", Auth::user()->id)->value("estadosproyectosusers_id"); ?>
+                <?php if(count($estadoproyecto) > 0): ?>
+                    <?php if($estadoproyecto == 2): ?>
+                        <a href="javascript:;" type="button" class="btn btn-warning btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" disabled="disabled" title="Pendiente Aprobacion"><i class="material-icons">access_time</i></a>
+                    <?php elseif($estadoproyecto == 3): ?>
+                        <a href="javascript:;" type="button" class="btn btn-danger btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Rechazado" disabled="disabled"><i class="material-icons">not_interested</i></a>
+                    <?php elseif($estadoproyecto == 1): ?>
+                        <button type="button" class="btn btn-success  btn-just-icon btn-xs" data-toggle="popover" data-placement="top" title="Reclutado!" data-content="Felicidades! ha sido aceptado, pronto, un gestor le contactará"><i class="material-icons">check</i></button>
+                    <?php endif; ?>
+                <?php else: ?>
+                    <a href="../vincularce/<?php echo e($query->id); ?>" type="button" class="btn btn-primary btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Inscribirse"><i class="glyphicon glyphicon-edit"></i></a>
+                <?php endif; ?>
+            <?php endif; ?>
         </article>
     </div>
     <div>
@@ -38,9 +53,6 @@
             <tr>
                 <th>Descripcion</th>
                 <th>Resumen</th>
-                <?php if(Auth::user()->tiporol == 'usuario'): ?>
-                    <th>Opciones</th>
-                <?php endif; ?>
             </tr>
             </thead>
             <tbody>
@@ -55,22 +67,9 @@
                         <textarea  class="quitarborde noresize" id="" name="resumen" cols="77" rows="10" readonly><?php echo e($query->resumen); ?></textarea>
                     </div>
                 </td>
-                <?php if(Auth::user()->tiporol == 'usuario'): ?>
-                <td>
-                        <?php $estadoproyecto = DB::table("proyectosusers")->where("proyectos_id", $query->id)->where("users_id", Auth::user()->id)->value("estadosproyectosusers_id"); ?>
-                        <?php if(count($estadoproyecto) > 0): ?>
-                            <?php if($estadoproyecto == 2): ?>
-                                <a href="javascript:;" type="button" class="btn btn-warning btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" disabled="disabled" title="Pendiente Aprobacion"><i class="material-icons">access_time</i></a>
-                            <?php elseif($estadoproyecto == 3): ?>
-                                <a href="javascript:;" type="button" class="btn btn-danger btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Rechazado"><i class="material-icons">not_interested</i></a>
-                            <?php elseif($estadoproyecto == 1): ?>
-                                <button type="button" class="btn btn-success  btn-just-icon btn-xs" data-toggle="popover" data-placement="top" title="Reclutado!" data-content="Felicidades! ha sido aceptado, pronto, un gestor le contactará"><i class="material-icons">check</i></button>
-                            <?php endif; ?>
-                        <?php else: ?>
-                            <a href="../vincularce/<?php echo e($query->id); ?>" type="button" class="btn btn-primary btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Inscribirse"><i class="glyphicon glyphicon-edit"></i></a>
-                        <?php endif; ?>
-                </td>
-                <?php endif; ?>
+
+
+
 
             </tr>
             </tbody>
@@ -90,25 +89,44 @@
         <tr>
 
             <td>
-                <ul><?php if(Auth::user()->tiporol == 'gestor'): ?>
-                        <?php $__currentLoopData = $lineas_proyecto; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $linea1): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
-                            <?php $lineas = DB::table("lineas")->where("id", $linea1->lineas_id)->get(); ?>
-                                <?php $__currentLoopData = $lineas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $linea2): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
-                                
-                                
-                                
-                                
+                <ul>
+                    <?php if(Auth::user()->tiporol == 'gestor'): ?>
+                        <?php $lineas = DB::table("lineas")->get(); ?>
+                            <?php $__currentLoopData = $lineas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $linea): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+
+                            
+                            <?php $__currentLoopData = $lineasproyectos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $lineaproyecto): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
                                     
                                     
                                     
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
-                                
-                                
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
+                                <?php if($linea->id!=$lineaproyecto->lineas_id): ?>
+                                    <input id="<?php echo e($linea->linea); ?>" class="" type="checkbox" name="" value="<?php echo e($linea->linea); ?>">
+                                    <label for="<?php echo e($linea->linea); ?>"><?php echo e($linea->linea); ?></label><br>
+                                <?php else: ?>
+                                    <input id="<?php echo e($linea->linea); ?>" class="" type="checkbox" name="" value="<?php echo e($linea->linea); ?>">
+                                    <label for="<?php echo e($linea->linea); ?>"><?php echo e($linea->linea); ?></label><br>
+                                <?php endif; ?>
+
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
+
                     <?php endif; ?>
 
                     <?php if(Auth::user()->tiporol == 'usuario'): ?>
-                        <?php $__currentLoopData = $lineas_proyecto; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $linea): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+                        <?php $__currentLoopData = $lineasproyectos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $linea): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
                             <?php $lineas = DB::table("lineas")->where("id", $linea->lineas_id)->get(); ?>
                             <?php $__currentLoopData = $lineas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $linea): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
                                 <li><?php echo e($linea->linea); ?></li>

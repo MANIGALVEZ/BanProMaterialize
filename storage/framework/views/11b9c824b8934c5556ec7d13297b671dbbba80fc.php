@@ -333,12 +333,12 @@ $(document).ready(function()
 
 
 
-        $('.btn-ocultar').click(function ()
-        {
-            $id = $(this).attr("data-rechazado-ocultar")
-            $.get('registroR/'+$id)
-            window.location.replace("")
-        })
+//        $('.btn-ocultar').click(function ()
+//        {
+//            $id = $(this).attr("data-rechazado-ocultar")
+//            $.get('registroR/'+$id)
+//            window.location.replace("")
+//        })
 
 
 

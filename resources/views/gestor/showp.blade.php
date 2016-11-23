@@ -30,6 +30,21 @@
             <button type="button" class="btn btn-primary btn-just-icon btn-xs editInput" data-toggle="tooltip" data-placement="top" title="Editar"><i class="material-icons">edit</i></button>
             <button type="submit" class="btn btn-success btn-just-icon btn-xs updateInput hidden" data-toggle="tooltip" data-placement="top" title="Guardar"><i class="material-icons">save</i></button>
             @endif
+
+            @if(Auth::user()->tiporol == 'usuario')
+                <?php $estadoproyecto = DB::table("proyectosusers")->where("proyectos_id", $query->id)->where("users_id", Auth::user()->id)->value("estadosproyectosusers_id"); ?>
+                @if(count($estadoproyecto) > 0)
+                    @if($estadoproyecto == 2)
+                        <a href="javascript:;" type="button" class="btn btn-warning btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" disabled="disabled" title="Pendiente Aprobacion"><i class="material-icons">access_time</i></a>
+                    @elseif($estadoproyecto == 3)
+                        <a href="javascript:;" type="button" class="btn btn-danger btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Rechazado" disabled="disabled"><i class="material-icons">not_interested</i></a>
+                    @elseif($estadoproyecto == 1)
+                        <button type="button" class="btn btn-success  btn-just-icon btn-xs" data-toggle="popover" data-placement="top" title="Reclutado!" data-content="Felicidades! ha sido aceptado, pronto, un gestor le contactará"><i class="material-icons">check</i></button>
+                    @endif
+                @else
+                    <a href="../vincularce/{{$query->id}}" type="button" class="btn btn-primary btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Inscribirse"><i class="glyphicon glyphicon-edit"></i></a>
+                @endif
+            @endif
         </article>
     </div>
     <div>
@@ -38,9 +53,6 @@
             <tr>
                 <th>Descripcion</th>
                 <th>Resumen</th>
-                @if(Auth::user()->tiporol == 'usuario')
-                    <th>Opciones</th>
-                @endif
             </tr>
             </thead>
             <tbody>
@@ -55,22 +67,9 @@
                         <textarea  class="quitarborde noresize" id="" name="resumen" cols="77" rows="10" readonly>{{$query->resumen}}</textarea>
                     </div>
                 </td>
-                @if(Auth::user()->tiporol == 'usuario')
-                <td>
-                        <?php $estadoproyecto = DB::table("proyectosusers")->where("proyectos_id", $query->id)->where("users_id", Auth::user()->id)->value("estadosproyectosusers_id"); ?>
-                        @if(count($estadoproyecto) > 0)
-                            @if($estadoproyecto == 2)
-                                <a href="javascript:;" type="button" class="btn btn-warning btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" disabled="disabled" title="Pendiente Aprobacion"><i class="material-icons">access_time</i></a>
-                            @elseif($estadoproyecto == 3)
-                                <a href="javascript:;" type="button" class="btn btn-danger btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Rechazado"><i class="material-icons">not_interested</i></a>
-                            @elseif($estadoproyecto == 1)
-                                <button type="button" class="btn btn-success  btn-just-icon btn-xs" data-toggle="popover" data-placement="top" title="Reclutado!" data-content="Felicidades! ha sido aceptado, pronto, un gestor le contactará"><i class="material-icons">check</i></button>
-                            @endif
-                        @else
-                            <a href="../vincularce/{{$query->id}}" type="button" class="btn btn-primary btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Inscribirse"><i class="glyphicon glyphicon-edit"></i></a>
-                        @endif
-                </td>
-                @endif
+
+
+
 
             </tr>
             </tbody>
@@ -90,25 +89,44 @@
         <tr>
 
             <td>
-                {{--<ul>@if(Auth::user()->tiporol == 'gestor')--}}
-                        {{--@foreach($lineas_proyecto as $key => $linea1)--}}
-                            {{--<?php $lineas = DB::table("lineas")->where("id", $linea1->lineas_id)->get(); ?>--}}
-                                {{--@foreach($lineas as $key => $linea2)--}}
-                                {{--@foreach($lineas1 as $key => $linea2)--}}
-                                {{--@if($linea1!=$linea2)--}}
-                                {{--<input checked id="{{ $linea2->id }}" class="" type="checkbox" name="" value="{{ $linea2->id }}">--}}
-                                {{--<label for="{{ $linea2->id }}">{{ $linea2->linea }}</label><br>--}}
+                <ul>
+                    @if(Auth::user()->tiporol == 'gestor')
+                        <?php $lineas = DB::table("lineas")->get(); ?>
+                            @foreach($lineas as $linea)
+{{--                                {{$linea->id}}--}}
+                            {{--@endforeach--}}
+                            @foreach($lineasproyectos as $key => $lineaproyecto)
+                                    {{--                                {{$lineaproyecto->lineas_id}}--}}
+                                    {{--                                @if($lineaproyecto->lineas_id == $lineas->$id)--}}
+                                    {{--                                                    {{$lineas}}--}}
+                                    {{--@foreach($lineas as $key => $linea2)--}}
+                                    {{--@foreach($lineas1 as $key => $linea2)--}}
+                                    {{--@if($linea1!=$linea2)--}}
+                                    {{--<input checked id="{{ $linea2->id }}" class="" type="checkbox" name="" value="{{ $linea2->id }}">--}}
+                                    {{--<label for="{{ $linea2->id }}">{{ $linea2->linea }}</label><br>--}}
                                     {{--@else--}}
                                     {{--@endif--}}
                                     {{--@endforeach--}}
-                                {{--@endforeach--}}
-                                {{--<input id="{{ $lineas->id }}" class="" type="checkbox" name="lineatecnologica[]" value="{{ $lineas->id }}">--}}
-                                {{--<label for="{{ $lineas->id }}">{{ $lineas->linea }}</label><br>--}}
-                        {{--@endforeach--}}
-                    {{--@endif--}}
+                                    {{--@endforeach--}}
+                                    {{--<input id="{{ $lineas->id }}" class="" type="checkbox" name="lineatecnologica[]" value="{{ $lineas->id }}">--}}
+                                    {{--<label for="{{ $lineas->id }}">{{ $lineas->linea }}</label><br>--}}
+                                    {{--@endif--}}
+
+                                @endforeach
+                                @if($linea->id!=$lineaproyecto->lineas_id)
+                                    <input id="{{ $linea->linea }}" class="" type="checkbox" name="" value="{{ $linea->linea }}">
+                                    <label for="{{ $linea->linea }}">{{ $linea->linea }}</label><br>
+                                @else
+                                    <input id="{{ $linea->linea }}" class="" type="checkbox" name="" value="{{ $linea->linea }}">
+                                    <label for="{{ $linea->linea }}">{{ $linea->linea }}</label><br>
+                                @endif
+{{--                                {{$linea->linea}}--}}
+                            @endforeach
+
+                    @endif
 
                     @if(Auth::user()->tiporol == 'usuario')
-                        @foreach($lineas_proyecto as $key => $linea)
+                        @foreach($lineasproyectos as $key => $linea)
                             <?php $lineas = DB::table("lineas")->where("id", $linea->lineas_id)->get(); ?>
                             @foreach($lineas as $key => $linea)
                                 <li>{{ $linea->linea }}</li>

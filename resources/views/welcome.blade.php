@@ -24,14 +24,14 @@
                             {{--<div class="cover">--}}
                             {{--<img src="/img/tecnoparque.png"/>--}}
                             <h3 class="wizard-title">
-                                Red Tecnoparque Colombia
+                                RED TECNOPARQUE COLOMBIA
                             </h3>
-                            <h5>Regional Caldas</h5>
+                            <h5>REGIONAL CALDAS</h5>
                             {{--</div>--}}
                         </div>
                         <div class="wizard-navigation">
                             <ul>
-                                <li class="active"><a href="#proyectos" data-toggle="tab">Proyectos</a></li>
+                                <li class="active"><a href="#proyectos" data-toggle="tab">BANCO DE PROYECTOS</a></li>
                             </ul>
                         </div>
                         @foreach($proyectos as $proyecto)
