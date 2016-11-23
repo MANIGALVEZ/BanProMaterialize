@@ -67,10 +67,6 @@
                         <textarea  class="quitarborde noresize" id="" name="resumen" cols="77" rows="10" readonly><?php echo e($query->resumen); ?></textarea>
                     </div>
                 </td>
-
-
-
-
             </tr>
             </tbody>
         </table>
@@ -199,7 +195,7 @@
         <div style="padding:0; height: 268px;" class=" row col-md-4 col-sm-offset-1">
             <img src="/<?php echo e($query->imagen); ?>" class="img-thumbnail imgS" style=" height: 250px;">
         </div>
-
+<?php if(Auth::user()->tiporol == 'gestor'): ?>
     <form class="" action="<?php echo e(url('editSI/'.$query->id)); ?>" method="POST" role="form" enctype="multipart/form-data">
     <?php echo e(csrf_field()); ?>
 
@@ -212,6 +208,7 @@
             
         </div>
     </form>
+    <?php endif; ?>
     <div class="row col-md-12">
 <table class="table table-bordered tablitashow">
     <thead>

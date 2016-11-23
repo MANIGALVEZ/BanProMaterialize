@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-11-2016 a las 15:44:06
+-- Tiempo de generación: 23-11-2016 a las 22:19:27
 -- Versión del servidor: 10.1.16-MariaDB
--- Versión de PHP: 7.0.9
+-- Versión de PHP: 5.6.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -34,6 +34,14 @@ CREATE TABLE `comentarios` (
   `proyecto_id` int(10) UNSIGNED NOT NULL,
   `usuario_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `comentarios`
+--
+
+INSERT INTO `comentarios` (`id`, `comentario`, `created_at`, `updated_at`, `proyecto_id`, `usuario_id`) VALUES
+(1, 'Hola!, quisiera pertenecer a este proyecto, como puedo hacerlo?', '2016-11-24 00:19:54', '2016-11-24 00:19:54', 45, 2),
+(2, 'Hola Yonathan, es muy fácil, simplemente dale click al boto inscribirse que esta  en esta pagina, o también lo puedes hacer donde se encuentran todo los proyectos', '2016-11-24 00:22:06', '2016-11-24 00:22:06', 45, 1);
 
 -- --------------------------------------------------------
 
@@ -111,6 +119,19 @@ CREATE TABLE `lineasproyectos` (
   `lineas_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `lineasproyectos`
+--
+
+INSERT INTO `lineasproyectos` (`id`, `proyectos_id`, `lineas_id`) VALUES
+(1, 45, 1),
+(2, 45, 3),
+(3, 47, 1),
+(4, 47, 3),
+(5, 49, 1),
+(6, 50, 2),
+(7, 50, 3);
+
 -- --------------------------------------------------------
 
 --
@@ -157,14 +178,26 @@ CREATE TABLE `proyectos` (
   `nombrep` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `sectorenfocado` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `empresa` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `descripcion` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `resumen` varchar(300) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `descripcion` varchar(800) COLLATE utf8_unicode_ci NOT NULL,
+  `resumen` varchar(800) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` date DEFAULT NULL,
   `updated_at` date DEFAULT NULL,
   `usuario_id` int(10) UNSIGNED NOT NULL,
   `imagen` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `estadosdeproyectos_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `proyectos`
+--
+
+INSERT INTO `proyectos` (`id`, `nombrep`, `sectorenfocado`, `empresa`, `descripcion`, `resumen`, `created_at`, `updated_at`, `usuario_id`, `imagen`, `estadosdeproyectos_id`) VALUES
+(45, 'TecnoBike', 'Industria', 'Sena', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam at pharetra lorem. Vivamus vehicula nunc non lorem hendrerit elementum. Praesent mollis purus non egestas dignissim. Ut eu ligula erat. Fusce eget nisl sit amet metus iaculis gravida sasdasdasd', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam at pharetra lorem. Vivamus vehicula nunc non lorem hendrerit elementum. Praesent mollis purus non egestas dignissim.', '2016-11-23', '2016-11-23', 2, 'imagenes/proyectos/teknobike_felt_homepage_6.jpg', 3),
+(46, 'Agua Limpia', 'Ambiental', 'AgroEmpresa S.A', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam at pharetra lorem. Vivamus vehicula nunc non lorem hendrerit elementum. Praesent mollis purus non egestas dignissim. Ut eu ligula erat. Fusce eget nisl sit amet metus iaculis gravida ac a turpis', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam at pharetra lorem. Vivamus vehicula nunc non lorem hendrerit elementum. Praesent mollis purus non egestas dignissim. Ut eu ligula erat.', '2016-11-23', '2016-11-23', 2, 'imagenes/proyectos/slide1.jpg', 3),
+(47, 'Comunicación Mejor', 'Telecomunicaciones ', 'ComuUniti', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam at pharetra lorem. Vivamus vehicula nunc non lorem hendrerit elementum. Praesent mollis purus non egestas dignissim. Ut eu ligula erat. Fusce eget nisl sit amet metus iaculis gravida ac a turpis', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam at pharetra lorem. Vivamus vehicula nunc non lorem hendrerit elementum. Praesent mollis purus non egestas dignissim. Ut eu ligula erat.', '2016-11-23', '2016-11-23', 2, 'imagenes/proyectos/descarga.jpg', 3),
+(48, 'EmpanadasMaqui', '', 'Empa Nadas', '\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam at pharetra lorem. Vivamus vehicula nunc non lorem hendrerit elementum. Praesent mollis purus non egestas dignissim. Ut eu ligula erat. Fusce eget nisl sit amet metus iaculis gravida ac a turp', NULL, '2016-11-23', '2016-11-23', 7, NULL, 2),
+(49, 'Fobias', 'Psicología ', 'Universidad de Manizales', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam at pharetra lorem. Vivamus vehicula nunc non lorem hendrerit elementum. Praesent mollis purus non egestas dignissim. Ut eu ligula erat. Fusce eget nisl sit amet metus iaculis gravida sasdasdasd', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam at pharetra lorem. Vivamus vehicula nunc non lorem hendrerit elementum. Praesent mollis purus non egestas dignissim. Ut eu ligula erat. Fusce eget nisl sit amet metus iaculis gravida sasdasdasd', '2016-11-23', '2016-11-23', 1, 'imagenes/proyectos/fobias.jpg', 3),
+(50, 'Pared verde ', 'Ambiental', 'Sena', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sed iaculis purus. Nunc iaculis scelerisque ipsum. In aliquam luctus mi. In pellentesque venenatis ultrices. Integer porttitor euismod est, quis imperdiet turpis accumsan et. Aliquam erat volu', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sed iaculis purus. Nunc iaculis scelerisque ipsum. In aliquam luctus mi. In pellentesque venenatis ultrices. Integer porttitor euismod est, quis imperdiet turpis accumsan et. Aliquam erat volutpat. Vestibulum risus neque, scelerisque id imperdiet sed, vestibulum quis eros. Vivamus dapibus tempus auctor.', '2016-11-23', '2016-11-23', 1, 'imagenes/proyectos/paredverde.jpg', 3);
 
 -- --------------------------------------------------------
 
@@ -178,6 +211,14 @@ CREATE TABLE `proyectosusers` (
   `users_id` int(11) NOT NULL,
   `estadosproyectosusers_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `proyectosusers`
+--
+
+INSERT INTO `proyectosusers` (`id`, `proyectos_id`, `users_id`, `estadosproyectosusers_id`) VALUES
+(2, 45, 7, 1),
+(3, 46, 7, 2);
 
 -- --------------------------------------------------------
 
@@ -206,8 +247,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nameu`, `apellidos`, `email`, `celular`, `titulos`, `estado`, `password`, `remember_token`, `tiporol`, `avatar`, `created_at`, `updated_at`) VALUES
-(1, 'Juan', 'Muñoz', 'morris@gmail.com', 3215697363, 'Tecnologo', 'sinestado', '$2y$10$TAaC3BVpe4v4lXtkwZ0Mb.PzBlgt7Eo7XkQdEvIphDEMc3zdEUtAe', 'r8kerghmwBzcyJcA97tXfRfMa3LFGjZ1kkcPQSdI9nFXQdx64YyIicof2EMO', 'gestor', NULL, NULL, '2016-11-23 19:14:21'),
-(2, 'Yonathan Andres', 'Galvez Giraldo', 'ogiraldo272@gmail.com', 3122730311, 'Tecnologo', 'sinestado', '$2y$10$G8U9VHdgeAPcyTkOeFiyFe9GQPadn0JxQmj4nNZme0BtwfD.r3Xtu', '1mZ2NWFx5rHzdL1pCAwNi9zBvpsGkAT6wLiyIcKSQF0jR7I64iNlLmPDeeYH', 'usuario', NULL, NULL, '2016-11-23 19:43:14');
+(1, 'Juan', 'Muñoz', 'morris@gmail.com', 3215697363, 'Tecnologo', 'sinestado', '$2y$10$TAaC3BVpe4v4lXtkwZ0Mb.PzBlgt7Eo7XkQdEvIphDEMc3zdEUtAe', 'pqBzWUT3603Z018mIAnm9NkSON3ms9ESNhmPm8qEOhg9PkFLZrS70sJ6zs0O', 'gestor', NULL, NULL, '2016-11-24 00:58:06'),
+(2, 'Yonathan Andres', 'Galvez Giraldo', 'ogiraldo272@gmail.com', 3122730311, 'Tecnologo', 'sinestado', '$2y$10$G8U9VHdgeAPcyTkOeFiyFe9GQPadn0JxQmj4nNZme0BtwfD.r3Xtu', 'uG9SE0QD7OZc97zSocqPMhWbnKabAKWS53FaipR3Zfak5Ayf4BAJZtmSlAEM', 'usuario', NULL, NULL, '2016-11-24 00:24:08'),
+(7, 'Henry Arturo', 'Valencia Parra', 'henry_parra1994@hotmail.com', 3215697363, 'Tegnologo', 'sinestado', '$2y$10$4flVJaeSDTMpo6FBAyhJYur/5yhRh./wfU3zilTAqVhC1Wax7KdC.', 'bxqzjiPGC2ebfgpFfWR2rMjiT25F6CkbToaoZV7GGoRlfUpQVP272kh2Mim9', 'usuario', NULL, '2016-11-23 22:01:37', '2016-11-24 00:53:40');
 
 --
 -- Índices para tablas volcadas
@@ -282,7 +324,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `estadosdeproyectos`
 --
@@ -292,7 +334,7 @@ ALTER TABLE `estadosdeproyectos`
 -- AUTO_INCREMENT de la tabla `estadosproyectosusers`
 --
 ALTER TABLE `estadosproyectosusers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `lineas`
 --
@@ -302,22 +344,22 @@ ALTER TABLE `lineas`
 -- AUTO_INCREMENT de la tabla `lineasproyectos`
 --
 ALTER TABLE `lineasproyectos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `proyectos`
 --
 ALTER TABLE `proyectos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 --
 -- AUTO_INCREMENT de la tabla `proyectosusers`
 --
 ALTER TABLE `proyectosusers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- Restricciones para tablas volcadas
 --
