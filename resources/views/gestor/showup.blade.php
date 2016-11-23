@@ -1,6 +1,15 @@
 @extends('layouts.app')
 @section('content')
 
+
+<article>
+    <div class="page-header">
+        <h2 class="text-center text-muted"></h2>
+    </div>
+</article>
+<br>
+
+
     <table class="table table-bordered"  >
         <thead>
         {{--<th>Id</th>--}}

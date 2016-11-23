@@ -1,6 +1,14 @@
 @extends('layouts.app')
 @section('content')
 
+
+<article>
+    <div class="page-header">
+        <h2 class="text-center text-muted">Administración De Usuarios</h2>
+    </div>
+</article>
+<br>
+
 <table class="table table-hover" style="text-align: center">
       <thead>
         {{--<th>Id</th>--}}

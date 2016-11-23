@@ -43,6 +43,13 @@
                     {{--</div>--}}
                 {{--</div>--}}
             {{--</nav>--}}
+
+            <!--  Slider  -->
+            <a href="http://tecnoparque.sena.edu.co/" class="made-with-mk">
+                <div class="material-icons">copyright</div>
+                <div class="made-with">Hecho Para <strong>Tecnoparque</strong></div>
+            </a>
+
             <div class="wrapper">
                 <div class="header header-filter" style="background-image: url('../img/bg3.jpeg'); background-size: cover; background-position: top center;">
                     <div class="container">

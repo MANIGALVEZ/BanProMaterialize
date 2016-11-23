@@ -15,23 +15,26 @@
     <!--   Big container   -->
     <div class="container">
         <div class="row">
-            <div class="col-sm-8 col-sm-offset-2 contentiniciodiv">
+            <div class="col-sm-12">
                 <div class="wizard-container">
                     <div class="card wizard-card" data-color="green" id="wizardProfile">
                         <div class="wizard-header">
+                            
+                            
                             <h3 class="wizard-title">
                                 Red Tecnoparque Colombia
                             </h3>
                             <h5>Regional Caldas</h5>
+                            
                         </div>
                         <div class="wizard-navigation">
                             <ul>
                                 <li class="active"><a href="#proyectos" data-toggle="tab">Proyectos</a></li>
                             </ul>
                         </div>
-                        <div class="tab-content col-sm-6 col-sm-offset-1 iniciodiv">
-                            <?php $__currentLoopData = $proyectos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $proyecto): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
-                                <div class="card-container">
+                        <?php $__currentLoopData = $proyectos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $proyecto): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+                        <div class="tab-content col-md-4 col-sm-6">
+                                <div class="fofo card-container">
                                     <div class="card">
                                         <div class="front">
                                             <div class="cover">
@@ -70,17 +73,17 @@
                                                 </div>
                                             </div>
                                             <div class="footer">
-                                                <div class="social-links text-center">
-                                                    <a href="" class="facebook"><i class="fa fa-facebook fa-fw"></i></a>
-                                                    <a href="" class="google"><i class="fa fa-google-plus fa-fw"></i></a>
-                                                    <a href="" class="twitter"><i class="fa fa-twitter fa-fw"></i></a>
-                                                </div>
+                                                
+                                                    
+                                                    
+                                                    
+                                                
                                             </div>
                                         </div> <!-- end back panel -->
                                     </div> <!-- end card -->
                                 </div> <!-- end card-container -->
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
                         </div>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
                     </div>
                 </div>
             </div>

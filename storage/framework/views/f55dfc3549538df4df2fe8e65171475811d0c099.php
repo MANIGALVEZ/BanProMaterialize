@@ -1,5 +1,15 @@
 <?php $__env->startSection('content'); ?>
 
+
+<article>
+<div class="page-header">
+        <h2 class="text-center text-muted">Detalles Del Proyecto</h2>
+    </div>
+</article>
+<br>
+
+
+
 <form class="" id="formPro" action="<?php echo e(url('editS/'.$query->id)); ?>" method="POST">
 <?php echo e(csrf_field()); ?>
 
@@ -80,13 +90,32 @@
         <tr>
 
             <td>
-                <ul>
-                    <?php $__currentLoopData = $lineas_proyecto; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $linea): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
-                        <?php $lineas = DB::table("lineas")->where("id", $linea->lineas_id)->get(); ?>
+                <ul><?php if(Auth::user()->tiporol == 'gestor'): ?>
+                        <?php $__currentLoopData = $lineas_proyecto; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $linea): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+                            <?php $lineas = DB::table("lineas")->where("id", $linea->lineas_id)->get(); ?>
+                                <?php $__currentLoopData = $lineas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $linea): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
+                                <?php $lineas1 = DB::table("lineas")->get(); ?>
+                                <?php $__currentLoopData = $lineas1; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $linea2): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+                                    <?php if($linea==$linea2): ?>
+                                    <input checked id="<?php echo e($linea2->id); ?>" class="" type="checkbox" name="" value="<?php echo e($linea->id); ?>">
+                                    <label for="<?php echo e($linea2->id); ?>"><?php echo e($linea2->linea); ?></label><br>
+                                    <?php else: ?>
+                                    
+                                    
+                                    <?php endif; ?>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
+                    <?php endif; ?>
+
+                    <?php if(Auth::user()->tiporol == 'usuario'): ?>
+                        <?php $__currentLoopData = $lineas_proyecto; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $linea): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+                            <?php $lineas = DB::table("lineas")->where("id", $linea->lineas_id)->get(); ?>
                             <?php $__currentLoopData = $lineas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $linea): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
-                            <li><?php echo e($linea->linea); ?></li>
+                                <li><?php echo e($linea->linea); ?></li>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
+                    <?php endif; ?>
                 </ul>
             </td>
             <td>
@@ -154,34 +183,18 @@
             <img src="/<?php echo e($query->imagen); ?>" class="img-thumbnail imgS" style=" height: 250px;">
         </div>
 
+    <form class="" action="<?php echo e(url('editSI/'.$query->id)); ?>" method="POST" role="form" enctype="multipart/form-data">
+    <?php echo e(csrf_field()); ?>
+
         <div class="row col-md-4 col-md-offset-1">
             <center><h6>Seleccione una imagen</h6></center>
+            <label class="control-label"></label>
             
+
+            <input type="file" class="file" name="image" data-imagen="<?php echo e($query->id); ?>" data-allowed-file-extensions='["jpg", "png"]'>
             
-            
-
-
-            <label class="control-label">Select File</label>
-            <input id="input-21" type="file" accept="image/*" class="file-loading">
-            <script>
-                $(document).on('ready', function() {
-                    $("#input-21").fileinput({
-                        previewFileType: "image",
-                        browseClass: "btn btn-success",
-                        browseLabel: "Pick Image",
-                        browseIcon: "<i class=\"glyphicon glyphicon-picture\"></i> ",
-                        removeClass: "btn btn-danger",
-                        removeLabel: "Delete",
-                        removeIcon: "<i class=\"glyphicon glyphicon-trash\"></i> ",
-                        uploadClass: "btn btn-info",
-                        uploadLabel: "Upload",
-                        uploadIcon: "<i class=\"glyphicon glyphicon-upload\"></i> "
-                    });
-                });
-            </script>
-
-
         </div>
+    </form>
     <div class="row col-md-12">
 <table class="table table-bordered tablitashow">
     <thead>

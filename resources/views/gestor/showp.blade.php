@@ -2,6 +2,16 @@
 
 @section('content')
 
+
+<article>
+<div class="page-header">
+        <h2 class="text-center text-muted">Detalles Del Proyecto</h2>
+    </div>
+</article>
+<br>
+
+
+
 <form class="" id="formPro" action="{{url('editS/'.$query->id)}}" method="POST">
 {{ csrf_field() }}
 
@@ -80,13 +90,32 @@
         <tr>
 
             <td>
-                <ul>
-                    @foreach($lineas_proyecto as $key => $linea)
-                        <?php $lineas = DB::table("lineas")->where("id", $linea->lineas_id)->get(); ?>
+                <ul>@if(Auth::user()->tiporol == 'gestor')
+                        @foreach($lineas_proyecto as $key => $linea)
+                            <?php $lineas = DB::table("lineas")->where("id", $linea->lineas_id)->get(); ?>
+                                @foreach($lineas as $key => $linea)
+                                @endforeach
+                                <?php $lineas1 = DB::table("lineas")->get(); ?>
+                                @foreach($lineas1 as $key => $linea2)
+                                    @if($linea==$linea2)
+                                    <input checked id="{{ $linea2->id }}" class="" type="checkbox" name="" value="{{ $linea->id }}">
+                                    <label for="{{ $linea2->id }}">{{ $linea2->linea }}</label><br>
+                                    @else
+                                    {{--<input id="linea{{ $linea2->id }}" class="filtroLinea" type="checkbox" name="lineatecnologica[]" value="{{ $linea->id }}">--}}
+                                    {{--<label for="linea{{ $linea2->id }}">{{ $linea2->linea }}</label><br>--}}
+                                    @endif
+                                @endforeach
+                        @endforeach
+                    @endif
+
+                    @if(Auth::user()->tiporol == 'usuario')
+                        @foreach($lineas_proyecto as $key => $linea)
+                            <?php $lineas = DB::table("lineas")->where("id", $linea->lineas_id)->get(); ?>
                             @foreach($lineas as $key => $linea)
-                            <li>{{ $linea->linea }}</li>
+                                <li>{{ $linea->linea }}</li>
                             @endforeach
-                    @endforeach
+                        @endforeach
+                    @endif
                 </ul>
             </td>
             <td>
@@ -154,10 +183,17 @@
             <img src="/{{$query->imagen}}" class="img-thumbnail imgS" style=" height: 250px;">
         </div>
 
+    <form class="" action="{{url('editSI/'.$query->id)}}" method="POST" role="form" enctype="multipart/form-data">
+    {{ csrf_field() }}
         <div class="row col-md-4 col-md-offset-1">
             <center><h6>Seleccione una imagen</h6></center>
-            <input type="file" class="file imagen" name="image" data-imagen="{{ $query->id }}" data-allowed-file-extensions='["jpg", "png"]'>
+            <label class="control-label"></label>
+            {{--<input type="file" class="file" name="image" multiple data-show-upload="false" data-show-caption="true" data-allowed-file-extensions='["jpg", "png"]'>--}}
+
+            <input type="file" class="file" name="image" data-imagen="{{ $query->id }}" data-allowed-file-extensions='["jpg", "png"]'>
+            {{--<input type='submit' class='btn btn-finish btn-fill btn-success btn-wd' value='Registrarse' />--}}
         </div>
+    </form>
     <div class="row col-md-12">
 <table class="table table-bordered tablitashow">
     <thead>

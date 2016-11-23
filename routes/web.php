@@ -107,3 +107,7 @@ Route::get('/registroR/{id}', 'ProyectosController@registroRechazado');
 
 // Ruta para editar desde detalles de proyecto (showp)
 Route::post('/editS/{id}', 'ProyectosController@editShow');
+
+
+// Ruta para editar la imagen desde detalles de proyecto (showp)
+Route::post('/editSI/{id}', 'ProyectosController@editShowImagen');

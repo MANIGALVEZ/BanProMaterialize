@@ -472,49 +472,30 @@ class ProyectosController extends Controller
 //        }
     }
 
-    //Funcion para modificar los campos en la vista showp
+    //Funcion para editar los campos en la vista showp
     public function editShow(Request $request, $id)
     {
-        $image = $request->file('image');
+
         $editar= Proyecto::find($id);
         $editar->nombrep = $request->get('nombrep');
         $editar->sectorenfocado = $request->get('sectorenfocado');
         $editar->descripcion = $request->get('descripcion');
         $editar->resumen = $request->get('resumen');
-
-        //Decision $image: Ya que el usuario no puede subir imagen, se usa esta funcion para que no muestre error el registro
-        if($image != "")
-        {
-            $ruta = $image->getClientOriginalName();
-            $editar->imagen = 'imagenes/proyectos/' . $ruta;
-            $image->move(base_path() . '/public/imagenes/proyectos/', $ruta);
-        }
-
         $editar->save();
 
         return redirect("show/".$id);
     }
 
-    //Funcion para modificar los campos en la vista showp
-//    public function editShow(Request $request, $id)
-//    {
-//        $image = $request->file('image');
-//        $editar= Proyecto::find($id);
-//        $editar->nombrep = $request->get('nombrep');
-//        $editar->sectorenfocado = $request->get('sectorenfocado');
-//        $editar->descripcion = $request->get('descripcion');
-//        $editar->resumen = $request->get('resumen');
-//
-//        //Decision $image: Ya que el usuario no puede subir imagen, se usa esta funcion para que no muestre error el registro
-//        if($image != "")
-//        {
-//            $ruta = $image->getClientOriginalName();
-//            $editar->imagen = 'imagenes/proyectos/' . $ruta;
-//            $image->move(base_path() . '/public/imagenes/proyectos/', $ruta);
-//        }
-//
-//        $editar->save();
-//
-//        return redirect("show/".$id);
-//    }
+//    Funcion para modificar los campos en la vista showp
+    public function editShowImagen(Request $request, $id)
+    {
+        $image = $request->file('image');
+        $editar= Proyecto::find($id);
+        $ruta = $image->getClientOriginalName();
+        $editar->imagen = 'imagenes/proyectos/' . $ruta;
+        $image->move(base_path() . '/public/imagenes/proyectos/', $ruta);
+        $editar->save();
+
+        return redirect("show/".$id);
+    }
 }

@@ -17,16 +17,16 @@
     <!--   Big container   -->
     <div class="container">
         <div class="row">
-            <div class="col-sm-8 col-sm-offset-2 contentiniciodiv">
+            <div class="col-sm-12">
                 <div class="wizard-container">
                     <div class="card wizard-card" data-color="green" id="wizardProfile">
                         <div class="wizard-header">
                             {{--<div class="cover">--}}
                             {{--<img src="/img/tecnoparque.png"/>--}}
-                            {{--<h3 class="wizard-title">--}}
-                                {{--Red Tecnoparque Colombia--}}
-                            {{--</h3>--}}
-                            {{--<h5>Regional Caldas</h5>--}}
+                            <h3 class="wizard-title">
+                                Red Tecnoparque Colombia
+                            </h3>
+                            <h5>Regional Caldas</h5>
                             {{--</div>--}}
                         </div>
                         <div class="wizard-navigation">
@@ -34,9 +34,9 @@
                                 <li class="active"><a href="#proyectos" data-toggle="tab">Proyectos</a></li>
                             </ul>
                         </div>
-                        <div class="tab-content col-sm-6 col-sm-offset-1 iniciodiv">
-                            @foreach($proyectos as $proyecto)
-                                <div class="card-container">
+                        @foreach($proyectos as $proyecto)
+                        <div class="tab-content col-md-4 col-sm-6">
+                                <div class="fofo card-container">
                                     <div class="card">
                                         <div class="front">
                                             <div class="cover">
@@ -83,8 +83,8 @@
                                         </div> <!-- end back panel -->
                                     </div> <!-- end card -->
                                 </div> <!-- end card-container -->
-                            @endforeach
                         </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

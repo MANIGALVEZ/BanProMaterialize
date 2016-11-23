@@ -140,11 +140,6 @@ div.usuarioscontent{
     width: 300px;
 }
 
-/*.tamanoimagen img*/
-/*{*/
-    /*height: 300px;*/
-    /*width: 300px;*/
-/*}*/
 
 div.letrablancadiv
 {
@@ -178,7 +173,7 @@ div.letrablancadiv
 }
 .imgS
 {
-    width: 500px;
+    width: 360px;
 }
 
 .infoinicial article
@@ -190,3 +185,10 @@ div.letrablancadiv
     resize:none;
 }
 
+.logotecno
+{
+    width: 150px;
+    height: 35px;
+    position: absolute;
+    top: 20px;
+}

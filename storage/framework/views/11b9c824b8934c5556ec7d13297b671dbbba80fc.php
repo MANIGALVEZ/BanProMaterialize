@@ -73,13 +73,13 @@
 
                 <!-- Branding Image -->
 
-                 
-                <?php if(Auth::guest()): ?>
+            <?php if(Auth::guest()): ?>
+                    <a href="<?php echo e(url('/')); ?>"><img src="../img/tecnoparque.png" alt="" class="logotecno"></a>
                 <?php else: ?>
-                <div class="menuu">
+                    <div class="menuu">
                     <nav class="menu">
-                      <ul>
-                        <li><a href="<?php echo e(url('/')); ?>">Inicio</a></li>
+                        <ul>
+                          <li><a href="<?php echo e(url('/')); ?>">Inicio</a></li>
                         <li class="submenus">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Proyectos<b class="icon-down-open"></b></a>
                                 <?php if(Auth::user()->tiporol == 'usuario'): ?>
@@ -102,9 +102,9 @@
                     </nav>
                   </div>
                   <?php endif; ?>
-                <!-- <a class="navbar-brand" href="<?php echo e(url('/')); ?>">
-                    Laravel
-                </a> -->
+                
+                    
+                
             </div>
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
@@ -165,9 +165,12 @@
 
 
 
-    <!-- Scripts -->
+<!-- Scripts -->
+<script>
 
-    <script>
+$(document).ready(function()
+{
+
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         })
@@ -191,8 +194,7 @@
 
 
 
-    $(document).ready(function()
-    {
+
         $(".filtroEstado").change(function(){
             $lip = $(this).val()
             $.get('listarP/'+$lip, function(data)
@@ -201,12 +203,11 @@
                 $('tbody').html(data)
             })
         })
-    })
 
 
 
-    $(document).ready(function()
-    {
+
+
         $(".estadoProyecto").change(function ()
         {
             $idEstado = $(this).val()
@@ -230,12 +231,11 @@
             }
 
         })
-    })
 
 
 
-    $(document).ready(function()
-    {
+
+
         $('.btn-delete').click(function ()
         {
             $idEliminar = "1"
@@ -252,12 +252,11 @@
 
             })
         })
-    })
 
 
 
-    $(document).ready(function()
-    {
+
+
         $(".estadoProyectoUsuario").change(function ()
         {
             $idCambio = $(this).val()
@@ -269,12 +268,11 @@
             $.get('/estProUser', {idcam: $idCambio, idpro: $idProUser})
 
         })
-    })
 
 
 
-    $(document).ready(function()
-    {
+
+
         $arrLineas = []
         $lineas = $(".filtroLinea")
 
@@ -301,13 +299,12 @@
                       }
 
             })
-    })
 
 
 
 
-    $(document).ready(function()
-    {
+
+
         $(".estadoProyectoDetalle").change(function ()
         {
             $idEstado = $(this).val()
@@ -331,24 +328,22 @@
             }
 
         })
-    })
 
 
 
-    $(document).ready(function()
-    {
+
+
         $('.btn-ocultar').click(function ()
         {
             $id = $(this).attr("data-rechazado-ocultar")
             $.get('registroR/'+$id)
             window.location.replace("")
         })
-    })
 
 
 
-    $(document).ready(function()
-    {
+
+
         $(".editInput").click(function()
         {
             $(".editInput").hide()
@@ -363,38 +358,7 @@
         })
 
 
-//        $(".imagen").click(function()
-//        {
-//            $id = $(this).attr("data-imagen")
-//            console.log($id)
-//            $.get('editS/'+$id)
-//        })
-
-
-
-        })
-
-
-
-
-    $(document).ready(function()
-    {
-        $(".imagen").fileinput
-        ({
-            previewFileType: "image",
-            browseClass: "btn btn-success",
-            browseLabel: "Pick Image",
-            browseIcon: "<i class=\"glyphicon glyphicon-picture\"></i> ",
-            removeClass: "btn btn-danger",
-            removeLabel: "Delete",
-            removeIcon: "<i class=\"glyphicon glyphicon-trash\"></i> ",
-            uploadClass: "btn btn-info",
-            uploadLabel: "Upload",
-            uploadIcon: "<i class=\"glyphicon glyphicon-upload\"></i> "
-        })
-    })
-
-
+})
 </script>
 
 </body>

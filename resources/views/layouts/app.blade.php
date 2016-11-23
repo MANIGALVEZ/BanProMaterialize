@@ -73,13 +73,13 @@
 
                 <!-- Branding Image -->
 
-                 {{--<img src="../img/tecnoparque.png" alt="" class="logotecno">--}}
-                @if (Auth::guest())
+            @if (Auth::guest())
+                    <a href="{{ url('/') }}"><img src="../img/tecnoparque.png" alt="" class="logotecno"></a>
                 @else
-                <div class="menuu">
+                    <div class="menuu">
                     <nav class="menu">
-                      <ul>
-                        <li><a href="{{ url('/') }}">Inicio</a></li>
+                        <ul>
+                          <li><a href="{{ url('/') }}">Inicio</a></li>
                         <li class="submenus">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Proyectos<b class="icon-down-open"></b></a>
                                 @if(Auth::user()->tiporol == 'usuario')
@@ -102,9 +102,9 @@
                     </nav>
                   </div>
                   @endif
-                <!-- <a class="navbar-brand" href="{{ url('/') }}">
-                    Laravel
-                </a> -->
+                {{--<a class="navbar-brand" href="{{ url('/') }}">--}}
+                    {{--Tecnoparque--}}
+                {{--</a>--}}
             </div>
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
@@ -163,9 +163,12 @@
 
 
 
-    <!-- Scripts -->
+<!-- Scripts -->
+<script>
 
-    <script>
+$(document).ready(function()
+{
+
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         })
@@ -189,8 +192,7 @@
 
 
 {{--Script para el filtro por estados (El usuario desea poder ver el banco de proyectos en estado: "reclutando") --}}
-    $(document).ready(function()
-    {
+
         $(".filtroEstado").change(function(){
             $lip = $(this).val()
             $.get('listarP/'+$lip, function(data)
@@ -199,12 +201,11 @@
                 $('tbody').html(data)
             })
         })
-    })
+
 
 
 {{--funcion ajax para cambiar de estado en tiempo real y auto actualizarse--}}
-    $(document).ready(function()
-    {
+
         $(".estadoProyecto").change(function ()
         {
             $idEstado = $(this).val()
@@ -228,12 +229,11 @@
             }
 
         })
-    })
+
 
 
 {{--funcion ajax para eliminar un proyecto, pasar a estado en banco(El gestor por medio del aplicativo podr� eliminar un proyecto y de manera autom�tica env�a una notificaci�n al usuario informando el fin del proceso y su motivo)--}}
-    $(document).ready(function()
-    {
+
         $('.btn-delete').click(function ()
         {
             $idEliminar = "1"
@@ -250,12 +250,11 @@
 
             })
         })
-    })
+
 
 
 {{--Funcion ajax para actualizar estados en la vista proyectosusers--}}
-    $(document).ready(function()
-    {
+
         $(".estadoProyectoUsuario").change(function ()
         {
             $idCambio = $(this).val()
@@ -267,12 +266,11 @@
             $.get('/estProUser', {idcam: $idCambio, idpro: $idProUser})
 
         })
-    })
+
 
 
 {{--Script para filtrar por lineas tecnologicas (El gestor podra filtrar los proyectos seg�n las diferentes lineas tecnologicas)--}}
-    $(document).ready(function()
-    {
+
         $arrLineas = []
         $lineas = $(".filtroLinea")
 
@@ -299,13 +297,12 @@
                       }
 
             })
-    })
+
 
 
 
 {{--funcion ajax para cambiar de estado en tiempo real y auto actualizarse en la vista detalles--}}
-    $(document).ready(function()
-    {
+
         $(".estadoProyectoDetalle").change(function ()
         {
             $idEstado = $(this).val()
@@ -329,24 +326,22 @@
             }
 
         })
-    })
+
 
 
 {{--Script para eliminar inscripcion a un proyecto cuando el usuario ha sido rechazado--}}
-    $(document).ready(function()
-    {
+
         $('.btn-ocultar').click(function ()
         {
             $id = $(this).attr("data-rechazado-ocultar")
             $.get('registroR/'+$id)
             window.location.replace("")
         })
-    })
+
 
 
 {{--Script para editar campos nombre, sector, descripcion, resumen en vista showp--}}
-    $(document).ready(function()
-    {
+
         $(".editInput").click(function()
         {
             $(".editInput").hide()
@@ -361,22 +356,7 @@
         })
 
 
-        $(".imagen").click(function()
-        {
-            $id = $(this).attr("data-imagen")
-            console.log($id)
-            $.get('editS/'+$id)
-        })
-
-    })
-
-
-    $(document).ready(function()
-    {
-
-    })
-
-
+})
 </script>
 
 </body>
