@@ -32,7 +32,7 @@
                         @endforeach
                     </td>
                     <td>
-                        <?php $estadosprouser = DB::table("estadosproyectosusers")->where("id", "<>", 4)->get(); ?>
+                        <?php $estadosprouser = DB::table("estadosproyectosusers")->get(); ?>
                         <select class="form-control estadoProyectoUsuario" data-idprouser="{{ $puti->id }}">
                             @foreach($estadosprouser as $estado)
                                 <?php $tabla = DB::table("proyectosusers")->get(); ?>

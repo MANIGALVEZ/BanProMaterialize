@@ -33,7 +33,7 @@
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
                     </td>
                     <td>
-                        <?php $estadosprouser = DB::table("estadosproyectosusers")->where("id", "<>", 4)->get(); ?>
+                        <?php $estadosprouser = DB::table("estadosproyectosusers")->get(); ?>
                         <select class="form-control estadoProyectoUsuario" data-idprouser="<?php echo e($puti->id); ?>">
                             <?php $__currentLoopData = $estadosprouser; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $estado): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
                                 <?php $tabla = DB::table("proyectosusers")->get(); ?>
