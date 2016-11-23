@@ -76,7 +76,7 @@
     <table class="table" style="text-align: center">
         <thead>
             <tr class="">
-                <th>Id</th>
+                {{--<th>Id</th>--}}
                 <th>Fecha</th>
                 <th>Proyecto</th>
                 <th>Sector</th>
@@ -93,7 +93,7 @@
                         <?php $estadoproyecto = DB::table("proyectosusers")->where("proyectos_id", $row->id)->where("users_id", Auth::user()->id)->value("estadosproyectosusers_id"); ?>
                 <?php $proyeusu = DB::table("proyectosusers")->where("proyectos_id", $row->id)->where("users_id", Auth::user()->id)->value("id"); ?>
                 <tr class="letra @if($estadoproyecto == 1) success @elseif($estadoproyecto == 3) danger @endif">
-                    <td>{{$row->id}}</td>
+{{--                    <td>{{$row->id}}</td>--}}
                     <td>{{fechalatina($row->created_at)}}</td>
                     <td>{{$row->nombrep}}</td>
                     <td>{{$row->sectorenfocado}}</td>
@@ -153,7 +153,7 @@
                                         <a href="javascript:;" type="button" class="btn btn-warning btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" disabled="disabled" title="Pendiente Aprobacion"><i class="material-icons">access_time</i></a>
                                     @elseif($estadoproyecto == 3)
                                         {{--@if($proyectousuario)--}}
-                                        <a data-rechazado="{{$row->id}}" data-rechazado-ocultar="{{$proyeusu}}" href="javascript:;" type="button" class="btn btn-danger btn-just-icon btn-xs btn-ocultar" data-toggle="tooltip" data-placement="top" title="No ha sido aceptado, Clic para eliminar la inscripción al proyecto"><i class="material-icons">not_interested</i></a>
+                                        <a href="javascript:;" type="button" class="btn btn-danger btn-just-icon btn-xs btn-ocultar" data-toggle="tooltip" data-placement="top" disabled="disabled" title="No ha sido aceptado, Clic para eliminar la inscripción al proyecto"><i class="material-icons">not_interested</i></a>
                                         {{--@endif--}}
                                     @elseif($estadoproyecto == 1)
                                        <button type="button" class="btn btn-success  btn-just-icon btn-xs" data-toggle="popover" data-placement="top" title="Reclutado!" data-content="Felicidades! ha sido aceptado, pronto, un gestor le contactará"><i class="material-icons">check</i></button>

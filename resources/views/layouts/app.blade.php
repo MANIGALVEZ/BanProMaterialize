@@ -331,12 +331,12 @@ $(document).ready(function()
 
 {{--Script para eliminar inscripcion a un proyecto cuando el usuario ha sido rechazado--}}
 
-        $('.btn-ocultar').click(function ()
-        {
-            $id = $(this).attr("data-rechazado-ocultar")
-            $.get('registroR/'+$id)
-            window.location.replace("")
-        })
+//        $('.btn-ocultar').click(function ()
+//        {
+//            $id = $(this).attr("data-rechazado-ocultar")
+//            $.get('registroR/'+$id)
+//            window.location.replace("")
+//        })
 
 
 
