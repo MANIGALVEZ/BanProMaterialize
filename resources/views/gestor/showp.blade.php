@@ -90,23 +90,22 @@
         <tr>
 
             <td>
-                <ul>@if(Auth::user()->tiporol == 'gestor')
-                        @foreach($lineas_proyecto as $key => $linea)
-                            <?php $lineas = DB::table("lineas")->where("id", $linea->lineas_id)->get(); ?>
-                                @foreach($lineas as $key => $linea)
-                                @endforeach
-                                <?php $lineas1 = DB::table("lineas")->get(); ?>
-                                @foreach($lineas1 as $key => $linea2)
-                                    @if($linea==$linea2)
-                                    <input checked id="{{ $linea2->id }}" class="" type="checkbox" name="" value="{{ $linea->id }}">
-                                    <label for="{{ $linea2->id }}">{{ $linea2->linea }}</label><br>
-                                    @else
-                                    {{--<input id="linea{{ $linea2->id }}" class="filtroLinea" type="checkbox" name="lineatecnologica[]" value="{{ $linea->id }}">--}}
-                                    {{--<label for="linea{{ $linea2->id }}">{{ $linea2->linea }}</label><br>--}}
-                                    @endif
-                                @endforeach
-                        @endforeach
-                    @endif
+                {{--<ul>@if(Auth::user()->tiporol == 'gestor')--}}
+                        {{--@foreach($lineas_proyecto as $key => $linea1)--}}
+                            {{--<?php $lineas = DB::table("lineas")->where("id", $linea1->lineas_id)->get(); ?>--}}
+                                {{--@foreach($lineas as $key => $linea2)--}}
+                                {{--@foreach($lineas1 as $key => $linea2)--}}
+                                {{--@if($linea1!=$linea2)--}}
+                                {{--<input checked id="{{ $linea2->id }}" class="" type="checkbox" name="" value="{{ $linea2->id }}">--}}
+                                {{--<label for="{{ $linea2->id }}">{{ $linea2->linea }}</label><br>--}}
+                                    {{--@else--}}
+                                    {{--@endif--}}
+                                    {{--@endforeach--}}
+                                {{--@endforeach--}}
+                                {{--<input id="{{ $lineas->id }}" class="" type="checkbox" name="lineatecnologica[]" value="{{ $lineas->id }}">--}}
+                                {{--<label for="{{ $lineas->id }}">{{ $lineas->linea }}</label><br>--}}
+                        {{--@endforeach--}}
+                    {{--@endif--}}
 
                     @if(Auth::user()->tiporol == 'usuario')
                         @foreach($lineas_proyecto as $key => $linea)
@@ -126,7 +125,7 @@
                                 <div class="contenusuarios">
                                     <li class="nusu">{{$usu->nameu}}</li>
                                     <li class="EstadoU">
-                                        <?php $estadosprouser = DB::table("estadosproyectosusers")->where("id", "<>", 4)->get(); ?>
+                                        <?php $estadosprouser = DB::table("estadosproyectosusers")->get(); ?>
                                         <select class=" estadoProyectoUsuario usuis" data-idprouser='<?php echo DB::table("proyectosusers")->where("proyectos_id", $query->id)->where("users_id", $usu->id)->value("id"); ?>'>
                                             @foreach($estadosprouser as $estado)
                                                 <?php $tabla = DB::table("proyectosusers")->where("proyectos_id", $query->id)->where("users_id", $usu->id)->value("estadosproyectosusers_id"); ?>

@@ -91,20 +91,19 @@
 
             <td>
                 <ul><?php if(Auth::user()->tiporol == 'gestor'): ?>
-                        <?php $__currentLoopData = $lineas_proyecto; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $linea): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
-                            <?php $lineas = DB::table("lineas")->where("id", $linea->lineas_id)->get(); ?>
-                                <?php $__currentLoopData = $lineas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $linea): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
-                                <?php $lineas1 = DB::table("lineas")->get(); ?>
-                                <?php $__currentLoopData = $lineas1; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $linea2): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
-                                    <?php if($linea==$linea2): ?>
-                                    <input checked id="<?php echo e($linea2->id); ?>" class="" type="checkbox" name="" value="<?php echo e($linea->id); ?>">
-                                    <label for="<?php echo e($linea2->id); ?>"><?php echo e($linea2->linea); ?></label><br>
-                                    <?php else: ?>
+                        <?php $__currentLoopData = $lineas_proyecto; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $linea1): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+                            <?php $lineas = DB::table("lineas")->where("id", $linea1->lineas_id)->get(); ?>
+                                <?php $__currentLoopData = $lineas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $linea2): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+                                
+                                
+                                
+                                
                                     
                                     
-                                    <?php endif; ?>
+                                    
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
+                                
+                                
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
                     <?php endif; ?>
 
@@ -126,7 +125,7 @@
                                 <div class="contenusuarios">
                                     <li class="nusu"><?php echo e($usu->nameu); ?></li>
                                     <li class="EstadoU">
-                                        <?php $estadosprouser = DB::table("estadosproyectosusers")->where("id", "<>", 4)->get(); ?>
+                                        <?php $estadosprouser = DB::table("estadosproyectosusers")->get(); ?>
                                         <select class=" estadoProyectoUsuario usuis" data-idprouser='<?php echo DB::table("proyectosusers")->where("proyectos_id", $query->id)->where("users_id", $usu->id)->value("id"); ?>'>
                                             <?php $__currentLoopData = $estadosprouser; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $estado): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
                                                 <?php $tabla = DB::table("proyectosusers")->where("proyectos_id", $query->id)->where("users_id", $usu->id)->value("estadosproyectosusers_id"); ?>
