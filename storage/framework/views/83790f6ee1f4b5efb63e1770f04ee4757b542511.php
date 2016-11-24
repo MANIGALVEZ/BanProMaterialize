@@ -17,7 +17,7 @@
 
 <br><br>
 
-<table class="table">
+<table class="table" style="text-align: center">
     <thead>
     <tr class="">
         
@@ -38,13 +38,13 @@
                 <td><?php echo e($row->nombrep); ?></td>
                 <td><?php echo e($row->sectorenfocado); ?></td>
                 <?php $lineasproyectos = DB::table("lineasproyectos")->where("proyectos_id", $row->id)->get(); ?>
-                <td>
+                <td style="text-align: justify">
                     <ul>
                         <?php if (count($lineasproyectos) > 0): ?>
                         <?php $__currentLoopData = $lineasproyectos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lineaproyecto): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
                             <?php $lineas = DB::table("lineas")->where("id", $lineaproyecto->lineas_id)->get(); ?>
                             <?php $__currentLoopData = $lineas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $linea): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
-                                <li> <?php echo $linea->linea; ?> </li>
+                                <li class="lineasproyectosindex"> <?php echo $linea->linea; ?> </li>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
                         <?php endif ?>

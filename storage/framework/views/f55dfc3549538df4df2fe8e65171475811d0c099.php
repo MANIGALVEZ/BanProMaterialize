@@ -94,35 +94,16 @@
                         <?php $lineas = DB::table("lineas")->get(); ?>
                             <?php $__currentLoopData = $lineas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $linea): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
 
-                            
-                            <?php $__currentLoopData = $lineasproyectos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $lineaproyecto): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-
+                                <input id="linea<?php echo e($linea->id); ?>" class="editLinea" type="checkbox" name="lineatecnologica[]" value="<?php echo e($linea->id); ?>" data-edit-linea="<?php echo e($query->id); ?>" >
+                                <label for="linea<?php echo e($linea->id); ?>"><?php echo e($linea->linea); ?></label><br>
+                                <?php $__currentLoopData = $lineasproyectos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $lineaproyecto): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+                                    <?php if($linea->id==$lineaproyecto->lineas_id): ?>
+                                        <script>
+                                            document.getElementById("linea<?php echo e($linea->id); ?>").checked = true;
+                                        </script>
+                                    <?php endif; ?>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
-                                <?php if($linea->id!=$lineaproyecto->lineas_id): ?>
-                                    <input id="<?php echo e($linea->linea); ?>" class="" type="checkbox" name="" value="<?php echo e($linea->linea); ?>">
-                                    <label for="<?php echo e($linea->linea); ?>"><?php echo e($linea->linea); ?></label><br>
-                                <?php else: ?>
-                                    <input id="<?php echo e($linea->linea); ?>" class="" type="checkbox" name="" value="<?php echo e($linea->linea); ?>">
-                                    <label for="<?php echo e($linea->linea); ?>"><?php echo e($linea->linea); ?></label><br>
-                                <?php endif; ?>
-
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
-
                     <?php endif; ?>
 
                     <?php if(Auth::user()->tiporol == 'usuario'): ?>
@@ -199,7 +180,7 @@
         <div style="padding:0; height: 268px;" class=" row col-md-4 col-sm-offset-1">
             <img src="/<?php echo e($query->imagen); ?>" class="img-thumbnail imgS" style=" height: 250px;">
         </div>
-
+    <?php if(Auth::user()->tiporol == 'gestor'): ?>
     <form class="" action="<?php echo e(url('editSI/'.$query->id)); ?>" method="POST" role="form" enctype="multipart/form-data">
     <?php echo e(csrf_field()); ?>
 
@@ -212,6 +193,7 @@
             
         </div>
     </form>
+<?php endif; ?>
     <div class="row col-md-12">
 <table class="table table-bordered tablitashow">
     <thead>

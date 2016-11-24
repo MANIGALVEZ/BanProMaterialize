@@ -19,7 +19,7 @@
 
 <br><br>
 
-<table class="table">
+<table class="table" style="text-align: center">
     <thead>
     <tr class="">
         {{--<th>Id</th>--}}
@@ -40,13 +40,13 @@
                 <td>{{$row->nombrep}}</td>
                 <td>{{$row->sectorenfocado}}</td>
                 <?php $lineasproyectos = DB::table("lineasproyectos")->where("proyectos_id", $row->id)->get(); ?>
-                <td>
+                <td style="text-align: justify">
                     <ul>
                         <?php if (count($lineasproyectos) > 0): ?>
                         @foreach($lineasproyectos as $lineaproyecto)
                             <?php $lineas = DB::table("lineas")->where("id", $lineaproyecto->lineas_id)->get(); ?>
                             @foreach($lineas as $linea)
-                                <li> <?php echo $linea->linea; ?> </li>
+                                <li class="lineasproyectosindex"> <?php echo $linea->linea; ?> </li>
                             @endforeach
                         @endforeach
                         <?php endif ?>

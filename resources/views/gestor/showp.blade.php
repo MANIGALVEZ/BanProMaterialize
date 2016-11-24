@@ -93,36 +93,17 @@
                     @if(Auth::user()->tiporol == 'gestor')
                         <?php $lineas = DB::table("lineas")->get(); ?>
                             @foreach($lineas as $linea)
-{{--                                {{$linea->id}}--}}
-                            {{--@endforeach--}}
-                            @foreach($lineasproyectos as $key => $lineaproyecto)
-                                    {{--                                {{$lineaproyecto->lineas_id}}--}}
-                                    {{--                                @if($lineaproyecto->lineas_id == $lineas->$id)--}}
-                                    {{--                                                    {{$lineas}}--}}
-                                    {{--@foreach($lineas as $key => $linea2)--}}
-                                    {{--@foreach($lineas1 as $key => $linea2)--}}
-                                    {{--@if($linea1!=$linea2)--}}
-                                    {{--<input checked id="{{ $linea2->id }}" class="" type="checkbox" name="" value="{{ $linea2->id }}">--}}
-                                    {{--<label for="{{ $linea2->id }}">{{ $linea2->linea }}</label><br>--}}
-                                    {{--@else--}}
-                                    {{--@endif--}}
-                                    {{--@endforeach--}}
-                                    {{--@endforeach--}}
-                                    {{--<input id="{{ $lineas->id }}" class="" type="checkbox" name="lineatecnologica[]" value="{{ $lineas->id }}">--}}
-                                    {{--<label for="{{ $lineas->id }}">{{ $lineas->linea }}</label><br>--}}
-                                    {{--@endif--}}
-
-                                @endforeach
-                                @if($linea->id!=$lineaproyecto->lineas_id)
-                                    <input id="{{ $linea->linea }}" class="" type="checkbox" name="" value="{{ $linea->linea }}">
-                                    <label for="{{ $linea->linea }}">{{ $linea->linea }}</label><br>
-                                @else
-                                    <input id="{{ $linea->linea }}" class="" type="checkbox" name="" value="{{ $linea->linea }}">
-                                    <label for="{{ $linea->linea }}">{{ $linea->linea }}</label><br>
-                                @endif
 {{--                                {{$linea->linea}}--}}
+                                <input id="linea{{ $linea->id }}" class="editLinea" type="checkbox" name="lineatecnologica[]" value="{{ $linea->id }}" data-edit-linea="{{$query->id}}" >
+                                <label for="linea{{ $linea->id }}">{{ $linea->linea }}</label><br>
+                                @foreach($lineasproyectos as $key => $lineaproyecto)
+                                    @if($linea->id==$lineaproyecto->lineas_id)
+                                        <script>
+                                            document.getElementById("linea{{ $linea->id }}").checked = true;
+                                        </script>
+                                    @endif
+                                @endforeach
                             @endforeach
-
                     @endif
 
                     @if(Auth::user()->tiporol == 'usuario')
@@ -199,7 +180,7 @@
         <div style="padding:0; height: 268px;" class=" row col-md-4 col-sm-offset-1">
             <img src="/{{$query->imagen}}" class="img-thumbnail imgS" style=" height: 250px;">
         </div>
-
+    @if(Auth::user()->tiporol == 'gestor')
     <form class="" action="{{url('editSI/'.$query->id)}}" method="POST" role="form" enctype="multipart/form-data">
     {{ csrf_field() }}
         <div class="row col-md-4 col-md-offset-1">
@@ -211,6 +192,7 @@
             {{--<input type='submit' class='btn btn-finish btn-fill btn-success btn-wd' value='Registrarse' />--}}
         </div>
     </form>
+@endif
     <div class="row col-md-12">
 <table class="table table-bordered tablitashow">
     <thead>

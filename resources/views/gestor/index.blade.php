@@ -88,9 +88,8 @@
         </thead>
         <tbody>
         @if(count($query)>0)
-            {{--@foreach($proyectosusuariosvista as $proyectousuario)--}}
-                @foreach($query as $row)
-                        <?php $estadoproyecto = DB::table("proyectosusers")->where("proyectos_id", $row->id)->where("users_id", Auth::user()->id)->value("estadosproyectosusers_id"); ?>
+            @foreach($query as $row)
+                <?php $estadoproyecto = DB::table("proyectosusers")->where("proyectos_id", $row->id)->where("users_id", Auth::user()->id)->value("estadosproyectosusers_id"); ?>
                 <?php $proyeusu = DB::table("proyectosusers")->where("proyectos_id", $row->id)->where("users_id", Auth::user()->id)->value("id"); ?>
                 <tr class="letra @if($estadoproyecto == 1) success @elseif($estadoproyecto == 3) danger @endif">
 {{--                    <td>{{$row->id}}</td>--}}

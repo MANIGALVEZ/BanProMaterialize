@@ -111,3 +111,11 @@ Route::post('/editS/{id}', 'ProyectosController@editShow');
 
 // Ruta para editar la imagen desde detalles de proyecto (showp)
 Route::post('/editSI/{id}', 'ProyectosController@editShowImagen');
+
+
+// Ruta para editar la lineasproyectos desde detalles de proyecto (showp)
+Route::get('/insertSL/{id}', 'ProyectosController@insertShowLinea');
+
+
+// Ruta para editar la lineasproyectos desde detalles de proyecto (showp)
+Route::get('/deleteSL/{id}', 'ProyectosController@deleteShowLinea');

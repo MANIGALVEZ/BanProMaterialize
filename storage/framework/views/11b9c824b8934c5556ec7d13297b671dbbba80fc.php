@@ -331,31 +331,56 @@ $(document).ready(function()
 
 
 
+//Script para
 
-
-//        $('.btn-ocultar').click(function ()
+//        $('.linea').click(function ()
 //        {
-//            $id = $(this).attr("data-rechazado-ocultar")
-//            $.get('registroR/'+$id)
-//            window.location.replace("")
+//            console.log(document.getElementById("linea"));
+//            document.getElementById("linea").value = true;
+////            $(".chequeo").getElementById("che").setAttribute("checked", true)
+//            console.log('hola')
 //        })
 
 
 
 
 
-        $(".editInput").click(function()
-        {
-            $(".editInput").hide()
-            $("button").removeClass("hidden")
-            $("input").removeAttr("readonly").removeClass("quitarborde").addClass("form-control");
-            $("textarea").removeAttr("readonly").removeClass("quitarborde").addClass("form-control");
-        })
+    $(".editInput").click(function()
+    {
+        $(".editInput").hide()
+        $("button").removeClass("hidden")
+        $("input").removeAttr("readonly").removeClass("quitarborde").addClass("form-control");
+        $("textarea").removeAttr("readonly").removeClass("quitarborde").addClass("form-control");
+    })
 
-        $(".updateInput").click(function()
+    $(".updateInput").click(function()
+    {
+        $("#formPro").submit();
+    })
+
+
+
+    $(".editLinea").change(function()
+    {
+        $id = $(this).attr("data-edit-linea")
+        $idLinea = $(this).attr("value")
+
+        if($(".editLinea").is(":checked"))
         {
-            $("#formPro").submit();
-        })
+            console.log("if", $id, $idLinea)
+//            $.get('/insertSL/'+$id, {idN: $idLinea})
+//            window.location.replace('show/'.$id)
+        }
+        else
+        {
+            console.log("else", $id, $idLinea)
+            $.get('/deleteSL/'+$id, {idN: $idLinea})
+//            window.location.replace("")
+        }
+
+    })
+
+
 
 
 })
