@@ -67,10 +67,6 @@
                         <textarea  class="quitarborde noresize" id="" name="resumen" cols="77" rows="10" readonly>{{$query->resumen}}</textarea>
                     </div>
                 </td>
-
-
-
-
             </tr>
             </tbody>
         </table>
@@ -180,7 +176,11 @@
         <div style="padding:0; height: 268px;" class=" row col-md-4 col-sm-offset-1">
             <img src="/{{$query->imagen}}" class="img-thumbnail imgS" style=" height: 250px;">
         </div>
-    @if(Auth::user()->tiporol == 'gestor')
+
+
+
+@if(Auth::user()->tiporol == 'gestor')
+
     <form class="" action="{{url('editSI/'.$query->id)}}" method="POST" role="form" enctype="multipart/form-data">
     {{ csrf_field() }}
         <div class="row col-md-4 col-md-offset-1">
@@ -192,7 +192,10 @@
             {{--<input type='submit' class='btn btn-finish btn-fill btn-success btn-wd' value='Registrarse' />--}}
         </div>
     </form>
+
 @endif
+
+
     <div class="row col-md-12">
 <table class="table table-bordered tablitashow">
     <thead>
