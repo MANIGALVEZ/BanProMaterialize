@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-11-2016 a las 22:19:27
+-- Tiempo de generación: 24-11-2016 a las 22:13:24
 -- Versión del servidor: 10.1.16-MariaDB
--- Versión de PHP: 5.6.24
+-- Versión de PHP: 7.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -192,7 +192,7 @@ CREATE TABLE `proyectos` (
 --
 
 INSERT INTO `proyectos` (`id`, `nombrep`, `sectorenfocado`, `empresa`, `descripcion`, `resumen`, `created_at`, `updated_at`, `usuario_id`, `imagen`, `estadosdeproyectos_id`) VALUES
-(45, 'TecnoBike', 'Industria', 'Sena', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam at pharetra lorem. Vivamus vehicula nunc non lorem hendrerit elementum. Praesent mollis purus non egestas dignissim. Ut eu ligula erat. Fusce eget nisl sit amet metus iaculis gravida sasdasdasd', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam at pharetra lorem. Vivamus vehicula nunc non lorem hendrerit elementum. Praesent mollis purus non egestas dignissim.', '2016-11-23', '2016-11-23', 2, 'imagenes/proyectos/teknobike_felt_homepage_6.jpg', 3),
+(45, 'TecnoBike', 'Industria', 'Sena', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam at pharetra lorem. Vivamus vehicula nunc non lorem hendrerit elementum. sim. Ut eu ligula erat. Fusce eget nisl sit amet metus iaculis gravida sasdasdasd', 'No continua', '2016-11-23', '2016-11-24', 2, 'imagenes/proyectos/teknobike_felt_homepage_6.jpg', 1),
 (46, 'Agua Limpia', 'Ambiental', 'AgroEmpresa S.A', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam at pharetra lorem. Vivamus vehicula nunc non lorem hendrerit elementum. Praesent mollis purus non egestas dignissim. Ut eu ligula erat. Fusce eget nisl sit amet metus iaculis gravida ac a turpis', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam at pharetra lorem. Vivamus vehicula nunc non lorem hendrerit elementum. Praesent mollis purus non egestas dignissim. Ut eu ligula erat.', '2016-11-23', '2016-11-23', 2, 'imagenes/proyectos/slide1.jpg', 3),
 (47, 'Comunicación Mejor', 'Telecomunicaciones ', 'ComuUniti', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam at pharetra lorem. Vivamus vehicula nunc non lorem hendrerit elementum. Praesent mollis purus non egestas dignissim. Ut eu ligula erat. Fusce eget nisl sit amet metus iaculis gravida ac a turpis', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam at pharetra lorem. Vivamus vehicula nunc non lorem hendrerit elementum. Praesent mollis purus non egestas dignissim. Ut eu ligula erat.', '2016-11-23', '2016-11-23', 2, 'imagenes/proyectos/descarga.jpg', 3),
 (48, 'EmpanadasMaqui', '', 'Empa Nadas', '\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam at pharetra lorem. Vivamus vehicula nunc non lorem hendrerit elementum. Praesent mollis purus non egestas dignissim. Ut eu ligula erat. Fusce eget nisl sit amet metus iaculis gravida ac a turp', NULL, '2016-11-23', '2016-11-23', 7, NULL, 2),
@@ -218,7 +218,8 @@ CREATE TABLE `proyectosusers` (
 
 INSERT INTO `proyectosusers` (`id`, `proyectos_id`, `users_id`, `estadosproyectosusers_id`) VALUES
 (2, 45, 7, 1),
-(3, 46, 7, 2);
+(3, 46, 7, 2),
+(4, 45, 8, 3);
 
 -- --------------------------------------------------------
 
@@ -247,7 +248,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nameu`, `apellidos`, `email`, `celular`, `titulos`, `estado`, `password`, `remember_token`, `tiporol`, `avatar`, `created_at`, `updated_at`) VALUES
-(1, 'Juan', 'Muñoz', 'morris@gmail.com', 3215697363, 'Tecnologo', 'sinestado', '$2y$10$TAaC3BVpe4v4lXtkwZ0Mb.PzBlgt7Eo7XkQdEvIphDEMc3zdEUtAe', 'pqBzWUT3603Z018mIAnm9NkSON3ms9ESNhmPm8qEOhg9PkFLZrS70sJ6zs0O', 'gestor', NULL, NULL, '2016-11-24 00:58:06'),
+(1, 'Juan', 'Muñoz', 'morris@gmail.com', 3215697363, 'Tecnologo', 'sinestado', '$2y$10$TAaC3BVpe4v4lXtkwZ0Mb.PzBlgt7Eo7XkQdEvIphDEMc3zdEUtAe', 'jgqBcsvI6L35LbBxCVqGeAU5BDa5BQfBWQjpNqP6xqSMhWEec9SGrSLzacuy', 'gestor', NULL, NULL, '2016-11-24 19:48:24'),
 (2, 'Yonathan Andres', 'Galvez Giraldo', 'ogiraldo272@gmail.com', 3122730311, 'Tecnologo', 'sinestado', '$2y$10$G8U9VHdgeAPcyTkOeFiyFe9GQPadn0JxQmj4nNZme0BtwfD.r3Xtu', 'uG9SE0QD7OZc97zSocqPMhWbnKabAKWS53FaipR3Zfak5Ayf4BAJZtmSlAEM', 'usuario', NULL, NULL, '2016-11-24 00:24:08'),
 (7, 'Henry Arturo', 'Valencia Parra', 'henry_parra1994@hotmail.com', 3215697363, 'Tegnologo', 'sinestado', '$2y$10$4flVJaeSDTMpo6FBAyhJYur/5yhRh./wfU3zilTAqVhC1Wax7KdC.', 'bxqzjiPGC2ebfgpFfWR2rMjiT25F6CkbToaoZV7GGoRlfUpQVP272kh2Mim9', 'usuario', NULL, '2016-11-23 22:01:37', '2016-11-24 00:53:40');
 
@@ -324,7 +325,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `estadosdeproyectos`
 --
@@ -344,22 +345,22 @@ ALTER TABLE `lineas`
 -- AUTO_INCREMENT de la tabla `lineasproyectos`
 --
 ALTER TABLE `lineasproyectos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT de la tabla `proyectos`
 --
 ALTER TABLE `proyectos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 --
 -- AUTO_INCREMENT de la tabla `proyectosusers`
 --
 ALTER TABLE `proyectosusers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- Restricciones para tablas volcadas
 --
