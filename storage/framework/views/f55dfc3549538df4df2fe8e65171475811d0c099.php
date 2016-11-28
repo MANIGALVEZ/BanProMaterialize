@@ -90,15 +90,16 @@
                         <?php $lineas = DB::table("lineas")->get(); ?>
                             <?php $__currentLoopData = $lineas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $linea): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
 
-                                <input id="linea<?php echo e($linea->id); ?>" class="editLinea" type="checkbox" name="lineatecnologica[]" value="<?php echo e($linea->id); ?>" data-edit-linea="<?php echo e($query->id); ?>" >
-                                <label for="linea<?php echo e($linea->id); ?>"><?php echo e($linea->linea); ?></label><br>
+                                <input id="linea<?php echo e($linea->id); ?>" class="editLinea" type="checkbox" name="lineatecnologica[]" value="<?php echo e($linea->id); ?>" data-edit-linea="<?php echo e($query->id); ?>"
                                 <?php $__currentLoopData = $lineasproyectos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $lineaproyecto): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
-                                    <?php if($linea->id==$lineaproyecto->lineas_id): ?>
-                                        <script>
-                                            document.getElementById("linea<?php echo e($linea->id); ?>").checked = true;
-                                        </script>
-                                    <?php endif; ?>
+                                        <?php if($linea->id==$lineaproyecto->lineas_id): ?>
+                                            checked
+                                    
+                                       
+                                        <?php endif; ?>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
+                                >
+                                <label for="linea<?php echo e($linea->id); ?>"><?php echo e($linea->linea); ?></label><br>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
                     <?php endif; ?>
 

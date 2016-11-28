@@ -95,7 +95,7 @@
                                         <div class="footer text-center">
                                             <center>
                                                 <button type="submit" class="btn btn-simple btn-success btn-lg">Iniciar Sesion</button>
-                                                <a class="btn btn-simple btn-default btn-lg" href="<?php echo e(url('/password/reset')); ?>">¿Olvido su contraseña?</a>
+                                                
                                             </center>
                                         </div>
                                     </form>

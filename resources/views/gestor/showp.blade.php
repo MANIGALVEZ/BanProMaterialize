@@ -90,15 +90,14 @@
                         <?php $lineas = DB::table("lineas")->get(); ?>
                             @foreach($lineas as $linea)
 {{--                                {{$linea->linea}}--}}
-                                <input id="linea{{ $linea->id }}" class="editLinea" type="checkbox" name="lineatecnologica[]" value="{{ $linea->id }}" data-edit-linea="{{$query->id}}" >
-                                <label for="linea{{ $linea->id }}">{{ $linea->linea }}</label><br>
+                                <input id="linea{{ $linea->id }}" class="editLinea" type="checkbox" name="lineatecnologica[]" value="{{ $linea->id }}" data-edit-linea="{{$query->id}}"
                                 @foreach($lineasproyectos as $key => $lineaproyecto)
-                                    @if($linea->id==$lineaproyecto->lineas_id)
-                                        <script>
-                                            document.getElementById("linea{{ $linea->id }}").checked = true;
-                                        </script>
-                                    @endif
+                                        @if($linea->id==$lineaproyecto->lineas_id)
+                                            checked
+                                        @endif
                                 @endforeach
+                                >
+                                <label for="linea{{ $linea->id }}">{{ $linea->linea }}</label><br>
                             @endforeach
                     @endif
 

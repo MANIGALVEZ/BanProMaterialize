@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
 	<title>Banco de Proyectos</title>
 
@@ -15,10 +15,6 @@
     <link href='https://fonts.googleapis.com/css?family=Cambo|Poppins:400,600' rel='stylesheet' type='text/css'>
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" />
-    
-    
-    
-    
 
 
     <!-- Styles -->
@@ -52,14 +48,10 @@
     <script src="<?php echo e(asset('js/jquery.bootstrap.js')); ?>"></script>
     <script src="<?php echo e(asset('js/jquery.validate.min.js')); ?>"></script>
 
-    
-
-
-
 
 </head>
 <body>
-	<nav class="navbar navbar-success navbar-static-top navbar-fixed-top">
+	<nav class="navbar navbar-azulmod navbar-static-top">
         <div class="container">
             <div class="navbar-header">
 
@@ -72,12 +64,19 @@
                 </button>
 
                 <!-- Branding Image -->
-
+                
+                <li><a href="<?php echo e(url('/')); ?>" class="logotecno"><img src="../img/tecnoparque1.png" alt=""></a></li>
+                <p class="titulobanco">BANCO DE PROYECTOS</p>
             <?php if(Auth::guest()): ?>
-                    <a href="<?php echo e(url('/')); ?>"><img src="../img/tecnoparque.png" alt="" class="logotecno"></a>
+                    <ul class="nav navbar-nav">
+                    
+                </ul>
+
+                    
+
                 <?php else: ?>
                     <div class="menuu">
-                    <nav class="menu">
+                        <nav class="menu">
                         <ul>
                           <li><a href="<?php echo e(url('/')); ?>">Inicio</a></li>
                         <li class="submenus">
@@ -97,13 +96,17 @@
                                   </ul>
                                   <li><a href="<?php echo e(url('/usuarios')); ?>">Usuarios</a></li>
                                 <?php endif; ?>
+
                         </li>
                       </ul>
-                    </nav>
-                  </div>
-                  <?php endif; ?>
+                        </nav>
+                        
+
+                        
+                    </div>
+                <?php endif; ?>
                 
-                    
+                
                 
             </div>
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -111,23 +114,18 @@
                 <ul class="nav navbar-nav">
                     &nbsp;
                 </ul>
+                
+
+                
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
-                <?php if(Auth::guest()): ?>
-                        <li><a href="<?php echo e(url('/login')); ?>">Ingresar</a></li>
-                        <li><a href="<?php echo e(url('/register')); ?>">Registrarse</a></li>
-                        <li>
-                            <a href="https://www.facebook.com/TecnoParque-Colombia-6102873246/" target="_blank" class="btn btn-simple btn-white btn-just-icon">
-                                <i class="fa fa-facebook-square"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://tecnoparque.sena.edu.co/" target="_blank" class="btn btn-simple btn-white btn-just-icon">
-                                <i class="material-icons">web</i>
-                            </a>
-                        </li>
+                    <?php if(Auth::guest()): ?>
+                        <li><a href="<?php echo e(url('/login')); ?>" type="button" class="btn-just-icon btn-xs" data-toggle="tooltip" data-placement="bottom" title="Ingresar"><i class="material-icons">person</i></a></li>
+                        <li><a href="<?php echo e(url('/register')); ?>" type="button" class="btn-just-icon btn-xs" data-toggle="tooltip" data-placement="bottom" title="Registrarse"><i class="material-icons">assignment</i></a></li>
+                        <li><a href="https://www.facebook.com/TecnoParque-Colombia-6102873246/" class="btn-just-icon btn-xs" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook-square"></i></a></li>
+                        <li><a href="http://tecnoparque.sena.edu.co/" class="btn-just-icon btn-xs" data-toggle="tooltip" data-placement="bottom" title="Web"><i class="material-icons">web</i></a></li>
                     <?php else: ?>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -181,19 +179,6 @@ $(document).ready(function()
         ]); ?>
 
 
-    
-    
-        
-            
-        
-
-        
-            
-        
-    
-
-
-
 
         $(".filtroEstado").change(function(){
             $lip = $(this).val()
@@ -203,7 +188,6 @@ $(document).ready(function()
                 $('tbody').html(data)
             })
         })
-
 
 
 
@@ -235,7 +219,6 @@ $(document).ready(function()
 
 
 
-
         $('.btn-delete').click(function ()
         {
             $idEliminar = "1"
@@ -256,7 +239,6 @@ $(document).ready(function()
 
 
 
-
         $(".estadoProyectoUsuario").change(function ()
         {
             $idCambio = $(this).val()
@@ -268,7 +250,6 @@ $(document).ready(function()
             $.get('/estProUser', {idcam: $idCambio, idpro: $idProUser})
 
         })
-
 
 
 
@@ -299,7 +280,6 @@ $(document).ready(function()
                       }
 
             })
-
 
 
 
@@ -344,7 +324,7 @@ $(document).ready(function()
 
 
 
-
+//boton type:button
     $(".editInput").click(function()
     {
         $(".editInput").hide()
@@ -352,7 +332,7 @@ $(document).ready(function()
         $("input").removeAttr("readonly").removeClass("quitarborde").addClass("form-control");
         $("textarea").removeAttr("readonly").removeClass("quitarborde").addClass("form-control");
     })
-
+//boton type:submit
     $(".updateInput").click(function()
     {
         $("#formPro").submit();
@@ -365,17 +345,19 @@ $(document).ready(function()
         $id = $(this).attr("data-edit-linea")
         $idLinea = $(this).attr("value")
 
-        if($(".editLinea").is(":checked"))
+        if($(this).is(":checked"))
         {
             console.log("if", $id, $idLinea)
-//            $.get('/insertSL/'+$id, {idN: $idLinea})
+            $.get('/insertSL/'+$id, {idN: $idLinea})
 //            window.location.replace('show/'.$id)
+//            console.log($(this))
         }
         else
         {
             console.log("else", $id, $idLinea)
             $.get('/deleteSL/'+$id, {idN: $idLinea})
 //            window.location.replace("")
+//            console.log($(this))
         }
 
     })

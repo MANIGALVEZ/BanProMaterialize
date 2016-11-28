@@ -185,10 +185,26 @@ div.letrablancadiv
     resize:none;
 }
 
-.logotecno
+.logotecno img
 {
-    width: 150px;
-    height: 35px;
+    width:200px;
+    margin: 0px;
+    float: left;
     position: absolute;
-    top: 20px;
+    left: 0px;
+}
+.logotecno{
+    padding: 0px !important;
+}
+
+.titulobanco
+{
+    margin-left: 430px;
+    font-size: 28px;
+    position: absolute;
+    top: 25px;
+}
+
+.li_inicio{
+    line-height: 50px;
 }

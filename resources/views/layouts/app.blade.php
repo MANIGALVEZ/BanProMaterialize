@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
 	<title>Banco de Proyectos</title>
 
@@ -15,10 +15,6 @@
     <link href='https://fonts.googleapis.com/css?family=Cambo|Poppins:400,600' rel='stylesheet' type='text/css'>
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" />
-    {{--<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">--}}
-    {{--<link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>--}}
-    {{--<link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">--}}
-    {{--<link rel="icon" type="image/png" href="../assets/img/favicon.png">--}}
 
 
     <!-- Styles -->
@@ -51,15 +47,11 @@
     <script src="{{ asset('js/holder.js') }}"></script>
     <script src="{{ asset('js/jquery.bootstrap.js') }}"></script>
     <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
-{{--    <script src="{{ asset('js/bootstrap-table.js') }}"></script>--}}
-    {{--<script src="{{ asset('js/bootstrap.min.js') }}"></script>--}}
-{{--    <script src="{{ asset('js/gaia.js') }}"></script>--}}
-{{--    <script src="{{ asset('js/modernizr.js') }}"></script>--}}
 
 
 </head>
 <body>
-	<nav class="navbar navbar-success navbar-static-top navbar-fixed-top">
+	<nav class="navbar navbar-azulmod navbar-static-top">
         <div class="container">
             <div class="navbar-header">
 
@@ -72,12 +64,19 @@
                 </button>
 
                 <!-- Branding Image -->
-
+                {{--<li><a href="{{ url('/') }}" type="button" class="btn-just-icon btn-xs" data-toggle="tooltip" data-placement="bottom" title="Inicio"><i class="material-icons">home</i></a></li>--}}
+                <li><a href="{{ url('/') }}" class="logotecno"><img src="../img/tecnoparque1.png" alt=""></a></li>
+                <p class="titulobanco">BANCO DE PROYECTOS</p>
             @if (Auth::guest())
-                    <a href="{{ url('/') }}"><img src="../img/tecnoparque.png" alt="" class="logotecno"></a>
+                    <ul class="nav navbar-nav">
+                    {{--<li class="li_inicio">INICIO</li>--}}
+                </ul>
+
+                    {{--<li><a href="{{ url('/register') }}" type="button" class="btn btn-white btn-just-icon btn-xs" data-toggle="tooltip" data-placement="bottom" title="Registrarse"><i class="material-icons">assignment</i></a></li>--}}
+
                 @else
                     <div class="menuu">
-                    <nav class="menu">
+                        <nav class="menu">
                         <ul>
                           <li><a href="{{ url('/') }}">Inicio</a></li>
                         <li class="submenus">
@@ -97,13 +96,17 @@
                                   </ul>
                                   <li><a href="{{ url('/usuarios')}}">Usuarios</a></li>
                                 @endif
+
                         </li>
                       </ul>
-                    </nav>
-                  </div>
-                  @endif
+                        </nav>
+                        {{--<nav class="menu">--}}
+
+                        {{--</nav>--}}
+                    </div>
+                @endif
                 {{--<a class="navbar-brand" href="{{ url('/') }}">--}}
-                    {{--Tecnoparque--}}
+                {{--Tecnoparque--}}
                 {{--</a>--}}
             </div>
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -111,23 +114,18 @@
                 <ul class="nav navbar-nav">
                     &nbsp;
                 </ul>
+                {{--<ul class="nav navbar-nav">--}}
+
+                {{--</ul>--}}
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
-                @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Ingresar</a></li>
-                        <li><a href="{{ url('/register') }}">Registrarse</a></li>
-                        <li>
-                            <a href="https://www.facebook.com/TecnoParque-Colombia-6102873246/" target="_blank" class="btn btn-simple btn-white btn-just-icon">
-                                <i class="fa fa-facebook-square"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://tecnoparque.sena.edu.co/" target="_blank" class="btn btn-simple btn-white btn-just-icon">
-                                <i class="material-icons">web</i>
-                            </a>
-                        </li>
+                    @if (Auth::guest())
+                        <li><a href="{{ url('/login') }}" type="button" class="btn-just-icon btn-xs" data-toggle="tooltip" data-placement="bottom" title="Ingresar"><i class="material-icons">person</i></a></li>
+                        <li><a href="{{ url('/register') }}" type="button" class="btn-just-icon btn-xs" data-toggle="tooltip" data-placement="bottom" title="Registrarse"><i class="material-icons">assignment</i></a></li>
+                        <li><a href="https://www.facebook.com/TecnoParque-Colombia-6102873246/" class="btn-just-icon btn-xs" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook-square"></i></a></li>
+                        <li><a href="http://tecnoparque.sena.edu.co/" class="btn-just-icon btn-xs" data-toggle="tooltip" data-placement="bottom" title="Web"><i class="material-icons">web</i></a></li>
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -178,20 +176,7 @@ $(document).ready(function()
                 'csrfToken' => csrf_token(),
         ]); ?>
 
-{{--Script para switch de mis proyectos--}}
-    {{--$(document).ready(function()--}}
-    {{--{--}}
-        {{--$('#opcion1').change(function(){--}}
-            {{--window.location.replace('/misproyectos')--}}
-        {{--})--}}
 
-        {{--$('#opcion2').change(function(){--}}
-            {{--window.location.replace('/home')--}}
-        {{--})--}}
-    {{--})--}}
-
-
-{{--Script para el filtro por estados (El usuario desea poder ver el banco de proyectos en estado: "reclutando") --}}
 
         $(".filtroEstado").change(function(){
             $lip = $(this).val()
@@ -205,7 +190,6 @@ $(document).ready(function()
 
 
 {{--funcion ajax para cambiar de estado en tiempo real y auto actualizarse--}}
-
         $(".estadoProyecto").change(function ()
         {
             $idEstado = $(this).val()
@@ -233,7 +217,6 @@ $(document).ready(function()
 
 
 {{--funcion ajax para eliminar un proyecto, pasar a estado en banco(El gestor por medio del aplicativo podr� eliminar un proyecto y de manera autom�tica env�a una notificaci�n al usuario informando el fin del proceso y su motivo)--}}
-
         $('.btn-delete').click(function ()
         {
             $idEliminar = "1"
@@ -254,7 +237,6 @@ $(document).ready(function()
 
 
 {{--Funcion ajax para actualizar estados en la vista proyectosusers--}}
-
         $(".estadoProyectoUsuario").change(function ()
         {
             $idCambio = $(this).val()
@@ -270,7 +252,6 @@ $(document).ready(function()
 
 
 {{--Script para filtrar por lineas tecnologicas (El gestor podra filtrar los proyectos seg�n las diferentes lineas tecnologicas)--}}
-
         $arrLineas = []
         $lineas = $(".filtroLinea")
 
@@ -302,7 +283,6 @@ $(document).ready(function()
 
 
 {{--funcion ajax para cambiar de estado en tiempo real y auto actualizarse en la vista detalles--}}
-
         $(".estadoProyectoDetalle").change(function ()
         {
             $idEstado = $(this).val()
@@ -342,7 +322,7 @@ $(document).ready(function()
 
 
 {{--Script para editar campos nombre, sector, descripcion, resumen en vista showp--}}
-
+//boton type:button
     $(".editInput").click(function()
     {
         $(".editInput").hide()
@@ -350,30 +330,32 @@ $(document).ready(function()
         $("input").removeAttr("readonly").removeClass("quitarborde").addClass("form-control");
         $("textarea").removeAttr("readonly").removeClass("quitarborde").addClass("form-control");
     })
-
+//boton type:submit
     $(".updateInput").click(function()
     {
         $("#formPro").submit();
     })
 
 
-
+{{--Script para editar lineas en vista showp--}}
     $(".editLinea").change(function()
     {
         $id = $(this).attr("data-edit-linea")
         $idLinea = $(this).attr("value")
 
-        if($(".editLinea").is(":checked"))
+        if($(this).is(":checked"))
         {
             console.log("if", $id, $idLinea)
-//            $.get('/insertSL/'+$id, {idN: $idLinea})
+            $.get('/insertSL/'+$id, {idN: $idLinea})
 //            window.location.replace('show/'.$id)
+//            console.log($(this))
         }
         else
         {
             console.log("else", $id, $idLinea)
             $.get('/deleteSL/'+$id, {idN: $idLinea})
 //            window.location.replace("")
+//            console.log($(this))
         }
 
     })

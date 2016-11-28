@@ -495,18 +495,12 @@ class ProyectosController extends Controller
         $lineaproyecto->proyectos_id = $id;
         $lineaproyecto->lineas_id = $request->get('idN');
         $lineaproyecto->save();
-
-//        return redirect("show/".$id);
     }
 
 
     public function deleteShowLinea(Request $request, $id)
     {
         $lineaproyecto = LineaProyecto::where("proyectos_id", $id)->where("lineas_id", $request->get('idN'));
-//        LineaProyecto::destroy($lineaproyecto->id);
-//        dd($lineaproyecto);
         $lineaproyecto->delete();
-
-//        return redirect("show/".$id);
     }
 }

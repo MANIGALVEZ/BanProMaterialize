@@ -19,19 +19,19 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="wizard-container">
-                    <div class="card wizard-card" data-color="green" id="wizardProfile">
+                    <div class="card wizard-card" data-color="greenmod" id="wizardProfile">
                         <div class="wizard-header">
                             {{--<div class="cover">--}}
                             {{--<img src="/img/tecnoparque.png"/>--}}
                             <h3 class="wizard-title">
-                                RED TECNOPARQUE COLOMBIA
+                                RED TECNOPARQUE
                             </h3>
-                            <h5>REGIONAL CALDAS</h5>
+                            <h5>Nodo Manizales</h5>
                             {{--</div>--}}
                         </div>
                         <div class="wizard-navigation">
                             <ul>
-                                <li class="active"><a href="#proyectos" data-toggle="tab">BANCO DE PROYECTOS</a></li>
+                                <li class="active"><a href="#proyectos" data-toggle="tab">PROYECTOS ACTUALES</a></li>
                             </ul>
                         </div>
                         @foreach($proyectos as $proyecto)
