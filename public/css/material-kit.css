@@ -2001,7 +2001,7 @@ legend {
 }
 .navbar .navbar-nav > li > a:hover, .navbar .navbar-nav > li > a:focus {
   color: inherit;
-  background-color: transparent;
+  background-color: #137CD0;
 }
 .navbar .navbar-nav > li > a .material-icons,
 .navbar .navbar-nav > li > a .fa {
@@ -2248,14 +2248,14 @@ legend {
   color: #ffffff;
 }
 .navbar.navbar-info {
-  background-color: #03a9f4;
-  color: #ffffff;
-}
-
-.navbar.navbar-azulmod {
   background-color: #2196F3;
   color: #ffffff;
 }
+
+/*.navbar.navbar-azulmod {*/
+  /*background-color: #2196F3;*/
+  /*color: #ffffff;*/
+/*}*/
 
 
 .navbar.navbar-info .navbar-form .form-group input.form-control::-moz-placeholder,
@@ -2275,7 +2275,7 @@ legend {
 }
 .navbar.navbar-info .dropdown-menu li > a:hover, .navbar.navbar-info .dropdown-menu li > a:focus {
   color: #FFFFFF;
-  background-color: #03a9f4;
+  background-color: #137CD0;
 }
 .navbar.navbar-info .dropdown-menu .active > a {
   background-color: #03a9f4;
@@ -2904,6 +2904,9 @@ h2.title {
 }
 .card .header-success {
   background: linear-gradient(60deg, #66bb6a, #388e3c);
+}
+.card .header-successmod {
+  background: #8BC34A;
 }
 .card .header-warning {
   background: linear-gradient(60deg, #fdd835, #fbc02d);

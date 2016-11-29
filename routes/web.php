@@ -51,7 +51,7 @@ Route::get('/show/{id}', 'ProyectosController@show');
 Route::get('/inscribir/{id}', 'ProyectosController@inscribir');
 
 // Ruta para dirigir a inscribir proyectos desde detalles
-Route::get('/vincularce/{id}', 'ProyectosController@vincularce');
+Route::get('/vincularse/{id}', 'ProyectosController@vincularse');
 
 // Ruta para dirigir a proyectos inscritos de cada usuario
 Route::get('/misproyectos', 'ProyectosController@misproyectos');

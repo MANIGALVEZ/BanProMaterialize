@@ -25,7 +25,7 @@
 
 
 <body>
-    <div class="image-container set-full-height" style="background-image: url('img/wizard-profile.jpg')">
+    <div class="image-container set-full-height" style="background-image: url('img/20.jpg')">
 
         <!--  Slider  -->
         <a href="http://tecnoparque.sena.edu.co/" class="made-with-mk">
@@ -47,7 +47,7 @@
                                     <h3 class="wizard-title">
                                         Registro
                                     </h3>
-                                    <h5>La informacion ingresada es para uso exclusivo de Tecnoparque</h5>
+                                    <h5 style="text-align: center">La informacion ingresada es para uso exclusivo de Tecnoparque</h5>
                                 </div>
                                 <div class="wizard-navigation">
                                     <ul>

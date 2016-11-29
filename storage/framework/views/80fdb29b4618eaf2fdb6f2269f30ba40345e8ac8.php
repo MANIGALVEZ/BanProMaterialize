@@ -4,7 +4,7 @@
 
 
 <body>
-<div class="image-container set-full-height" style="background-image: url('img/office1.jpeg')">
+<div class="image-container set-full-height" style="background-image: url('img/1.jpg')">
 
     <!--  Slider  -->
     <a href="http://tecnoparque.sena.edu.co/" class="made-with-mk">
@@ -17,19 +17,19 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="wizard-container">
-                    <div class="card wizard-card" data-color="greenmod" id="wizardProfile">
+                    <div class="card wizard-card" data-color="green" id="wizardProfile">
                         <div class="wizard-header">
                             
                             
                             <h3 class="wizard-title">
-                                RED TECNOPARQUE
+                                Proyectos Actuales
                             </h3>
-                            <h5>Nodo Manizales</h5>
+                            
                             
                         </div>
                         <div class="wizard-navigation">
                             <ul>
-                                <li class="active"><a href="#proyectos" data-toggle="tab">PROYECTOS ACTUALES</a></li>
+                                <li class="active"><a href="#proyectos" data-toggle="tab"></a></li>
                             </ul>
                         </div>
                         <?php $__currentLoopData = $proyectos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $proyecto): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>

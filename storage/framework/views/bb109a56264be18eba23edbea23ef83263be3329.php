@@ -29,19 +29,6 @@
 
 
         <body class="signup-page">
-            
-                
-                    
-                        
-                            
-                                
-                                    
-                                
-                            
-                        
-                    
-                
-            
 
             <!--  Slider  -->
             <a href="http://tecnoparque.sena.edu.co/" class="made-with-mk">
@@ -50,25 +37,14 @@
             </a>
 
             <div class="wrapper">
-                <div class="header header-filter" style="background-image: url('../img/bg3.jpeg'); background-size: cover; background-position: top center;">
+                <div class="header header-filter" style="background-image: url('../img/40.jpg'); background-size: cover; background-position: top center;">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
                                 <div class="card card-signup">
                                     <form class="form" method="" action="">
-                                        <div class="header header-success text-center">
-                                            <h4>Ingreso</h4>
-                                            
-                                                
-                                                    
-                                                
-                                                
-                                                    
-                                                
-                                                
-                                                    
-                                                
-                                            
+                                        <div class="header header-successmod text-center">
+                                            <h3>Ingreso</h3>
                                         </div>
                                         <div class="content">
                                             <br><br>
@@ -95,7 +71,6 @@
                                         <div class="footer text-center">
                                             <center>
                                                 <button type="submit" class="btn btn-simple btn-success btn-lg">Iniciar Sesion</button>
-                                                
                                             </center>
                                         </div>
                                     </form>

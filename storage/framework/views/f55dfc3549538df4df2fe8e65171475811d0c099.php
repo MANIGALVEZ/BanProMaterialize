@@ -94,8 +94,6 @@
                                 <?php $__currentLoopData = $lineasproyectos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $lineaproyecto): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
                                         <?php if($linea->id==$lineaproyecto->lineas_id): ?>
                                             checked
-                                    
-                                       
                                         <?php endif; ?>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
                                 >

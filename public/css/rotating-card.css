@@ -99,6 +99,7 @@ body {
 }
 .card .cover img{
     width: 100%;
+    height: 160%;
 }
 .card .user{
     border-radius: 50%;

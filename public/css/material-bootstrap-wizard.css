@@ -1,35 +1,4 @@
-/*! =========================================================
- *
- Material Bootstrap Wizard - V1.0.1
-*
-* =========================================================
-*
-* Copyright 2016 Creative Tim (http://www.creative-tim.com/product/material-bootstrap-wizard)
- *
- *                       _oo0oo_
- *                      o8888888o
- *                      88" . "88
- *                      (| -_- |)
- *                      0\  =  /0
- *                    ___/`---'\___
- *                  .' \|     |// '.
- *                 / \|||  :  |||// \
- *                / _||||| -:- |||||- \
- *               |   | \  -  /// |   |
- *               | \_|  ''\---/''  |_/ |
- *               \  .-\__  '-'  ___/-. /
- *             ___'. .'  /--.--\  `. .'___
- *          ."" '<  `.___\_<|>_/___.' >' "".
- *         | | :  `- \`.;`\ _ /`;.`/ - ` : | |
- *         \  \ `_.   \_ __\ /__ _/   .-` /  /
- *     =====`-.____`.___ \_____/___.-`___.-'=====
- *                       `=---='
- *
- *     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- *
- *               Buddha Bless:  "No Bugs"
- *
- * ========================================================= */
+
 body {
   background-color: #E5E5E5;
   color: #3C4858;
@@ -206,7 +175,8 @@ h2, .h2 {
 h3, .h3 {
   font-size: 1.825em;
   line-height: 1.4em;
-  margin: 20px 0 10px;
+  margin: 10px 0 10px;
+  font-weight: bold;
 }
 
 h4, .h4 {
@@ -345,7 +315,7 @@ h2.title {
   font-size: 12px;
   text-transform: uppercase;
   -webkit-font-smoothing: subpixel-antialiased;
-  background-color: #4caf50;
+  background-color: #8BC34A;
   top: -4px;
   left: 0px;
   border-radius: 4px;
@@ -530,7 +500,6 @@ h2.title {
 }
 .wizard-card .wizard-header h5 {
   margin: 5px;
-  margin-right: 110px;
 }
 .wizard-card .nav-pills > li {
   text-align: center;
@@ -1281,18 +1250,18 @@ select.form-control[multiple], .form-group.is-focused select.form-control[multip
 }
 .btn.btn-info.btn-simple {
   background-color: transparent;
-  color: #00bcd4;
+  color: #137CD0;
   box-shadow: none;
 }
 .btn.btn-info.btn-simple:hover, .btn.btn-info.btn-simple:focus, .btn.btn-info.btn-simple:active {
   background-color: transparent;
-  color: #00bcd4;
+  color: #137CD0;
 }
 .btn.btn-success {
   box-shadow: 0 2px 2px 0 rgba(76, 175, 80, 0.14), 0 3px 1px -2px rgba(76, 175, 80, 0.2), 0 1px 5px 0 rgba(76, 175, 80, 0.12);
 }
 .btn.btn-success, .btn.btn-success:hover, .btn.btn-success:focus, .btn.btn-success:active, .btn.btn-success.active, .btn.btn-success:active:focus, .btn.btn-success:active:hover, .btn.btn-success.active:focus, .btn.btn-success.active:hover, .open > .btn.btn-success.dropdown-toggle, .open > .btn.btn-success.dropdown-toggle:focus, .open > .btn.btn-success.dropdown-toggle:hover {
-  background-color: #4caf50;
+  background-color: #8BC34A;
   color: #FFFFFF;
 }
 .btn.btn-success:focus, .btn.btn-success:active, .btn.btn-success:hover {

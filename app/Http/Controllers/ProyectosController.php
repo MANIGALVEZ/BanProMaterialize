@@ -34,7 +34,7 @@ class ProyectosController extends Controller
             ->orderBy('id', 'ASC')
             ->paginate();
 
-        return view('gestor.index', compact('query', "lineas", 'iprs', 'proyectosusuariosvista'));
+        return view('proyectos.index', compact('query', "lineas", 'iprs', 'proyectosusuariosvista'));
 
     }
 
@@ -46,7 +46,7 @@ class ProyectosController extends Controller
     {
         $lineas = Linea::all();
 
-    	return view('usuario.registrarproyectos', compact("lineas"));
+    	return view('proyectos.registrarproyectos', compact("lineas"));
     }
 
 
@@ -124,7 +124,7 @@ class ProyectosController extends Controller
             ->paginate();
         $iprs = ProyectosUsers::all();
 
-        return view('selectestadoslineas', compact('query', 'iprs'));
+        return view('proyectos.selectestadoslineas', compact('query', 'iprs'));
     }
 
 
@@ -138,7 +138,7 @@ class ProyectosController extends Controller
             ->paginate();
         $iprs=ProyectosUsers::all();
 
-        return view('gestor.index', compact('query','iprs', 'lineas'));
+        return view('proyectos.index', compact('query','iprs', 'lineas'));
     }
 
 
@@ -163,7 +163,7 @@ class ProyectosController extends Controller
 
         $iprs=ProyectosUsers::all();
 
-        return view('gestor.index', compact('query','iprs'));
+        return view('proyectos.index', compact('query','iprs'));
 
     }
 
@@ -184,7 +184,7 @@ class ProyectosController extends Controller
         foreach($proyectos2 as $key2 => $proyecto2){
             array_push($usuarios2, User::find($proyecto2->users_id));
         }
-        return view('gestor.showp', compact('query', "lineasproyectos", "comentariop", "usuarios", "usuarios2"));
+        return view('proyectos.showp', compact('query', "lineasproyectos", "comentariop", "usuarios", "usuarios2"));
     }
 
 
@@ -204,7 +204,7 @@ class ProyectosController extends Controller
 
 
     // Funcion Vincularce a un proyecto desde detalles
-    public function vincularce(Request $request, $id)
+    public function vincularse(Request $request, $id)
     {
         $user= Auth::user()->id;
         $ipr = new ProyectosUsers();
@@ -241,7 +241,7 @@ class ProyectosController extends Controller
                 ->where('proyectosusers.users_id', '=', Auth::user()->id)
                 ->orderBy('id','ASC')
                 ->paginate();
-            return view('gestor.index', compact('query', 'iprs', 'lineas'));
+            return view('proyectos.index', compact('query', 'iprs', 'lineas'));
         }
         else
         {
@@ -271,7 +271,7 @@ class ProyectosController extends Controller
         {
             $query = User::orderBy('id','ASC')
                 ->paginate();
-            return view('gestor.usuarios', compact('query'));
+            return view('proyectos.usuarios', compact('query'));
         }
         else
         {
@@ -289,7 +289,7 @@ class ProyectosController extends Controller
             $proyectosusers= ProyectosUsers::where("users_id", $id)->get();
             //dd($proyectosusers);
 
-            return view('gestor.proyectosusers', compact('query', 'proyectosusers'));
+            return view('proyectos.proyectosusers', compact('query', 'proyectosusers'));
         }
         else
         {
@@ -307,23 +307,8 @@ class ProyectosController extends Controller
             ->orderBy('id','ASC')
             ->paginate();
 
-        return view('gestor.proyectosbanco', compact('query', "lineas", 'iprs'));
+        return view('proyectos.proyectosbanco', compact('query', "lineas", 'iprs'));
     }
-
-
-//    //Funcion para  mostrar proyectos de un usuario
-//    public function showup($id)
-//    {
-//        $user = ProyectosUsers::find($id);
-//        $lineas = Linea::all();
-//        $query = \DB::table('proyectos')
-//            ->join('proyectosusers', 'proyectos.id', '=', 'proyectosusers.proyectos_id')
-//            ->select('proyectos', 'proyectosusers.users_id')
-//            ->where('proyectosusers.users_id', '=', $user)
-//            ->orderBy('id','ASC')
-//            ->paginate();
-//        return view('gestor.showup', compact('query',  'lineas'));
-//       }
 
 
     //Funcion para filtrar por estado
@@ -412,7 +397,7 @@ class ProyectosController extends Controller
                 }
                 break;
         }
-        return view('selectestadoslineas', compact('query'));
+        return view('proyectos.selectestadoslineas', compact('query'));
     }
 
 
@@ -440,25 +425,6 @@ class ProyectosController extends Controller
         return redirect("show/".$request->get("idProyecto"));
     }
 
-
-//    //Funcion para eliminar el registro a un proyecto cuando el usuario esta rechazado
-//    public function registroRechazado($id)
-//    {
-//
-//        $proyectosusuarios = ProyectosUsers::find($id);
-////        $proyectosusuarios = ProyectosUsers::find($id)
-////            ->where("proyectos_id", $idPU)
-////            ->where("users_id", Auth::user()->id)->value("id");
-//        $proyectosusuarios->estadosproyectosusers_id = 4;
-//////        $prouser->estadosproyectosusers_id = $request->get('resumen');
-//        $proyectosusuarios->save();
-//
-////        return redirect("proyectosIndex");
-////        if(count($prouser) > 0)
-////        {
-////            ProyectosUsers::destroy($prouser);
-////        }
-//    }
 
     //Funcion para editar los campos en la vista showp
     public function editShow(Request $request, $id)

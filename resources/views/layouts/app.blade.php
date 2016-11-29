@@ -22,105 +22,76 @@
     <link  href="{{ asset('css/sweetalert.css') }}" rel="stylesheet">
     <link  href="{{ asset('css/custom.css') }}" rel="stylesheet">
     <link  href="{{ asset('css/fontello.css') }}" rel="stylesheet">
-    <link  href="{{ asset('css/menu.css') }}" rel="stylesheet">
+{{--    <link  href="{{ asset('css/menu.css') }}" rel="stylesheet">--}}
     <link  href="{{ asset('css/bootstrap-switch.css') }}" rel="stylesheet">
     <link  href="{{ asset('css/fileinput.css') }}" rel="stylesheet">
     <link  href="{{ asset('css/material-kit.css') }}" rel="stylesheet">
     <link  href="{{ asset('css/material-bootstrap-wizard.css') }}" rel="stylesheet">
-{{--    <link  href="{{ asset('css/yon.css') }}" rel="stylesheet">--}}
     <link  href="{{ asset('css/rotating-card.css') }}" rel="stylesheet">
 {{--    <link  href="{{ asset('css/fresh-bootstrap-table.css') }}" rel="stylesheet">--}}
 
 
     <!-- Scripts -->
     <script src="{{ asset('js/jquery-3.1.0.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/sweetalert.js') }}"></script>
-    <script src="{{ asset('js/bootstrap-switch.js') }}"></script>
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/fileinput.js') }}"></script>
-    <script src="{{ asset('js/bootstrap-datepicker.js') }}"></script>
     <script src="{{ asset('js/material-kit.js') }}"></script>
-    <script src="{{ asset('js/nouislider.min.js') }}"></script>
     <script src="{{ asset('js/material-bootstrap-wizard.js') }}"></script>
-    <script src="{{ asset('js/formsmaterialize.js') }}"></script>
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('js/holder.js') }}"></script>
     <script src="{{ asset('js/jquery.bootstrap.js') }}"></script>
     <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
+    {{--<script src="{{ asset('js/bootstrap-switch.js') }}"></script>--}}
+    {{--<script src="{{ asset('js/jquery.min.js') }}"></script>--}}
+    {{--<script src="{{ asset('js/fileinput.js') }}"></script>--}}
+    {{--<script src="{{ asset('js/bootstrap-datepicker.js') }}"></script>--}}
+    {{--<script src="{{ asset('js/nouislider.min.js') }}"></script>--}}
+    {{--<script src="{{ asset('js/formsmaterialize.js') }}"></script>--}}
+    {{--<script src="{{ asset('js/app.js') }}"></script>--}}
+    {{--<script src="{{ asset('js/holder.js') }}"></script>--}}
 
 
 </head>
 <body>
-	<nav class="navbar navbar-azulmod navbar-static-top">
-        <div class="container">
+    <nav class="navbar navbar-info">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-
-                <!-- Collapsed Hamburger -->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                    <span class="sr-only">Toggle Navigation</span>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-
-                <!-- Branding Image -->
-                {{--<li><a href="{{ url('/') }}" type="button" class="btn-just-icon btn-xs" data-toggle="tooltip" data-placement="bottom" title="Inicio"><i class="material-icons">home</i></a></li>--}}
-                <li><a href="{{ url('/') }}" class="logotecno"><img src="../img/tecnoparque1.png" alt=""></a></li>
-                <p class="titulobanco">BANCO DE PROYECTOS</p>
-            @if (Auth::guest())
-                    <ul class="nav navbar-nav">
-                    {{--<li class="li_inicio">INICIO</li>--}}
-                </ul>
-
-                    {{--<li><a href="{{ url('/register') }}" type="button" class="btn btn-white btn-just-icon btn-xs" data-toggle="tooltip" data-placement="bottom" title="Registrarse"><i class="material-icons">assignment</i></a></li>--}}
-
-                @else
-                    <div class="menuu">
-                        <nav class="menu">
-                        <ul>
-                          <li><a href="{{ url('/') }}">Inicio</a></li>
-                        <li class="submenus">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Proyectos<b class="icon-down-open"></b></a>
-                                @if(Auth::user()->tiporol == 'usuario')
-                                <ul class="dropdown-menu">
-                                    <li><a href="{{ url('/proyectos/create')}}">Registrar</a></li>
-                                    <li><a href="{{ url('/proyectosIndex')}}">Todos</a></li>
-                                    <li><a href="{{ url('/misproyectos')}}">Asociados</a></li>
-                                </ul>
-                                @endif
-                                @if(Auth::user()->tiporol == 'gestor')
-                                  <ul class="dropdown-menu">
-                                      <li><a href="{{ url('/proyectosIndex')}}">Todos</a></li>
-                                      <li><a href="{{ url('/proyectosB')}}">Eliminados</a></li>
-                                      <li><a href="{{ url('/proyectos/create')}}">Registrar</a></li>
-                                  </ul>
-                                  <li><a href="{{ url('/usuarios')}}">Usuarios</a></li>
-                                @endif
-
-                        </li>
-                      </ul>
-                        </nav>
-                        {{--<nav class="menu">--}}
-
-                        {{--</nav>--}}
-                    </div>
-                @endif
-                {{--<a class="navbar-brand" href="{{ url('/') }}">--}}
-                {{--Tecnoparque--}}
-                {{--</a>--}}
+                {{--<a class="navbar-brand" href="#">Brand</a>--}}
+                <a class="navbar-brand logotecno"><img src="../img/tecnoparque1.png" alt=""></a>
             </div>
-            <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <!-- Left Side Of Navbar -->
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div style="position: relative" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <p class="titulobanco">BANCO DE PROYECTOS</p>
                 <ul class="nav navbar-nav">
-                    &nbsp;
+                    <li><a href="{{ url('/')}}" data-toggle="tooltip" data-placement="bottom" title="Inicio"><i class="material-icons">home</i></a></li>
+                    @if (Auth::guest())
+                    @else
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Proyectos<span class="caret"></span></a>
+                        @if(Auth::user()->tiporol == 'usuario')
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ url('/proyectos/create')}}">Registrar</a></li>
+                            <li><a href="{{ url('/proyectosIndex')}}">Todos</a></li>
+                            <li><a href="{{ url('/misproyectos')}}">Asociados</a></li>
+                        </ul>
+                        @endif
+                        @if(Auth::user()->tiporol == 'gestor')
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ url('/proyectosIndex')}}">Todos</a></li>
+                            <li><a href="{{ url('/proyectosB')}}">Eliminados</a></li>
+                            <li><a href="{{ url('/proyectos/create')}}">Registrar</a></li>
+                        </ul>
+                            <li><a href="{{ url('/usuarios')}}">Usuarios</a></li>
+                        @endif
+                    </li>
+                    @endif
                 </ul>
-                {{--<ul class="nav navbar-nav">--}}
-
-                {{--</ul>--}}
-
-                <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
-                    <!-- Authentication Links -->
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}" type="button" class="btn-just-icon btn-xs" data-toggle="tooltip" data-placement="bottom" title="Ingresar"><i class="material-icons">person</i></a></li>
                         <li><a href="{{ url('/register') }}" type="button" class="btn-just-icon btn-xs" data-toggle="tooltip" data-placement="bottom" title="Registrarse"><i class="material-icons">assignment</i></a></li>
@@ -128,38 +99,25 @@
                         <li><a href="http://tecnoparque.sena.edu.co/" class="btn-just-icon btn-xs" data-toggle="tooltip" data-placement="bottom" title="Web"><i class="material-icons">web</i></a></li>
                     @else
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->nameu }}
-                                <b class="icon-down-open"></b>
-                            </a>
-
-                            <ul class="dropdown-menu" role="menu">
-                                <li>
-                                    <a href="{{ url('/logout') }}"
-                                    onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                                        Salir
-                                    </a>
-
-                                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                        {{ csrf_field() }}
-                                    </form>
-                                </li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->nameu }}<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ url('/logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">Salir</a></li>
                             </ul>
+                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                            </form>
                         </li>
                     @endif
                 </ul>
-            </div>
-        </div>
-
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
     </nav>
+
     <section class="content-fluid">
         <div class="col-md-10 col-md-offset-1">
             @yield('content')
         </div>
     </section>
-
-
 
 <!-- Scripts -->
 <script>
@@ -216,7 +174,7 @@ $(document).ready(function()
 
 
 
-{{--funcion ajax para eliminar un proyecto, pasar a estado en banco(El gestor por medio del aplicativo podr� eliminar un proyecto y de manera autom�tica env�a una notificaci�n al usuario informando el fin del proceso y su motivo)--}}
+{{--funcion ajax para eliminar un proyecto, pasar a estado en banco(El gestor por medio del aplicativo podrá eliminar un proyecto y de manera automática envía una notificación al usuario informando el fin del proceso y su motivo)--}}
         $('.btn-delete').click(function ()
         {
             $idEliminar = "1"
@@ -306,18 +264,6 @@ $(document).ready(function()
             }
 
         })
-
-
-
-//Script para
-
-//        $('.linea').click(function ()
-//        {
-//            console.log(document.getElementById("linea"));
-//            document.getElementById("linea").value = true;
-////            $(".chequeo").getElementById("che").setAttribute("checked", true)
-//            console.log('hola')
-//        })
 
 
 

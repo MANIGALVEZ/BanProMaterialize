@@ -13,13 +13,13 @@
 
         <?php if(Auth::user()->tiporol == 'gestor'): ?>
             <div class="page-header">
-                <h2 class="text-center text-muted">Banco De Proyectos Gestor</h2>
+                <h2 class="text-center text-muted">Gestor</h2>
             </div>
         <?php endif; ?>
 
         <?php if(Auth::user()->tiporol == 'usuario'): ?>
             <div class="page-header">
-                <h2 class="text-center text-muted">Banco De Proyectos Usuario</h2>
+                <h2 class="text-center text-muted">Usuario</h2>
             </div>
         <?php endif; ?>
 
@@ -29,7 +29,7 @@
             <?php echo e(csrf_field()); ?>
 
             <input type="text" class="form-control" placeholder="Nombre del proyecto" name="nombrep">
-            <button type="submit" class="btn btn-success btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Filtrar por Nombre"><i class="glyphicon glyphicon-search"></i></button>
+            <button type="submit" class="btn btn-success btn-round btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Filtrar por Nombre"><i class="glyphicon glyphicon-search"></i></button>
         </form>
 
         <form class="form-inline col-md-5" action="<?php echo e(url('searchD')); ?>" method="POST">
@@ -37,7 +37,7 @@
 
             <input type="date" class="form-control" id="bd-desde" name="bd-desde" required="required">
             <input type="date" class="form-control" id="bd-hasta" name="bd-hasta" required="required">
-            <button type="submit" class="btn btn-success btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Filtrar por Fecha"><i class="glyphicon glyphicon-calendar"></i></button>
+            <button type="submit" class="btn btn-success btn-round btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Filtrar por Fecha"><i class="glyphicon glyphicon-calendar"></i></button>
         </form>
 
         <?php $estados = DB::table("estadosdeproyectos")->where('id', '<>', '1')->get(); ?>
@@ -142,25 +142,25 @@
                     </td>
                     <td>
                         <?php if(Auth::user()->tiporol == 'gestor'): ?>
-                        <a href="show/<?php echo e($row->id); ?>" type="button" class="btn btn-info btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Detalles"><i class="glyphicon glyphicon-list-alt"></i></a>
-                        <a href="javascript:;" data-eliminar="<?php echo e($row->id); ?>" class="btn btn-danger btn-delete btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="glyphicon glyphicon-trash"></i></a>
+                            <a href="show/<?php echo e($row->id); ?>" type="button" class="btn btn-info btn-simple btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Detalles"><i class="material-icons">event_note</i></a>
+                            <a href="javascript:;" data-eliminar="<?php echo e($row->id); ?>" class="btn btn-danger btn-simple btn-delete btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="material-icons">delete</i></a>
                         <?php endif; ?>
 
                         <?php if(Auth::user()->tiporol == 'usuario'): ?>
-                            <a href="show/<?php echo e($row->id); ?>" type="button" class="btn btn-info btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Detalles"><i class="glyphicon glyphicon-list-alt"></i></a>
+                            <a href="show/<?php echo e($row->id); ?>" type="button" class="btn btn-info btn-simple btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Detalles"><i class="material-icons">event_note</i></a>
                             <?php if(count($estadoproyecto) > 0): ?>
                                 <?php if($estadoproyecto == 2): ?>
-                                        <a href="javascript:;" type="button" class="btn btn-warning btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" disabled="disabled" title="Pendiente Aprobacion"><i class="material-icons">access_time</i></a>
+                                        <a href="javascript:;" type="button" class="btn btn-warning btn-simple btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" disabled="disabled" title="Pendiente Aprobacion"><i class="material-icons">access_time</i></a>
                                     <?php elseif($estadoproyecto == 3): ?>
                                         
-                                        <a href="javascript:;" type="button" class="btn btn-danger btn-just-icon btn-xs btn-ocultar" data-toggle="tooltip" data-placement="top" disabled="disabled" title="No ha sido aceptado, Clic para eliminar la inscripción al proyecto"><i class="material-icons">not_interested</i></a>
+                                        <a href="javascript:;" type="button" class="btn btn-danger btn-simple btn-just-icon btn-xs btn-ocultar" data-toggle="tooltip" data-placement="top" disabled="disabled" title="No ha sido aceptado, Clic para eliminar la inscripción al proyecto"><i class="material-icons">not_interested</i></a>
                                         
                                     <?php elseif($estadoproyecto == 1): ?>
-                                       <button type="button" class="btn btn-success  btn-just-icon btn-xs" data-toggle="popover" data-placement="top" title="Reclutado!" data-content="Felicidades! ha sido aceptado, pronto, un gestor le contactará"><i class="material-icons">check</i></button>
+                                       <button type="button" class="btn btn-success btn-simple btn-just-icon btn-xs" data-toggle="popover" data-placement="top" title="Reclutado!" data-content="Felicidades! ha sido aceptado, pronto, un gestor le contactará"><i class="material-icons">check</i></button>
                                 <?php endif; ?>
                            <?php else: ?>
                                 <?php if($row->estadosdeproyectos_id != 2): ?>
-                                <a href="inscribir/<?php echo e($row->id); ?>" type="button" class="btn btn-primary btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Inscribirse"><i class="glyphicon glyphicon-edit"></i></a>
+                                <a href="inscribir/<?php echo e($row->id); ?>" type="button" class="btn btn-primary btn-simple btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Inscribirse"><i class="glyphicon glyphicon-edit"></i></a>
                                 <?php endif; ?>
                             <?php endif; ?>
                         <?php endif; ?>

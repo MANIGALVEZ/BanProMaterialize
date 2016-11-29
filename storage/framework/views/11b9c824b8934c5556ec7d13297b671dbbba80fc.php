@@ -22,105 +22,76 @@
     <link  href="<?php echo e(asset('css/sweetalert.css')); ?>" rel="stylesheet">
     <link  href="<?php echo e(asset('css/custom.css')); ?>" rel="stylesheet">
     <link  href="<?php echo e(asset('css/fontello.css')); ?>" rel="stylesheet">
-    <link  href="<?php echo e(asset('css/menu.css')); ?>" rel="stylesheet">
+
     <link  href="<?php echo e(asset('css/bootstrap-switch.css')); ?>" rel="stylesheet">
     <link  href="<?php echo e(asset('css/fileinput.css')); ?>" rel="stylesheet">
     <link  href="<?php echo e(asset('css/material-kit.css')); ?>" rel="stylesheet">
     <link  href="<?php echo e(asset('css/material-bootstrap-wizard.css')); ?>" rel="stylesheet">
-
     <link  href="<?php echo e(asset('css/rotating-card.css')); ?>" rel="stylesheet">
 
 
 
     <!-- Scripts -->
     <script src="<?php echo e(asset('js/jquery-3.1.0.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('js/bootstrap.min.js')); ?>"></script>
     <script src="<?php echo e(asset('js/sweetalert.js')); ?>"></script>
-    <script src="<?php echo e(asset('js/bootstrap-switch.js')); ?>"></script>
-    <script src="<?php echo e(asset('js/jquery.min.js')); ?>"></script>
-    <script src="<?php echo e(asset('js/fileinput.js')); ?>"></script>
-    <script src="<?php echo e(asset('js/bootstrap-datepicker.js')); ?>"></script>
     <script src="<?php echo e(asset('js/material-kit.js')); ?>"></script>
-    <script src="<?php echo e(asset('js/nouislider.min.js')); ?>"></script>
     <script src="<?php echo e(asset('js/material-bootstrap-wizard.js')); ?>"></script>
-    <script src="<?php echo e(asset('js/formsmaterialize.js')); ?>"></script>
-    <script src="<?php echo e(asset('js/app.js')); ?>"></script>
-    <script src="<?php echo e(asset('js/holder.js')); ?>"></script>
     <script src="<?php echo e(asset('js/jquery.bootstrap.js')); ?>"></script>
     <script src="<?php echo e(asset('js/jquery.validate.min.js')); ?>"></script>
+    
+    
+    
+    
+    
+    
+    
+    
 
 
 </head>
 <body>
-	<nav class="navbar navbar-azulmod navbar-static-top">
-        <div class="container">
+    <nav class="navbar navbar-info">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-
-                <!-- Collapsed Hamburger -->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                    <span class="sr-only">Toggle Navigation</span>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-
-                <!-- Branding Image -->
                 
-                <li><a href="<?php echo e(url('/')); ?>" class="logotecno"><img src="../img/tecnoparque1.png" alt=""></a></li>
-                <p class="titulobanco">BANCO DE PROYECTOS</p>
-            <?php if(Auth::guest()): ?>
-                    <ul class="nav navbar-nav">
-                    
-                </ul>
-
-                    
-
-                <?php else: ?>
-                    <div class="menuu">
-                        <nav class="menu">
-                        <ul>
-                          <li><a href="<?php echo e(url('/')); ?>">Inicio</a></li>
-                        <li class="submenus">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Proyectos<b class="icon-down-open"></b></a>
-                                <?php if(Auth::user()->tiporol == 'usuario'): ?>
-                                <ul class="dropdown-menu">
-                                    <li><a href="<?php echo e(url('/proyectos/create')); ?>">Registrar</a></li>
-                                    <li><a href="<?php echo e(url('/proyectosIndex')); ?>">Todos</a></li>
-                                    <li><a href="<?php echo e(url('/misproyectos')); ?>">Asociados</a></li>
-                                </ul>
-                                <?php endif; ?>
-                                <?php if(Auth::user()->tiporol == 'gestor'): ?>
-                                  <ul class="dropdown-menu">
-                                      <li><a href="<?php echo e(url('/proyectosIndex')); ?>">Todos</a></li>
-                                      <li><a href="<?php echo e(url('/proyectosB')); ?>">Eliminados</a></li>
-                                      <li><a href="<?php echo e(url('/proyectos/create')); ?>">Registrar</a></li>
-                                  </ul>
-                                  <li><a href="<?php echo e(url('/usuarios')); ?>">Usuarios</a></li>
-                                <?php endif; ?>
-
-                        </li>
-                      </ul>
-                        </nav>
-                        
-
-                        
-                    </div>
-                <?php endif; ?>
-                
-                
-                
+                <a class="navbar-brand logotecno"><img src="../img/tecnoparque1.png" alt=""></a>
             </div>
-            <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <!-- Left Side Of Navbar -->
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div style="position: relative" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <p class="titulobanco">BANCO DE PROYECTOS</p>
                 <ul class="nav navbar-nav">
-                    &nbsp;
+                    <li><a href="<?php echo e(url('/')); ?>" data-toggle="tooltip" data-placement="bottom" title="Inicio"><i class="material-icons">home</i></a></li>
+                    <?php if(Auth::guest()): ?>
+                    <?php else: ?>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Proyectos<span class="caret"></span></a>
+                        <?php if(Auth::user()->tiporol == 'usuario'): ?>
+                        <ul class="dropdown-menu">
+                            <li><a href="<?php echo e(url('/proyectos/create')); ?>">Registrar</a></li>
+                            <li><a href="<?php echo e(url('/proyectosIndex')); ?>">Todos</a></li>
+                            <li><a href="<?php echo e(url('/misproyectos')); ?>">Asociados</a></li>
+                        </ul>
+                        <?php endif; ?>
+                        <?php if(Auth::user()->tiporol == 'gestor'): ?>
+                        <ul class="dropdown-menu">
+                            <li><a href="<?php echo e(url('/proyectosIndex')); ?>">Todos</a></li>
+                            <li><a href="<?php echo e(url('/proyectosB')); ?>">Eliminados</a></li>
+                            <li><a href="<?php echo e(url('/proyectos/create')); ?>">Registrar</a></li>
+                        </ul>
+                            <li><a href="<?php echo e(url('/usuarios')); ?>">Usuarios</a></li>
+                        <?php endif; ?>
+                    </li>
+                    <?php endif; ?>
                 </ul>
-                
-
-                
-
-                <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
-                    <!-- Authentication Links -->
                     <?php if(Auth::guest()): ?>
                         <li><a href="<?php echo e(url('/login')); ?>" type="button" class="btn-just-icon btn-xs" data-toggle="tooltip" data-placement="bottom" title="Ingresar"><i class="material-icons">person</i></a></li>
                         <li><a href="<?php echo e(url('/register')); ?>" type="button" class="btn-just-icon btn-xs" data-toggle="tooltip" data-placement="bottom" title="Registrarse"><i class="material-icons">assignment</i></a></li>
@@ -128,40 +99,26 @@
                         <li><a href="http://tecnoparque.sena.edu.co/" class="btn-just-icon btn-xs" data-toggle="tooltip" data-placement="bottom" title="Web"><i class="material-icons">web</i></a></li>
                     <?php else: ?>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                <?php echo e(Auth::user()->nameu); ?>
-
-                                <b class="icon-down-open"></b>
-                            </a>
-
-                            <ul class="dropdown-menu" role="menu">
-                                <li>
-                                    <a href="<?php echo e(url('/logout')); ?>"
-                                    onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                                        Salir
-                                    </a>
-
-                                    <form id="logout-form" action="<?php echo e(url('/logout')); ?>" method="POST" style="display: none;">
-                                        <?php echo e(csrf_field()); ?>
-
-                                    </form>
-                                </li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php echo e(Auth::user()->nameu); ?><span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="<?php echo e(url('/logout')); ?>"onclick="event.preventDefault();document.getElementById('logout-form').submit();">Salir</a></li>
                             </ul>
+                            <form id="logout-form" action="<?php echo e(url('/logout')); ?>" method="POST" style="display: none;">
+                            <?php echo e(csrf_field()); ?>
+
+                            </form>
                         </li>
                     <?php endif; ?>
                 </ul>
-            </div>
-        </div>
-
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
     </nav>
+
     <section class="content-fluid">
         <div class="col-md-10 col-md-offset-1">
             <?php echo $__env->yieldContent('content'); ?>
         </div>
     </section>
-
-
 
 <!-- Scripts -->
 <script>
@@ -308,18 +265,6 @@ $(document).ready(function()
             }
 
         })
-
-
-
-//Script para
-
-//        $('.linea').click(function ()
-//        {
-//            console.log(document.getElementById("linea"));
-//            document.getElementById("linea").value = true;
-////            $(".chequeo").getElementById("che").setAttribute("checked", true)
-//            console.log('hola')
-//        })
 
 
 

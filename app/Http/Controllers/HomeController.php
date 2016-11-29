@@ -24,7 +24,7 @@ class HomeController extends Controller
     {
         $proyectos = Proyecto::where('estadosdeproyectos_id', '>', 2)->get();
         $estadosproyectos = \DB::table('estadosdeproyectos')->get();
-        return view('welcome', compact('proyectos', 'estadosproyectos'));
+        return view('proyectos.welcome', compact('proyectos', 'estadosproyectos'));
     }
 
 
