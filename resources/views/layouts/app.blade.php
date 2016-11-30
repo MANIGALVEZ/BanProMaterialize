@@ -28,7 +28,7 @@
     <link  href="{{ asset('css/material-kit.css') }}" rel="stylesheet">
     <link  href="{{ asset('css/material-bootstrap-wizard.css') }}" rel="stylesheet">
     <link  href="{{ asset('css/rotating-card.css') }}" rel="stylesheet">
-{{--    <link  href="{{ asset('css/fresh-bootstrap-table.css') }}" rel="stylesheet">--}}
+    <link  href="{{ asset('css/fresh-bootstrap-table.css') }}" rel="stylesheet">
 
 
     <!-- Scripts -->
@@ -39,6 +39,7 @@
     <script src="{{ asset('js/material-bootstrap-wizard.js') }}"></script>
     <script src="{{ asset('js/jquery.bootstrap.js') }}"></script>
     <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap-table.js') }}"></script>
 {{--    <script src="{{ asset('js/bootstrap-switch.js') }}"></script>--}}
 {{--    <script src="{{ asset('js/jquery.min.js') }}"></script>--}}
     <script src="{{ asset('js/fileinput.js') }}"></script>
@@ -99,7 +100,14 @@
                         <li><a href="http://tecnoparque.sena.edu.co/" class="btn-just-icon btn-xs" data-toggle="tooltip" data-placement="bottom" title="Web"><i class="material-icons">web</i></a></li>
                     @else
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->nameu }}<span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                @if(Auth::user()->tiporol == 'gestor')
+                                    Gestor: {{ Auth::user()->nameu }}
+                                @endif
+                                @if(Auth::user()->tiporol == 'usuario')
+                                    Usuario: {{ Auth::user()->nameu }}
+                                @endif
+                                <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="{{ url('/logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">Salir</a></li>
                             </ul>
@@ -307,6 +315,46 @@ $(document).ready(function()
     })
 
 
+
+//Script Tabla Dinamica
+    var $table = $('#fresh-table'),
+            $alertBtn = $('#alertBtn'),
+            full_screen = false,
+            window_height;
+
+    $().ready(function(){
+
+        window_height = $(window).height();
+        table_height = window_height - 20;
+
+        $table.bootstrapTable({
+            toolbar: ".toolbar",
+//            showRefresh: true,
+            search: true,
+//            showToggle: true,
+            showColumns: true,
+            pagination: true,
+//            striped: true,
+            sortable: true,
+//            height: table_height,
+            pageSize: 3,
+            pageList: [3,6,9],
+
+            formatShowingRows: function(pageFrom, pageTo, totalRows){
+                //do nothing here, we don't want to show the text "showing x of y from..."
+            },
+            formatRecordsPerPage: function(pageNumber){
+                return pageNumber + " rows visible";
+            },
+            icons: {
+                refresh: 'fa fa-refresh',
+                toggle: 'fa fa-th-list',
+                columns: 'fa fa-columns',
+                detailOpen: 'fa fa-plus-circle',
+                detailClose: 'fa fa-minus-circle'
+            }
+        });
+    });
 
 
 })

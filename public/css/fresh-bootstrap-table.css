@@ -538,7 +538,7 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
   border-top-color: #FFFFFF;
 }
 .btn .caret {
-  border-top-color: #AAAAAA;
+  border-top-color: white;
 }
 .btn:hover, .btn:focus {
   opacity: 1;
@@ -915,7 +915,7 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
 
 .form-control {
   background-color: #FFFFFF;
-  border: 2px solid #AAAAAA;
+  border: 2px solid #8BC34A;
   border-radius: 30px;
   font-weight: 600;
   color: #666666;
@@ -1336,9 +1336,9 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
 .fresh-table .pagination > li.active > span:hover,
 .fresh-table .pagination > li.active > a:focus,
 .fresh-table .pagination > li.active > span:focus {
-  color: #898989;
-  border-color: #AAAAAA;
-  background-color: transparent;
+  color: white;
+  border-color: white;
+  background-color: #8BC34A;
   opacity: 1;
   filter: alpha(opacity=100);
 }
