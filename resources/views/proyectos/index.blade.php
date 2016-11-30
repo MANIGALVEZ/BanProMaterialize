@@ -16,6 +16,11 @@
         @if(Auth::user()->tiporol == 'gestor')
             <div class="page-header">
                 <h2 class="text-center text-muted">Gestor</h2>
+
+                <div class="progress">
+                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+                    </div>
+                </div>
             </div>
         @endif
 
@@ -58,19 +63,6 @@
                 <label for="filtroLinea{{ $linea->id }}">{{ $linea->linea }}</label><br>
             @endforeach
         </form>
-        {{--<form class="form-inline" >--}}
-        {{--@if(Auth::user()->tiporol == 'usuario')--}}
-            {{--<div class=" btn-group" data-toggle="buttons">--}}
-                {{--<h4>Mis proyectos</h4>--}}
-                {{--<label class="btn btn-info">--}}
-                    {{--<input type="radio" name="options" id="opcion1">Proyectos Asociados--}}
-                {{--</label>--}}
-                {{--<label class="btn btn-primary">--}}
-                    {{--<input type="radio" name="options" id="opcion2">Todos los proyectos--}}
-                {{--</label>--}}
-            {{--</div>--}}
-        {{--@endif--}}
-        {{--</form>--}}
     </article>
 
     <table class="table table-hover" style="text-align: center">
