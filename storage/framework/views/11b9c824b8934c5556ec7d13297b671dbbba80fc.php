@@ -39,9 +39,9 @@
     <script src="<?php echo e(asset('js/material-bootstrap-wizard.js')); ?>"></script>
     <script src="<?php echo e(asset('js/jquery.bootstrap.js')); ?>"></script>
     <script src="<?php echo e(asset('js/jquery.validate.min.js')); ?>"></script>
-    
-    
-    
+
+
+    <script src="<?php echo e(asset('js/fileinput.js')); ?>"></script>
     
     
     

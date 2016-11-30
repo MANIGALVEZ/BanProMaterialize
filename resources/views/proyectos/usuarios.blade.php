@@ -7,7 +7,7 @@
     </div>
 </article>
 <br>
-<table class="table" style="text-align: center">
+<table class="table table-hover" style="text-align: center">
       <thead>
         {{--<th>Id</th>--}}
         <th>Nombre</th>

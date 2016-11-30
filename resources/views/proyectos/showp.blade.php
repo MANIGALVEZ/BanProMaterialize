@@ -4,7 +4,7 @@
 
 
 <article>
-<div class="page-header">
+    <div class="page-header">
         <h2 class="text-center text-muted">Detalles Del Proyecto</h2>
     </div>
 </article>
@@ -27,8 +27,8 @@
             <label>Creado por:</label> {{$query->user->nameu}}
 
             @if(Auth::user()->tiporol == 'gestor')
-            <button type="button" class="btn btn-primary btn-just-icon btn-xs editInput" data-toggle="tooltip" data-placement="top" title="Editar"><i class="material-icons">edit</i></button>
-            <button type="submit" class="btn btn-success btn-just-icon btn-xs updateInput hidden" data-toggle="tooltip" data-placement="top" title="Guardar"><i class="material-icons">save</i></button>
+            <button type="button" class="btn btn-primary btn-simple btn-just-icon btn-xs editInput" data-toggle="tooltip" data-placement="top" title="Editar"><i class="material-icons">edit</i></button>
+            <button type="submit" class="btn btn-success btn-simple btn-just-icon btn-xs updateInput hidden" data-toggle="tooltip" data-placement="top" title="Guardar"><i class="material-icons">save</i></button>
             @endif
 
             @if(Auth::user()->tiporol == 'usuario')
@@ -188,7 +188,6 @@
             {{--<input type="file" class="file" name="image" multiple data-show-upload="false" data-show-caption="true" data-allowed-file-extensions='["jpg", "png"]'>--}}
 
             <input type="file" class="file" name="image" data-imagen="{{ $query->id }}" data-allowed-file-extensions='["jpg", "png"]'>
-            {{--<input type='submit' class='btn btn-finish btn-fill btn-success btn-wd' value='Registrarse' />--}}
         </div>
     </form>
 

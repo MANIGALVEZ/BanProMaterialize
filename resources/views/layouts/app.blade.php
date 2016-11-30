@@ -39,9 +39,9 @@
     <script src="{{ asset('js/material-bootstrap-wizard.js') }}"></script>
     <script src="{{ asset('js/jquery.bootstrap.js') }}"></script>
     <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
-    {{--<script src="{{ asset('js/bootstrap-switch.js') }}"></script>--}}
-    {{--<script src="{{ asset('js/jquery.min.js') }}"></script>--}}
-    {{--<script src="{{ asset('js/fileinput.js') }}"></script>--}}
+{{--    <script src="{{ asset('js/bootstrap-switch.js') }}"></script>--}}
+{{--    <script src="{{ asset('js/jquery.min.js') }}"></script>--}}
+    <script src="{{ asset('js/fileinput.js') }}"></script>
     {{--<script src="{{ asset('js/bootstrap-datepicker.js') }}"></script>--}}
     {{--<script src="{{ asset('js/nouislider.min.js') }}"></script>--}}
     {{--<script src="{{ asset('js/formsmaterialize.js') }}"></script>--}}

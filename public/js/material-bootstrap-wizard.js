@@ -213,11 +213,11 @@ function refreshAnimation($wizard, index){
     move_distance *= index;
 
     $current = index + 1;
-
+    //los valores move_distance modifican el efecto de los wizard
     if($current == 1){
-        move_distance -= 8;
+        move_distance -= 0;
     } else if($current == total_steps){
-        move_distance += 8;
+        move_distance += 0;
     }
 
     $wizard.find('.moving-tab').css('width', step_width);
