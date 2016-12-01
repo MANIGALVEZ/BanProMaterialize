@@ -15,6 +15,7 @@
     <link href='https://fonts.googleapis.com/css?family=Cambo|Poppins:400,600' rel='stylesheet' type='text/css'>
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Fresca" rel="stylesheet">
 
 
     <!-- Styles -->
@@ -40,8 +41,8 @@
     <script src="{{ asset('js/jquery.bootstrap.js') }}"></script>
     <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap-table.js') }}"></script>
-{{--    <script src="{{ asset('js/bootstrap-switch.js') }}"></script>--}}
-{{--    <script src="{{ asset('js/jquery.min.js') }}"></script>--}}
+    {{--<script src="{{ asset('js/bootstrap-switch.js') }}"></script>--}}
+    {{--<script src="{{ asset('js/jquery.min.js') }}"></script>--}}
     <script src="{{ asset('js/fileinput.js') }}"></script>
     {{--<script src="{{ asset('js/bootstrap-datepicker.js') }}"></script>--}}
     {{--<script src="{{ asset('js/nouislider.min.js') }}"></script>--}}
@@ -52,7 +53,7 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-info">
+    <nav class="navbar navbar-info navbar-static-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -84,7 +85,7 @@
                         @if(Auth::user()->tiporol == 'gestor')
                         <ul class="dropdown-menu">
                             <li><a href="{{ url('/proyectosIndex')}}">Todos</a></li>
-                            <li><a href="{{ url('/proyectosB')}}">Eliminados</a></li>
+                            <li><a href="{{ url('/proyectosB')}}">Cerrados</a></li>
                             <li><a href="{{ url('/proyectos/create')}}">Registrar</a></li>
                         </ul>
                             <li><a href="{{ url('/usuarios')}}">Usuarios</a></li>
@@ -122,7 +123,8 @@
     </nav>
 
     <section class="content-fluid">
-        <div class="col-md-10 col-md-offset-1">
+        {{--<div class="col-md-10 col-md-offset-1">--}}
+        <div class="">
             @yield('content')
         </div>
     </section>
@@ -183,7 +185,7 @@ $(document).ready(function()
 
 
 {{--funcion ajax para eliminar un proyecto, pasar a estado en banco(El gestor por medio del aplicativo podrá eliminar un proyecto y de manera automática envía una notificación al usuario informando el fin del proceso y su motivo)--}}
-        $('.btn-delete').click(function ()
+        $('.btn-eliminar').click(function ()
         {
             $idEliminar = "1"
             $idPro = $(this).attr("data-eliminar")
@@ -313,48 +315,6 @@ $(document).ready(function()
         }
 
     })
-
-
-
-//Script Tabla Dinamica
-    var $table = $('#fresh-table'),
-            $alertBtn = $('#alertBtn'),
-            full_screen = false,
-            window_height;
-
-    $().ready(function(){
-
-        window_height = $(window).height();
-        table_height = window_height - 20;
-
-        $table.bootstrapTable({
-            toolbar: ".toolbar",
-//            showRefresh: true,
-            search: true,
-//            showToggle: true,
-            showColumns: true,
-            pagination: true,
-//            striped: true,
-            sortable: true,
-//            height: table_height,
-            pageSize: 3,
-            pageList: [3,6,9],
-
-            formatShowingRows: function(pageFrom, pageTo, totalRows){
-                //do nothing here, we don't want to show the text "showing x of y from..."
-            },
-            formatRecordsPerPage: function(pageNumber){
-                return pageNumber + " rows visible";
-            },
-            icons: {
-                refresh: 'fa fa-refresh',
-                toggle: 'fa fa-th-list',
-                columns: 'fa fa-columns',
-                detailOpen: 'fa fa-plus-circle',
-                detailClose: 'fa fa-minus-circle'
-            }
-        });
-    });
 
 
 })

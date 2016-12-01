@@ -15,6 +15,7 @@
     <link href='https://fonts.googleapis.com/css?family=Cambo|Poppins:400,600' rel='stylesheet' type='text/css'>
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Fresca" rel="stylesheet">
 
 
     <!-- Styles -->
@@ -40,8 +41,8 @@
     <script src="<?php echo e(asset('js/jquery.bootstrap.js')); ?>"></script>
     <script src="<?php echo e(asset('js/jquery.validate.min.js')); ?>"></script>
     <script src="<?php echo e(asset('js/bootstrap-table.js')); ?>"></script>
-
-
+    
+    
     <script src="<?php echo e(asset('js/fileinput.js')); ?>"></script>
     
     
@@ -52,7 +53,7 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-info">
+    <nav class="navbar navbar-info navbar-static-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -84,7 +85,7 @@
                         <?php if(Auth::user()->tiporol == 'gestor'): ?>
                         <ul class="dropdown-menu">
                             <li><a href="<?php echo e(url('/proyectosIndex')); ?>">Todos</a></li>
-                            <li><a href="<?php echo e(url('/proyectosB')); ?>">Eliminados</a></li>
+                            <li><a href="<?php echo e(url('/proyectosB')); ?>">Cerrados</a></li>
                             <li><a href="<?php echo e(url('/proyectos/create')); ?>">Registrar</a></li>
                         </ul>
                             <li><a href="<?php echo e(url('/usuarios')); ?>">Usuarios</a></li>
@@ -125,7 +126,8 @@
     </nav>
 
     <section class="content-fluid">
-        <div class="col-md-10 col-md-offset-1">
+        
+        <div class="">
             <?php echo $__env->yieldContent('content'); ?>
         </div>
     </section>
@@ -186,7 +188,7 @@ $(document).ready(function()
 
 
 
-        $('.btn-delete').click(function ()
+        $('.btn-eliminar').click(function ()
         {
             $idEliminar = "1"
             $idPro = $(this).attr("data-eliminar")
@@ -316,48 +318,6 @@ $(document).ready(function()
         }
 
     })
-
-
-
-//Script Tabla Dinamica
-    var $table = $('#fresh-table'),
-            $alertBtn = $('#alertBtn'),
-            full_screen = false,
-            window_height;
-
-    $().ready(function(){
-
-        window_height = $(window).height();
-        table_height = window_height - 20;
-
-        $table.bootstrapTable({
-            toolbar: ".toolbar",
-//            showRefresh: true,
-            search: true,
-//            showToggle: true,
-            showColumns: true,
-            pagination: true,
-//            striped: true,
-            sortable: true,
-//            height: table_height,
-            pageSize: 3,
-            pageList: [3,6,9],
-
-            formatShowingRows: function(pageFrom, pageTo, totalRows){
-                //do nothing here, we don't want to show the text "showing x of y from..."
-            },
-            formatRecordsPerPage: function(pageNumber){
-                return pageNumber + " rows visible";
-            },
-            icons: {
-                refresh: 'fa fa-refresh',
-                toggle: 'fa fa-th-list',
-                columns: 'fa fa-columns',
-                detailOpen: 'fa fa-plus-circle',
-                detailClose: 'fa fa-minus-circle'
-            }
-        });
-    });
 
 
 })

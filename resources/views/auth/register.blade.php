@@ -3,10 +3,6 @@
 @section('content')
 
 
-</div>
-
-
-
 @if(count($errors) > 0)
     <script>
         swal({

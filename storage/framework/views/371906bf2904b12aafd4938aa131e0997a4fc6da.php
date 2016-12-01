@@ -14,9 +14,9 @@
 <?php echo e(csrf_field()); ?>
 
 
-<div class=" row col-md-12">
+<div class="col-md-10 col-md-offset-1">
     <div class="infoinicial">
-        <article class="form-inline">
+        <div class="form-inline">
             <label>Proyecto: </label>
                 <input class="quitarborde" type="text" name="nombrep" value="<?php echo e($query->nombrep); ?>" readonly>
 
@@ -27,25 +27,27 @@
 
 
             <?php if(Auth::user()->tiporol == 'gestor'): ?>
-            <button type="button" class="btn btn-primary btn-simple btn-just-icon btn-xs editInput" data-toggle="tooltip" data-placement="top" title="Editar"><i class="material-icons">edit</i></button>
-            <button type="submit" class="btn btn-success btn-simple btn-just-icon btn-xs updateInput hidden" data-toggle="tooltip" data-placement="top" title="Guardar"><i class="material-icons">save</i></button>
+            <button type="button" class="pull-right btn btn-primary btn-simple btn-just-icon btn-xs editInput" data-toggle="tooltip" data-placement="top" title="Editar"><i class="material-icons">edit</i></button>
+            <button type="submit" class="pull-right btn btn-success btn-simple btn-just-icon btn-xs updateInput hidden" data-toggle="tooltip" data-placement="top" title="Guardar"><i class="material-icons">save</i></button>
             <?php endif; ?>
 
+            <?php $estadoproyecto = DB::table("proyectosusers")->where("proyectos_id", $query->id)->where("users_id", Auth::user()->id)->value("estadosproyectosusers_id"); ?>
             <?php if(Auth::user()->tiporol == 'usuario'): ?>
-                <?php $estadoproyecto = DB::table("proyectosusers")->where("proyectos_id", $query->id)->where("users_id", Auth::user()->id)->value("estadosproyectosusers_id"); ?>
                 <?php if(count($estadoproyecto) > 0): ?>
                     <?php if($estadoproyecto == 2): ?>
-                        <a href="javascript:;" type="button" class="btn btn-warning btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" disabled="disabled" title="Pendiente Aprobacion"><i class="material-icons">access_time</i></a>
+                        <a href="javascript:;" type="button" class="pull-right btn btn-warning btn-simple btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" disabled="disabled" title="Pendiente Aprobacion"><i class="material-icons">access_time</i></a>
                     <?php elseif($estadoproyecto == 3): ?>
-                        <a href="javascript:;" type="button" class="btn btn-danger btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Rechazado" disabled="disabled"><i class="material-icons">not_interested</i></a>
+                        <a href="javascript:;" type="button" class="pull-right btn btn-danger btn-simple btn-just-icon btn-xs btn-ocultar" data-toggle="tooltip" data-placement="top" disabled="disabled" title="No ha sido aceptado, Clic para eliminar la inscripción al proyecto"><i class="material-icons">not_interested</i></a>
                     <?php elseif($estadoproyecto == 1): ?>
-                        <button type="button" class="btn btn-success  btn-just-icon btn-xs" data-toggle="popover" data-placement="top" title="Reclutado!" data-content="Felicidades! ha sido aceptado, pronto, un gestor le contactará"><i class="material-icons">check</i></button>
+                        <button type="button" class="pull-right btn btn-success btn-simple btn-just-icon btn-xs" data-toggle="popover" data-placement="top" title="Reclutado!" data-content="Felicidades! ha sido aceptado, pronto, un gestor le contactará"><i class="material-icons">check</i></button>
                     <?php endif; ?>
                 <?php else: ?>
-                    <a href="../vincularce/<?php echo e($query->id); ?>" type="button" class="btn btn-primary btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Inscribirse"><i class="glyphicon glyphicon-edit"></i></a>
+                    <?php if($query->estadosdeproyectos_id != 2): ?>
+                    <a href="../vincularse/<?php echo e($query->id); ?>" type="button" class="pull-right btn btn-primary btn-simple btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Inscribirse"><i class="glyphicon glyphicon-edit"></i></a>
+                    <?php endif; ?>
                 <?php endif; ?>
             <?php endif; ?>
-        </article>
+        </div>
     </div>
     <div>
         <table  class="table table-bordered tablitashow">
@@ -71,7 +73,7 @@
             </tbody>
         </table>
     </div>
-</form>
+
     <table class="table table-bordered tablitashow"  >
         <thead>
         <tr>
@@ -89,7 +91,6 @@
                     <?php if(Auth::user()->tiporol == 'gestor'): ?>
                         <?php $lineas = DB::table("lineas")->get(); ?>
                             <?php $__currentLoopData = $lineas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $linea): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
-
                                 <input id="linea<?php echo e($linea->id); ?>" class="editLinea" type="checkbox" name="lineatecnologica[]" value="<?php echo e($linea->id); ?>" data-edit-linea="<?php echo e($query->id); ?>"
                                 <?php $__currentLoopData = $lineasproyectos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $lineaproyecto): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
                                         <?php if($linea->id==$lineaproyecto->lineas_id): ?>
@@ -172,9 +173,16 @@
             </td>
         </tbody>
     </table>
+    <?php if(Auth::user()->tiporol == 'gestor'): ?>
         <div style="padding:0; height: 268px;" class=" row col-md-4 col-sm-offset-1">
             <img src="/<?php echo e($query->imagen); ?>" class="img-thumbnail imgS" style=" height: 250px;">
         </div>
+    <?php endif; ?>
+    <?php if(Auth::user()->tiporol == 'usuario'): ?>
+        <div style="padding:0; height: 268px;" class=" row col-md-12 col-sm-offset-4">
+            <img src="/<?php echo e($query->imagen); ?>" class="img-thumbnail imgS" style=" height: 250px;">
+        </div>
+    <?php endif; ?>
 
 
 
@@ -259,6 +267,6 @@
 
 </div>
 
-
+</form>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

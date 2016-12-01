@@ -2,26 +2,26 @@
 
 @section('content')
 
-</div>
-    @if(count($errors) > 0)
-        <script>
-            swal({
-                title: "Ingreso Invalido!",
-                text: "Por favor verifique la información de los campos ",
-                type: "error",
-                confirmButtonClass: "btn-danger",
-                confirmButtonText: "Aceptar"});
-        </script>
-        <div class="alert alert-danger alert-dismissible" role="alert">
-            <button class="close" data-dismiss="alert">&times;</button>
 
-            @foreach($errors->all() as $message)
-                <li>{{ $message }}</li>
-            @endforeach
-        </div>
+@if(count($errors) > 0)
+    <script>
+        swal({
+            title: "¡Ingreso Invalido!",
+            text: "Por favor verifique la información de los campos",
+            type: "error",
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "Aceptar"});
+    </script>
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button class="close" data-dismiss="alert">&times;</button>
+
+        @foreach($errors->all() as $message)
+            <li>{{ $message }}</li>
+        @endforeach
+    </div>
 
 
-    @endif
+@endif
 
 
 <div class="panel-body">

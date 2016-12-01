@@ -1,6 +1,6 @@
 <?php $__env->startSection('content'); ?>
 
-</div>
+
 
 <?php if(count($errors) > 0): ?>
     <script>
@@ -178,12 +178,6 @@
                 </div>
             </div><!-- fin row -->
         </div> <!--  fin big container -->
-
-        
-            
-                
-            
-        
     </div>
 </body>
 

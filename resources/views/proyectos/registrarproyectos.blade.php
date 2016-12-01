@@ -2,7 +2,7 @@
 @extends('layouts.app')
 @section('content')
 
-</div>
+
 
 @if(count($errors) > 0)
     <script>
@@ -179,12 +179,6 @@
                 </div>
             </div><!-- fin row -->
         </div> <!--  fin big container -->
-
-        {{--<div class="footer">--}}
-            {{--<div class="container text-center">--}}
-                {{--Hecho por Henry Parra & Yonathan Gálvez para Tecnoparque <a href="http://tecnoparque.sena.edu.co/"></a>--}}
-            {{--</div>--}}
-        {{--</div>--}}
     </div>
 </body>
 

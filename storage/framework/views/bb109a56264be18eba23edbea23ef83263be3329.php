@@ -1,25 +1,25 @@
 <?php $__env->startSection('content'); ?>
 
-</div>
-    <?php if(count($errors) > 0): ?>
-        <script>
-            swal({
-                title: "Ingreso Invalido!",
-                text: "Por favor verifique la información de los campos ",
-                type: "error",
-                confirmButtonClass: "btn-danger",
-                confirmButtonText: "Aceptar"});
-        </script>
-        <div class="alert alert-danger alert-dismissible" role="alert">
-            <button class="close" data-dismiss="alert">&times;</button>
 
-            <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $message): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
-                <li><?php echo e($message); ?></li>
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
-        </div>
+<?php if(count($errors) > 0): ?>
+    <script>
+        swal({
+            title: "¡Ingreso Invalido!",
+            text: "Por favor verifique la información de los campos",
+            type: "error",
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "Aceptar"});
+    </script>
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button class="close" data-dismiss="alert">&times;</button>
+
+        <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $message): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+            <li><?php echo e($message); ?></li>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
+    </div>
 
 
-    <?php endif; ?>
+<?php endif; ?>
 
 
 <div class="panel-body">

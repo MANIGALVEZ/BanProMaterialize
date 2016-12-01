@@ -1,3 +1,13 @@
+/*@font-face {*/
+    /*font-family: "steinerlight";*/
+    /*src: ("../fonts/GOUDYSTO.TTF");*/
+/*}*/
+
+@font-face {
+    font-family: steinerlight;
+    src: url("../fonts/STEINERLIGHT.TTF");
+}
+
 *{
     list-style: none;
     font-family: "roboto";
@@ -197,9 +207,19 @@ div.letrablancadiv
 {
     font-size: 30px;
     position: absolute;
-    top: 12px;
     text-align: center;
     left: 40%;
+    font-family: steinerlight;
 }
 
+.centrar
+{
+    text-align: center;
+}
+
+
+/*.margencien*/
+/*{*/
+    /*margin-top: 100px;*/
+/*}*/
 

@@ -211,8 +211,8 @@
 .fixed-table-toolbar .columns {
   position: relative;
   margin-top: 10px;
-  margin-bottom: 10px;
-  line-height: 34px;
+  /*margin-bottom: 10px;*/
+  /*line-height: 34px;*/
 }
 
 .fixed-table-pagination li.disabled a {
@@ -369,7 +369,7 @@ h2, .h2 {
 
 h3, .h3 {
   font-size: 28px;
-  margin: 20px 0 10px;
+  margin: 10px 0 10px;
 }
 
 h4, .h4 {
@@ -599,12 +599,12 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
 }
 .btn-success.btn-fill {
   color: #FFFFFF;
-  background-color: #05AE0E;
+  background-color: #8BC34A;
   opacity: 1;
   filter: alpha(opacity=100);
 }
 .btn-success.btn-fill:hover, .btn-success.btn-fill:focus, .btn-success.btn-fill:active, .btn-success.btn-fill.active, .open > .btn-success.btn-fill.dropdown-toggle {
-  background-color: #049F0C;
+  background-color: #8BC34A;
   color: #FFFFFF;
 }
 .btn-success.btn-fill .caret {
@@ -1154,12 +1154,14 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
   border-radius: 10px 10px 0 0;
   padding: 10px 10px;
   color: #666666;
+  margin-top: 100px;
 }
 .fresh-table .fixed-table-toolbar .dropdown-menu {
   overflow: visible;
 }
 .fresh-table .fixed-table-toolbar .pull-right .btn {
   margin-right: 5px;
+  margin-top: -6px;
 }
 .fresh-table .fixed-table-toolbar .pull-left .btn {
   margin-left: 5px;

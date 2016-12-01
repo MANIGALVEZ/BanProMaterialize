@@ -923,6 +923,7 @@
                     this.options.formatRefresh()),
                 sprintf('<i class="%s %s"></i>', this.options.iconsPrefix, this.options.icons.refresh),
                 '</button>');
+
         }
 
         if (this.options.showToggle) {

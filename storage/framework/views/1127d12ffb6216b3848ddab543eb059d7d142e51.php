@@ -1,10 +1,6 @@
 <?php $__env->startSection('content'); ?>
 
 
-</div>
-
-
-
 <?php if(count($errors) > 0): ?>
     <script>
         swal({
