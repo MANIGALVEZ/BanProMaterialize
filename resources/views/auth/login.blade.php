@@ -72,6 +72,8 @@
                                         <div class="footer text-center">
                                             <center>
                                                 <button type="submit" class="btn btn-simple btn-success btn-lg">Iniciar Sesion</button>
+                                                <p>o</p>
+                                                <a href="{{ url('/register') }}" type="button" class="btn btn-info btn-simple btn-lg">Registrarse</a>
                                             </center>
                                         </div>
                                     </form>

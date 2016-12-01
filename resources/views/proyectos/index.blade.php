@@ -24,7 +24,8 @@
                             -->
 
                             <div class="toolbar">
-                                <h3 class="wizard-title centrar">Todos Los Proyectos</h3>
+                                <a type="button" class="btn btn-success btn-actualizar" data-toggle="tooltip" data-placement="top" title="Actualizar"><i class="material-icons">autorenew</i></a>
+                                <h3 class="wizard-title centrar">Proyectos</h3>
 
                                 {{--<form class="form-inline col-sm-5" action="{{url('searchN')}}" method="POST">--}}
                                 {{--{{ csrf_field() }}--}}
@@ -32,7 +33,15 @@
                                     {{--<button type="submit" class="btn btn-success btn-round btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Filtrar por Nombre"><i class="glyphicon glyphicon-search"></i></button>--}}
                                 {{--</form>--}}
 
-                                <form class="form-inline col-md-10" action="{{url('searchD')}}" method="POST">
+                                <?php $lineas = DB::table("lineas")->get(); ?>
+                                <form class="form-inline col-md-4" >
+                                    @foreach($lineas as $key => $linea)
+                                        <input id="filtroLinea{{ $linea->id }}" class="filtroLinea" type="checkbox" name="lineas[]" value="{{ $linea->id }}">
+                                        <label for="filtroLinea{{ $linea->id }}" data-toggle="tooltip" data-placement="top" title="Filtrar por Linea">{{ $linea->linea }}</label><br>
+                                    @endforeach
+                                </form>
+
+                                <form class="form-inline col-md-7" action="{{url('searchD')}}" method="POST">
                                 {{ csrf_field() }}
                                     <input type="date" class="form-control" id="bd-desde" name="bd-desde" required="required">
                                     <input type="date" class="form-control" id="bd-hasta" name="bd-hasta" required="required">
@@ -40,22 +49,13 @@
                                 </form>
 
                                 <?php $estados = DB::table("estadosdeproyectos")->where('id', '<>', '1')->get(); ?>
-                                <form class="form-inline col-md-2">
+                                <form class="form-inline col-md-1">
                                     <select class="form-control filtroEstado" data-toggle="tooltip" data-placement="top" title="Filtrar por Estado">
                                         <option value="">{{ "Seleccione Estado..." }}</option>
                                             @foreach($estados as $estado)
                                             <option value="{{$estado->id}}">{{$estado->estado}}</option>
                                             @endforeach
                                     </select>
-                                </form>
-                                <br>
-
-                                <?php $lineas = DB::table("lineas")->get(); ?>
-                                <form class="form-inline col-md-12 col-md-offset-9" >
-                                    @foreach($lineas as $key => $linea)
-                                        <input id="filtroLinea{{ $linea->id }}" class="filtroLinea" type="checkbox" name="lineas[]" value="{{ $linea->id }}">
-                                        <label for="filtroLinea{{ $linea->id }}">{{ $linea->linea }}</label><br>
-                                    @endforeach
                                 </form>
                             </div>
 
@@ -137,7 +137,7 @@
                                                         @elseif($estadoproyecto == 3)
                                                             <a href="javascript:;" type="button" class="btn btn-danger btn-simple btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" disabled="disabled" title="No ha sido aceptado, Clic para eliminar la inscripción al proyecto"><i class="material-icons">not_interested</i></a>
                                                         @elseif($estadoproyecto == 1)
-                                                            <button type="button" class="btn btn-success btn-simple btn-just-icon btn-xs" data-toggle="popover" data-placement="top" title="Reclutado!" data-content="Felicidades! ha sido aceptado, pronto, un gestor le contactará"><i class="material-icons">check</i></button>
+                                                            <a type="button" class="btn btn-success btn-simple btn-just-icon btn-xs" data-toggle="popover" data-placement="top" title="Reclutado!" title="Felicidades! ha sido aceptado, pronto, un gestor le contactará"><i class="material-icons">check</i></a>
                                                         @endif
                                                     @else
                                                         @if($row->estadosdeproyectos_id != 2)
@@ -267,12 +267,12 @@
 
         $table.bootstrapTable({
             toolbar: ".toolbar",
-            showRefresh: true,
+            showRefresh: false,
             search: true,
-//            showToggle: true,
+            showToggle: false,
             showColumns: true,
             pagination: true,
-//            striped: true,
+            striped: false,
             sortable: true,
 //            height: table_height,
             pageSize: 3,

@@ -401,10 +401,10 @@
             return sprintf('Showing %s to %s of %s rows', pageFrom, pageTo, totalRows);
         },
         formatSearch: function () {
-            return 'Search';
+            return 'Buscar';
         },
         formatNoMatches: function () {
-            return 'No matching records found';
+            return 'No se encuentran proyectos relacionados con su búsqueda';
         },
         formatPaginationSwitch: function () {
             return 'Hide/Show pagination';
@@ -416,7 +416,7 @@
             return 'Toggle';
         },
         formatColumns: function () {
-            return 'Columns';
+            return 'Vista';
         },
         formatAllRows: function () {
             return 'All';

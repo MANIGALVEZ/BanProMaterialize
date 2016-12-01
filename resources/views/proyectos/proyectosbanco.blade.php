@@ -24,6 +24,7 @@
                                     Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange
                             -->
                             <div class="toolbar">
+                                <a type="button" class="btn btn-success btn-actualizar" data-toggle="tooltip" data-placement="top" title="Actualizar"><i class="material-icons">autorenew</i></a>
                                 <h3 class="wizard-title centrar">Proyectos Cerrados</h3>
 
                                 {{--<form class="form-inline col-sm-5" action="{{url('searchN')}}" method="POST">--}}
@@ -32,7 +33,15 @@
                                 {{--<button type="submit" class="btn btn-success btn-round btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" title="Filtrar por Nombre"><i class="glyphicon glyphicon-search"></i></button>--}}
                                 {{--</form>--}}
 
-                                <form class="form-inline col-md-10 margen" action="{{url('searchD')}}" method="POST">
+                                <?php $lineas = DB::table("lineas")->get(); ?>
+                                <form class="form-inline col-md-4" >
+                                    @foreach($lineas as $key => $linea)
+                                        <input id="filtroLinea{{ $linea->id }}" class="filtroLinea" type="checkbox" name="lineas[]" value="{{ $linea->id }}">
+                                        <label for="filtroLinea{{ $linea->id }}" data-toggle="tooltip" data-placement="top" title="Filtrar por Linea">{{ $linea->linea }}</label><br>
+                                    @endforeach
+                                </form>
+
+                                <form class="form-inline col-md-7" action="{{url('searchD')}}" method="POST">
                                     {{ csrf_field() }}
                                     <input type="date" class="form-control" id="bd-desde" name="bd-desde" required="required">
                                     <input type="date" class="form-control" id="bd-hasta" name="bd-hasta" required="required">
@@ -40,22 +49,13 @@
                                 </form>
 
                                 <?php $estados = DB::table("estadosdeproyectos")->where('id', '<>', '1')->get(); ?>
-                                <form class="form-inline col-md-2 margen">
+                                <form class="form-inline col-md-1">
                                     <select class="form-control filtroEstado" data-toggle="tooltip" data-placement="top" title="Filtrar por Estado">
                                         <option value="">{{ "Seleccione Estado..." }}</option>
                                         @foreach($estados as $estado)
                                             <option value="{{$estado->id}}">{{$estado->estado}}</option>
                                         @endforeach
                                     </select>
-                                </form>
-                                <br>
-
-                                <?php $lineas = DB::table("lineas")->get(); ?>
-                                <form class="form-inline col-md-12 col-md-offset-9" >
-                                    @foreach($lineas as $key => $linea)
-                                        <input id="filtroLinea{{ $linea->id }}" class="filtroLinea" type="checkbox" name="lineas[]" value="{{ $linea->id }}">
-                                        <label for="filtroLinea{{ $linea->id }}">{{ $linea->linea }}</label><br>
-                                    @endforeach
                                 </form>
                             </div>
                             <table id="fresh-table" class="table" >
@@ -169,12 +169,12 @@
 
         $table.bootstrapTable({
             toolbar: ".toolbar",
-//            showRefresh: true,
+            showRefresh: false,
             search: true,
-//            showToggle: true,
+            showToggle: false,
             showColumns: true,
             pagination: true,
-//            striped: true,
+            striped: false,
             sortable: true,
 //            height: table_height,
             pageSize: 3,

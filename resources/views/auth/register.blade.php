@@ -161,12 +161,6 @@
                 </div>
             </div><!-- fin row -->
         </div> <!--  fin big container -->
-
-        {{--<div class="footer">--}}
-            {{--<div class="container text-center">--}}
-                {{--Hecho con <i class="fa fa-heart heart"></i> por <a href="">Henry Parra & Yonathan Gálvez</a> para Tecnoparque <a href="http://tecnoparque.sena.edu.co/"></a>--}}
-            {{--</div>--}}
-        {{--</div>--}}
     </div>
 </body>
 

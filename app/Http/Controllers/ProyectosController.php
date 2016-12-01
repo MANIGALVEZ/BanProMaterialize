@@ -33,22 +33,17 @@ class ProyectosController extends Controller
         $query = Proyecto::where('estadosdeproyectos_id', '<>', "1")
             ->orderBy('id', 'ASC')
             ->paginate();
-
         return view('proyectos.index', compact('query', "lineas", 'iprs', 'proyectosusuariosvista'));
 
     }
-
-
 
 
     //Funcion create para direccionar a vista/ El usuario por medio del aplicativo espera tener una interfaz que permita registrar su proyecto
     public function create()
     {
         $lineas = Linea::all();
-
     	return view('proyectos.registrarproyectos', compact("lineas"));
     }
-
 
 
     //Funcion store para guardar en BD/ El usuario por medio del aplicativo espera tener una interfaz que permita registrar su proyecto
@@ -86,7 +81,6 @@ class ProyectosController extends Controller
                 $linea_proyecto->save();
                 }
             }
-
             return redirect("proyectos/create");
 	}
 
@@ -94,16 +88,12 @@ class ProyectosController extends Controller
     //Funcion para guardar y mostrar valores en el modal
     public function resumenProyecto(Request $request)
     {
-//        if(Auth::user()->tiporol == 'usuario'){
         $proyecto = Proyecto::find($request->get("idProyecto"));
         $proyecto->estadosdeproyectos_id = $request->get("idEstado");
         $proyecto->resumen = $request->get('texto');
         $proyecto->save();
-
         return redirect("proyectosIndex");
-//        }else{
-//            return redirect("/home");
-//        }
+
     }
 
 
@@ -111,7 +101,6 @@ class ProyectosController extends Controller
     public function consultaProyecto($idp)
     {
         $proyecto = Proyecto::find($idp);
-
         return $proyecto->resumen;
     }
 
@@ -123,7 +112,6 @@ class ProyectosController extends Controller
             ->orderBy('id', 'ASC')
             ->paginate();
         $iprs = ProyectosUsers::all();
-
         return view('proyectos.selectestadoslineas', compact('query', 'iprs'));
     }
 
@@ -137,10 +125,8 @@ class ProyectosController extends Controller
             ->orderBy('id', 'ASC')
             ->paginate();
         $iprs=ProyectosUsers::all();
-
         return view('proyectos.index', compact('query','iprs', 'lineas'));
     }
-
 
 
     // Funcion buscar proyectos por fecha: El gestor por medio del aplicativo tendrá la opcion de buscar los proyectos o filtrar por fecha
@@ -162,7 +148,6 @@ class ProyectosController extends Controller
         }
 
         $iprs=ProyectosUsers::all();
-
         return view('proyectos.index', compact('query','iprs'));
 
     }
@@ -197,9 +182,7 @@ class ProyectosController extends Controller
         $ipr->users_id = $user;
         $ipr->estadosproyectosusers_id = 2;
         $ipr->save();
-
         return redirect('proyectosIndex');
-
     }
 
 
@@ -212,7 +195,6 @@ class ProyectosController extends Controller
         $ipr->users_id = $user;
         $ipr->estadosproyectosusers_id = 2;
         $ipr->save();
-
         return redirect("show/".$id);
     }
 
@@ -247,7 +229,6 @@ class ProyectosController extends Controller
         {
             return redirect('/home');
         }
-
     }
 
 
@@ -258,7 +239,6 @@ class ProyectosController extends Controller
         $proyecto->estadosdeproyectos_id = $request->get("idEliminar");
         $proyecto->resumen = $request->get('textoEliminar');
         $proyecto->save();
-
         return redirect("proyectosIndex");
     }
 
@@ -306,7 +286,6 @@ class ProyectosController extends Controller
         $query = Proyecto::where('estadosdeproyectos_id', '=', '1')
             ->orderBy('id','ASC')
             ->paginate();
-
         return view('proyectos.proyectosbanco', compact('query', "lineas", 'iprs'));
     }
 
@@ -409,7 +388,6 @@ class ProyectosController extends Controller
         $comentario->proyecto_id = $id;
         $comentario->usuario_id  = Auth::user()->id;
         $comentario->save();
-        
         return redirect("show/".$id);
     }
 
@@ -421,7 +399,6 @@ class ProyectosController extends Controller
         $proyecto->estadosdeproyectos_id = $request->get("idEstado");
         $proyecto->resumen = $request->get('texto');
         $proyecto->save();
-
         return redirect("show/".$request->get("idProyecto"));
     }
 
@@ -435,7 +412,6 @@ class ProyectosController extends Controller
         $editar->descripcion = $request->get('descripcion');
         $editar->resumen = $request->get('resumen');
         $editar->save();
-
         return redirect("show/".$id);
     }
 
@@ -449,14 +425,12 @@ class ProyectosController extends Controller
         $editar->imagen = 'imagenes/proyectos/' . $ruta;
         $image->move(base_path() . '/public/imagenes/proyectos/', $ruta);
         $editar->save();
-
         return redirect("show/".$id);
     }
 
 
     public function insertShowLinea(Request $request, $id)
     {
-
         $lineaproyecto = new LineaProyecto;
         $lineaproyecto->proyectos_id = $id;
         $lineaproyecto->lineas_id = $request->get('idN');

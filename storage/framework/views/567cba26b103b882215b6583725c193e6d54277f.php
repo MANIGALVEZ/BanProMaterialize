@@ -1,5 +1,6 @@
 <?php $__env->startSection('content'); ?>
 
+
 <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
 <body>
@@ -13,13 +14,14 @@
                                     Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange
                             -->
                             <div class="toolbar">
+                                <a type="button" class="btn btn-success btn-actualizar" data-toggle="tooltip" data-placement="top" title="Actualizar"><i class="material-icons">autorenew</i></a>
                                 <h3 class="wizard-title centrar">Administración de Usuarios</h3>
                             </div>
 
                             <table id="fresh-table" class="table" >
                                 <thead>
                                 
-                                <th data-field="nameu" data-sortable="true">Nombre</th>
+                                <th data-field="nameu" data-sortable="true">Nombres</th>
                                 <th data-field="apellidos" data-sortable="true">Apellidos</th>
                                 <th data-field="email" data-sortable="true">Email</th>
                                 <th data-field="celular" data-sortable="true">Celular</th>
@@ -66,12 +68,12 @@
 
         $table.bootstrapTable({
             toolbar: ".toolbar",
-//            showRefresh: true,
+            showRefresh: false,
             search: true,
-//            showToggle: true,
+            showToggle: false,
             showColumns: true,
             pagination: true,
-//            striped: true,
+            striped: false,
             sortable: true,
 //            height: table_height,
             pageSize: 3,

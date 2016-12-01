@@ -23,7 +23,6 @@
     <link  href="{{ asset('css/sweetalert.css') }}" rel="stylesheet">
     <link  href="{{ asset('css/custom.css') }}" rel="stylesheet">
     <link  href="{{ asset('css/fontello.css') }}" rel="stylesheet">
-{{--    <link  href="{{ asset('css/menu.css') }}" rel="stylesheet">--}}
     <link  href="{{ asset('css/bootstrap-switch.css') }}" rel="stylesheet">
     <link  href="{{ asset('css/fileinput.css') }}" rel="stylesheet">
     <link  href="{{ asset('css/material-kit.css') }}" rel="stylesheet">
@@ -41,14 +40,7 @@
     <script src="{{ asset('js/jquery.bootstrap.js') }}"></script>
     <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap-table.js') }}"></script>
-    {{--<script src="{{ asset('js/bootstrap-switch.js') }}"></script>--}}
-    {{--<script src="{{ asset('js/jquery.min.js') }}"></script>--}}
     <script src="{{ asset('js/fileinput.js') }}"></script>
-    {{--<script src="{{ asset('js/bootstrap-datepicker.js') }}"></script>--}}
-    {{--<script src="{{ asset('js/nouislider.min.js') }}"></script>--}}
-    {{--<script src="{{ asset('js/formsmaterialize.js') }}"></script>--}}
-    {{--<script src="{{ asset('js/app.js') }}"></script>--}}
-    {{--<script src="{{ asset('js/holder.js') }}"></script>--}}
 
 
 </head>
@@ -68,7 +60,7 @@
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div style="position: relative" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <p class="titulobanco">BANCO DE PROYECTOS</p>
+                <p class="titulobanco">PORTAL TECNOPARQUE</p>
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/')}}" data-toggle="tooltip" data-placement="bottom" title="Inicio"><i class="material-icons">home</i></a></li>
                     @if (Auth::guest())
@@ -316,6 +308,11 @@ $(document).ready(function()
 
     })
 
+
+    $('.btn-actualizar').click(function ()
+    {
+        window.location.replace("")
+    })
 
 })
 </script>

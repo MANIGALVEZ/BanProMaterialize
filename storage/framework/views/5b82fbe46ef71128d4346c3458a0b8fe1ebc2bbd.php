@@ -23,7 +23,8 @@
                             -->
 
                             <div class="toolbar">
-                                <h3 class="wizard-title centrar">Todos Los Proyectos</h3>
+                                <a type="button" class="btn btn-success btn-actualizar" data-toggle="tooltip" data-placement="top" title="Actualizar"><i class="material-icons">autorenew</i></a>
+                                <h3 class="wizard-title centrar">Proyectos</h3>
 
                                 
                                 
@@ -31,7 +32,15 @@
                                     
                                 
 
-                                <form class="form-inline col-md-10" action="<?php echo e(url('searchD')); ?>" method="POST">
+                                <?php $lineas = DB::table("lineas")->get(); ?>
+                                <form class="form-inline col-md-4" >
+                                    <?php $__currentLoopData = $lineas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $linea): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+                                        <input id="filtroLinea<?php echo e($linea->id); ?>" class="filtroLinea" type="checkbox" name="lineas[]" value="<?php echo e($linea->id); ?>">
+                                        <label for="filtroLinea<?php echo e($linea->id); ?>" data-toggle="tooltip" data-placement="top" title="Filtrar por Linea"><?php echo e($linea->linea); ?></label><br>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
+                                </form>
+
+                                <form class="form-inline col-md-7" action="<?php echo e(url('searchD')); ?>" method="POST">
                                 <?php echo e(csrf_field()); ?>
 
                                     <input type="date" class="form-control" id="bd-desde" name="bd-desde" required="required">
@@ -40,22 +49,13 @@
                                 </form>
 
                                 <?php $estados = DB::table("estadosdeproyectos")->where('id', '<>', '1')->get(); ?>
-                                <form class="form-inline col-md-2">
+                                <form class="form-inline col-md-1">
                                     <select class="form-control filtroEstado" data-toggle="tooltip" data-placement="top" title="Filtrar por Estado">
                                         <option value=""><?php echo e("Seleccione Estado..."); ?></option>
                                             <?php $__currentLoopData = $estados; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $estado): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
                                             <option value="<?php echo e($estado->id); ?>"><?php echo e($estado->estado); ?></option>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
                                     </select>
-                                </form>
-                                <br>
-
-                                <?php $lineas = DB::table("lineas")->get(); ?>
-                                <form class="form-inline col-md-12 col-md-offset-9" >
-                                    <?php $__currentLoopData = $lineas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $linea): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
-                                        <input id="filtroLinea<?php echo e($linea->id); ?>" class="filtroLinea" type="checkbox" name="lineas[]" value="<?php echo e($linea->id); ?>">
-                                        <label for="filtroLinea<?php echo e($linea->id); ?>"><?php echo e($linea->linea); ?></label><br>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
                                 </form>
                             </div>
 
@@ -138,7 +138,7 @@
                                                         <?php elseif($estadoproyecto == 3): ?>
                                                             <a href="javascript:;" type="button" class="btn btn-danger btn-simple btn-just-icon btn-xs" data-toggle="tooltip" data-placement="top" disabled="disabled" title="No ha sido aceptado, Clic para eliminar la inscripción al proyecto"><i class="material-icons">not_interested</i></a>
                                                         <?php elseif($estadoproyecto == 1): ?>
-                                                            <button type="button" class="btn btn-success btn-simple btn-just-icon btn-xs" data-toggle="popover" data-placement="top" title="Reclutado!" data-content="Felicidades! ha sido aceptado, pronto, un gestor le contactará"><i class="material-icons">check</i></button>
+                                                            <a type="button" class="btn btn-success btn-simple btn-just-icon btn-xs" data-toggle="popover" data-placement="top" title="Reclutado!" title="Felicidades! ha sido aceptado, pronto, un gestor le contactará"><i class="material-icons">check</i></a>
                                                         <?php endif; ?>
                                                     <?php else: ?>
                                                         <?php if($row->estadosdeproyectos_id != 2): ?>
@@ -270,12 +270,12 @@
 
         $table.bootstrapTable({
             toolbar: ".toolbar",
-            showRefresh: true,
+            showRefresh: false,
             search: true,
-//            showToggle: true,
+            showToggle: false,
             showColumns: true,
             pagination: true,
-//            striped: true,
+            striped: false,
             sortable: true,
 //            height: table_height,
             pageSize: 3,

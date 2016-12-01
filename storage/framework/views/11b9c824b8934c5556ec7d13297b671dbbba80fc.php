@@ -23,7 +23,6 @@
     <link  href="<?php echo e(asset('css/sweetalert.css')); ?>" rel="stylesheet">
     <link  href="<?php echo e(asset('css/custom.css')); ?>" rel="stylesheet">
     <link  href="<?php echo e(asset('css/fontello.css')); ?>" rel="stylesheet">
-
     <link  href="<?php echo e(asset('css/bootstrap-switch.css')); ?>" rel="stylesheet">
     <link  href="<?php echo e(asset('css/fileinput.css')); ?>" rel="stylesheet">
     <link  href="<?php echo e(asset('css/material-kit.css')); ?>" rel="stylesheet">
@@ -41,14 +40,7 @@
     <script src="<?php echo e(asset('js/jquery.bootstrap.js')); ?>"></script>
     <script src="<?php echo e(asset('js/jquery.validate.min.js')); ?>"></script>
     <script src="<?php echo e(asset('js/bootstrap-table.js')); ?>"></script>
-    
-    
     <script src="<?php echo e(asset('js/fileinput.js')); ?>"></script>
-    
-    
-    
-    
-    
 
 
 </head>
@@ -68,7 +60,7 @@
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div style="position: relative" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <p class="titulobanco">BANCO DE PROYECTOS</p>
+                <p class="titulobanco">PORTAL TECNOPARQUE</p>
                 <ul class="nav navbar-nav">
                     <li><a href="<?php echo e(url('/')); ?>" data-toggle="tooltip" data-placement="bottom" title="Inicio"><i class="material-icons">home</i></a></li>
                     <?php if(Auth::guest()): ?>
@@ -319,6 +311,11 @@ $(document).ready(function()
 
     })
 
+
+    $('.btn-actualizar').click(function ()
+    {
+        window.location.replace("")
+    })
 
 })
 </script>
