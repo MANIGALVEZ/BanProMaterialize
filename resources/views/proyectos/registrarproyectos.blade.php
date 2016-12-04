@@ -24,7 +24,7 @@
 
 
 <body>
-    <div class="image-container set-full-height" style="background-image: url('/img/10.jpg')">
+    <div class="image-container set-full-height" style="background-image: url('../img/10.jpg')">
 
         <!--  Slider  -->
         <a href="http://tecnoparque.sena.edu.co/" class="made-with-mk">

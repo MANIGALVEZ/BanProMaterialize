@@ -56,7 +56,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 {{--<a class="navbar-brand" href="#">Brand</a>--}}
-                <a class="navbar-brand logotecno"><img src="../img/tecnoparque1.png" alt=""></a>
+                <a class="navbar-brand logotecno"><img src={{ asset('img/tecnoparque1.png') }} alt=""></a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div style="position: relative" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

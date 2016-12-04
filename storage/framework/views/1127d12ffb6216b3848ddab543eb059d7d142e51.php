@@ -160,12 +160,6 @@
                 </div>
             </div><!-- fin row -->
         </div> <!--  fin big container -->
-
-        
-            
-                
-            
-        
     </div>
 </body>
 

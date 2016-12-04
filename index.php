@@ -1,3 +1,3 @@
 <script>
-    window.location.replace("banco/public/")
+    window.location.replace("public/")
 </script>
