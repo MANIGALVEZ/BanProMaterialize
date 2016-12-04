@@ -169,12 +169,12 @@
         </table>
         @if(Auth::user()->tiporol == 'gestor')
             <div style="padding:0; height: 268px;" class=" row col-md-4 col-sm-offset-1">
-                <img src="/{{$query->imagen}}" class="img-thumbnail imgS" style=" height: 250px;">
+                <img src="{{ asset($query->imagen) }}" class="img-thumbnail imgS" style=" height: 250px;">
             </div>
         @endif
         @if(Auth::user()->tiporol == 'usuario')
             <div style="padding:0; height: 268px;" class=" row col-md-12 col-sm-offset-4">
-                <img src="/{{$query->imagen}}" class="img-thumbnail imgS" style=" height: 250px;">
+                <img src="{{ asset($query->imagen) }}" class="img-thumbnail imgS" style=" height: 250px;">
             </div>
         @endif
         @if(Auth::user()->tiporol == 'gestor')
